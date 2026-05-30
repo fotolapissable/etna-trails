@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Etna Trails · fotolapissable</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a0a00">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Etna Trails">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════════
+   ETNA TRAILS — CSS
+   Aesthetic: Volcanic / Ancient / Cartographic
+═══════════════════════════════════════════════ */
+:root {
+  --lava:#1a0a00;
+  --lava2:#2a1200;
+  --lava3:#3d1a00;
+  --ember:#e8600a;
+  --ember-dim:rgba(232,96,10,0.18);
+  --ember-glow:rgba(232,96,10,0.4);
+  --gold:#c9a84c;
+  --gold-dim:rgba(201,168,76,0.15);
+  --ash:#8a7a6a;
+  --ash-light:#bfad9a;
+  --snow:#f0ece4;
+  --green-trail:#4a9e5c;
+  --blue-trail:#3a7fbf;
+  --red-trail:#bf3a3a;
+  --border:rgba(201,168,76,0.22);
+  --border-bright:rgba(201,168,76,0.5);
+  --font-title:'Cinzel',serif;
+  --font-body:'Crimson Pro',serif;
+  --font-mono:'Share Tech Mono',monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--lava)}
+
+body {
+  font-family:var(--font-body);
+  color:var(--snow);
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(232,96,10,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(232,96,10,0.05) 0%, transparent 50%),
+    var(--lava);
+}
+
+/* ── HEADER ─────────────────────────────────── */
+#header {
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px;
+  background:rgba(10,4,0,0.95);
+  border-bottom:1px solid var(--border-bright);
+  box-shadow:0 2px 20px rgba(232,96,10,0.15);
+  position:relative;z-index:1000;
+}
+
+#hdr-left { display:flex;align-items:center;gap:14px }
+
+.hdr-volcano {
+  width:32px;height:32px;
+  background:radial-gradient(circle at 50% 70%, var(--ember) 0%, var(--lava3) 60%);
+  clip-path:polygon(50% 0%, 85% 100%, 15% 100%);
+  position:relative;
+  filter:drop-shadow(0 0 8px var(--ember-glow));
+}
+
+#hdr-titles { line-height:1.2 }
+#hdr-main {
+  font-family:var(--font-title);font-size:15px;font-weight:900;
+  letter-spacing:3px;color:var(--gold);
+  text-shadow:0 0 18px rgba(201,168,76,0.4);
+}
+#hdr-sub {
+  font-size:9px;letter-spacing:2.5px;color:var(--ash);
+  font-family:var(--font-mono);text-transform:uppercase;
+}
+
+#hdr-right { display:flex;align-items:center;gap:10px }
+
+/* Language toggle */
+#lang-toggle {
+  display:flex;border:1px solid var(--border);border-radius:2px;overflow:hidden;
+}
+.lang-btn {
+  background:none;border:none;color:var(--ash);
+  font-family:var(--font-mono);font-size:9px;letter-spacing:1px;
+  padding:5px 9px;cursor:pointer;transition:all .2s;
+}
+.lang-btn.active { background:var(--ember-dim);color:var(--ember) }
+.lang-btn:hover:not(.active) { color:var(--snow) }
+
+#btn-add-trail {
+  background:var(--ember);border:none;color:white;
+  font-family:var(--font-mono);font-size:9px;letter-spacing:1.5px;
+  padding:7px 12px;border-radius:2px;cursor:pointer;
+  transition:all .2s;text-transform:uppercase;
+  box-shadow:0 0 12px rgba(232,96,10,0.3);
+}
+#btn-add-trail:hover { background:#ff7a20;box-shadow:0 0 18px rgba(232,96,10,0.5) }
+
+/* ── LAYOUT ─────────────────────────────────── */
+#main { display:flex;height:calc(100vh - 74px) }
+
+/* ── SIDEBAR ────────────────────────────────── */
+#sidebar {
+  width:300px;min-width:300px;
+  background:rgba(10,4,0,0.92);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+
+/* Filters */
+#filters {
+  padding:12px 14px;
+  border-bottom:1px solid var(--border);
+  background:rgba(26,10,0,0.6);
+}
+
+.filter-label {
+  font-family:var(--font-mono);font-size:8px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;margin-bottom:7px;
+}
+
+.filter-row { display:flex;gap:5px;flex-wrap:wrap }
+
+.ftag {
+  background:none;border:1px solid var(--border);
+  color:var(--ash-light);font-family:var(--font-mono);font-size:8px;
+  letter-spacing:1px;padding:4px 8px;border-radius:2px;cursor:pointer;
+  transition:all .2s;text-transform:uppercase;
+}
+.ftag.active { background:var(--ember-dim);border-color:var(--ember);color:var(--ember) }
+.ftag:hover:not(.active) { border-color:var(--ash-light);color:var(--snow) }
+
+.ftag.diff-T.active  { background:rgba(74,158,92,0.18);border-color:var(--green-trail);color:var(--green-trail) }
+.ftag.diff-E.active  { background:rgba(58,127,191,0.18);border-color:var(--blue-trail);color:var(--blue-trail) }
+.ftag.diff-EE.active { background:rgba(191,58,58,0.18);border-color:var(--red-trail);color:var(--red-trail) }
+
+#search-box {
+  width:100%;background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);border-radius:2px;
+  color:var(--snow);font-family:var(--font-body);font-size:13px;
+  padding:7px 10px;margin-top:8px;outline:none;
+  transition:border-color .2s;
+}
+#search-box::placeholder { color:var(--ash) }
+#search-box:focus { border-color:var(--gold) }
+
+/* Trail list */
+#trail-list {
+  flex:1;overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--lava3) transparent;
+}
+#trail-list::-webkit-scrollbar { width:4px }
+#trail-list::-webkit-scrollbar-thumb { background:var(--lava3) }
+
+.trail-card {
+  padding:14px 16px;border-bottom:1px solid rgba(201,168,76,0.1);
+  cursor:pointer;transition:all .2s;position:relative;
+  overflow:hidden;
+}
+.trail-card::before {
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--diff-color,var(--ash));
+  opacity:0.7;transition:opacity .2s;
+}
+.trail-card:hover { background:rgba(232,96,10,0.06) }
+.trail-card:hover::before { opacity:1 }
+.trail-card.active { background:rgba(232,96,10,0.1) }
+.trail-card.active::before { opacity:1 }
+
+.tc-header { display:flex;justify-content:space-between;align-items:flex-start;gap:8px }
+.tc-name {
+  font-family:var(--font-title);font-size:11.5px;font-weight:600;
+  color:var(--gold);letter-spacing:.5px;line-height:1.3;flex:1;
+}
+.diff-badge {
+  font-family:var(--font-mono);font-size:8.5px;font-weight:bold;
+  padding:2px 6px;border-radius:2px;white-space:nowrap;flex-shrink:0;
+  letter-spacing:1px;
+}
+.diff-T  { background:rgba(74,158,92,0.2);color:var(--green-trail);border:1px solid rgba(74,158,92,0.4) }
+.diff-E  { background:rgba(58,127,191,0.2);color:var(--blue-trail);border:1px solid rgba(58,127,191,0.4) }
+.diff-EE { background:rgba(191,58,58,0.2);color:var(--red-trail);border:1px solid rgba(191,58,58,0.4) }
+
+.tc-stats {
+  display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;
+}
+.tc-stat {
+  font-family:var(--font-mono);font-size:8.5px;color:var(--ash);
+  display:flex;align-items:center;gap:3px;
+}
+.tc-stat span { color:var(--ash-light) }
+
+.tc-desc {
+  font-size:11.5px;color:var(--ash);margin-top:5px;
+  line-height:1.5;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  font-style:italic;
+}
+
+/* ── MAP ────────────────────────────────────── */
+#map-wrap { flex:1;position:relative }
+#map { width:100%;height:100%;z-index:1 }
+
+/* Map controls */
+#map-controls {
+  position:absolute;top:12px;left:12px;z-index:500;
+  display:flex;gap:6px;
+}
+.mctrl-btn {
+  background:rgba(10,4,0,0.9);border:1px solid var(--border);
+  color:var(--ash-light);font-family:var(--font-mono);font-size:9px;
+  letter-spacing:1px;padding:6px 10px;cursor:pointer;border-radius:2px;
+  transition:all .2s;backdrop-filter:blur(4px);
+}
+.mctrl-btn:hover { border-color:var(--gold);color:var(--snow) }
+.mctrl-btn.active { border-color:var(--ember);color:var(--ember);background:var(--ember-dim) }
+
+/* ── DETAIL PANEL ───────────────────────────── */
+#detail-panel {
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(10,4,0,0.97);
+  border-top:1px solid var(--border-bright);
+  max-height:45%;overflow-y:auto;
+  transform:translateY(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  z-index:600;
+  scrollbar-width:thin;scrollbar-color:var(--lava3) transparent;
+}
+#detail-panel.open { transform:translateY(0) }
+
+#detail-inner { padding:18px 20px 24px }
+
+#detail-close {
+  position:absolute;top:12px;right:14px;
+  background:none;border:1px solid var(--border);color:var(--ash);
+  font-family:var(--font-mono);font-size:10px;padding:4px 8px;
+  cursor:pointer;border-radius:2px;
+}
+#detail-close:hover { border-color:var(--ember);color:var(--ember) }
+
+#detail-name {
+  font-family:var(--font-title);font-size:16px;font-weight:900;
+  color:var(--gold);letter-spacing:1px;margin-bottom:6px;
+  padding-right:40px;line-height:1.3;
+}
+#detail-zone {
+  font-family:var(--font-mono);font-size:8.5px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;margin-bottom:12px;
+}
+
+#detail-stats {
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+  gap:8px;margin-bottom:14px;
+}
+.dstat {
+  background:var(--lava2);border:1px solid var(--border);
+  border-radius:3px;padding:8px 10px;text-align:center;
+}
+.dstat-lbl {
+  font-family:var(--font-mono);font-size:7.5px;letter-spacing:1.5px;
+  color:var(--ash);text-transform:uppercase;margin-bottom:3px;
+}
+.dstat-val {
+  font-family:var(--font-title);font-size:16px;color:var(--gold);font-weight:600;
+}
+.dstat-unit { font-size:10px;color:var(--ash);margin-left:2px }
+
+#detail-desc {
+  font-size:13px;color:var(--ash-light);line-height:1.7;
+  font-style:italic;border-left:2px solid var(--ember);
+  padding-left:12px;margin-bottom:12px;
+}
+
+#detail-poi h4 {
+  font-family:var(--font-mono);font-size:8.5px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;margin-bottom:8px;
+}
+.poi-item {
+  display:flex;align-items:center;gap:8px;
+  padding:5px 0;border-bottom:1px solid rgba(201,168,76,0.08);
+  font-size:12px;color:var(--ash-light);
+}
+.poi-quota {
+  font-family:var(--font-mono);font-size:9px;color:var(--ember);
+  min-width:55px;
+}
+
+/* Stagioni */
+#detail-stagioni { margin-top:12px }
+#detail-stagioni h4 {
+  font-family:var(--font-mono);font-size:8.5px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;margin-bottom:8px;
+}
+.mesi-grid { display:flex;gap:4px;flex-wrap:wrap }
+.mese {
+  font-family:var(--font-mono);font-size:8px;letter-spacing:.5px;
+  padding:3px 6px;border-radius:2px;border:1px solid rgba(201,168,76,0.15);
+  color:var(--ash);text-transform:uppercase;
+}
+.mese.ok { background:rgba(74,158,92,0.2);border-color:rgba(74,158,92,0.5);color:var(--green-trail) }
+
+/* ── SUBMIT MODAL ───────────────────────────── */
+#modal-overlay {
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,0.8);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
+}
+#modal-overlay.open { display:flex }
+
+#modal {
+  background:var(--lava2);border:1px solid var(--border-bright);
+  border-radius:4px;width:min(520px,95vw);max-height:90vh;
+  overflow-y:auto;
+  box-shadow:0 8px 40px rgba(0,0,0,0.6),0 0 40px rgba(232,96,10,0.1);
+}
+
+#modal-header {
+  padding:18px 20px 14px;
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+#modal-title {
+  font-family:var(--font-title);font-size:14px;font-weight:900;
+  color:var(--gold);letter-spacing:2px;
+}
+#modal-close {
+  background:none;border:1px solid var(--border);color:var(--ash);
+  font-family:var(--font-mono);font-size:10px;padding:4px 8px;
+  cursor:pointer;border-radius:2px;
+}
+#modal-close:hover { border-color:var(--ember);color:var(--ember) }
+
+#modal-body { padding:18px 20px }
+
+.form-group { margin-bottom:14px }
+.form-label {
+  display:block;font-family:var(--font-mono);font-size:8.5px;
+  letter-spacing:1.5px;color:var(--ash);text-transform:uppercase;
+  margin-bottom:5px;
+}
+.form-input, .form-select, .form-textarea {
+  width:100%;background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);border-radius:2px;
+  color:var(--snow);font-family:var(--font-body);font-size:13px;
+  padding:8px 10px;outline:none;transition:border-color .2s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color:var(--gold);
+}
+.form-select option { background:var(--lava2);color:var(--snow) }
+.form-textarea { min-height:80px;resize:vertical;line-height:1.5 }
+
+.form-row { display:grid;grid-template-columns:1fr 1fr;gap:10px }
+
+#modal-info {
+  background:var(--ember-dim);border:1px solid rgba(232,96,10,0.3);
+  border-radius:3px;padding:10px 12px;margin-bottom:16px;
+  font-size:11.5px;color:var(--ash-light);line-height:1.5;
+}
+#modal-info strong { color:var(--ember) }
+
+#btn-submit {
+  width:100%;background:var(--ember);border:none;color:white;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:2px;
+  padding:12px;border-radius:2px;cursor:pointer;transition:all .2s;
+  text-transform:uppercase;
+  box-shadow:0 0 16px rgba(232,96,10,0.3);
+}
+#btn-submit:hover { background:#ff7a20;box-shadow:0 0 24px rgba(232,96,10,0.5) }
+#btn-submit:disabled { opacity:.5;cursor:not-allowed }
+
+#submit-success {
+  display:none;text-align:center;padding:24px;
+}
+#submit-success .big-check {
+  font-size:40px;display:block;margin-bottom:12px;
+}
+#submit-success p {
+  font-size:13px;color:var(--ash-light);line-height:1.6;
+}
+
+/* ── LEGEND ─────────────────────────────────── */
+#legend {
+  position:absolute;bottom:20px;right:12px;z-index:500;
+  background:rgba(10,4,0,0.9);border:1px solid var(--border);
+  border-radius:3px;padding:10px 13px;
+  backdrop-filter:blur(4px);
+}
+.leg-item {
+  display:flex;align-items:center;gap:7px;
+  font-family:var(--font-mono);font-size:8px;letter-spacing:1px;
+  color:var(--ash-light);margin-bottom:5px;
+}
+.leg-item:last-child { margin-bottom:0 }
+.leg-dot {
+  width:10px;height:10px;border-radius:50%;flex-shrink:0;
+}
+
+/* ── FOOTER BRANDING ────────────────────────── */
+#brand-footer {
+  position:fixed;bottom:0;left:0;right:0;z-index:5000;
+  height:18px;display:flex;align-items:center;justify-content:center;
+  background:rgba(4,2,0,0.95);
+  border-top:1px solid rgba(201,168,76,0.15);
+  font-family:var(--font-mono);font-size:8px;letter-spacing:2px;
+}
+
+/* ── MAP MARKER STYLES ──────────────────────── */
+.trail-marker {
+  width:14px;height:14px;border-radius:50%;
+  border:2px solid rgba(255,255,255,0.6);
+  cursor:pointer;transition:transform .2s;
+  box-shadow:0 0 8px rgba(0,0,0,0.5);
+}
+.trail-marker:hover { transform:scale(1.3) }
+.trail-marker.T  { background:var(--green-trail) }
+.trail-marker.E  { background:var(--blue-trail) }
+.trail-marker.EE { background:var(--red-trail) }
+.trail-marker.selected { transform:scale(1.4);border-color:var(--gold);box-shadow:0 0 10px var(--ember-glow) }
+
+/* Leaflet popup */
+.leaflet-popup-content-wrapper {
+  background:var(--lava2) !important;
+  border:1px solid var(--border-bright) !important;
+  border-radius:3px !important;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5) !important;
+}
+.leaflet-popup-content {
+  color:var(--snow) !important;
+  font-family:var(--font-mono) !important;
+  font-size:11px !important;
+  margin:10px 14px !important;
+}
+.leaflet-popup-tip { background:var(--lava2) !important }
+.leaflet-popup-close-button { color:var(--ash) !important }
+
+/* Etna summit marker */
+.etna-marker {
+  font-size:20px;line-height:1;
+  filter:drop-shadow(0 0 6px rgba(232,96,10,0.8));
+}
+
+/* ── MOBILE ─────────────────────────────────── */
+@media(max-width:700px){
+  #sidebar { width:100%;position:absolute;z-index:800;bottom:18px;top:56px;transform:translateX(-100%);transition:transform .3s }
+  #sidebar.open { transform:translateX(0) }
+  #map-wrap { width:100% }
+  #toggle-sidebar {
+    display:flex !important;position:absolute;top:12px;left:12px;z-index:900;
+  }
+}
+#toggle-sidebar { display:none }
+
+/* ── ANIMATIONS ─────────────────────────────── */
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+.trail-card { animation:fadeIn .3s ease-out both }
+
+@keyframes ember-pulse {
+  0%,100%{box-shadow:0 0 8px rgba(232,96,10,0.4)}
+  50%{box-shadow:0 0 18px rgba(232,96,10,0.7)}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════ -->
+<div id="header">
+  <div id="hdr-left">
+    <div class="hdr-volcano"></div>
+    <div id="hdr-titles">
+      <div id="hdr-main">ETNA TRAILS</div>
+      <div id="hdr-sub" data-it="SENTIERI DELL'ETNA · SICILIA" data-en="ETNA HIKING TRAILS · SICILY">SENTIERI DELL'ETNA · SICILIA</div>
+    </div>
+  </div>
+  <div id="hdr-right">
+    <div id="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <button id="btn-add-trail" onclick="openModal()">
+      + <span data-it="Aggiungi Sentiero" data-en="Add Trail">Aggiungi Sentiero</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══ MAIN ════════════════════════════════════════════ -->
+<div id="main">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <div id="filters">
+      <div class="filter-label" data-it="DIFFICOLTÀ" data-en="DIFFICULTY">DIFFICOLTÀ</div>
+      <div class="filter-row">
+        <button class="ftag diff-T active" data-diff="T" onclick="toggleFilter('diff','T')">T – Turistico</button>
+        <button class="ftag diff-E active" data-diff="E" onclick="toggleFilter('diff','E')">E – Escursionistico</button>
+        <button class="ftag diff-EE active" data-diff="EE" onclick="toggleFilter('diff','EE')">EE – Esperto</button>
+      </div>
+      <div class="filter-label" style="margin-top:10px" data-it="ZONA" data-en="AREA">ZONA</div>
+      <div class="filter-row" id="zone-filters"></div>
+      <input type="text" id="search-box" placeholder="Cerca sentiero…" oninput="filterTrails()">
+    </div>
+    <div id="trail-list"></div>
+  </div>
+
+  <!-- MAP -->
+  <div id="map-wrap">
+    <div id="map"></div>
+
+    <div id="map-controls">
+      <button class="mctrl-btn active" id="btn-topo" onclick="setTile('topo')">🗺 Topo</button>
+      <button class="mctrl-btn" id="btn-sat" onclick="setTile('sat')">🛰 Satellite</button>
+      <button class="mctrl-btn" id="btn-dark" onclick="setTile('dark')">🌑 Dark</button>
+    </div>
+
+    <div id="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--green-trail)"></div><span data-it="T – Turistico" data-en="T – Tourist">T – Turistico</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--blue-trail)"></div><span data-it="E – Escursionistico" data-en="E – Hiking">E – Escursionistico</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--red-trail)"></div><span data-it="EE – Esperto" data-en="EE – Expert">EE – Esperto</span></div>
+    </div>
+
+    <!-- Detail panel -->
+    <div id="detail-panel">
+      <div id="detail-inner">
+        <button id="detail-close" onclick="closeDetail()">✕ <span data-it="chiudi" data-en="close">chiudi</span></button>
+        <div id="detail-name"></div>
+        <div id="detail-zone"></div>
+        <div id="detail-stats"></div>
+        <div id="detail-desc"></div>
+        <div id="detail-poi"></div>
+        <div id="detail-stagioni"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SUBMIT MODAL ════════════════════════════════════ -->
+<div id="modal-overlay">
+  <div id="modal">
+    <div id="modal-header">
+      <div id="modal-title" data-it="🌋 PROPONI UN SENTIERO" data-en="🌋 PROPOSE A TRAIL">🌋 PROPONI UN SENTIERO</div>
+      <button id="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modal-body">
+      <div id="submit-success" style="display:none">
+        <span class="big-check">✅</span>
+        <p id="success-msg"></p>
+      </div>
+      <div id="submit-form">
+        <div id="modal-info">
+          <strong data-it="Come funziona:" data-en="How it works:">Come funziona:</strong>
+          <span data-it=" La tua proposta sarà inviata come segnalazione. Dopo verifica da parte di fotolapissable, il sentiero apparirà sull'app." data-en=" Your proposal will be sent as a report. After verification by fotolapissable, the trail will appear in the app."> La tua proposta sarà inviata come segnalazione. Dopo verifica da parte di fotolapissable, il sentiero apparirà sull'app.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-it="NOME SENTIERO *" data-en="TRAIL NAME *">NOME SENTIERO *</label>
+          <input type="text" class="form-input" id="f-nome" placeholder="Es. Monte Zoccolaro – Versante Est">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-it="DIFFICOLTÀ *" data-en="DIFFICULTY *">DIFFICOLTÀ *</label>
+            <select class="form-select" id="f-diff">
+              <option value="">—</option>
+              <option value="T">T – Turistico</option>
+              <option value="E">E – Escursionistico</option>
+              <option value="EE">EE – Esperto</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-it="ZONA" data-en="AREA">ZONA</label>
+            <select class="form-select" id="f-zona">
+              <option value="">—</option>
+              <option value="nord">Nord</option>
+              <option value="sud">Sud</option>
+              <option value="est">Est</option>
+              <option value="ovest">Ovest</option>
+              <option value="nord-est">Nord-Est</option>
+              <option value="sud-est">Sud-Est</option>
+              <option value="nord-ovest">Nord-Ovest</option>
+              <option value="sud-ovest">Sud-Ovest</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-it="DISTANZA (km)" data-en="DISTANCE (km)">DISTANZA (km)</label>
+            <input type="number" class="form-input" id="f-km" placeholder="es. 8.5" step="0.1" min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-it="DURATA (ore)" data-en="DURATION (hours)">DURATA (ore)</label>
+            <input type="number" class="form-input" id="f-ore" placeholder="es. 4" step="0.5" min="0">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-it="QUOTA MIN (m)" data-en="MIN ELEVATION (m)">QUOTA MIN (m)</label>
+            <input type="number" class="form-input" id="f-qmin" placeholder="es. 1200">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-it="QUOTA MAX (m)" data-en="MAX ELEVATION (m)">QUOTA MAX (m)</label>
+            <input type="number" class="form-input" id="f-qmax" placeholder="es. 2900">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-it="DESCRIZIONE *" data-en="DESCRIPTION *">DESCRIZIONE *</label>
+          <textarea class="form-textarea" id="f-desc" placeholder="Descrivi il percorso, punti notevoli, consigli…"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-it="TUO NOME / CONTATTO (opzionale)" data-en="YOUR NAME / CONTACT (optional)">TUO NOME / CONTATTO (opzionale)</label>
+          <input type="text" class="form-input" id="f-autore" placeholder="Nome, email o Instagram">
+        </div>
+
+        <button id="btn-submit" onclick="submitTrail()">
+          <span data-it="🌋 INVIA PROPOSTA" data-en="🌋 SEND PROPOSAL">🌋 INVIA PROPOSTA</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BRANDING FOOTER ══════════════════════════════════ -->
+<div id="brand-footer">
+  <a href="https://fotolapissable.it" target="_blank" rel="noopener" style="
+    color:rgba(201,168,76,0.65);text-decoration:none;transition:color .2s;
+    display:flex;align-items:center;gap:4px;
+  " onmouseover="this.style.color='rgba(201,168,76,1)'"
+     onmouseout="this.style.color='rgba(201,168,76,0.65)'">
+    📸 &nbsp;FOTOLAPISSABLE.IT &nbsp;·&nbsp; FINE ART & NATURE PHOTOGRAPHY &nbsp;·&nbsp; RIPOSTO, SICILIA
+  </a>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+//  ETNA TRAILS — Main Script
+// ══════════════════════════════════════════════
+
+const GITHUB_REPO = 'fotolapissable/etna-trails';
+const MESI_IT = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+const MESI_EN = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+
+let lang = 'it';
+let trails = [];
+let activeFilters = { diff: new Set(['T','E','EE']), zone: new Set() };
+let activeTrailId = null;
+let markers = {};
+let tileLayer = null;
+let allZones = new Set();
+
+// ── LANGUAGE ──────────────────────────────────
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim()===l.toUpperCase()));
+  document.querySelectorAll('[data-'+l+']').forEach(el => {
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder = el.dataset[l];
+    else el.textContent = el.dataset[l];
+  });
+  // update search placeholder
+  const sb = document.getElementById('search-box');
+  sb.placeholder = l==='it' ? 'Cerca sentiero…' : 'Search trail…';
+  renderList();
+  if(activeTrailId) showDetail(activeTrailId);
+}
+
+// ── MAP ───────────────────────────────────────
+const map = L.map('map', {
+  center:[37.73, 15.00], zoom:10,
+  zoomControl:true, attributionControl:true
+});
+
+const TILES = {
+  topo: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+  sat:  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+};
+
+function setTile(name) {
+  if(tileLayer) map.removeLayer(tileLayer);
+  tileLayer = L.tileLayer(TILES[name], {maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+  document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+name));
+}
+setTile('topo');
+
+// Etna summit marker
+L.marker([37.7510, 14.9934], {
+  icon: L.divIcon({className:'', html:'<div class="etna-marker">🌋</div>', iconSize:[24,24], iconAnchor:[12,20]})
+}).addTo(map).bindPopup('<b style="color:#e8600a">🌋 Etna</b><br>3340 m s.l.m.');
+
+// ── LOAD TRAILS ───────────────────────────────
+async function loadTrails() {
+  try {
+    const r = await fetch('./sentieri.json?v=' + Date.now());
+    const data = await r.json();
+    trails = data.sentieri;
+    // collect zones
+    trails.forEach(t => allZones.add(t.zona));
+    activeFilters.zone = new Set(allZones);
+    renderZoneFilters();
+    renderList();
+    renderMarkers();
+  } catch(e) {
+    console.error('Error loading trails:', e);
+  }
+}
+
+// ── ZONE FILTERS ──────────────────────────────
+function renderZoneFilters() {
+  const c = document.getElementById('zone-filters');
+  c.innerHTML = '';
+  allZones.forEach(z => {
+    const b = document.createElement('button');
+    b.className = 'ftag active';
+    b.dataset.zone = z;
+    b.textContent = z.toUpperCase();
+    b.onclick = () => toggleFilter('zone', z);
+    c.appendChild(b);
+  });
+}
+
+// ── FILTER ────────────────────────────────────
+function toggleFilter(type, val) {
+  const set = activeFilters[type];
+  const selector = type==='diff' ? `[data-diff="${val}"]` : `[data-zone="${val}"]`;
+  const btn = document.querySelector(selector);
+  if(set.has(val)) { set.delete(val); btn && btn.classList.remove('active'); }
+  else             { set.add(val);    btn && btn.classList.add('active'); }
+  filterTrails();
+}
+
+function filterTrails() {
+  const q = document.getElementById('search-box').value.toLowerCase();
+  const visible = trails.filter(t => {
+    if(!activeFilters.diff.has(t.difficolta)) return false;
+    if(!activeFilters.zone.has(t.zona)) return false;
+    if(q) {
+      const name = (t.nome.it+' '+t.nome.en).toLowerCase();
+      const desc = (t.descrizione.it+' '+t.descrizione.en).toLowerCase();
+      if(!name.includes(q) && !desc.includes(q)) return false;
+    }
+    return true;
+  });
+  renderList(visible);
+  // show/hide markers
+  Object.entries(markers).forEach(([id, m]) => {
+    const show = visible.some(t => t.id==id);
+    show ? m.addTo(map) : map.removeLayer(m);
+  });
+}
+
+// ── RENDER LIST ───────────────────────────────
+function renderList(list) {
+  list = list || trails;
+  const c = document.getElementById('trail-list');
+  c.innerHTML = '';
+  list.forEach((t, i) => {
+    const card = document.createElement('div');
+    card.className = 'trail-card' + (t.id===activeTrailId?' active':'');
+    card.style.setProperty('--diff-color', diffColor(t.difficolta));
+    card.style.animationDelay = (i*0.04)+'s';
+    card.onclick = () => { selectTrail(t.id); showDetail(t.id); };
+    const desc = t.descrizione[lang];
+    card.innerHTML = `
+      <div class="tc-header">
+        <div class="tc-name">${t.nome[lang]}</div>
+        <div class="diff-badge diff-${t.difficolta}">${t.difficolta}</div>
+      </div>
+      <div class="tc-stats">
+        <div class="tc-stat">📏 <span>${t.distanza_km} km</span></div>
+        <div class="tc-stat">⏱ <span>${t.durata_ore}h</span></div>
+        <div class="tc-stat">⬆ <span>${t.dislivello} m</span></div>
+        <div class="tc-stat">🏔 <span>${t.quota_max} m</span></div>
+      </div>
+      <div class="tc-desc">${desc}</div>
+    `;
+    c.appendChild(card);
+  });
+}
+
+// ── MARKERS ───────────────────────────────────
+function renderMarkers() {
+  trails.forEach(t => {
+    const icon = L.divIcon({
+      className:'',
+      html:`<div class="trail-marker ${t.difficolta}" id="mk-${t.id}"></div>`,
+      iconSize:[14,14], iconAnchor:[7,7]
+    });
+    const m = L.marker([t.lat, t.lng], {icon}).addTo(map);
+    m.bindPopup(`
+      <div style="font-family:var(--font-mono);font-size:10px">
+        <b style="color:var(--gold)">${t.nome[lang]}</b><br>
+        ${t.difficolta} · ${t.distanza_km}km · ${t.durata_ore}h
+      </div>
+    `);
+    m.on('click', () => { selectTrail(t.id); showDetail(t.id); });
+    markers[t.id] = m;
+  });
+}
+
+function selectTrail(id) {
+  activeTrailId = id;
+  document.querySelectorAll('.trail-card').forEach(c => c.classList.remove('active'));
+  const t = trails.find(x => x.id===id);
+  if(!t) return;
+  map.setView([t.lat, t.lng], 12);
+  Object.entries(markers).forEach(([mid, m]) => {
+    const el = document.querySelector(`#mk-${mid}`);
+    if(el) el.classList.toggle('selected', Number(mid)===id);
+  });
+}
+
+// ── DETAIL PANEL ─────────────────────────────
+function showDetail(id) {
+  const t = trails.find(x => x.id===id);
+  if(!t) return;
+  activeTrailId = id;
+
+  document.getElementById('detail-name').textContent = t.nome[lang];
+  document.getElementById('detail-zone').textContent =
+    (lang==='it' ? 'ZONA: ' : 'AREA: ') + t.zona.toUpperCase() +
+    ' · ' + (lang==='it' ? 'STAGIONI CONSIGLIATE' : 'RECOMMENDED SEASONS');
+
+  // Stats
+  const statsLabels = lang==='it'
+    ? ['DISTANZA','DURATA','DISLIVELLO','QUOTA MAX','QUOTA MIN']
+    : ['DISTANCE','DURATION','ELEVATION','MAX ALT','MIN ALT'];
+  const statsVals = [
+    [t.distanza_km,'km'],[t.durata_ore,'h'],[t.dislivello,'m'],[t.quota_max,'m'],[t.quota_min,'m']
+  ];
+  document.getElementById('detail-stats').innerHTML = statsVals.map((v,i) =>
+    `<div class="dstat">
+      <div class="dstat-lbl">${statsLabels[i]}</div>
+      <div class="dstat-val">${v[0]}<span class="dstat-unit">${v[1]}</span></div>
+    </div>`
+  ).join('');
+
+  document.getElementById('detail-desc').textContent = t.descrizione[lang];
+
+  // POI
+  if(t.punti_interesse && t.punti_interesse.length) {
+    document.getElementById('detail-poi').innerHTML =
+      `<h4>${lang==='it'?'PUNTI DI INTERESSE':'POINTS OF INTEREST'}</h4>` +
+      t.punti_interesse.map(p =>
+        `<div class="poi-item">
+          <span class="poi-quota">▲ ${p.quota}m</span>
+          <span>${p.nome[lang]}</span>
+        </div>`
+      ).join('');
+  } else {
+    document.getElementById('detail-poi').innerHTML = '';
+  }
+
+  // Stagioni
+  const mesi = lang==='it' ? MESI_IT : MESI_EN;
+  document.getElementById('detail-stagioni').innerHTML =
+    `<h4>${lang==='it'?'PERIODO CONSIGLIATO':'BEST SEASON'}</h4>
+    <div class="mesi-grid">
+      ${mesi.map((m,i) =>
+        `<div class="mese ${t.stagione && t.stagione.includes(MESI_IT[i]) ? 'ok':''}">${m.toUpperCase()}</div>`
+      ).join('')}
+    </div>`;
+
+  document.getElementById('detail-panel').classList.add('open');
+
+  // Scroll card into view
+  renderList();
+  setTimeout(() => {
+    const cards = document.querySelectorAll('.trail-card');
+    const idx = trails.findIndex(x => x.id===id);
+    if(cards[idx]) cards[idx].scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 100);
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('open');
+  activeTrailId = null;
+  document.querySelectorAll('.trail-card').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.trail-marker').forEach(m => m.classList.remove('selected'));
+}
+
+// ── MODAL ─────────────────────────────────────
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('submit-form').style.display = 'block';
+  document.getElementById('submit-success').style.display = 'none';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if(e.target===document.getElementById('modal-overlay')) closeModal();
+});
+
+// ── SUBMIT ────────────────────────────────────
+async function submitTrail() {
+  const nome = document.getElementById('f-nome').value.trim();
+  const diff = document.getElementById('f-diff').value;
+  const desc = document.getElementById('f-desc').value.trim();
+
+  if(!nome || !diff || !desc) {
+    alert(lang==='it'
+      ? 'Compila almeno: Nome, Difficoltà e Descrizione.'
+      : 'Please fill in at least: Name, Difficulty and Description.');
+    return;
+  }
+
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+
+  const body = `## 🌋 Proposta Sentiero Etna Trails
+
+**Nome:** ${nome}
+**Difficoltà:** ${document.getElementById('f-diff').value}
+**Zona:** ${document.getElementById('f-zona').value || '—'}
+**Distanza:** ${document.getElementById('f-km').value || '—'} km
+**Durata:** ${document.getElementById('f-ore').value || '—'} h
+**Quota min:** ${document.getElementById('f-qmin').value || '—'} m
+**Quota max:** ${document.getElementById('f-qmax').value || '—'} m
+**Autore/Contatto:** ${document.getElementById('f-autore').value || 'Anonimo'}
+
+### Descrizione
+${desc}
+
+---
+*Inviato tramite Etna Trails App · fotolapissable.it*`;
+
+  try {
+    const r = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/vnd.github+json'},
+      body: JSON.stringify({
+        title: `🥾 Nuovo sentiero: ${nome}`,
+        body,
+        labels:['nuovo-sentiero']
+      })
+    });
+
+    document.getElementById('submit-form').style.display = 'none';
+    document.getElementById('submit-success').style.display = 'block';
+    const msg = lang==='it'
+      ? `Grazie! La tua proposta per "<strong>${nome}</strong>" è stata inviata. Sarà revisionata da fotolapissable e pubblicata se approvata.`
+      : `Thank you! Your proposal for "<strong>${nome}</strong>" has been sent. It will be reviewed by fotolapissable and published if approved.`;
+    document.getElementById('success-msg').innerHTML = msg;
+
+  } catch(e) {
+    // Fallback: apri issue manualmente
+    const encoded = encodeURIComponent(body);
+    const title = encodeURIComponent(`🥾 Nuovo sentiero: ${nome}`);
+    window.open(`https://github.com/${GITHUB_REPO}/issues/new?title=${title}&body=${encoded}`, '_blank');
+    document.getElementById('submit-form').style.display = 'none';
+    document.getElementById('submit-success').style.display = 'block';
+    document.getElementById('success-msg').innerHTML =
+      lang==='it'
+        ? 'Si è aperta una pagina GitHub. Clicca "Submit new issue" per inviare la tua proposta.'
+        : 'A GitHub page has opened. Click "Submit new issue" to send your proposal.';
+  }
+  btn.disabled = false;
+}
+
+// ── HELPERS ───────────────────────────────────
+function diffColor(d) {
+  return d==='T' ? 'var(--green-trail)' : d==='E' ? 'var(--blue-trail)' : 'var(--red-trail)';
+}
+
+// ── INIT ──────────────────────────────────────
+loadTrails();
+
+// ── SERVICE WORKER ────────────────────────────
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js')
+    .then(r => console.log('[PWA] SW:', r.scope))
+    .catch(e => console.warn('[PWA]', e));
+}
+</script>
+</body>
+</html>
