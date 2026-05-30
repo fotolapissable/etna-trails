@@ -1037,6 +1037,646 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 </div>
 
 <!-- Branding footer -->
+<!-- ══ METEO BACK BUTTON ══════════════════════════════════ -->
+<button id="meteo-back-btn" onclick="closeMeteo()">← <span data-it="Torna ai Sentieri" data-en="Back to Trails">Torna ai Sentieri</span></button>
+
+<!-- ══ METEO FULLSCREEN PANEL ════════════════════════════ -->
+<div id="meteo-panel">
+<!-- HEADER -->
+<div id="hdr">
+  <div id="hdr-title">⚡ METEO // RIPOSTO</div>
+  <div id="hdr-sub">37.7285°N &nbsp;·&nbsp; 15.2027°E &nbsp;·&nbsp; CT, SICILIA &nbsp;·&nbsp; IONIO SETTENTRIONALE</div>
+  <div id="hdr-clock">--:--:--</div>
+</div>
+
+<!-- SOURCE STATUS BAR -->
+<div id="srcbar">
+  <div class="src"><div class="sdot g" id="rv-dot"></div><span>RAINVIEWER RADAR</span></div>
+  <div class="src"><div class="sdot c" id="bz-dot"></div><span id="bz-lbl">BLITZORTUNG WS</span></div>
+  <div class="src"><div class="sdot a"></div><span>OPEN-METEO NWP</span></div>
+  <div class="src"><div class="sdot off"></div><span>DPC METEOALARM</span></div>
+  <div style="margin-left:auto;font-size:7.5px;color:#445;letter-spacing:1px">RAGGIO: 50 KM · AGGIORN: 5 MIN</div>
+</div>
+
+<div id="main">
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <div id="sb">
+
+    <!-- CONDIZIONI ATTUALI -->
+    <div class="sec">
+      <div class="slabel">Condizioni Attuali</div>
+      <div class="wgrid">
+        <div class="wcell">
+          <div class="wlbl">Temperatura</div>
+          <div class="wval hot" id="wx-t">--<span class="wunit">°C</span></div>
+        </div>
+        <div class="wcell">
+          <div class="wlbl">Percepita</div>
+          <div class="wval" id="wx-f">--<span class="wunit">°C</span></div>
+        </div>
+        <div class="wcell">
+          <div class="wlbl">Vento</div>
+          <div class="wval cool" id="wx-w">--<span class="wunit">km/h</span></div>
+        </div>
+        <div class="wcell">
+          <div class="wlbl">Dir. Vento</div>
+          <div class="wval" id="wx-wd">--</div>
+        </div>
+        <div class="wcell">
+          <div class="wlbl">Copertura</div>
+          <div class="wval" id="wx-cl">--<span class="wunit">%</span></div>
+        </div>
+        <div class="wcell">
+          <div class="wlbl">Precipit.</div>
+          <div class="wval precip" id="wx-pr">--<span class="wunit">mm</span></div>
+        </div>
+      </div>
+      <div id="wxbanner">Caricamento dati meteorologici…</div>
+    </div>
+
+    <!-- FULMINAZIONE -->
+    <div class="sec">
+      <div class="slabel">⚡ Fulminazione</div>
+      <div class="lnum" id="l-count">0</div>
+      <div class="lsub">FULMINI / 10 MIN · ENTRO 50 KM</div>
+      <div class="densbar"><div class="densbar-fill" id="l-bar" style="width:0%"></div></div>
+      <div style="font-size:8.5px;color:var(--text-dim);margin:7px 0 5px;letter-spacing:1px">
+        ULTIMO: <span id="l-last" style="color:var(--cyan)">--:--:--</span>
+      </div>
+      <div class="llog" id="llog">
+        <div style="font-size:9px;color:var(--text-dim);text-align:center;padding:6px 0">Connessione in corso…</div>
+      </div>
+    </div>
+
+    <!-- ETA TEMPORALI -->
+    <div class="sec">
+      <div class="slabel">🌩 ETA Celle Temporalesche</div>
+      <div class="eta-wrap">
+        <div class="eta-lbl">ARRIVO STIMATO PRECIPITAZIONI</div>
+        <div><span class="eta-val" id="eta-v">--</span><span class="eta-unit"> min</span></div>
+      </div>
+      <div class="cdir">
+        <div class="compass">
+          <div class="needle" id="needle"></div>
+        </div>
+        <div class="cdir-info">
+          <div class="cdir-main" id="cdir-main">Calcolo vettore…</div>
+          <div class="cdir-sub" id="cdir-sub">VENTO: -- KM/H</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALLERTA -->
+    <div class="sec">
+      <div class="slabel">🛡 Allerta Meteo</div>
+      <div class="abox verde" id="abox">
+        <div class="adot"></div>
+        <div>
+          <div class="atext" id="alevel">VERDE — NESSUNA ALLERTA</div>
+          <div class="asub" id="asub">Condizioni nella norma · Catania CT</div>
+        </div>
+      </div>
+      <div style="font-size:7.5px;color:var(--text-dim);letter-spacing:.5px;line-height:1.6">
+        Stima automatica da codici WMO + soglie pluviometriche. Per allerte ufficiali: <span style="color:var(--amber)">protezionecivile.gov.it</span>
+      </div>
+    </div>
+
+    <!-- PREVISIONE +1H -->
+    <div class="sec">
+      <div class="slabel">📊 Previsione +6h</div>
+      <div class="fcbars" id="fcbars">
+        <div class="shim" style="width:100%;height:40px"></div>
+      </div>
+      <div class="fclegend">
+        <span style="color:var(--cyan)">▪ Precipitazioni</span>
+        <span style="color:var(--amber)">▪ Temporale</span>
+      </div>
+    </div>
+
+  </div><!-- /sidebar -->
+
+  <!-- ═══════════════ MAP ═══════════════ -->
+  <div id="mapc">
+    <div id="map"></div>
+
+    <div id="mzoom">
+      <button class="zbtn" onclick="map.zoomIn()">+</button>
+      <button class="zbtn" onclick="map.zoomOut()">−</button>
+    </div>
+
+    <div id="mctrl">
+      <button class="mbtn on" id="btn-radar" onclick="toggleLayer('radar')">⬤ Radar</button>
+      <button class="mbtn on" id="btn-sat"   onclick="toggleLayer('sat')">⬤ Satellite IR</button>
+      <button class="mbtn on" id="btn-ltn"   onclick="toggleLayer('ltn')">⚡ Fulmini</button>
+      <button class="mbtn" id="btn-geo" onclick="requestGeolocation()" style="color:#00d4ff;border-color:rgba(0,212,255,0.35)">📍 La mia posizione</button>
+      <button class="mbtn"    id="btn-anim"  onclick="toggleAnim()">▶ Animazione</button>
+    </div>
+
+    <div id="rts">RADAR: caricamento…</div>
+
+    <div id="pbbar">
+      <button class="pbbtn" onclick="prevFrame()">◀</button>
+      <span id="pblbl">LIVE</span>
+      <button class="pbbtn on" onclick="goLive()">⬤ LIVE</button>
+      <button class="pbbtn" onclick="nextFrame()">▶</button>
+    </div>
+  </div>
+</div><!-- /main -->
+
+<script>
+// ══════════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════════
+// ── POSIZIONE: geolocalizzazione o default Riposto ──────
+const DEFAULT = { lat:37.7285, lng:15.2027, label:'Riposto, CT', region:'IONIO SETTENTRIONALE' };
+let POS = { lat:DEFAULT.lat, lng:DEFAULT.lng };
+let geoCircles = [];
+let geoMarker  = null;
+
+function updateMapLocation(lat, lng, label, region) {
+  POS = { lat, lng };
+  // Header
+  document.getElementById('hdr-title').textContent = '⚡ METEO // ' + label.toUpperCase();
+  document.getElementById('hdr-sub').innerHTML =
+    lat.toFixed(4) + '°N &nbsp;·&nbsp; ' + lng.toFixed(4) + '°E &nbsp;·&nbsp; ' + (region || 'POSIZIONE CORRENTE');
+  // Ricentra mappa
+  map.setView([lat, lng], 9);
+  // Rimuovi vecchi cerchi e marker
+  geoCircles.forEach(c => map.removeLayer(c));
+  geoCircles = [];
+  if (geoMarker) { map.removeLayer(geoMarker); geoMarker = null; }
+  // Nuovi cerchi
+  geoCircles.push(
+    L.circle([lat,lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(map),
+    L.circle([lat,lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(map),
+    L.circle([lat,lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(map)
+  );
+  // Nuovo marker
+  geoMarker = L.marker([lat,lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
+    .addTo(map)
+    .bindPopup('<b style="color:#C8813A">📍 ' + label + '</b><br>' + lat.toFixed(4) + '°N · ' + lng.toFixed(4) + '°E');
+  // Ricarica dati meteo per nuova posizione
+  initRV();
+  fetchWx();
+}
+
+function requestGeolocation() {
+  if (!navigator.geolocation) return;
+  navigator.geolocation.getCurrentPosition(
+    function(pos) {
+      var lat = pos.coords.latitude;
+      var lng = pos.coords.longitude;
+      fetch('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lng + '&format=json')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var city = (d.address && (d.address.city || d.address.town || d.address.village || d.address.county)) || 'Posizione corrente';
+          var country = (d.address && d.address.country_code && d.address.country_code.toUpperCase()) || '';
+          updateMapLocation(lat, lng, city, country);
+        })
+        .catch(function(){ updateMapLocation(lat, lng, 'Posizione corrente', ''); });
+    },
+    function() { console.log('[GEO] Permesso negato, uso Riposto'); },
+    { timeout:8000, maximumAge:300000 }
+  );
+}
+const R_KM = 50;
+
+const WMO = {
+  0:'Cielo sereno ☀', 1:'Prevalentemente sereno', 2:'Parzialmente nuvoloso ⛅',
+  3:'Coperto ☁', 45:'Nebbia 🌫', 48:'Nebbia con brina',
+  51:'Pioggerella leggera', 53:'Pioggerella moderata', 55:'Pioggerella intensa',
+  61:'Pioggia leggera 🌦', 63:'Pioggia moderata 🌧', 65:'Pioggia intensa 🌧',
+  80:'Rovesci leggeri', 81:'Rovesci moderati', 82:'Rovesci violenti ⛈',
+  85:'Rovesci di neve', 86:'Rovesci di neve intensi',
+  95:'⚡ TEMPORALE IN CORSO', 96:'⚡ TEMPORALE con grandine', 99:'⚡ TEMPORALE FORTE con grandine'
+};
+
+const DIRS = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+const dText = d => DIRS[Math.round(d/22.5)%16];
+
+// ══════════════════════════════════════════════
+// CLOCK
+// ══════════════════════════════════════════════
+const clockEl = document.getElementById('hdr-clock');
+function tick(){
+  clockEl.textContent = new Date().toLocaleTimeString('it-IT',{hour12:false,timeZone:'Europe/Rome'});
+}
+tick(); setInterval(tick,1000);
+
+// ══════════════════════════════════════════════
+// MAP
+// ══════════════════════════════════════════════
+const map = L.map('map',{center:[POS.lat,POS.lng],zoom:9,zoomControl:false,attributionControl:true});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+  attribution:'©<a href="https://www.openstreetmap.org">OSM</a> ©<a href="https://carto.com">CartoDB</a>',
+  subdomains:'abcd',maxZoom:19
+}).addTo(map);
+
+// Radius rings (inizializzati con posizione default, aggiornati da updateMapLocation)
+geoCircles.push(
+  L.circle([DEFAULT.lat,DEFAULT.lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(map),
+  L.circle([DEFAULT.lat,DEFAULT.lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(map),
+  L.circle([DEFAULT.lat,DEFAULT.lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(map)
+);
+
+// Marker default (Riposto)
+geoMarker = L.marker([DEFAULT.lat,DEFAULT.lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
+  .addTo(map)
+  .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E<br>Ionio settentrionale');
+
+// Direction lines (cardinal + ordinal faint guides)
+for(let a=0;a<360;a+=45){
+  const len=0.55;
+  const dlat=len*Math.cos(a*Math.PI/180)/111;
+  const dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(POS.lat*Math.PI/180));
+  L.polyline([[POS.lat,POS.lng],[POS.lat+dlat,POS.lng+dlng]],
+    {color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(map);
+}
+
+// ══════════════════════════════════════════════
+// RAINVIEWER
+// ══════════════════════════════════════════════
+let rfr=[], sfr=[], fidx=-1, rL=null, sL=null;
+let vis={radar:true,sat:true,ltn:true};
+let animOn=false, animTmr=null;
+
+async function initRV(){
+  try{
+    const d=await(await fetch('https://api.rainviewer.com/public/weather-maps.json')).json();
+    rfr=[...(d.radar.past||[]),...(d.radar.nowcast||[])];
+    sfr=[...(d.satellite?.infrared||[])];
+    fidx=rfr.length-1;
+    drawRadar(fidx);
+    drawSat(sfr.length-1);
+    document.getElementById('rv-dot').style.background='var(--green)';
+  }catch(e){
+    document.getElementById('rts').textContent='RADAR: CONNESSIONE FALLITA';
+    document.getElementById('rv-dot').style.background='#ff4444';
+  }
+}
+
+function drawRadar(i){
+  if(!rfr.length||i<0)return;
+  const fr=rfr[Math.min(i,rfr.length-1)];
+  if(rL)map.removeLayer(rL); rL=null;
+  if(!vis.radar)return;
+  rL=L.tileLayer(`https://tilecache.rainviewer.com${fr.path}/256/{z}/{x}/{y}/6/1_1.png`,
+    {opacity:.65,zIndex:10}).addTo(map);
+  const ts=new Date(fr.time*1000);
+  const t=ts.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Rome'});
+  const isFut=fr.time>Date.now()/1000;
+  document.getElementById('rts').textContent=`RADAR: ${t} ${isFut?'(NOWCAST)':'(STORICO)'}`;
+  document.getElementById('pblbl').textContent=(i===rfr.length-1)?'LIVE':t;
+}
+
+function drawSat(i){
+  if(!sfr.length||i<0)return;
+  const fr=sfr[Math.min(i,sfr.length-1)];
+  if(sL)map.removeLayer(sL); sL=null;
+  if(!vis.sat)return;
+  sL=L.tileLayer(`https://tilecache.rainviewer.com${fr.path}/256/{z}/{x}/{y}/0/0.png`,
+    {opacity:.28,zIndex:5}).addTo(map);
+}
+
+function toggleLayer(k){
+  vis[k]=!vis[k];
+  const id={'radar':'btn-radar','sat':'btn-sat','ltn':'btn-ltn'}[k];
+  document.getElementById(id).classList.toggle('on',vis[k]);
+  if(k==='radar')drawRadar(fidx);
+  if(k==='sat')drawSat(sfr.length-1);
+  if(k==='ltn'){
+    lMrks.forEach(m=>{ vis.ltn?m.addTo(map):map.removeLayer(m); });
+  }
+}
+
+function prevFrame(){stopAnim();fidx=Math.max(0,fidx-1);drawRadar(fidx)}
+function nextFrame(){stopAnim();fidx=Math.min(rfr.length-1,fidx+1);drawRadar(fidx)}
+function goLive(){stopAnim();fidx=rfr.length-1;drawRadar(fidx)}
+
+function toggleAnim(){
+  animOn?stopAnim():startAnim();
+  document.getElementById('btn-anim').textContent=animOn?'⏹ Stop':'▶ Animazione';
+}
+function startAnim(){
+  animOn=true; fidx=0;
+  animTmr=setInterval(()=>{ fidx=(fidx+1)%rfr.length; drawRadar(fidx); },600);
+}
+function stopAnim(){
+  animOn=false;
+  if(animTmr){clearInterval(animTmr);animTmr=null;}
+  document.getElementById('btn-anim').textContent='▶ Animazione';
+}
+
+// ══════════════════════════════════════════════
+// OPEN-METEO
+// ══════════════════════════════════════════════
+let wxData=null, curWdir=0, curWspd=0;
+
+async function fetchWx(){
+  try{
+    const url=`https://api.open-meteo.com/v1/forecast`+
+      `?latitude=${POS.lat}&longitude=${POS.lng}`+
+      `&current=temperature_2m,apparent_temperature,precipitation,cloudcover,windspeed_10m,winddirection_10m,weathercode`+
+      `&hourly=precipitation,precipitation_probability,cloudcover,windspeed_10m,winddirection_10m,weathercode`+
+      `&forecast_days=1&timezone=Europe%2FRome&models=best_match`;
+    wxData=await(await fetch(url)).json();
+    const c=wxData.current;
+    curWdir=c.winddirection_10m; curWspd=c.windspeed_10m;
+
+    const tEl=document.getElementById('wx-t');
+    tEl.innerHTML=`${Math.round(c.temperature_2m)}<span class="wunit">°C</span>`;
+    tEl.className='wval '+(c.temperature_2m>28?'hot':c.temperature_2m<15?'cool':'');
+
+    document.getElementById('wx-f').innerHTML=`${Math.round(c.apparent_temperature)}<span class="wunit">°C</span>`;
+    document.getElementById('wx-w').innerHTML=`${Math.round(c.windspeed_10m)}<span class="wunit">km/h</span>`;
+    document.getElementById('wx-wd').textContent=`${dText(c.winddirection_10m)} ${Math.round(c.winddirection_10m)}°`;
+    document.getElementById('wx-cl').innerHTML=`${c.cloudcover}<span class="wunit">%</span>`;
+    document.getElementById('wx-pr').innerHTML=`${c.precipitation.toFixed(1)}<span class="wunit">mm</span>`;
+    document.getElementById('wxbanner').textContent=WMO[c.weathercode]||`Codice WMO ${c.weathercode}`;
+
+    updateETA(wxData);
+    updateAlert(c.weathercode,c.precipitation);
+    updateFcBars(wxData);
+  }catch(e){
+    document.getElementById('wxbanner').textContent='Errore connessione Open-Meteo';
+  }
+}
+
+function updateETA(d){
+  const now=new Date();
+  const times=d.hourly.time, prs=d.hourly.precipitation, probs=d.hourly.precipitation_probability, codes=d.hourly.weathercode;
+  let eta=null, nxtCode=0;
+
+  for(let i=0;i<times.length;i++){
+    const t=new Date(times[i]);
+    if(t<=now)continue;
+    const dm=(t-now)/60000;
+    if(dm>180)break;
+    if(prs[i]>0.05||probs[i]>25||codes[i]>=61){
+      eta=Math.round(dm); nxtCode=codes[i]; break;
+    }
+  }
+
+  const etaEl=document.getElementById('eta-v');
+  const etaUnit=document.querySelector('.eta-unit');
+  const etaLbl=document.querySelector('.eta-lbl');
+
+  if(eta!==null){
+    etaEl.textContent=eta;
+    etaUnit.textContent=' min';
+    etaLbl.textContent=nxtCode>=95?'⚡ TEMPORALE STIMATO':'ARRIVO STIMATO PRECIPITAZIONI';
+    etaEl.style.color=eta<30?'#ff9966':'var(--amber)';
+  } else {
+    etaEl.textContent='—';
+    etaUnit.textContent='';
+    etaLbl.textContent='NESSUNA PRECIP. NELLE PROSSIME 3H';
+    etaEl.style.color='var(--amber)';
+  }
+
+  // Compass: wind approach direction
+  const approachDeg=(curWdir+180)%360;
+  document.getElementById('needle').style.transform=`rotate(${approachDeg}deg)`;
+  document.getElementById('cdir-main').textContent=`Approccio da ${dText(approachDeg)} (${Math.round(approachDeg)}°)`;
+  document.getElementById('cdir-sub').textContent=`VENTO: ${Math.round(curWspd)} KM/H · PROVENIENZA: ${dText(curWdir)}`;
+}
+
+function updateAlert(code,pr){
+  const box=document.getElementById('abox');
+  const lvl=document.getElementById('alevel');
+  const sub=document.getElementById('asub');
+  box.className='abox';
+  if(code>=95){
+    box.classList.add('rosso');
+    lvl.textContent='🔴 ROSSO — TEMPORALE IN CORSO';
+    sub.textContent='Attività elettrica possibile · Rientrare al coperto';
+  } else if(code>=80||pr>2){
+    box.classList.add('arancio');
+    lvl.textContent='🟠 ARANCIONE — ROVESCI INTENSI';
+    sub.textContent='Precipitazioni significative · Monitorare';
+  } else if(code>=61||pr>0.3){
+    box.classList.add('giallo');
+    lvl.textContent='🟡 GIALLO — PRECIPITAZIONI';
+    sub.textContent='Pioggia in atto o imminente';
+  } else {
+    box.classList.add('verde');
+    lvl.textContent='🟢 VERDE — NESSUNA ALLERTA';
+    sub.textContent='Condizioni nella norma · Catania CT';
+  }
+}
+
+function updateFcBars(d){
+  const now=new Date();
+  const cont=document.getElementById('fcbars');
+  cont.innerHTML='';
+  const times=d.hourly.time, prs=d.hourly.precipitation, codes=d.hourly.weathercode, probs=d.hourly.precipitation_probability;
+  const MAX=4; let cnt=0;
+
+  for(let i=0;i<times.length&&cnt<6;i++){
+    const t=new Date(times[i]);
+    if(t<=now)continue;
+    const pct=Math.min(100,(prs[i]/MAX)*100);
+    const isSt=codes[i]>=95;
+    const lbl=t.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Rome'});
+    const w=document.createElement('div');
+    w.className='fcwrap';
+    const barCls=prs[i]>0.05?(isSt?'storm':'rain'):'none';
+    w.innerHTML=`<div class="fcbar ${barCls}" style="height:${Math.max(4,pct)}%"></div><div class="fclbl">${lbl.slice(0,5)}</div>`;
+    cont.appendChild(w);
+    cnt++;
+  }
+  if(!cnt)cont.innerHTML='<div style="font-size:9px;color:var(--text-dim);padding:8px 0">Nessun dato orario disponibile</div>';
+}
+
+// ══════════════════════════════════════════════
+// BLITZORTUNG + LIGHTNING
+// ══════════════════════════════════════════════
+let lMrks=[], lLog=[], strkCount=0, bzConn=false, simT=null;
+
+function initBz(){
+  const eps=['wss://ws1.blitzortung.org:3000','wss://ws7.blitzortung.org:3000','wss://ws8.blitzortung.org:3000'];
+  let ti=0;
+
+  function tryConn(ep){
+    try{
+      const ws=new WebSocket(ep);
+      const tout=setTimeout(()=>{ ws.close(); },6000);
+
+      ws.onopen=()=>{
+        clearTimeout(tout);
+        bzConn=true;
+        document.getElementById('bz-dot').style.background='var(--cyan)';
+        document.getElementById('bz-lbl').textContent='BLITZORTUNG LIVE';
+        // Subscribe to Mediterranean bounding box
+        ws.send(JSON.stringify({"west":10,"east":20,"north":40,"south":35}));
+        clearSim();
+      };
+
+      ws.onmessage=ev=>{
+        try{
+          const j=JSON.parse(ev.data);
+          if(j.lat!==undefined&&j.lon!==undefined) onStrike(j.lat,j.lon);
+        }catch(_){}
+      };
+
+      ws.onerror=()=>{ clearTimeout(tout); ws.close(); };
+      ws.onclose=()=>{
+        if(!bzConn){
+          ti++;
+          if(ti<eps.length) tryConn(eps[ti]);
+          else startSim();
+        } else {
+          bzConn=false;
+          document.getElementById('bz-dot').style.background='#ff8844';
+          setTimeout(initBz,30000);
+        }
+      };
+    }catch(_){ ti++; if(ti<eps.length) tryConn(eps[ti]); else startSim(); }
+  }
+
+  tryConn(eps[0]);
+  setTimeout(()=>{ if(!bzConn&&!simT) startSim(); },7000);
+}
+
+function clearSim(){ if(simT){clearTimeout(simT);simT=null;} }
+
+function startSim(){
+  document.getElementById('bz-dot').style.background='#ff8844';
+  document.getElementById('bz-lbl').textContent='BLITZORTUNG [DEMO]';
+  lLog=[];
+  renderLog();
+
+  // Afternoon hours = more active (typical Sicilian convective pattern)
+  const h=new Date().getHours();
+  const af=(h>=13&&h<=20)?3.5:1;
+  const base=10000/af;
+
+  function spawn(){
+    if(Math.random()<0.45*af){
+      const ang=Math.random()*Math.PI*2;
+      const km=15+Math.random()*135;
+      const dlat=(km/111)*Math.cos(ang);
+      const dlng=(km/(111*Math.cos(POS.lat*Math.PI/180)))*Math.sin(ang);
+      onStrike(POS.lat+dlat,POS.lng+dlng);
+    }
+    simT=setTimeout(spawn,base+Math.random()*base);
+  }
+  simT=setTimeout(spawn,base/2);
+}
+
+function onStrike(lat,lng){
+  const d=haversine(POS.lat,POS.lng,lat,lng);
+  if(d>160)return;
+  const inR=d<=R_KM;
+
+  if(inR){
+    strkCount++;
+    setTimeout(()=>{ strkCount=Math.max(0,strkCount-1); renderCount(); },10*60*1000);
+    const now=new Date();
+    document.getElementById('l-last').textContent=
+      now.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'Europe/Rome'});
+    const br=bearing(POS.lat,POS.lng,lat,lng);
+    lLog.unshift({d:Math.round(d),dir:dText(br),t:now.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'Europe/Rome'})});
+    if(lLog.length>5)lLog.pop();
+    renderLog();
+  }
+
+  if(d<=110&&vis.ltn) addLMrk(lat,lng,d,inR);
+  renderCount();
+}
+
+function addLMrk(lat,lng,d,near){
+  const sz=near?16:11;
+  const cl=near?'#ffffff':'rgba(0,212,255,0.55)';
+  const glow=near?'#00d4ff':'rgba(0,212,255,0.3)';
+  const ic=L.divIcon({
+    className:'',
+    html:`<span class="lmk ${near?'near':''}" style="font-size:${sz}px;color:${cl};filter:drop-shadow(0 0 4px ${glow})">⚡</span>`,
+    iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]
+  });
+  const m=L.marker([lat,lng],{icon:ic,zIndexOffset:900}).addTo(map);
+  lMrks.push(m);
+  setTimeout(()=>{ if(map.hasLayer(m))map.removeLayer(m); const i=lMrks.indexOf(m); if(i>-1)lMrks.splice(i,1); },near?6500:4500);
+}
+
+function renderCount(){
+  const el=document.getElementById('l-count');
+  el.textContent=strkCount;
+  const pct=Math.min(100,(strkCount/20)*100);
+  document.getElementById('l-bar').style.width=pct+'%';
+  if(strkCount===0){el.style.color='var(--cyan)';el.style.textShadow='0 0 18px rgba(0,212,255,.3)';}
+  else if(strkCount<6){el.style.color='var(--cyan)';el.style.textShadow='0 0 22px rgba(0,212,255,.5)';}
+  else if(strkCount<15){el.style.color='var(--amber)';el.style.textShadow='0 0 22px rgba(200,129,58,.5)';}
+  else{el.style.color='var(--red)';el.style.textShadow='0 0 22px rgba(255,59,59,.6)';}
+}
+
+function renderLog(){
+  const cont=document.getElementById('llog');
+  const demo=!bzConn?'<div style="font-size:7.5px;color:#ff8844;text-align:center;padding:0 0 5px">⚠ MODALITÀ DEMO · WS non disponibile</div>':'';
+
+  if(!lLog.length){
+    cont.innerHTML=demo+'<div style="font-size:9px;color:var(--text-dim);text-align:center;padding:6px 0">Nessun fulmine rilevato nel raggio</div>';
+    return;
+  }
+  cont.innerHTML=demo+lLog.map(s=>`
+    <div class="litem">
+      <span>⚡ <b style="color:var(--text)">${s.d} km</b> ${s.dir}</span>
+      <span class="ltime">${s.t}</span>
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════════
+// GEO UTILS
+// ══════════════════════════════════════════════
+function haversine(la1,lo1,la2,lo2){
+  const R=6371,dL=(la2-la1)*Math.PI/180,dO=(lo2-lo1)*Math.PI/180;
+  const a=Math.sin(dL/2)**2+Math.cos(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.sin(dO/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+function bearing(la1,lo1,la2,lo2){
+  const dO=(lo2-lo1)*Math.PI/180;
+  const y=Math.sin(dO)*Math.cos(la2*Math.PI/180);
+  const x=Math.cos(la1*Math.PI/180)*Math.sin(la2*Math.PI/180)-Math.sin(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.cos(dO);
+  return(Math.atan2(y,x)*180/Math.PI+360)%360;
+}
+
+// ══════════════════════════════════════════════
+// AUTO-REFRESH
+// ══════════════════════════════════════════════
+setInterval(initRV,5*60*1000);
+setInterval(fetchWx,10*60*1000);
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+(async()=>{
+  await initRV();
+  await fetchWx();
+  initBz();
+  // Chiedi posizione all'avvio (dopo 1 sec per non bloccare il caricamento)
+  setTimeout(requestGeolocation, 1000);
+})();
+</script>
+
+<!-- ══ BRANDING FOOTER ══════════════════════════════════════ -->
+<div id="brand-footer" style="
+  position:fixed;bottom:0;left:0;right:0;z-index:5000;
+  height:18px;display:flex;align-items:center;justify-content:center;
+  background:rgba(4,7,14,0.92);border-top:1px solid rgba(200,129,58,0.20);
+  font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;
+">
+  <a href="https://fotolapissable.it" target="_blank" rel="noopener" style="
+    color:rgba(200,129,58,0.75);text-decoration:none;
+    transition:color .2s;cursor:pointer;
+    display:flex;align-items:center;gap:4px;
+  " onmouseover="this.style.color='rgba(200,129,58,1)'"
+     onmouseout="this.style.color='rgba(200,129,58,0.75)'">
+    📸 &nbsp;FOTOLAPISSABLE.IT &nbsp;·&nbsp; FINE ART &amp; NATURE PHOTOGRAPHY &nbsp;·&nbsp; RIPOSTO, SICILIA
+  </a>
+</div>
+</div>
+
 <div id="brand-footer">
   <a href="https://fotolapissable.it" target="_blank" rel="noopener" style="
     color:rgba(201,168,76,.65);text-decoration:none;transition:color .2s;
