@@ -827,10 +827,6 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
         <span>SOS</span>
       </button>
       <button class="tab-btn" id="tab-meteo" onclick="openMeteo()"><span class="tab-icon">⛅</span><span data-it="Meteo" data-en="Weather">Meteo</span></button>
-      <button class="tab-btn" onclick="openMeteo()">
-        <span class="tab-icon">⛅</span>
-        <span data-it="Meteo" data-en="Weather">Meteo</span>
-      </button>
     </div>
 
     <!-- SENTIERI -->
@@ -1708,14 +1704,15 @@ function setLang(l) {
 // ── TABS ──────────────────────────────────────
 function setTab(tab) {
   activeTab = tab;
-  document.querySelectorAll('.tab-btn').forEach((b,i) => {
-    const tabs = ['sentieri','rifugi','sos'];
-    b.classList.toggle('active', tabs[i]===tab);
+  // Activate correct tab button (meteo button excluded from this logic)
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    const oc = b.getAttribute('onclick') || '';
+    b.classList.toggle('active', oc === "setTab('" + tab + "')");
   });
+  // Show correct panel
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-'+tab).classList.add('active');
-  // Update map marker visibility hints
-  updateLayerBtns();
+  const panel = document.getElementById('panel-' + tab);
+  if(panel) panel.classList.add('active');
 }
 
 // ── MAP ───────────────────────────────────────
@@ -2205,25 +2202,7 @@ function diffColor(d){return d==='T'?'var(--green-trail)':d==='E'?'var(--blue-tr
 // ══════════════════════════════════════════════
 //  METEO INTEGRATION
 // ══════════════════════════════════════════════
-function openMeteo() {
-  document.getElementById('meteo-panel').classList.add('open');
-  document.getElementById('meteo-back-btn').classList.add('visible');
-  document.getElementById('brand-footer').style.display = 'none';
-  initMeteo();
-  // Invalidate meteo map after panel opens
-  setTimeout(() => {
-    if(meteoMap) meteoMap.invalidateSize();
-  }, 350);
-}
 
-function closeMeteo() {
-  document.getElementById('meteo-panel').classList.remove('open');
-  document.getElementById('meteo-back-btn').classList.remove('visible');
-  document.getElementById('brand-footer').style.display = '';
-  // Restore trails view
-  setTab('sentieri');
-  setTimeout(() => map.invalidateSize(), 200);
-}
 
 // ══════════════════════════════════════════════
 //  METEO MODULE
@@ -2309,20 +2288,6 @@ function tick(){
   clockEl.textContent = new Date().toLocaleTimeString('it-IT',{hour12:false,timeZone:'Europe/Rome'});
 }
 tick(); setInterval(tick,1000);
-
-// ══════════════════════════════════════════════
-// MAP
-// ══════════════════════════════════════════════
-
-
-// Radius rings (inizializzati con posizione default, aggiornati da updateMapLocation)
-);
-
-// Marker default (Riposto)
-  .addTo(meteoMap)
-  .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E<br>Ionio settentrionale');
-
-// Direction lines (cardinal + ordinal faint guides)
 
 // ══════════════════════════════════════════════
 // RAINVIEWER
