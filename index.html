@@ -801,7 +801,7 @@ function renderSentieri(list) {
 function filterRifugi() {
   const q = document.getElementById('search-rifugi').value.toLowerCase();
   const list = (DB.rifugi||[]).filter(r =>
-    !q || (r.nome+' '+r.zona+' '+(r.note_foto||'')).toLowerCase().includes(q)
+    !q || (r.nome+' '+r.zona+' '+(r.note||'')).toLowerCase().includes(q)
   );
   renderRifugi(list);
 }
@@ -826,7 +826,7 @@ function renderRifugi(list) {
         <span class="rc-stat">📍 <span>${r.km_da_riposto}km</span></span>
         ${r.camino ? '<span class="rc-stat">🔥 <span>Camino</span></span>' : ''}
       </div>
-      <div class="rc-note">${r.note_foto||''}</div>`;
+      <div class="rc-note">${r.note||''}</div>`;
     c.appendChild(el);
   });
 }
@@ -969,7 +969,7 @@ function showDetail(type, id) {
     const rl = lang==='it'?['QUOTA','KM DA RIPOSTO','COSTO','ACCESSO']:['ELEVATION','KM FROM RIPOSTO','COST','ACCESS'];
     const rv = [[item.quota,'m'],[item.km_da_riposto,'km'],[item.costo,''],[item.accesso,'']];
     stats = rv.map((v,i)=>`<div class="dstat"><div class="dstat-lbl">${rl[i]}</div><div class="dstat-val" style="font-size:${i>=2?'10':'15'}px">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
-    desc = item.note_foto||'';
+    desc = item.note||'';
     extra = `<h4>${lang==='it'?'DETTAGLI':'DETAILS'}</h4>
       <div class="extra-row"><span class="extra-lbl">Tipo</span><span class="extra-val">${item.tipo}</span></div>
       <div class="extra-row"><span class="extra-lbl">${lang==='it'?'Camino':'Fireplace'}</span><span class="extra-val">${item.camino?(lang==='it'?'🔥 Sì':'🔥 Yes'):(lang==='it'?'No':'No')}</span></div>
@@ -986,7 +986,7 @@ function showDetail(type, id) {
     stats = mv.map((v,i)=>`<div class="dstat"><div class="dstat-lbl">${ml[i]}</div><div class="dstat-val" style="font-size:${i>=2?'10':'15'}px">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
     desc = item.flora_fauna;
     extra = `<h4>${lang==='it'?'NOTE FOTOGRAFICHE':'PHOTO NOTES'}</h4>
-      <div class="extra-row"><span class="extra-lbl">📷</span><span class="extra-val">${item.note_foto}</span></div>
+      <div class="extra-row"><span class="extra-lbl">Info</span><span class="extra-val">${item.note||''}</span></div>
       <div class="extra-row"><span class="extra-lbl">${lang==='it'?'Asciug.':'Dry time'}</span><span class="extra-val">${item.asciugatura}</span></div>
       <div class="extra-row"><span class="extra-lbl">Accesso</span><span class="extra-val">${item.accesso}</span></div>`;
 

@@ -198,43 +198,327 @@
       "foto": null,
       "gpx": null,
       "autore": "fotolapissable"
+    },
+    {
+      "id": 5,
+      "nome": {
+        "it": "Schiena dell'Asino – Valle del Bove",
+        "en": "Schiena dell'Asino – Valle del Bove"
+      },
+      "zona": "sud",
+      "difficolta": "T",
+      "quota_min": 1850,
+      "quota_max": 2050,
+      "dislivello": 200,
+      "durata_ore": 2.5,
+      "distanza_km": 5.0,
+      "stagione": [
+        "apr",
+        "mag",
+        "giu",
+        "lug",
+        "ago",
+        "set",
+        "ott"
+      ],
+      "descrizione": {
+        "it": "Affaccio panoramico mozzafiato sulla Valle del Bove, ideale per osservare le eruzioni in sicurezza. Percorso CAI 786, parte dalla SP92 presso il Rifugio Sapienza.",
+        "en": "Breathtaking panoramic view over Valle del Bove, ideal for safely observing eruptions. CAI trail 786, starting from SP92 near Rifugio Sapienza."
+      },
+      "punti_interesse": [
+        {
+          "nome": {
+            "it": "Affaccio Valle del Bove",
+            "en": "Valle del Bove Viewpoint"
+          },
+          "quota": 2050,
+          "lat": 37.7012,
+          "lng": 15.0149
+        }
+      ],
+      "categoria": "CAI 786",
+      "gpx_ufficiale": true,
+      "lat": 37.7012,
+      "lng": 15.0149,
+      "foto": null,
+      "gpx": null,
+      "autore": "fotolapissable"
+    },
+    {
+      "id": 6,
+      "nome": {
+        "it": "Monti Sartorius – Crateri 1865",
+        "en": "Monti Sartorius – 1865 Craters"
+      },
+      "zona": "nord-est",
+      "difficolta": "T",
+      "quota_min": 1660,
+      "quota_max": 1760,
+      "dislivello": 100,
+      "durata_ore": 2.0,
+      "distanza_km": 4.0,
+      "stagione": [
+        "mar",
+        "apr",
+        "mag",
+        "giu",
+        "lug",
+        "ago",
+        "set",
+        "ott",
+        "nov"
+      ],
+      "descrizione": {
+        "it": "Anello geologico tra i famosi crateri a bottoniera formatisi nell'eruzione del 1865. Ideale per famiglie. Parte dal bivio del Rifugio Citelli.",
+        "en": "Geological loop among the famous chain craters formed in the 1865 eruption. Ideal for families. Starts from the Rifugio Citelli junction."
+      },
+      "punti_interesse": [
+        {
+          "nome": {
+            "it": "Crateri 1865",
+            "en": "1865 Craters"
+          },
+          "quota": 1760,
+          "lat": 37.7708,
+          "lng": 15.0605
+        }
+      ],
+      "categoria": "Sentiero Natura",
+      "gpx_ufficiale": true,
+      "lat": 37.7708,
+      "lng": 15.0605,
+      "foto": null,
+      "gpx": null,
+      "autore": "fotolapissable"
+    },
+    {
+      "id": 7,
+      "nome": {
+        "it": "Serracozzo – Grotta e Cresta Valle del Bove",
+        "en": "Serracozzo – Cave and Valle del Bove Ridge"
+      },
+      "zona": "nord-est",
+      "difficolta": "E",
+      "quota_min": 1740,
+      "quota_max": 2200,
+      "dislivello": 460,
+      "durata_ore": 4.0,
+      "distanza_km": 7.0,
+      "stagione": [
+        "mag",
+        "giu",
+        "lug",
+        "ago",
+        "set",
+        "ott"
+      ],
+      "descrizione": {
+        "it": "Attraversa una splendida pineta, tocca la grotta di scorrimento lavico Serracozzo e giunge sulla cresta della Valle del Bove. Percorso CAI 723.",
+        "en": "Crosses a beautiful pine forest, reaches the Serracozzo lava tube cave and climbs to the Valle del Bove ridge. CAI trail 723."
+      },
+      "punti_interesse": [
+        {
+          "nome": {
+            "it": "Rifugio Citelli",
+            "en": "Citelli Refuge"
+          },
+          "quota": 1741,
+          "lat": 37.7649,
+          "lng": 15.0579
+        },
+        {
+          "nome": {
+            "it": "Grotta Serracozzo",
+            "en": "Serracozzo Cave"
+          },
+          "quota": 1900,
+          "lat": 37.756,
+          "lng": 15.058
+        },
+        {
+          "nome": {
+            "it": "Cresta Valle del Bove",
+            "en": "Valle del Bove Ridge"
+          },
+          "quota": 2200,
+          "lat": 37.748,
+          "lng": 15.062
+        }
+      ],
+      "categoria": "CAI 723",
+      "gpx_ufficiale": true,
+      "lat": 37.7649,
+      "lng": 15.0579,
+      "foto": null,
+      "gpx": null,
+      "autore": "fotolapissable"
+    },
+    {
+      "id": 8,
+      "nome": {
+        "it": "Monte Nero degli Zappini – Sentiero Natura 1",
+        "en": "Monte Nero degli Zappini – Nature Trail 1"
+      },
+      "zona": "sud",
+      "difficolta": "T",
+      "quota_min": 1740,
+      "quota_max": 1850,
+      "dislivello": 110,
+      "durata_ore": 2.5,
+      "distanza_km": 4.5,
+      "stagione": [
+        "apr",
+        "mag",
+        "giu",
+        "lug",
+        "ago",
+        "set",
+        "ott"
+      ],
+      "descrizione": {
+        "it": "Il primo sentiero natura del Parco dell'Etna. Mostra campi lavici secolari, hornitos, pini larici e fitta vegetazione. Parte da Piano Vetore.",
+        "en": "The first nature trail of Etna Park. Features ancient lava fields, hornitos, larch pines and dense vegetation. Starts from Piano Vetore."
+      },
+      "punti_interesse": [
+        {
+          "nome": {
+            "it": "Piano Vetore",
+            "en": "Piano Vetore"
+          },
+          "quota": 1740,
+          "lat": 37.6933,
+          "lng": 14.9813
+        },
+        {
+          "nome": {
+            "it": "Hornitos",
+            "en": "Hornitos"
+          },
+          "quota": 1800,
+          "lat": 37.696,
+          "lng": 14.985
+        }
+      ],
+      "categoria": "Sentiero Natura 1",
+      "gpx_ufficiale": true,
+      "lat": 37.6933,
+      "lng": 14.9813,
+      "foto": null,
+      "gpx": null,
+      "autore": "fotolapissable"
+    },
+    {
+      "id": 9,
+      "nome": {
+        "it": "Pista Altomontana – Giro dell'Etna",
+        "en": "Altomontana Track – Etna Circuit"
+      },
+      "zona": "nord",
+      "difficolta": "E",
+      "quota_min": 1400,
+      "quota_max": 2040,
+      "dislivello": 800,
+      "durata_ore": 14.0,
+      "distanza_km": 42.0,
+      "stagione": [
+        "giu",
+        "lug",
+        "ago",
+        "set"
+      ],
+      "descrizione": {
+        "it": "Grande anello sterrato demaniale che circumnaviga il vulcano a quote medie intersecando quasi tutti i bivacchi gratuiti. Percorribile in più giorni o in mountain bike.",
+        "en": "Major dirt road circuit circumnavigating the volcano at mid-elevation, crossing nearly all free bivouacs. Can be done over multiple days or by mountain bike."
+      },
+      "punti_interesse": [
+        {
+          "nome": {
+            "it": "Piano dei Grilli",
+            "en": "Piano dei Grilli"
+          },
+          "quota": 1400,
+          "lat": 37.7457,
+          "lng": 14.8715
+        },
+        {
+          "nome": {
+            "it": "Piano Provenzana",
+            "en": "Piano Provenzana"
+          },
+          "quota": 1800,
+          "lat": 37.778,
+          "lng": 15.047
+        },
+        {
+          "nome": {
+            "it": "Rifugio Sapienza",
+            "en": "Sapienza Refuge"
+          },
+          "quota": 1910,
+          "lat": 37.6963,
+          "lng": 14.9996
+        }
+      ],
+      "categoria": "Giro dell'Etna",
+      "gpx_ufficiale": true,
+      "lat": 37.7457,
+      "lng": 14.8715,
+      "foto": null,
+      "gpx": null,
+      "autore": "fotolapissable"
+    },
+    {
+      "id": 10,
+      "nome": {
+        "it": "Grotta del Gelo – Ghiacciaio Vulcanico",
+        "en": "Grotta del Gelo – Volcanic Glacier"
+      },
+      "zona": "nord",
+      "difficolta": "EE",
+      "quota_min": 1800,
+      "quota_max": 2040,
+      "dislivello": 600,
+      "durata_ore": 8.0,
+      "distanza_km": 18.0,
+      "stagione": [
+        "lug",
+        "ago",
+        "set"
+      ],
+      "descrizione": {
+        "it": "Lungo e faticoso percorso lavico per raggiungere il ghiacciaio perenne più a sud d'Europa, dentro un tunnel vulcanico. Parte da Piano Provenzana. Solo per escursionisti esperti.",
+        "en": "Long and demanding lava-field route to reach the southernmost permanent glacier in Europe, inside a volcanic tunnel. Starts from Piano Provenzana. Experts only."
+      },
+      "punti_interesse": [
+        {
+          "nome": {
+            "it": "Piano Provenzana",
+            "en": "Piano Provenzana"
+          },
+          "quota": 1800,
+          "lat": 37.778,
+          "lng": 15.047
+        },
+        {
+          "nome": {
+            "it": "Grotta del Gelo",
+            "en": "Grotta del Gelo"
+          },
+          "quota": 2040,
+          "lat": 37.8148,
+          "lng": 15.0623
+        }
+      ],
+      "categoria": "Alpinistico",
+      "gpx_ufficiale": true,
+      "lat": 37.8148,
+      "lng": 15.0623,
+      "foto": null,
+      "gpx": null,
+      "autore": "fotolapissable"
     }
   ],
   "rifugi": [
-    {
-      "id": "r1",
-      "nome": "Rifugio Saletti",
-      "stelle": 3,
-      "quota": 1350,
-      "zona": "Etna Nord Altomontana",
-      "tipo": "Bivacco forestale aperto",
-      "camino": true,
-      "accesso": "LIBERO",
-      "prenotazione": false,
-      "costo": "Gratuito",
-      "telefono": "095 7721126",
-      "km_da_riposto": 40,
-      "note_foto": "Pranzo caldo, riparo meteo, flora alpina",
-      "lat": 37.82,
-      "lng": 14.98
-    },
-    {
-      "id": "r2",
-      "nome": "Rifugio Timparossa",
-      "stelle": 2,
-      "quota": 1400,
-      "zona": "Etna Nord Altomontana",
-      "tipo": "Bivacco forestale aperto",
-      "camino": true,
-      "accesso": "LIBERO",
-      "prenotazione": false,
-      "costo": "Gratuito",
-      "telefono": "334 9510149",
-      "km_da_riposto": 41,
-      "note_foto": "Macro insetti bosco, riscaldamento invernale",
-      "lat": 37.818,
-      "lng": 14.978
-    },
     {
       "id": "r3",
       "nome": "Rifugio Monte Crisimo",
@@ -248,26 +532,9 @@
       "costo": "25€/notte + 5€/persona",
       "telefono": "334 9510149",
       "km_da_riposto": 43,
-      "note_foto": "Asciugatura attrezzatura, fiori rupestri",
       "lat": 37.822,
-      "lng": 14.985
-    },
-    {
-      "id": "r4",
-      "nome": "Rifugio Monte Spagnolo",
-      "stelle": 2,
-      "quota": 1400,
-      "zona": "Etna Nord Pista 701",
-      "tipo": "Bivacco forestale aperto",
-      "camino": true,
-      "accesso": "LIBERO",
-      "prenotazione": false,
-      "costo": "Gratuito",
-      "telefono": "334 9510149",
-      "km_da_riposto": 42,
-      "note_foto": "Macro hornitos/colate 1981, fuoco",
-      "lat": 37.815,
-      "lng": 14.975
+      "lng": 14.985,
+      "note": "Prenotazione consigliata. Camino disponibile. Ottima base per escursioni sull'Altomontana nord."
     },
     {
       "id": "r5",
@@ -282,9 +549,9 @@
       "costo": "Gratuito",
       "telefono": "334 9510149",
       "km_da_riposto": 41,
-      "note_foto": "Flora alpina, zona tranquilla, licheni",
       "lat": 37.816,
-      "lng": 14.972
+      "lng": 14.972,
+      "note": "Libero accesso. Zona tranquilla e riparata, ideale per soste durante la Pista Altomontana."
     },
     {
       "id": "r6",
@@ -299,43 +566,9 @@
       "costo": "Gratuito",
       "telefono": "095 7721126",
       "km_da_riposto": 40,
-      "note_foto": "Bosco misto roverella/pino, macro licheni",
       "lat": 37.812,
-      "lng": 14.97
-    },
-    {
-      "id": "r7",
-      "nome": "Rifugio Monte Scavo",
-      "stelle": 1,
-      "quota": 1420,
-      "zona": "Etna Nord Altomontana",
-      "tipo": "Bivacco forestale aperto",
-      "camino": true,
-      "accesso": "LIBERO",
-      "prenotazione": false,
-      "costo": "Gratuito",
-      "telefono": "334 9510149",
-      "km_da_riposto": 44,
-      "note_foto": "Macro insetti prati, colate 1981",
-      "lat": 37.825,
-      "lng": 14.99
-    },
-    {
-      "id": "r8",
-      "nome": "Rifugio Galvarina",
-      "stelle": 1,
-      "quota": 1380,
-      "zona": "Etna Nord Altomontana",
-      "tipo": "Bivacco forestale aperto",
-      "camino": true,
-      "accesso": "LIBERO",
-      "prenotazione": false,
-      "costo": "Gratuito",
-      "telefono": "334 9510149",
-      "km_da_riposto": 42,
-      "note_foto": "Panorama Valle Bove, macro vulcanici",
-      "lat": 37.819,
-      "lng": 14.983
+      "lng": 14.97,
+      "note": "Libero accesso. Bosco misto di roverella e pino. Facile da raggiungere dall'Altomontana."
     },
     {
       "id": "r9",
@@ -350,9 +583,9 @@
       "costo": "3€/veicolo",
       "telefono": "095 8838170",
       "km_da_riposto": 52,
-      "note_foto": "Pranzo completo fuoco interno",
       "lat": 37.96,
-      "lng": 15.03
+      "lng": 15.03,
+      "note": "Prenotazione obbligatoria. Pranzo completo disponibile. Area attrezzata con camino interno."
     },
     {
       "id": "r10",
@@ -367,9 +600,9 @@
       "costo": "Gratuito (chiavi CAI)",
       "telefono": "095 643264",
       "km_da_riposto": 44,
-      "note_foto": "Grotte vulcaniche, macro funghi",
       "lat": 37.86,
-      "lng": 15.02
+      "lng": 15.02,
+      "note": "Chiavi tramite CAI Linguaglossa (095 643264). Grotte vulcaniche accessibili nelle vicinanze."
     },
     {
       "id": "r11",
@@ -384,9 +617,9 @@
       "costo": "Gratuito",
       "telefono": "090 974011",
       "km_da_riposto": 46,
-      "note_foto": "Tettoia coperta, macro praterie",
       "lat": 37.98,
-      "lng": 15.12
+      "lng": 15.12,
+      "note": "Libero accesso. Area pic-nic coperta con tettoia. Adatta per famiglie e gruppi."
     },
     {
       "id": "r12",
@@ -401,9 +634,9 @@
       "costo": "Paga consumo",
       "telefono": "339 987 6543",
       "km_da_riposto": 48,
-      "note_foto": "Pranzo rifugio, panorama Milazzo",
       "lat": 37.975,
-      "lng": 15.115
+      "lng": 15.115,
+      "note": "Libero accesso. Pranzo disponibile a consumo. Panorama sulla costa di Milazzo."
     },
     {
       "id": "r13",
@@ -418,9 +651,9 @@
       "costo": "Libero bivacco",
       "telefono": "331 3457538",
       "km_da_riposto": 50,
-      "note_foto": "Flora endemica, rocce vulcaniche",
       "lat": 37.93,
-      "lng": 15.06
+      "lng": 15.06,
+      "note": "Accesso consigliato con prenotazione. Bivacco naturale tra le rocce. Zona Riserva Malabotta."
     },
     {
       "id": "r14",
@@ -435,9 +668,9 @@
       "costo": "Paga consumo",
       "telefono": "338 123 4567",
       "km_da_riposto": 52,
-      "note_foto": "Pranzo servizio, sentieri Nebrodi",
       "lat": 37.995,
-      "lng": 15.13
+      "lng": 15.13,
+      "note": "Prenotazione consigliata. Pranzo a consumo. Punto di partenza per i sentieri dei Nebrodi est."
     },
     {
       "id": "r15",
@@ -452,26 +685,29 @@
       "costo": "Paga consumo",
       "telefono": "340 456 7890",
       "km_da_riposto": 55,
-      "note_foto": "Pranzo lungo torrente, macro acquatici",
       "lat": 38.01,
-      "lng": 15.37
+      "lng": 15.37,
+      "note": "Libero accesso. Pranzo disponibile a consumo lungo il torrente Vacco."
     },
     {
-      "id": "r16",
+      "id": "r23",
       "nome": "Rifugio Ragabo",
       "stelle": 4,
-      "quota": 1450,
-      "zona": "Linguaglossa",
-      "tipo": "Rifugio completo",
+      "quota": 1415,
+      "zona": "Linguaglossa – Etna Nord",
+      "tipo": "Rifugio privato",
       "camino": false,
       "accesso": "PRENOTAZIONE CONSIGLIATA",
       "prenotazione": true,
       "costo": "Paga al momento",
       "telefono": "339 344 0167",
       "km_da_riposto": 36,
-      "note_foto": "Pineta secolare, sci/ciaspolate, macro wildflower",
-      "lat": 37.83,
-      "lng": 15.045
+      "lat": 37.8083,
+      "lng": 15.0664,
+      "posti_letto": 40,
+      "servizi": "Albergo, Ristorante tipico, Bar, Noleggio sci",
+      "foto": null,
+      "note": "Prenotazione consigliata. Albergo con ristorante tipico. Immerso nella Pineta Ragabo."
     },
     {
       "id": "r17",
@@ -486,26 +722,29 @@
       "costo": "Paga al check-in",
       "telefono": "334 243 0222",
       "km_da_riposto": 37,
-      "note_foto": "Comfort moderno, accesso Piano Provenzana",
       "lat": 37.828,
-      "lng": 15.043
+      "lng": 15.043,
+      "note": "Prenotazione consigliata. Struttura moderna con comfort. Base per Piano Provenzana."
     },
     {
-      "id": "r18",
+      "id": "r21",
       "nome": "Rifugio Citelli",
       "stelle": 4,
       "quota": 1741,
-      "zona": "Sant'Alfio",
-      "tipo": "Rifugio CAI",
+      "zona": "Sant'Alfio – Etna Nord-Est",
+      "tipo": "Rifugio gestito CAI Catania",
       "camino": false,
       "accesso": "PRENOTAZIONE OBBLIGATORIA",
       "prenotazione": true,
       "costo": "Variabile CAI",
       "telefono": "328 458 9043",
       "km_da_riposto": 42,
-      "note_foto": "Valle Bove, grotta Serracozzo",
-      "lat": 37.756,
-      "lng": 15.058
+      "lat": 37.7634,
+      "lng": 15.0581,
+      "posti_letto": 19,
+      "servizi": "Ristorante, Camere comuni, Bagni, Wi-Fi",
+      "foto": null,
+      "note": "Prenotazione obbligatoria. Ristorante e Wi-Fi. Base strategica per Monti Sartorius e Valle del Bove."
     },
     {
       "id": "r19",
@@ -520,9 +759,237 @@
       "costo": "Paga consumo",
       "telefono": "328 203 5611",
       "km_da_riposto": 38,
-      "note_foto": "Accesso rapido Piano Provenzana",
       "lat": 37.826,
-      "lng": 15.041
+      "lng": 15.041,
+      "note": "Libero accesso. Bar e ristorante a consumo. Accesso rapido a Piano Provenzana."
+    },
+    {
+      "id": "r20",
+      "nome": "Rifugio Giovanni Sapienza",
+      "stelle": 4,
+      "quota": 1920,
+      "zona": "Nicolosi – Etna Sud",
+      "tipo": "Rifugio gestito CAI Catania",
+      "camino": false,
+      "accesso": "LIBERO",
+      "prenotazione": true,
+      "costo": "Paga al momento",
+      "telefono": "095 914167",
+      "km_da_riposto": 55,
+      "posti_letto": 50,
+      "servizi": "Ristorante, Camere private, Bar, Parcheggio, Funivia",
+      "lat": 37.6994,
+      "lng": 15.0178,
+      "foto": null,
+      "note": "Prenotazione consigliata. Ristorante, bar, camere private. Hub principale Etna Sud, aperto tutto l'anno."
+    },
+    {
+      "id": "r22",
+      "nome": "Rifugio Ariel",
+      "stelle": 3,
+      "quota": 1700,
+      "zona": "Ragalna – Etna Sud-Ovest",
+      "tipo": "Rifugio privato",
+      "camino": false,
+      "accesso": "PRENOTAZIONE CONSIGLIATA",
+      "prenotazione": true,
+      "costo": "Paga al momento",
+      "telefono": "095 7914117",
+      "km_da_riposto": 62,
+      "posti_letto": 30,
+      "servizi": "Ristorante, Camere, Noleggio attrezzatura",
+      "lat": 37.6841,
+      "lng": 14.9744,
+      "foto": null,
+      "note": "Prenotazione consigliata. Ristorante e noleggio attrezzatura. Vicino all'osservatorio astrofisico."
+    },
+    {
+      "id": "r24",
+      "nome": "Rifugio Piano dei Grilli",
+      "stelle": 2,
+      "quota": 1200,
+      "zona": "Bronte – Etna Ovest",
+      "tipo": "Punto Base Parco dell'Etna",
+      "camino": false,
+      "accesso": "LIBERO",
+      "prenotazione": false,
+      "costo": "Paga consumo",
+      "telefono": "095 7721126",
+      "km_da_riposto": 68,
+      "posti_letto": 10,
+      "servizi": "Punto Info, Bar, Noleggio MTB, Escursioni guidate",
+      "lat": 37.7457,
+      "lng": 14.8715,
+      "foto": null,
+      "note": "Libero accesso. Punto informativo del Parco. Noleggio MTB ed escursioni guidate disponibili."
+    },
+    {
+      "id": "b1",
+      "nome": "Bivacco Galvarina",
+      "stelle": 2,
+      "quota": 1878,
+      "zona": "Etna Sud-Ovest – Pista Altomontana",
+      "tipo": "Bivacco forestale aperto",
+      "camino": true,
+      "accesso": "LIBERO",
+      "prenotazione": false,
+      "costo": "Gratuito",
+      "telefono": "334 9510149",
+      "km_da_riposto": 50,
+      "posti_letto": 8,
+      "riserva_idrica": "Cisterna esterna (non potabile)",
+      "servizi": "Tavoli legno interni ed esterni",
+      "lat": 37.7328,
+      "lng": 14.9494,
+      "foto": null,
+      "note": "Libero accesso. Struttura in pietra lavica con tavoli interni ed esterni. Sulla Pista Altomontana."
+    },
+    {
+      "id": "b2",
+      "nome": "Bivacco Monte Scavo",
+      "stelle": 2,
+      "quota": 1785,
+      "zona": "Etna Ovest",
+      "tipo": "Bivacco forestale aperto",
+      "camino": true,
+      "accesso": "LIBERO",
+      "prenotazione": false,
+      "costo": "Gratuito",
+      "telefono": "334 9510149",
+      "km_da_riposto": 52,
+      "posti_letto": 6,
+      "riserva_idrica": "Cisterna esterna (da trattare)",
+      "servizi": "Brande in terracotta, legnaia rifornita",
+      "lat": 37.7451,
+      "lng": 14.9082,
+      "foto": null,
+      "note": "Libero accesso. Brande in terracotta e legnaia spesso rifornita. Versante Ovest."
+    },
+    {
+      "id": "b3",
+      "nome": "Bivacco Timparossa",
+      "stelle": 3,
+      "quota": 1840,
+      "zona": "Etna Nord-Est – Faggeta",
+      "tipo": "Bivacco forestale aperto",
+      "camino": true,
+      "accesso": "LIBERO",
+      "prenotazione": false,
+      "costo": "Gratuito",
+      "telefono": "334 9510149",
+      "km_da_riposto": 44,
+      "posti_letto": 10,
+      "riserva_idrica": "No",
+      "servizi": "Struttura in legno, camino",
+      "lat": 37.7892,
+      "lng": 15.0314,
+      "foto": null,
+      "note": "Libero accesso. Struttura interamente in legno nella faggeta di Timparossa. Molto evocativo."
+    },
+    {
+      "id": "b4",
+      "nome": "Bivacco Saletti",
+      "stelle": 2,
+      "quota": 1377,
+      "zona": "Etna Nord – Case Pirao",
+      "tipo": "Bivacco forestale aperto",
+      "camino": true,
+      "accesso": "LIBERO",
+      "prenotazione": false,
+      "costo": "Gratuito",
+      "telefono": "095 7721126",
+      "km_da_riposto": 40,
+      "posti_letto": 10,
+      "riserva_idrica": "No",
+      "servizi": "Ampia struttura in muratura, pini larici",
+      "lat": 37.8319,
+      "lng": 14.9811,
+      "foto": null,
+      "note": "Libero accesso. Ampia struttura in muratura. Facile accesso, circondata da pini larici."
+    },
+    {
+      "id": "b5",
+      "nome": "Bivacco Monte Spagnolo",
+      "stelle": 2,
+      "quota": 1440,
+      "zona": "Etna Nord – Faggeta",
+      "tipo": "Bivacco forestale aperto",
+      "camino": true,
+      "accesso": "LIBERO",
+      "prenotazione": false,
+      "costo": "Gratuito",
+      "telefono": "334 9510149",
+      "km_da_riposto": 42,
+      "posti_letto": 6,
+      "riserva_idrica": "No",
+      "servizi": "Pietra, camino, faggeta",
+      "lat": 37.8233,
+      "lng": 14.9617,
+      "foto": null,
+      "note": "Libero accesso. Nel cuore della faggeta nord. Ottimo riparo d'emergenza."
+    },
+    {
+      "id": "b6",
+      "nome": "Bivacco Monte Baracca",
+      "stelle": 1,
+      "quota": 1495,
+      "zona": "Linguaglossa – Etna Nord-Est",
+      "tipo": "Bivacco in pietra lavica",
+      "camino": false,
+      "accesso": "LIBERO",
+      "prenotazione": false,
+      "costo": "Gratuito",
+      "telefono": "334 9510149",
+      "km_da_riposto": 38,
+      "posti_letto": 4,
+      "riserva_idrica": "No",
+      "servizi": "Riparo essenziale, pineta Linguaglossa",
+      "lat": 37.7864,
+      "lng": 15.0228,
+      "foto": null,
+      "note": "Libero accesso. Piccolo ricovero in pietra lavica. Spazio interno limitato, 4 posti."
+    },
+    {
+      "id": "b7",
+      "nome": "Pagghiaro Monte Vetore",
+      "stelle": 1,
+      "quota": 1750,
+      "zona": "Etna Sud – Piano Vetore",
+      "tipo": "Capanna pastorale tradizionale",
+      "camino": false,
+      "accesso": "LIBERO",
+      "prenotazione": false,
+      "costo": "Gratuito",
+      "telefono": null,
+      "km_da_riposto": 55,
+      "posti_letto": 3,
+      "riserva_idrica": "No",
+      "servizi": "Riparo dal vento e pioggia improvvisa",
+      "lat": 37.6922,
+      "lng": 14.9855,
+      "foto": null,
+      "note": "Libero accesso. Capanna pastorale tradizionale etnea. Utile per ripararsi da vento e pioggia improvvisa."
+    },
+    {
+      "id": "b8",
+      "nome": "Bivacco Case Pirao",
+      "stelle": 3,
+      "quota": 1115,
+      "zona": "Etna Nord – Case Pirao",
+      "tipo": "Struttura demaniale per gruppi",
+      "camino": true,
+      "accesso": "PRENOTAZIONE OBBLIGATORIA",
+      "prenotazione": true,
+      "costo": "A pagamento (Forestale)",
+      "telefono": "095 7721126",
+      "km_da_riposto": 42,
+      "posti_letto": 15,
+      "riserva_idrica": "Fontana esterna attiva",
+      "servizi": "Grande struttura per gruppi, fontana, camino",
+      "lat": 37.8531,
+      "lng": 14.9881,
+      "foto": null,
+      "note": "Accesso regolato dal Servizio Forestale Regionale a pagamento. Fontana esterna attiva. Ideale per gruppi."
     }
   ],
   "sentieri_macro": [
