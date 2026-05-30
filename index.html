@@ -160,8 +160,8 @@ body{font-family:var(--font-body);color:var(--snow);
 .emerg-note{font-size:10.5px;color:var(--ash);margin-top:3px;font-style:italic;}
 
 /* ── MAP AREA ───────────────────────────────── */
-#map-wrap{flex:1;position:relative}
-#map{width:100%;height:100%;z-index:1}
+#map-wrap{flex:1;position:relative;min-height:0}
+#map{width:100%;height:100%;min-height:300px;z-index:1}
 
 #map-controls{position:absolute;top:10px;left:10px;z-index:500;display:flex;gap:5px;}
 .mctrl-btn{background:rgba(10,4,0,0.9);border:1px solid var(--border);
@@ -1216,8 +1216,22 @@ if('serviceWorker' in navigator){
   navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!refreshing){refreshing=true;location.reload();}});
 }
 
-// ── INIT ──────────────────────────────────────
+// ── INIT ──────────────────────────────────────────────────────────────────────
+function fixMapSize() {
+  const wrap = document.getElementById('map-wrap');
+  const mapEl = document.getElementById('map');
+  if(wrap && mapEl) {
+    mapEl.style.height = wrap.offsetHeight + 'px';
+    map.invalidateSize();
+  }
+}
+
 loadData();
+
+// Fix map size on load and resize
+window.addEventListener('load', () => { setTimeout(fixMapSize, 100); setTimeout(fixMapSize, 500); });
+window.addEventListener('resize', fixMapSize);
+document.addEventListener('DOMContentLoaded', () => setTimeout(fixMapSize, 200));
 </script>
 </body>
 </html>
