@@ -1268,18 +1268,6 @@ tick(); setInterval(tick,1000);
 // ══════════════════════════════════════════════
 let meteoMap = null; // initialized lazily
 
-  .addTo(meteoMap)
-  .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E<br>Ionio settentrionale');
-
-// Direction lines (cardinal + ordinal faint guides)
-for(let a=0;a<360;a+=45){
-  const len=0.55;
-  const dlat=len*Math.cos(a*Math.PI/180)/111;
-  const dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(POS.lat*Math.PI/180));
-  L.polyline([[POS.lat,POS.lng],[POS.lat+dlat,POS.lng+dlng]],
-    {color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(meteoMap);
-}
-
 // ══════════════════════════════════════════════
 // RAINVIEWER
 // ══════════════════════════════════════════════
@@ -1732,15 +1720,11 @@ const TILES = {
   sat:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
   dark:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
 };
-function setTile(n){
+function setMeteoTile(n){
   if(tileLayer) meteoMap.removeLayer(tileLayer);
   tileLayer = L.tileLayer(TILES[n],{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(meteoMap);
   document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+n));
 }
-setTile('topo');
-L.marker([37.7510,14.9934],{icon:L.divIcon({className:'',html:'<div class="etna-marker">🌋</div>',iconSize:[24,24],iconAnchor:[12,20]})}).addTo(meteoMap)
-  .bindPopup('<b style="color:#e8600a">🌋 Etna</b><br>3340 m s.l.m.');
-
 // Layer visibility
 function toggleLayerVis(type) {
   layerVis[type] = !layerVis[type];
@@ -2262,6 +2246,18 @@ function initMeteo() {
     geoMarker = L.marker([DEFAULT.lat,DEFAULT.lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
       .addTo(meteoMap)
       .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E');
+  .addTo(meteoMap)
+  .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E<br>Ionio settentrionale');
+
+// Direction lines (cardinal + ordinal faint guides)
+for(let a=0;a<360;a+=45){
+  const len=0.55;
+  const dlat=len*Math.cos(a*Math.PI/180)/111;
+  const dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(POS.lat*Math.PI/180));
+  L.polyline([[POS.lat,POS.lng],[POS.lat+dlat,POS.lng+dlng]],
+    {color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(meteoMap);
+}
+
   }
   setTimeout(async () => {
     await initRV();
@@ -2361,32 +2357,6 @@ tick(); setInterval(tick,1000);
 // MAP
 // ══════════════════════════════════════════════
 // meteoMap initialized lazily in initMeteo()
-
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-  attribution:'©<a href="https://www.openstreetmap.org">OSM</a> ©<a href="https://carto.com">CartoDB</a>',
-  subdomains:'abcd',maxZoom:19
-}).addTo(meteoMap);
-
-// Radius rings (inizializzati con posizione default, aggiornati da updateMapLocation)
-geoCircles.push(
-  L.circle([DEFAULT.lat,DEFAULT.lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(meteoMap),
-  L.circle([DEFAULT.lat,DEFAULT.lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(meteoMap),
-  L.circle([DEFAULT.lat,DEFAULT.lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(meteoMap)
-);
-
-// Marker default (Riposto)
-geoMarker = L.marker([DEFAULT.lat,DEFAULT.lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
-  .addTo(meteoMap)
-  .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E<br>Ionio settentrionale');
-
-// Direction lines (cardinal + ordinal faint guides)
-for(let a=0;a<360;a+=45){
-  const len=0.55;
-  const dlat=len*Math.cos(a*Math.PI/180)/111;
-  const dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(POS.lat*Math.PI/180));
-  L.polyline([[POS.lat,POS.lng],[POS.lat+dlat,POS.lng+dlng]],
-    {color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(meteoMap);
-}
 
 // ══════════════════════════════════════════════
 // RAINVIEWER
