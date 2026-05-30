@@ -1,4 +1,4 @@
-const APP_VERSION = 'v7';
+const APP_VERSION = 'v8';
 const CACHE_NAME  = `etna-trails-${APP_VERSION}`;
 
 const STATIC_ASSETS = [
@@ -29,25 +29,40 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
-  const isMap = url.hostname.includes('tile') || url.hostname.includes('arcgis') || url.hostname.includes('carto');
-
-  if(isMap) {
-    event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+  // Skip non-http requests (geo:, chrome-extension:, etc.)
+  if(!url.protocol.startsWith('http')) return;
+  // Skip cross-origin tile requests — just fetch
+  const isTile = url.hostname.includes('tile') || url.hostname.includes('arcgis') || url.hostname.includes('carto') || url.hostname.includes('opentopomap');
+  if(isTile) {
+    event.respondWith(fetch(event.request).catch(() => new Response('', {status: 408})));
     return;
   }
-
-  if(url.pathname.endsWith('index.html') || url.pathname.endsWith('/')) {
+  // index.html and data.json: network-first
+  if(url.pathname.endsWith('index.html') || url.pathname.endsWith('/') || url.pathname.endsWith('data.json')) {
     event.respondWith(
       fetch(event.request).then(r => {
-        caches.open(CACHE_NAME).then(c => c.put(event.request, r.clone()));
+        try {
+          const clone = r.clone();
+          caches.open(CACHE_NAME).then(c => c.put(event.request, clone));
+        } catch(e) {}
         return r;
       }).catch(() => caches.match(event.request))
     );
     return;
   }
-
+  // Everything else: cache-first
   event.respondWith(
-    caches.match(event.request).then(cached => cached || fetch(event.request))
+    caches.match(event.request).then(cached => {
+      if(cached) return cached;
+      return fetch(event.request).then(r => {
+        if(r && r.status===200 && r.type!=='opaque') {
+          try {
+            caches.open(CACHE_NAME).then(c => c.put(event.request, r.clone()));
+          } catch(e) {}
+        }
+        return r;
+      });
+    })
   );
 });
 

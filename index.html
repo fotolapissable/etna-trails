@@ -1062,7 +1062,10 @@ function showDetail(type, id) {
   if(lat && lng) {
     const mapsBtn = document.createElement('a');
     mapsBtn.className = 'action-btn maps';
-    mapsBtn.href = `geo:${lat},${lng}?q=${lat},${lng}(${encodeURIComponent(title)})`;
+    const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    mapsBtn.href = isMobile
+      ? `geo:${lat},${lng}?q=${lat},${lng}(${encodeURIComponent(title)})`
+      : `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
     mapsBtn.target = '_blank'; mapsBtn.rel = 'noopener';
     mapsBtn.innerHTML = `🗺 ${lang==='it'?'Apri nella mappa':'Open in maps'}`;
     actions.appendChild(mapsBtn);
