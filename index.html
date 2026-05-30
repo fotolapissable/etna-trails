@@ -789,50 +789,6 @@ function renderRifugi(list) {
   });
 }
 
-// ── MACRO ─────────────────────────────────────
-function renderMacro(list) {
-  list = list || DB.sentieri_macro || [];
-  const c = document.getElementById('macro-list');
-  c.innerHTML = '';
-  list.forEach((m,i) => {
-    const el = document.createElement('div');
-    el.className = 'macro-card' + (activeItem&&activeItem.id===m.id&&activeItem.type==='macro'?' active':'');
-    el.style.animationDelay = (i*.04)+'s';
-    el.onclick = () => { selectItem('macro',m.id); showDetail('macro',m.id); };
-    el.innerHTML = `
-      <div class="mc-name">${m.nome[lang]||m.nome.it}</div>
-      <div class="tc-stats">
-        <div class="tc-stat">⏱ <span>${m.durata_h}h</span></div>
-        <div class="tc-stat">🏔 <span>${m.quota}m</span></div>
-        <div class="tc-stat">📊 <span>${m.difficolta}</span></div>
-      </div>
-      <div class="mc-ff">🔍 ${m.flora_fauna}</div>
-      <div class="mc-note">📷 ${m.note_foto}</div>`;
-    c.appendChild(el);
-  });
-}
-
-// ── PLANNING ──────────────────────────────────
-function renderPlanning(list) {
-  list = list || DB.planning || [];
-  const c = document.getElementById('planning-list');
-  c.innerHTML = '';
-  list.forEach((p,i) => {
-    const el = document.createElement('div');
-    el.className = 'plan-card' + (activeItem&&activeItem.id===p.id&&activeItem.type==='planning'?' active':'');
-    el.style.animationDelay = (i*.04)+'s';
-    el.onclick = () => { selectItem('planning',p.id); showDetail('planning',p.id); };
-    el.innerHTML = `
-      <div class="pc-name">${p.scenario}</div>
-      <div class="pc-row">
-        <div class="pc-stat">🕐 <span>${p.partenza}</span></div>
-        <div class="pc-stat">⏱ <span>${p.durata}</span></div>
-        <div class="pc-stat">📍 <span>${p.km}km</span></div>
-        <div class="pc-stat">🏠 <span>${p.rifugio_base}</span></div>
-      </div>`;
-    c.appendChild(el);
-  });
-}
 
 // ── EMERGENZE ─────────────────────────────────
 function renderEmergenze() {
