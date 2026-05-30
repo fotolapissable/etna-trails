@@ -1,9 +1,9 @@
-const APP_VERSION = 'v3';
+const APP_VERSION = 'v4';
 const CACHE_NAME  = `etna-trails-${APP_VERSION}`;
 
 const STATIC_ASSETS = [
   './index.html',
-  './sentieri.json',
+  './data.json',
   './manifest.json',
   'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css',
   'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',
