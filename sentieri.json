@@ -4,7 +4,10 @@
   "sentieri": [
     {
       "id": 1,
-      "nome": { "it": "Rifugio Sapienza – Crateri Sommitali", "en": "Sapienza Refuge – Summit Craters" },
+      "nome": {
+        "it": "Rifugio Sapienza – Crateri Sommitali",
+        "en": "Sapienza Refuge – Summit Craters"
+      },
       "zona": "sud",
       "difficolta": "EE",
       "quota_min": 1910,
@@ -12,25 +15,57 @@
       "dislivello": 1430,
       "durata_ore": 7,
       "distanza_km": 9.5,
-      "stagione": ["giu","lug","ago","set"],
+      "stagione": [
+        "giu",
+        "lug",
+        "ago",
+        "set"
+      ],
       "descrizione": {
         "it": "Il percorso più classico sull'Etna, che porta dai piedi del vulcano fino ai crateri sommitali. Si parte dal Rifugio Sapienza (1910 m) e si risale lungo i fianchi lavici fino alla Bocca Nuova e al Cratere di Sud-Est. Panorama mozzafiato sullo Ionio e sulla Sicilia. Necessaria guida alpina oltre i 2900 m.",
         "en": "The most classic route on Etna, leading from the volcano's base to the summit craters. Starting from Rifugio Sapienza (1910m), you ascend across lava fields to the Bocca Nuova and Southeast Crater. Breathtaking views of the Ionian Sea and Sicily. Alpine guide required above 2900m."
       },
       "punti_interesse": [
-        { "nome": { "it": "Rifugio Sapienza", "en": "Sapienza Refuge" }, "quota": 1910, "lat": 37.6963, "lng": 14.9996 },
-        { "nome": { "it": "Torre del Filosofo", "en": "Philosopher's Tower" }, "quota": 2920, "lat": 37.7125, "lng": 15.0048 },
-        { "nome": { "it": "Cratere di Sud-Est", "en": "Southeast Crater" }, "quota": 3340, "lat": 37.7314, "lng": 15.0026 }
+        {
+          "nome": {
+            "it": "Rifugio Sapienza",
+            "en": "Sapienza Refuge"
+          },
+          "quota": 1910,
+          "lat": 37.6963,
+          "lng": 14.9996
+        },
+        {
+          "nome": {
+            "it": "Torre del Filosofo",
+            "en": "Philosopher's Tower"
+          },
+          "quota": 2920,
+          "lat": 37.7125,
+          "lng": 15.0048
+        },
+        {
+          "nome": {
+            "it": "Cratere di Sud-Est",
+            "en": "Southeast Crater"
+          },
+          "quota": 3340,
+          "lat": 37.7314,
+          "lng": 15.0026
+        }
       ],
       "lat": 37.6963,
       "lng": 14.9996,
-      "foto": [],
+      "foto": null,
       "gpx": null,
       "autore": "fotolapissable"
     },
     {
       "id": 2,
-      "nome": { "it": "Piano Provenzana – Valle del Bove (versante nord)", "en": "Piano Provenzana – Valle del Bove (north slope)" },
+      "nome": {
+        "it": "Piano Provenzana – Valle del Bove (versante nord)",
+        "en": "Piano Provenzana – Valle del Bove (north slope)"
+      },
       "zona": "nord",
       "difficolta": "E",
       "quota_min": 1800,
@@ -38,24 +73,50 @@
       "dislivello": 600,
       "durata_ore": 4,
       "distanza_km": 10,
-      "stagione": ["mag","giu","lug","ago","set","ott"],
+      "stagione": [
+        "mag",
+        "giu",
+        "lug",
+        "ago",
+        "set",
+        "ott"
+      ],
       "descrizione": {
         "it": "Splendido anello sul versante nord che attraversa colate laviche storiche e boschi di betulla. Si raggiunge il bordo della Valle del Bove con viste straordinarie sulle pareti interne. Ottimo per fotografia naturalistica e paesaggistica al tramonto.",
         "en": "Beautiful loop on the northern slope crossing historic lava flows and birch forests. Reaches the rim of Valle del Bove with extraordinary views of the inner walls. Excellent for nature and landscape photography at sunset."
       },
       "punti_interesse": [
-        { "nome": { "it": "Piano Provenzana", "en": "Piano Provenzana" }, "quota": 1800, "lat": 37.7780, "lng": 15.0470 },
-        { "nome": { "it": "Bordo Valle del Bove", "en": "Valle del Bove Rim" }, "quota": 2350, "lat": 37.7350, "lng": 15.0600 }
+        {
+          "nome": {
+            "it": "Piano Provenzana",
+            "en": "Piano Provenzana"
+          },
+          "quota": 1800,
+          "lat": 37.778,
+          "lng": 15.047
+        },
+        {
+          "nome": {
+            "it": "Bordo Valle del Bove",
+            "en": "Valle del Bove Rim"
+          },
+          "quota": 2350,
+          "lat": 37.735,
+          "lng": 15.06
+        }
       ],
-      "lat": 37.7780,
-      "lng": 15.0470,
-      "foto": [],
+      "lat": 37.778,
+      "lng": 15.047,
+      "foto": null,
       "gpx": null,
       "autore": "fotolapissable"
     },
     {
       "id": 3,
-      "nome": { "it": "Bivacco Zucco Nero – Versante Nord-Est", "en": "Zucco Nero Bivouac – Northeast Slope" },
+      "nome": {
+        "it": "Bivacco Zucco Nero – Versante Nord-Est",
+        "en": "Zucco Nero Bivouac – Northeast Slope"
+      },
       "zona": "nord-est",
       "difficolta": "E",
       "quota_min": 950,
@@ -63,23 +124,43 @@
       "dislivello": 229,
       "durata_ore": 2.5,
       "distanza_km": 5.5,
-      "stagione": ["apr","mag","giu","lug","ago","set","ott","nov"],
+      "stagione": [
+        "apr",
+        "mag",
+        "giu",
+        "lug",
+        "ago",
+        "set",
+        "ott",
+        "nov"
+      ],
       "descrizione": {
         "it": "Percorso nel bosco di castagni e querce che porta al bivacco Zucco Nero (1179 m). Ideale per famiglie e principianti. In primavera la fioritura del sottobosco è spettacolare per la macrofotografia. Vista su Riposto e lo Ionio dal bivacco.",
         "en": "Path through chestnut and oak forest leading to Zucco Nero bivouac (1179m). Ideal for families and beginners. In spring the undergrowth flowering is spectacular for macro photography. Views of Riposto and the Ionian Sea from the bivouac."
       },
       "punti_interesse": [
-        { "nome": { "it": "Bivacco Zucco Nero", "en": "Zucco Nero Bivouac" }, "quota": 1179, "lat": 37.8386, "lng": 15.0531 }
+        {
+          "nome": {
+            "it": "Bivacco Zucco Nero",
+            "en": "Zucco Nero Bivouac"
+          },
+          "quota": 1179,
+          "lat": 37.8386,
+          "lng": 15.0531
+        }
       ],
       "lat": 37.8386,
       "lng": 15.0531,
-      "foto": [],
+      "foto": null,
       "gpx": null,
       "autore": "fotolapissable"
     },
     {
       "id": 4,
-      "nome": { "it": "Bosco di Malabotta – Anello dei Castagni", "en": "Malabotta Forest – Chestnut Loop" },
+      "nome": {
+        "it": "Bosco di Malabotta – Anello dei Castagni",
+        "en": "Malabotta Forest – Chestnut Loop"
+      },
       "zona": "nord-est",
       "difficolta": "T",
       "quota_min": 900,
@@ -87,43 +168,36 @@
       "dislivello": 300,
       "durata_ore": 3,
       "distanza_km": 7,
-      "stagione": ["mar","apr","mag","giu","set","ott","nov"],
+      "stagione": [
+        "mar",
+        "apr",
+        "mag",
+        "giu",
+        "set",
+        "ott",
+        "nov"
+      ],
       "descrizione": {
         "it": "Anello nel Bosco di Malabotta, una delle faggete più belle della Sicilia. Percorso ombreggiato tra castagni centenari, ottimo per la fotografia macro di insetti e funghi. In autunno i colori del fogliame sono straordinari.",
         "en": "Loop through Malabotta Forest, one of Sicily's most beautiful beech woods. Shaded path among centuries-old chestnuts, excellent for macro photography of insects and fungi. In autumn the foliage colors are extraordinary."
       },
       "punti_interesse": [
-        { "nome": { "it": "Ingresso Bosco di Malabotta", "en": "Malabotta Forest Entrance" }, "quota": 950, "lat": 37.9200, "lng": 15.0800 }
+        {
+          "nome": {
+            "it": "Ingresso Bosco di Malabotta",
+            "en": "Malabotta Forest Entrance"
+          },
+          "quota": 950,
+          "lat": 37.92,
+          "lng": 15.08
+        }
       ],
-      "lat": 37.9200,
-      "lng": 15.0800,
-      "foto": [],
-      "gpx": null,
-      "autore": "fotolapissable"
-    },
-    {
-      "id": 5,
-      "nome": { "it": "Santa Maria del Bosco – Sentiero dei Licheni", "en": "Santa Maria del Bosco – Lichen Trail" },
-      "zona": "sud-est",
-      "difficolta": "T",
-      "quota_min": 820,
-      "quota_max": 1050,
-      "dislivello": 230,
-      "durata_ore": 2,
-      "distanza_km": 4.5,
-      "stagione": ["gen","feb","mar","apr","mag","giu","set","ott","nov","dic"],
-      "descrizione": {
-        "it": "Breve ma affascinante sentiero tra antiche colate laviche ricoperte di licheni e felci. Zona ideale per la macrofotografia: lucertole, insetti e flora rupestre. Ottimo per uscite fotografiche di mezza giornata.",
-        "en": "Short but fascinating trail through ancient lava flows covered in lichens and ferns. Ideal area for macro photography: lizards, insects and rock flora. Perfect for half-day photography outings."
-      },
-      "punti_interesse": [
-        { "nome": { "it": "Santa Maria del Bosco", "en": "Santa Maria del Bosco" }, "quota": 870, "lat": 37.6100, "lng": 15.0600 }
-      ],
-      "lat": 37.6100,
-      "lng": 15.0600,
-      "foto": [],
+      "lat": 37.92,
+      "lng": 15.08,
+      "foto": null,
       "gpx": null,
       "autore": "fotolapissable"
     }
-  ]
+  ],
+  "note": "Per aggiungere foto: 'foto/nome-sentiero.jpg' (carica in cartella foto/). Per GPX: 'gpx/nome-sentiero.gpx' (carica in cartella gpx/)."
 }

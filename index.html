@@ -482,6 +482,56 @@ body {
 #toggle-sidebar { display:none }
 
 
+
+/* ── DETAIL PHOTO HEADER ────────────────────── */
+#detail-photo {
+  width:100%;height:120px;
+  background:linear-gradient(135deg, var(--lava3) 0%, var(--lava2) 100%);
+  position:relative;overflow:hidden;margin-bottom:14px;
+  border-radius:3px;
+}
+#detail-photo img {
+  width:100%;height:100%;object-fit:cover;opacity:0.75;
+  transition:opacity .3s;
+}
+#detail-photo-overlay {
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(10,4,0,0.85) 0%, rgba(10,4,0,0.2) 60%, transparent 100%);
+}
+#detail-photo-credit {
+  position:absolute;bottom:6px;right:8px;
+  font-family:var(--font-mono);font-size:7.5px;letter-spacing:1px;
+  color:rgba(201,168,76,0.7);
+}
+#detail-photo-placeholder {
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:36px;opacity:0.25;
+}
+
+/* ── ACTION BUTTONS ─────────────────────────── */
+#detail-actions {
+  display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;
+}
+.action-btn {
+  display:flex;align-items:center;gap:5px;
+  padding:7px 12px;border-radius:2px;cursor:pointer;
+  font-family:var(--font-mono);font-size:8.5px;letter-spacing:1px;
+  text-transform:uppercase;transition:all .2s;border:1px solid;
+  text-decoration:none;
+}
+.action-btn.maps {
+  background:rgba(66,133,244,0.15);border-color:rgba(66,133,244,0.4);
+  color:#6ba3f5;
+}
+.action-btn.maps:hover { background:rgba(66,133,244,0.28) }
+.action-btn.gpx-dl {
+  background:var(--ember-dim);border-color:rgba(232,96,10,0.4);color:var(--ember);
+}
+.action-btn.gpx-dl:hover { background:rgba(232,96,10,0.28) }
+.action-btn.gpx-dl.disabled {
+  opacity:0.35;cursor:not-allowed;pointer-events:none;
+}
+
 /* ── GPX PANEL ──────────────────────────────── */
 #gpx-bar {
   position:absolute;bottom:0;left:0;right:0;z-index:550;
@@ -655,9 +705,28 @@ body {
     <div id="detail-panel">
       <div id="detail-inner">
         <button id="detail-close" onclick="closeDetail()">✕ <span data-it="chiudi" data-en="close">chiudi</span></button>
+
+        <!-- Photo header -->
+        <div id="detail-photo">
+          <div id="detail-photo-placeholder">🌋</div>
+          <div id="detail-photo-overlay"></div>
+          <div id="detail-photo-credit">© fotolapissable.it</div>
+        </div>
+
         <div id="detail-name"></div>
         <div id="detail-zone"></div>
         <div id="detail-stats"></div>
+
+        <!-- Action buttons -->
+        <div id="detail-actions">
+          <a id="btn-open-maps" class="action-btn maps" href="#" target="_blank" rel="noopener">
+            🗺 <span data-it="Apri nella mappa" data-en="Open in maps">Apri nella mappa</span>
+          </a>
+          <button id="btn-download-gpx" class="action-btn gpx-dl disabled" onclick="downloadGpx()">
+            ⬇ <span data-it="Scarica GPX" data-en="Download GPX">Scarica GPX</span>
+          </button>
+        </div>
+
         <div id="detail-desc"></div>
         <div id="detail-poi"></div>
         <div id="detail-stagioni"></div>
@@ -1011,17 +1080,38 @@ function selectTrail(id) {
 }
 
 // ── DETAIL PANEL ─────────────────────────────
+// Store currently loaded GPX url per trail to avoid reloading
+const gpxCache = {};
+
 function showDetail(id) {
   const t = trails.find(x => x.id===id);
   if(!t) return;
   activeTrailId = id;
 
+  // ── Photo header ────────────────────────────
+  const photoEl = document.getElementById('detail-photo');
+  const placeholder = document.getElementById('detail-photo-placeholder');
+  // Remove old img if any
+  const oldImg = photoEl.querySelector('img');
+  if(oldImg) oldImg.remove();
+  if(t.foto) {
+    const img = document.createElement('img');
+    img.src = t.foto;
+    img.alt = t.nome[lang];
+    img.onerror = () => { img.remove(); placeholder.style.display='flex'; };
+    placeholder.style.display = 'none';
+    photoEl.insertBefore(img, photoEl.firstChild);
+  } else {
+    placeholder.style.display = 'flex';
+  }
+
+  // ── Name & zone ─────────────────────────────
   document.getElementById('detail-name').textContent = t.nome[lang];
   document.getElementById('detail-zone').textContent =
     (lang==='it' ? 'ZONA: ' : 'AREA: ') + t.zona.toUpperCase() +
     ' · ' + (lang==='it' ? 'STAGIONI CONSIGLIATE' : 'RECOMMENDED SEASONS');
 
-  // Stats
+  // ── Stats ────────────────────────────────────
   const statsLabels = lang==='it'
     ? ['DISTANZA','DURATA','DISLIVELLO','QUOTA MAX','QUOTA MIN']
     : ['DISTANCE','DURATION','ELEVATION','MAX ALT','MIN ALT'];
@@ -1035,9 +1125,29 @@ function showDetail(id) {
     </div>`
   ).join('');
 
+  // ── Open in maps button ──────────────────────
+  const mapsBtn = document.getElementById('btn-open-maps');
+  const mapsLabel = lang==='it' ? 'Apri nella mappa' : 'Open in maps';
+  mapsBtn.innerHTML = `🗺 ${mapsLabel}`;
+  // geo: URI — opens default maps app on any device
+  const geoUri = `geo:${t.lat},${t.lng}?q=${t.lat},${t.lng}(${encodeURIComponent(t.nome[lang])})`;
+  mapsBtn.href = geoUri;
+
+  // ── GPX download button ──────────────────────
+  const gpxBtn = document.getElementById('btn-download-gpx');
+  const gpxLabel = lang==='it' ? 'Scarica GPX' : 'Download GPX';
+  if(t.gpx) {
+    gpxBtn.innerHTML = `⬇ ${gpxLabel}`;
+    gpxBtn.classList.remove('disabled');
+  } else {
+    gpxBtn.innerHTML = `⬇ ${gpxLabel}`;
+    gpxBtn.classList.add('disabled');
+  }
+
+  // ── Description ──────────────────────────────
   document.getElementById('detail-desc').textContent = t.descrizione[lang];
 
-  // POI
+  // ── POI ──────────────────────────────────────
   if(t.punti_interesse && t.punti_interesse.length) {
     document.getElementById('detail-poi').innerHTML =
       `<h4>${lang==='it'?'PUNTI DI INTERESSE':'POINTS OF INTEREST'}</h4>` +
@@ -1051,7 +1161,7 @@ function showDetail(id) {
     document.getElementById('detail-poi').innerHTML = '';
   }
 
-  // Stagioni
+  // ── Stagioni ─────────────────────────────────
   const mesi = lang==='it' ? MESI_IT : MESI_EN;
   document.getElementById('detail-stagioni').innerHTML =
     `<h4>${lang==='it'?'PERIODO CONSIGLIATO':'BEST SEASON'}</h4>
@@ -1063,7 +1173,26 @@ function showDetail(id) {
 
   document.getElementById('detail-panel').classList.add('open');
 
-  // Scroll card into view
+  // ── Auto-load GPX if available ───────────────
+  if(t.gpx) {
+    if(gpxCache[t.id]) {
+      // Already loaded — just redraw
+      processGpx(gpxCache[t.id], t.nome[lang]);
+    } else {
+      fetch(t.gpx)
+        .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+        .then(xml => {
+          gpxCache[t.id] = xml;
+          processGpx(xml, t.nome[lang]);
+        })
+        .catch(e => console.warn('[GPX] Cannot load:', t.gpx, e));
+    }
+  } else {
+    // Clear previous GPX if switching to a trail without one
+    clearGpx();
+  }
+
+  // ── Scroll card into view ────────────────────
   renderList();
   setTimeout(() => {
     const cards = document.querySelectorAll('.trail-card');
@@ -1315,6 +1444,41 @@ function processGpx(xmlText, name) {
   if(withEle.length > 1) {
     openElevation(withEle, name);
   }
+}
+
+
+// ── DOWNLOAD GPX ─────────────────────────────────────────────────────────
+function downloadGpx() {
+  const t = trails.find(x => x.id===activeTrailId);
+  if(!t || !t.gpx) return;
+
+  // If we have cached XML, create blob directly
+  if(gpxCache[t.id]) {
+    const blob = new Blob([gpxCache[t.id]], {type:'application/gpx+xml'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = t.nome.it.replace(/[^a-zA-Z0-9]/g,'-').toLowerCase() + '.gpx';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    return;
+  }
+
+  // Otherwise fetch and download
+  fetch(t.gpx)
+    .then(r => r.blob())
+    .then(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = t.nome.it.replace(/[^a-zA-Z0-9]/g,'-').toLowerCase() + '.gpx';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    })
+    .catch(() => {
+      // Fallback: open GPX URL directly
+      window.open(t.gpx, '_blank');
+    });
 }
 
 // ── CLEAR GPX ────────────────────────────────────────────────────────────
