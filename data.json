@@ -1,7 +1,7 @@
 {
-  "version": "2.0",
+  "version": "3.0",
   "aggiornato": "2026-05-30",
-  "note": "Dati Etna-Nebrodi da Riposto. Per aggiungere foto: 'foto/nome.jpg'. Per GPX: 'gpx/nome.gpx'.",
+  "note": "Per aggiungere foto: 'foto/nome.jpg'. Per GPX: 'gpx/nome.gpx'.",
   "sentieri": [
     {
       "id": 1,
@@ -14,7 +14,7 @@
       "quota_min": 1910,
       "quota_max": 3340,
       "dislivello": 1430,
-      "durata_ore": 7,
+      "durata_ore": 7.0,
       "distanza_km": 9.5,
       "stagione": [
         "giu",
@@ -26,6 +26,8 @@
         "it": "Il percorso più classico sull'Etna, dai piedi del vulcano fino ai crateri sommitali. Si parte dal Rifugio Sapienza (1910 m) e si risale lungo i fianchi lavici fino alla Bocca Nuova e al Cratere di Sud-Est. Panorama mozzafiato sullo Ionio e sulla Sicilia. Necessaria guida alpina oltre i 2900 m.",
         "en": "The most classic route on Etna, from the base to the summit craters. Starting at Rifugio Sapienza (1910m), ascending lava fields to Bocca Nuova and the Southeast Crater. Breathtaking views. Alpine guide required above 2900m."
       },
+      "categoria": "",
+      "gpx_ufficiale": false,
       "punti_interesse": [
         {
           "nome": {
@@ -72,8 +74,8 @@
       "quota_min": 1800,
       "quota_max": 2400,
       "dislivello": 600,
-      "durata_ore": 4,
-      "distanza_km": 10,
+      "durata_ore": 4.0,
+      "distanza_km": 10.0,
       "stagione": [
         "mag",
         "giu",
@@ -86,6 +88,8 @@
         "it": "Splendido anello sul versante nord tra colate laviche storiche e boschi di betulla. Si raggiunge il bordo della Valle del Bove con viste straordinarie. Ottimo per fotografia al tramonto.",
         "en": "Beautiful loop on the northern slope crossing lava flows and birch forests. Reaches the rim of Valle del Bove with extraordinary views. Excellent for sunset photography."
       },
+      "categoria": "",
+      "gpx_ufficiale": false,
       "punti_interesse": [
         {
           "nome": {
@@ -139,6 +143,8 @@
         "it": "Percorso nel bosco di castagni e querce fino al bivacco Zucco Nero (1179 m). Ideale per famiglie. In primavera la fioritura è spettacolare per la macrofotografia. Vista su Riposto e lo Ionio.",
         "en": "Path through chestnut and oak forest to Zucco Nero bivouac (1179m). Ideal for families. Spring flowering is spectacular for macro photography. Views of Riposto and the Ionian Sea."
       },
+      "categoria": "",
+      "gpx_ufficiale": false,
       "punti_interesse": [
         {
           "nome": {
@@ -167,8 +173,8 @@
       "quota_min": 900,
       "quota_max": 1200,
       "dislivello": 300,
-      "durata_ore": 3,
-      "distanza_km": 7,
+      "durata_ore": 3.0,
+      "distanza_km": 7.0,
       "stagione": [
         "mar",
         "apr",
@@ -182,6 +188,8 @@
         "it": "Anello nel Bosco di Malabotta, una delle faggete più belle della Sicilia. Castagni centenari, ottimo per la macro di insetti e funghi. In autunno i colori sono straordinari.",
         "en": "Loop through Malabotta Forest, one of Sicily's most beautiful beech woods. Centuries-old chestnuts, excellent for macro photography of insects and fungi. Extraordinary autumn colours."
       },
+      "categoria": "",
+      "gpx_ufficiale": false,
       "punti_interesse": [
         {
           "nome": {
@@ -225,6 +233,8 @@
         "it": "Affaccio panoramico mozzafiato sulla Valle del Bove, ideale per osservare le eruzioni in sicurezza. Percorso CAI 786, parte dalla SP92 presso il Rifugio Sapienza.",
         "en": "Breathtaking panoramic view over Valle del Bove, ideal for safely observing eruptions. CAI trail 786, starting from SP92 near Rifugio Sapienza."
       },
+      "categoria": "CAI 786",
+      "gpx_ufficiale": true,
       "punti_interesse": [
         {
           "nome": {
@@ -236,8 +246,6 @@
           "lng": 15.0149
         }
       ],
-      "categoria": "CAI 786",
-      "gpx_ufficiale": true,
       "lat": 37.7012,
       "lng": 15.0149,
       "foto": null,
@@ -272,6 +280,8 @@
         "it": "Anello geologico tra i famosi crateri a bottoniera formatisi nell'eruzione del 1865. Ideale per famiglie. Parte dal bivio del Rifugio Citelli.",
         "en": "Geological loop among the famous chain craters formed in the 1865 eruption. Ideal for families. Starts from the Rifugio Citelli junction."
       },
+      "categoria": "Sentiero Natura",
+      "gpx_ufficiale": true,
       "punti_interesse": [
         {
           "nome": {
@@ -283,8 +293,6 @@
           "lng": 15.0605
         }
       ],
-      "categoria": "Sentiero Natura",
-      "gpx_ufficiale": true,
       "lat": 37.7708,
       "lng": 15.0605,
       "foto": null,
@@ -316,6 +324,8 @@
         "it": "Attraversa una splendida pineta, tocca la grotta di scorrimento lavico Serracozzo e giunge sulla cresta della Valle del Bove. Percorso CAI 723.",
         "en": "Crosses a beautiful pine forest, reaches the Serracozzo lava tube cave and climbs to the Valle del Bove ridge. CAI trail 723."
       },
+      "categoria": "CAI 723",
+      "gpx_ufficiale": true,
       "punti_interesse": [
         {
           "nome": {
@@ -345,8 +355,6 @@
           "lng": 15.062
         }
       ],
-      "categoria": "CAI 723",
-      "gpx_ufficiale": true,
       "lat": 37.7649,
       "lng": 15.0579,
       "foto": null,
@@ -379,6 +387,8 @@
         "it": "Il primo sentiero natura del Parco dell'Etna. Mostra campi lavici secolari, hornitos, pini larici e fitta vegetazione. Parte da Piano Vetore.",
         "en": "The first nature trail of Etna Park. Features ancient lava fields, hornitos, larch pines and dense vegetation. Starts from Piano Vetore."
       },
+      "categoria": "Sentiero Natura 1",
+      "gpx_ufficiale": true,
       "punti_interesse": [
         {
           "nome": {
@@ -399,8 +409,6 @@
           "lng": 14.985
         }
       ],
-      "categoria": "Sentiero Natura 1",
-      "gpx_ufficiale": true,
       "lat": 37.6933,
       "lng": 14.9813,
       "foto": null,
@@ -430,6 +438,8 @@
         "it": "Grande anello sterrato demaniale che circumnaviga il vulcano a quote medie intersecando quasi tutti i bivacchi gratuiti. Percorribile in più giorni o in mountain bike.",
         "en": "Major dirt road circuit circumnavigating the volcano at mid-elevation, crossing nearly all free bivouacs. Can be done over multiple days or by mountain bike."
       },
+      "categoria": "Giro dell'Etna",
+      "gpx_ufficiale": true,
       "punti_interesse": [
         {
           "nome": {
@@ -459,8 +469,6 @@
           "lng": 14.9996
         }
       ],
-      "categoria": "Giro dell'Etna",
-      "gpx_ufficiale": true,
       "lat": 37.7457,
       "lng": 14.8715,
       "foto": null,
@@ -489,6 +497,8 @@
         "it": "Lungo e faticoso percorso lavico per raggiungere il ghiacciaio perenne più a sud d'Europa, dentro un tunnel vulcanico. Parte da Piano Provenzana. Solo per escursionisti esperti.",
         "en": "Long and demanding lava-field route to reach the southernmost permanent glacier in Europe, inside a volcanic tunnel. Starts from Piano Provenzana. Experts only."
       },
+      "categoria": "Alpinistico",
+      "gpx_ufficiale": true,
       "punti_interesse": [
         {
           "nome": {
@@ -509,8 +519,6 @@
           "lng": 15.0623
         }
       ],
-      "categoria": "Alpinistico",
-      "gpx_ufficiale": true,
       "lat": 37.8148,
       "lng": 15.0623,
       "foto": null,
@@ -532,9 +540,13 @@
       "costo": "25€/notte + 5€/persona",
       "telefono": "334 9510149",
       "km_da_riposto": 43,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Prenotazione consigliata. Camino disponibile. Ottima base per escursioni sull'Altomontana nord.",
       "lat": 37.822,
       "lng": 14.985,
-      "note": "Prenotazione consigliata. Camino disponibile. Ottima base per escursioni sull'Altomontana nord."
+      "foto": null
     },
     {
       "id": "r5",
@@ -549,9 +561,13 @@
       "costo": "Gratuito",
       "telefono": "334 9510149",
       "km_da_riposto": 41,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Libero accesso. Zona tranquilla e riparata, ideale per soste durante la Pista Altomontana.",
       "lat": 37.816,
       "lng": 14.972,
-      "note": "Libero accesso. Zona tranquilla e riparata, ideale per soste durante la Pista Altomontana."
+      "foto": null
     },
     {
       "id": "r6",
@@ -566,9 +582,13 @@
       "costo": "Gratuito",
       "telefono": "095 7721126",
       "km_da_riposto": 40,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Libero accesso. Bosco misto di roverella e pino. Facile da raggiungere dall'Altomontana.",
       "lat": 37.812,
       "lng": 14.97,
-      "note": "Libero accesso. Bosco misto di roverella e pino. Facile da raggiungere dall'Altomontana."
+      "foto": null
     },
     {
       "id": "r9",
@@ -583,9 +603,13 @@
       "costo": "3€/veicolo",
       "telefono": "095 8838170",
       "km_da_riposto": 52,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Prenotazione obbligatoria. Pranzo completo disponibile. Area attrezzata con camino interno.",
       "lat": 37.96,
       "lng": 15.03,
-      "note": "Prenotazione obbligatoria. Pranzo completo disponibile. Area attrezzata con camino interno."
+      "foto": null
     },
     {
       "id": "r10",
@@ -600,9 +624,13 @@
       "costo": "Gratuito (chiavi CAI)",
       "telefono": "095 643264",
       "km_da_riposto": 44,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Chiavi tramite CAI Linguaglossa (095 643264). Grotte vulcaniche accessibili nelle vicinanze.",
       "lat": 37.86,
       "lng": 15.02,
-      "note": "Chiavi tramite CAI Linguaglossa (095 643264). Grotte vulcaniche accessibili nelle vicinanze."
+      "foto": null
     },
     {
       "id": "r11",
@@ -617,9 +645,13 @@
       "costo": "Gratuito",
       "telefono": "090 974011",
       "km_da_riposto": 46,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Libero accesso. Area pic-nic coperta con tettoia. Adatta per famiglie e gruppi.",
       "lat": 37.98,
       "lng": 15.12,
-      "note": "Libero accesso. Area pic-nic coperta con tettoia. Adatta per famiglie e gruppi."
+      "foto": null
     },
     {
       "id": "r12",
@@ -634,9 +666,13 @@
       "costo": "Paga consumo",
       "telefono": "339 987 6543",
       "km_da_riposto": 48,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Libero accesso. Pranzo disponibile a consumo. Panorama sulla costa di Milazzo.",
       "lat": 37.975,
       "lng": 15.115,
-      "note": "Libero accesso. Pranzo disponibile a consumo. Panorama sulla costa di Milazzo."
+      "foto": null
     },
     {
       "id": "r13",
@@ -651,9 +687,13 @@
       "costo": "Libero bivacco",
       "telefono": "331 3457538",
       "km_da_riposto": 50,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Accesso consigliato con prenotazione. Bivacco naturale tra le rocce. Zona Riserva Malabotta.",
       "lat": 37.93,
       "lng": 15.06,
-      "note": "Accesso consigliato con prenotazione. Bivacco naturale tra le rocce. Zona Riserva Malabotta."
+      "foto": null
     },
     {
       "id": "r14",
@@ -668,9 +708,13 @@
       "costo": "Paga consumo",
       "telefono": "338 123 4567",
       "km_da_riposto": 52,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Prenotazione consigliata. Pranzo a consumo. Punto di partenza per i sentieri dei Nebrodi est.",
       "lat": 37.995,
       "lng": 15.13,
-      "note": "Prenotazione consigliata. Pranzo a consumo. Punto di partenza per i sentieri dei Nebrodi est."
+      "foto": null
     },
     {
       "id": "r15",
@@ -685,9 +729,13 @@
       "costo": "Paga consumo",
       "telefono": "340 456 7890",
       "km_da_riposto": 55,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Libero accesso. Pranzo disponibile a consumo lungo il torrente Vacco.",
       "lat": 38.01,
       "lng": 15.37,
-      "note": "Libero accesso. Pranzo disponibile a consumo lungo il torrente Vacco."
+      "foto": null
     },
     {
       "id": "r23",
@@ -702,12 +750,13 @@
       "costo": "Paga al momento",
       "telefono": "339 344 0167",
       "km_da_riposto": 36,
+      "posti_letto": 40,
+      "riserva_idrica": null,
+      "servizi": "Albergo, Ristorante tipico, Bar, Noleggio sci",
+      "note": "Prenotazione consigliata. Albergo con ristorante tipico. Immerso nella Pineta Ragabo.",
       "lat": 37.8083,
       "lng": 15.0664,
-      "posti_letto": 40,
-      "servizi": "Albergo, Ristorante tipico, Bar, Noleggio sci",
-      "foto": null,
-      "note": "Prenotazione consigliata. Albergo con ristorante tipico. Immerso nella Pineta Ragabo."
+      "foto": null
     },
     {
       "id": "r17",
@@ -722,9 +771,13 @@
       "costo": "Paga al check-in",
       "telefono": "334 243 0222",
       "km_da_riposto": 37,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Prenotazione consigliata. Struttura moderna con comfort. Base per Piano Provenzana.",
       "lat": 37.828,
       "lng": 15.043,
-      "note": "Prenotazione consigliata. Struttura moderna con comfort. Base per Piano Provenzana."
+      "foto": null
     },
     {
       "id": "r21",
@@ -739,12 +792,13 @@
       "costo": "Variabile CAI",
       "telefono": "328 458 9043",
       "km_da_riposto": 42,
+      "posti_letto": 19,
+      "riserva_idrica": null,
+      "servizi": "Ristorante, Camere comuni, Bagni, Wi-Fi",
+      "note": "Prenotazione obbligatoria. Ristorante e Wi-Fi. Base strategica per Monti Sartorius e Valle del Bove.",
       "lat": 37.7634,
       "lng": 15.0581,
-      "posti_letto": 19,
-      "servizi": "Ristorante, Camere comuni, Bagni, Wi-Fi",
-      "foto": null,
-      "note": "Prenotazione obbligatoria. Ristorante e Wi-Fi. Base strategica per Monti Sartorius e Valle del Bove."
+      "foto": null
     },
     {
       "id": "r19",
@@ -759,9 +813,13 @@
       "costo": "Paga consumo",
       "telefono": "328 203 5611",
       "km_da_riposto": 38,
+      "posti_letto": null,
+      "riserva_idrica": null,
+      "servizi": "",
+      "note": "Libero accesso. Bar e ristorante a consumo. Accesso rapido a Piano Provenzana.",
       "lat": 37.826,
       "lng": 15.041,
-      "note": "Libero accesso. Bar e ristorante a consumo. Accesso rapido a Piano Provenzana."
+      "foto": null
     },
     {
       "id": "r20",
@@ -777,11 +835,12 @@
       "telefono": "095 914167",
       "km_da_riposto": 55,
       "posti_letto": 50,
+      "riserva_idrica": null,
       "servizi": "Ristorante, Camere private, Bar, Parcheggio, Funivia",
+      "note": "Prenotazione consigliata. Ristorante, bar, camere private. Hub principale Etna Sud, aperto tutto l'anno.",
       "lat": 37.6994,
       "lng": 15.0178,
-      "foto": null,
-      "note": "Prenotazione consigliata. Ristorante, bar, camere private. Hub principale Etna Sud, aperto tutto l'anno."
+      "foto": null
     },
     {
       "id": "r22",
@@ -797,11 +856,12 @@
       "telefono": "095 7914117",
       "km_da_riposto": 62,
       "posti_letto": 30,
+      "riserva_idrica": null,
       "servizi": "Ristorante, Camere, Noleggio attrezzatura",
+      "note": "Prenotazione consigliata. Ristorante e noleggio attrezzatura. Vicino all'osservatorio astrofisico.",
       "lat": 37.6841,
       "lng": 14.9744,
-      "foto": null,
-      "note": "Prenotazione consigliata. Ristorante e noleggio attrezzatura. Vicino all'osservatorio astrofisico."
+      "foto": null
     },
     {
       "id": "r24",
@@ -817,11 +877,12 @@
       "telefono": "095 7721126",
       "km_da_riposto": 68,
       "posti_letto": 10,
+      "riserva_idrica": null,
       "servizi": "Punto Info, Bar, Noleggio MTB, Escursioni guidate",
+      "note": "Libero accesso. Punto informativo del Parco. Noleggio MTB ed escursioni guidate disponibili.",
       "lat": 37.7457,
       "lng": 14.8715,
-      "foto": null,
-      "note": "Libero accesso. Punto informativo del Parco. Noleggio MTB ed escursioni guidate disponibili."
+      "foto": null
     },
     {
       "id": "b1",
@@ -839,10 +900,10 @@
       "posti_letto": 8,
       "riserva_idrica": "Cisterna esterna (non potabile)",
       "servizi": "Tavoli legno interni ed esterni",
+      "note": "Libero accesso. Struttura in pietra lavica con tavoli interni ed esterni. Sulla Pista Altomontana.",
       "lat": 37.7328,
       "lng": 14.9494,
-      "foto": null,
-      "note": "Libero accesso. Struttura in pietra lavica con tavoli interni ed esterni. Sulla Pista Altomontana."
+      "foto": null
     },
     {
       "id": "b2",
@@ -860,10 +921,10 @@
       "posti_letto": 6,
       "riserva_idrica": "Cisterna esterna (da trattare)",
       "servizi": "Brande in terracotta, legnaia rifornita",
+      "note": "Libero accesso. Brande in terracotta e legnaia spesso rifornita. Versante Ovest.",
       "lat": 37.7451,
       "lng": 14.9082,
-      "foto": null,
-      "note": "Libero accesso. Brande in terracotta e legnaia spesso rifornita. Versante Ovest."
+      "foto": null
     },
     {
       "id": "b3",
@@ -881,10 +942,10 @@
       "posti_letto": 10,
       "riserva_idrica": "No",
       "servizi": "Struttura in legno, camino",
+      "note": "Libero accesso. Struttura interamente in legno nella faggeta di Timparossa. Molto evocativo.",
       "lat": 37.7892,
       "lng": 15.0314,
-      "foto": null,
-      "note": "Libero accesso. Struttura interamente in legno nella faggeta di Timparossa. Molto evocativo."
+      "foto": null
     },
     {
       "id": "b4",
@@ -902,10 +963,10 @@
       "posti_letto": 10,
       "riserva_idrica": "No",
       "servizi": "Ampia struttura in muratura, pini larici",
+      "note": "Libero accesso. Ampia struttura in muratura. Facile accesso, circondata da pini larici.",
       "lat": 37.8319,
       "lng": 14.9811,
-      "foto": null,
-      "note": "Libero accesso. Ampia struttura in muratura. Facile accesso, circondata da pini larici."
+      "foto": null
     },
     {
       "id": "b5",
@@ -923,10 +984,10 @@
       "posti_letto": 6,
       "riserva_idrica": "No",
       "servizi": "Pietra, camino, faggeta",
+      "note": "Libero accesso. Nel cuore della faggeta nord. Ottimo riparo d'emergenza.",
       "lat": 37.8233,
       "lng": 14.9617,
-      "foto": null,
-      "note": "Libero accesso. Nel cuore della faggeta nord. Ottimo riparo d'emergenza."
+      "foto": null
     },
     {
       "id": "b6",
@@ -944,10 +1005,10 @@
       "posti_letto": 4,
       "riserva_idrica": "No",
       "servizi": "Riparo essenziale, pineta Linguaglossa",
+      "note": "Libero accesso. Piccolo ricovero in pietra lavica. Spazio interno limitato, 4 posti.",
       "lat": 37.7864,
       "lng": 15.0228,
-      "foto": null,
-      "note": "Libero accesso. Piccolo ricovero in pietra lavica. Spazio interno limitato, 4 posti."
+      "foto": null
     },
     {
       "id": "b7",
@@ -965,10 +1026,10 @@
       "posti_letto": 3,
       "riserva_idrica": "No",
       "servizi": "Riparo dal vento e pioggia improvvisa",
+      "note": "Libero accesso. Capanna pastorale tradizionale etnea. Utile per ripararsi da vento e pioggia improvvisa.",
       "lat": 37.6922,
       "lng": 14.9855,
-      "foto": null,
-      "note": "Libero accesso. Capanna pastorale tradizionale etnea. Utile per ripararsi da vento e pioggia improvvisa."
+      "foto": null
     },
     {
       "id": "b8",
@@ -986,246 +1047,10 @@
       "posti_letto": 15,
       "riserva_idrica": "Fontana esterna attiva",
       "servizi": "Grande struttura per gruppi, fontana, camino",
+      "note": "Accesso regolato dal Servizio Forestale Regionale a pagamento. Fontana esterna attiva. Ideale per gruppi.",
       "lat": 37.8531,
       "lng": 14.9881,
-      "foto": null,
-      "note": "Accesso regolato dal Servizio Forestale Regionale a pagamento. Fontana esterna attiva. Ideale per gruppi."
-    }
-  ],
-  "sentieri_macro": [
-    {
-      "id": "m1",
-      "nome": {
-        "it": "Pineta Ragabo – Anello",
-        "en": "Ragabo Pine Forest Loop"
-      },
-      "difficolta": "Facile",
-      "durata_h": "2-3",
-      "accesso": "Rifugio Ragabo",
-      "quota": "1400-1600",
-      "flora_fauna": "Insetti pini larici, licheni, fiori bosco",
-      "base": "Ragabo/Brunek",
-      "asciugatura": "30 min sole aperto",
-      "note_foto": "Sentieri ampi, stabilità tripod, luce diffusa, ciaspolate",
-      "lat": 37.83,
-      "lng": 15.045
-    },
-    {
-      "id": "m2",
-      "nome": {
-        "it": "Vallone Grotta Serracozzo",
-        "en": "Serracozzo Cave Valley"
-      },
-      "difficolta": "Moderato",
-      "durata_h": "3-4",
-      "accesso": "Rifugio Citelli",
-      "quota": "1700-1900",
-      "flora_fauna": "Betulla etnea, flora rupestre, cristalli",
-      "base": "Citelli",
-      "asciugatura": "45 min fuoco bivacco",
-      "note_foto": "Fotografia geologica, luce interessante primo mattino",
-      "lat": 37.756,
-      "lng": 15.058
-    },
-    {
-      "id": "m3",
-      "nome": {
-        "it": "Sentiero Vulcanetto Mojo",
-        "en": "Mojo Volcanic Trail"
-      },
-      "difficolta": "Facile",
-      "durata_h": "2",
-      "accesso": "Mojo paese",
-      "quota": "230-703",
-      "flora_fauna": "Uccelli raptori, flora semi-arida",
-      "base": "Viaggio giornaliero",
-      "asciugatura": "20 min sole parcheggio",
-      "note_foto": "Wildflower early spring, macro insetti pini silvestre",
-      "lat": 37.875,
-      "lng": 15.128
-    },
-    {
-      "id": "m4",
-      "nome": {
-        "it": "Gole Alcantara – Fondo Gola",
-        "en": "Alcantara Gorges – Canyon Floor"
-      },
-      "difficolta": "Moderato",
-      "durata_h": "2-3",
-      "accesso": "Mojo/Castiglione",
-      "quota": "50-150",
-      "flora_fauna": "Insetti acquatici, libellule, alghe",
-      "base": "Viaggio giornaliero",
-      "asciugatura": "60 min umidità gola",
-      "note_foto": "Macro fluviale, luce profonda, umidità 80%+",
-      "lat": 37.89,
-      "lng": 15.162
-    },
-    {
-      "id": "m5",
-      "nome": {
-        "it": "Grotta Cento Cavalli",
-        "en": "Grotta Cento Cavalli"
-      },
-      "difficolta": "Moderato",
-      "durata_h": "2-3",
-      "accesso": "Castiglione",
-      "quota": "200-400",
-      "flora_fauna": "Pipistrelli, spore fungine, geologia",
-      "base": "Castiglione B&B",
-      "asciugatura": "NO (interno buio)",
-      "note_foto": "Poca luce naturale, flash necessario, speleo macro",
-      "lat": 37.858,
-      "lng": 15.145
-    },
-    {
-      "id": "m6",
-      "nome": {
-        "it": "Bosco Malabotta – Riserva",
-        "en": "Malabotta Forest Reserve"
-      },
-      "difficolta": "Facile-Mod",
-      "durata_h": "3-4",
-      "accesso": "Malvagna",
-      "quota": "600-1200",
-      "flora_fauna": "Insetti forestali endemici, licheni",
-      "base": "Malvagna B&B",
-      "asciugatura": "30 min ombre bosco",
-      "note_foto": "Flora endemica Nebrodi, texture macro, poca luce",
-      "lat": 37.93,
-      "lng": 15.06
-    },
-    {
-      "id": "m7",
-      "nome": {
-        "it": "Tre Pizzi – Panorama",
-        "en": "Tre Pizzi – Panorama"
-      },
-      "difficolta": "Moderato",
-      "durata_h": "4-5",
-      "accesso": "Castroreale",
-      "quota": "900-1300",
-      "flora_fauna": "Flora montagna media, uccelli rapaci",
-      "base": "Bucolìo/Tre Pizzi",
-      "asciugatura": "40 min braciere bivacco",
-      "note_foto": "Panorama Milazzo, escursione mezza giornata + macro",
-      "lat": 37.98,
-      "lng": 15.12
-    },
-    {
-      "id": "m8",
-      "nome": {
-        "it": "Torrente Vacco – Fiumedinisi",
-        "en": "Vacco Stream – Fiumedinisi"
-      },
-      "difficolta": "Facile",
-      "durata_h": "2",
-      "accesso": "Casa Nociara",
-      "quota": "600-850",
-      "flora_fauna": "Insetti torrentili, alghe verdi",
-      "base": "Fiumedinisi",
-      "asciugatura": "50 min fuoco ristoro",
-      "note_foto": "Macro fluviale, umidità 80%+, diffusione luce ottima",
-      "lat": 38.01,
-      "lng": 15.37
-    }
-  ],
-  "planning": [
-    {
-      "id": "p1",
-      "scenario": "Mezza giornata Pineta Ragabo",
-      "partenza": "06:00",
-      "rifugio_base": "Rifugio Brunek",
-      "durata": "4-5 ore",
-      "rifocilli": "Colazione/pranzo rifugio",
-      "km": 36,
-      "ritorno": "18:00-19:00",
-      "equipaggiamento": "LED RM 03, diffusore, bracket focus",
-      "pranzo_bivacco": "Rifugio Brunek (incluso)"
-    },
-    {
-      "id": "p2",
-      "scenario": "Giornata Vulcanetto Mojo",
-      "partenza": "07:00",
-      "rifugio_base": "Mojo B&B",
-      "durata": "6-7 ore",
-      "rifocilli": "Lunch box ristoro",
-      "km": 18,
-      "ritorno": "20:00-21:00",
-      "equipaggiamento": "LED RM 03, reflector, powerbank 10Ah",
-      "pranzo_bivacco": "Parcheggio Mojo"
-    },
-    {
-      "id": "p3",
-      "scenario": "Escursione Gole Alcantara",
-      "partenza": "07:30",
-      "rifugio_base": "Castiglione B&B",
-      "durata": "5-6 ore",
-      "rifocilli": "Picnic ristoro",
-      "km": 15,
-      "ritorno": "19:00-20:00",
-      "equipaggiamento": "LED RM 03, diffusore, cavi USB-C",
-      "pranzo_bivacco": "Castiglione paese"
-    },
-    {
-      "id": "p4",
-      "scenario": "Giornata Citelli + Bosco",
-      "partenza": "06:30",
-      "rifugio_base": "Rifugio Citelli",
-      "durata": "7-8 ore",
-      "rifocilli": "Colazione/cena rifugio",
-      "km": 42,
-      "ritorno": "21:00-22:00",
-      "equipaggiamento": "LED RM 03 batteria x2, powerbank ricarica",
-      "pranzo_bivacco": "Citelli oppure Monte Crisimo"
-    },
-    {
-      "id": "p5",
-      "scenario": "Multi-giorno Etna Nord",
-      "partenza": "05:00 venerdì",
-      "rifugio_base": "Ragabo pernotto",
-      "durata": "weekend",
-      "rifocilli": "Rifugio mezza/pensione",
-      "km": 36,
-      "ritorno": "domenica 18:00",
-      "equipaggiamento": "LED ricarica sera rifugio, CFexpress 256GB",
-      "pranzo_bivacco": "Saletti/Timparossa sabato"
-    },
-    {
-      "id": "p6",
-      "scenario": "Nebrodi Bosco Malabotta",
-      "partenza": "07:00",
-      "rifugio_base": "Malvagna B&B",
-      "durata": "5-6 ore",
-      "rifocilli": "Picnic/ristoro Malvagna",
-      "km": 42,
-      "ritorno": "19:00-20:00",
-      "equipaggiamento": "LED RM 03, diffusore, riflettore",
-      "pranzo_bivacco": "Rocche Malabotta (fuoco)"
-    },
-    {
-      "id": "p7",
-      "scenario": "Tre Pizzi + Castroreale",
-      "partenza": "06:30",
-      "rifugio_base": "Bucolìo rifugio",
-      "durata": "6-7 ore",
-      "rifocilli": "Pranzo rifugio+bar",
-      "km": 48,
-      "ritorno": "20:00-21:00",
-      "equipaggiamento": "LED RM 03, batteria+powerbank",
-      "pranzo_bivacco": "Tre Pizzi area attrezzata"
-    },
-    {
-      "id": "p8",
-      "scenario": "Fiumedinisi Torrente",
-      "partenza": "08:00",
-      "rifugio_base": "Fiumedinisi B&B",
-      "durata": "4-5 ore",
-      "rifocilli": "Pranzo Casa Nociara",
-      "km": 55,
-      "ritorno": "18:00-19:00",
-      "equipaggiamento": "LED RM 03, diffusore, protezione umidità",
-      "pranzo_bivacco": "Nociara ristoro (braciere)"
+      "foto": null
     }
   ],
   "emergenze": [

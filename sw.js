@@ -1,4 +1,4 @@
-const APP_VERSION = 'v4';
+const APP_VERSION = 'v5';
 const CACHE_NAME  = `etna-trails-${APP_VERSION}`;
 
 const STATIC_ASSETS = [
