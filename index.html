@@ -503,36 +503,16 @@ body{font-family:var(--font-body);color:var(--snow);
 }
 
 
+
 /* ══ METEO FULLSCREEN PANEL ══════════════════ */
-#meteo-panel {
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:3000;
-  flex-direction:column;
-  overflow:hidden;
-}
-#meteo-panel.open {
-  display:flex;
-}
-#meteo-back-btn {
-  position:fixed;
-  top:10px;
-  left:10px;
-  z-index:4000;
-  background:rgba(8,13,24,0.92);
-  border:1px solid rgba(200,129,58,0.5);
-  color:#C8813A;
-  font-family:'Share Tech Mono',monospace;
-  font-size:10px;
-  letter-spacing:1.5px;
-  padding:7px 12px;
-  cursor:pointer;
-  border-radius:2px;
-  display:none;
-}
-#meteo-panel.open ~ * #meteo-back-btn,
-#meteo-back-btn.visible { display:block; }
+#meteo-panel{display:none;position:fixed;inset:0;z-index:3000;flex-direction:column;overflow:hidden}
+#meteo-panel.open{display:flex}
+#meteo-back-btn{position:fixed;top:10px;left:10px;z-index:4000;
+  background:rgba(8,13,24,0.92);border:1px solid rgba(200,129,58,0.5);
+  color:#C8813A;font-family:'Share Tech Mono',monospace;
+  font-size:10px;letter-spacing:1.5px;padding:7px 14px;
+  cursor:pointer;border-radius:2px;display:none}
+#meteo-back-btn.visible{display:block}
 
 *{margin:0;padding:0;box-sizing:border-box}
 #meteo-panel {
@@ -846,6 +826,7 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
         <span class="tab-icon">🆘</span>
         <span>SOS</span>
       </button>
+      <button class="tab-btn" id="tab-meteo" onclick="openMeteo()"><span class="tab-icon">⛅</span><span data-it="Meteo" data-en="Weather">Meteo</span></button>
       <button class="tab-btn" onclick="openMeteo()">
         <span class="tab-icon">⛅</span>
         <span data-it="Meteo" data-en="Weather">Meteo</span>
@@ -1037,10 +1018,8 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 </div>
 
 <!-- Branding footer -->
-<!-- ══ METEO BACK BUTTON ══════════════════════════════════ -->
-<button id="meteo-back-btn" onclick="closeMeteo()">← <span data-it="Torna ai Sentieri" data-en="Back to Trails">Torna ai Sentieri</span></button>
-
-<!-- ══ METEO FULLSCREEN PANEL ════════════════════════════ -->
+<!-- METEO -->
+<button id="meteo-back-btn" onclick="closeMeteo()">← Torna ai Sentieri</button>
 <div id="meteo-panel">
 <!-- HEADER -->
 <div id="hdr">
@@ -1194,27 +1173,26 @@ let geoCircles = [];
 let geoMarker  = null;
 
 function updateMapLocation(lat, lng, label, region) {
-  if(!meteoMap) return; // not initialized yet
   POS = { lat, lng };
   // Header
   document.getElementById('hdr-title').textContent = '⚡ METEO // ' + label.toUpperCase();
   document.getElementById('hdr-sub').innerHTML =
     lat.toFixed(4) + '°N &nbsp;·&nbsp; ' + lng.toFixed(4) + '°E &nbsp;·&nbsp; ' + (region || 'POSIZIONE CORRENTE');
   // Ricentra mappa
-  meteoMap.setView([lat, lng], 9);
+  map.setView([lat, lng], 9);
   // Rimuovi vecchi cerchi e marker
-  geoCircles.forEach(c => meteoMap.removeLayer(c));
+  geoCircles.forEach(c => map.removeLayer(c));
   geoCircles = [];
-  if (geoMarker) { meteoMap.removeLayer(geoMarker); geoMarker = null; }
+  if (geoMarker) { map.removeLayer(geoMarker); geoMarker = null; }
   // Nuovi cerchi
   geoCircles.push(
-    L.circle([lat,lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(meteoMap),
-    L.circle([lat,lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(meteoMap),
-    L.circle([lat,lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(meteoMap)
+    L.circle([lat,lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(map),
+    L.circle([lat,lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(map),
+    L.circle([lat,lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(map)
   );
   // Nuovo marker
   geoMarker = L.marker([lat,lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
-    .addTo(meteoMap)
+    .addTo(map)
     .bindPopup('<b style="color:#C8813A">📍 ' + label + '</b><br>' + lat.toFixed(4) + '°N · ' + lng.toFixed(4) + '°E');
   // Ricarica dati meteo per nuova posizione
   initRV();
@@ -1267,7 +1245,33 @@ tick(); setInterval(tick,1000);
 // ══════════════════════════════════════════════
 // MAP
 // ══════════════════════════════════════════════
-let meteoMap = null; // initialized lazily
+const map = L.map('map',{center:[POS.lat,POS.lng],zoom:9,zoomControl:false,attributionControl:true});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+  attribution:'©<a href="https://www.openstreetmap.org">OSM</a> ©<a href="https://carto.com">CartoDB</a>',
+  subdomains:'abcd',maxZoom:19
+}).addTo(map);
+
+// Radius rings (inizializzati con posizione default, aggiornati da updateMapLocation)
+geoCircles.push(
+  L.circle([DEFAULT.lat,DEFAULT.lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(map),
+  L.circle([DEFAULT.lat,DEFAULT.lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(map),
+  L.circle([DEFAULT.lat,DEFAULT.lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(map)
+);
+
+// Marker default (Riposto)
+geoMarker = L.marker([DEFAULT.lat,DEFAULT.lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
+  .addTo(map)
+  .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E<br>Ionio settentrionale');
+
+// Direction lines (cardinal + ordinal faint guides)
+for(let a=0;a<360;a+=45){
+  const len=0.55;
+  const dlat=len*Math.cos(a*Math.PI/180)/111;
+  const dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(POS.lat*Math.PI/180));
+  L.polyline([[POS.lat,POS.lng],[POS.lat+dlat,POS.lng+dlng]],
+    {color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(map);
+}
 
 // ══════════════════════════════════════════════
 // RAINVIEWER
@@ -1294,10 +1298,10 @@ async function initRV(){
 function drawRadar(i){
   if(!rfr.length||i<0)return;
   const fr=rfr[Math.min(i,rfr.length-1)];
-  if(rL)meteoMap.removeLayer(rL); rL=null;
+  if(rL)map.removeLayer(rL); rL=null;
   if(!vis.radar)return;
   rL=L.tileLayer(`https://tilecache.rainviewer.com${fr.path}/256/{z}/{x}/{y}/6/1_1.png`,
-    {opacity:.65,zIndex:10}).addTo(meteoMap);
+    {opacity:.65,zIndex:10}).addTo(map);
   const ts=new Date(fr.time*1000);
   const t=ts.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Rome'});
   const isFut=fr.time>Date.now()/1000;
@@ -1308,10 +1312,10 @@ function drawRadar(i){
 function drawSat(i){
   if(!sfr.length||i<0)return;
   const fr=sfr[Math.min(i,sfr.length-1)];
-  if(sL)meteoMap.removeLayer(sL); sL=null;
+  if(sL)map.removeLayer(sL); sL=null;
   if(!vis.sat)return;
   sL=L.tileLayer(`https://tilecache.rainviewer.com${fr.path}/256/{z}/{x}/{y}/0/0.png`,
-    {opacity:.28,zIndex:5}).addTo(meteoMap);
+    {opacity:.28,zIndex:5}).addTo(map);
 }
 
 function toggleLayer(k){
@@ -1321,7 +1325,7 @@ function toggleLayer(k){
   if(k==='radar')drawRadar(fidx);
   if(k==='sat')drawSat(sfr.length-1);
   if(k==='ltn'){
-    lMrks.forEach(m=>{ vis.ltn?m.addTo(meteoMap):meteoMap.removeLayer(m); });
+    lMrks.forEach(m=>{ vis.ltn?m.addTo(map):map.removeLayer(m); });
   }
 }
 
@@ -1569,9 +1573,9 @@ function addLMrk(lat,lng,d,near){
     html:`<span class="lmk ${near?'near':''}" style="font-size:${sz}px;color:${cl};filter:drop-shadow(0 0 4px ${glow})">⚡</span>`,
     iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]
   });
-  const m=L.marker([lat,lng],{icon:ic,zIndexOffset:900}).addTo(meteoMap);
+  const m=L.marker([lat,lng],{icon:ic,zIndexOffset:900}).addTo(map);
   lMrks.push(m);
-  setTimeout(()=>{ if(map.hasLayer(m))meteoMap.removeLayer(m); const i=lMrks.indexOf(m); if(i>-1)lMrks.splice(i,1); },near?6500:4500);
+  setTimeout(()=>{ if(map.hasLayer(m))map.removeLayer(m); const i=lMrks.indexOf(m); if(i>-1)lMrks.splice(i,1); },near?6500:4500);
 }
 
 function renderCount(){
@@ -2221,68 +2225,22 @@ function closeMeteo() {
   setTimeout(() => map.invalidateSize(), 200);
 }
 
-
 // ══════════════════════════════════════════════
-//  METEO MODULE — integrato in Etna Trails
+//  METEO MODULE
 // ══════════════════════════════════════════════
+let meteoMap   = null;
 let meteoInitialized = false;
-
-function initMeteo() {
-  if(meteoInitialized) return;
-  meteoInitialized = true;
-  // Initialize meteo map lazily
-  if(!meteoMap) {
-    meteoMap = L.map('mapc',{center:[POS.lat,POS.lng],zoom:9,zoomControl:false,attributionControl:true});
-    // Tile layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-      attribution:'©OSM ©CartoDB',subdomains:'abcd',maxZoom:19
-    }).addTo(meteoMap);
-    // Radius rings
-    geoCircles.push(
-      L.circle([DEFAULT.lat,DEFAULT.lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(meteoMap),
-      L.circle([DEFAULT.lat,DEFAULT.lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(meteoMap),
-      L.circle([DEFAULT.lat,DEFAULT.lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(meteoMap)
-    );
-    // Default marker
-    geoMarker = L.marker([DEFAULT.lat,DEFAULT.lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
-      .addTo(meteoMap)
-      .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E');
-    // Direction lines (cardinal + ordinal faint guides)
-    for(let a=0;a<360;a+=45){
-    const len=0.55;
-    const dlat=len*Math.cos(a*Math.PI/180)/111;
-    const dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(POS.lat*Math.PI/180));
-    L.polyline([[POS.lat,POS.lng],[POS.lat+dlat,POS.lng+dlng]],
-    {color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(meteoMap);
-    }
-
-  }
-  setTimeout(async () => {
-    await initRV();
-    await fetchWx();
-    initBz();
-    // Clock
-    (function tick(){
-      const el=document.getElementById('hdr-clock');
-      if(el) el.textContent=new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-    })();
-    setInterval(()=>{const el=document.getElementById('hdr-clock');if(el)el.textContent=new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit'});},1000);
-    setInterval(initRV, 5*60*1000);
-    setInterval(fetchWx, 10*60*1000);
-  }, 300);
-}
+function openMeteo(){document.getElementById('meteo-panel').classList.add('open');document.getElementById('meteo-back-btn').classList.add('visible');document.getElementById('brand-footer').style.display='none';initMeteo();}
+function closeMeteo(){document.getElementById('meteo-panel').classList.remove('open');document.getElementById('meteo-back-btn').classList.remove('visible');document.getElementById('brand-footer').style.display='';setTab('sentieri');setTimeout(()=>map.invalidateSize(),200);}
+function initMeteo(){if(meteoInitialized)return;meteoInitialized=true;meteoMap=L.map('mapc',{center:[DEFAULT.lat,DEFAULT.lng],zoom:9,zoomControl:false,attributionControl:true});L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'©OSM',subdomains:'abcd',maxZoom:19}).addTo(meteoMap);geoCircles=[L.circle([DEFAULT.lat,DEFAULT.lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(meteoMap),L.circle([DEFAULT.lat,DEFAULT.lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(meteoMap),L.circle([DEFAULT.lat,DEFAULT.lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(meteoMap)];geoMarker=L.marker([DEFAULT.lat,DEFAULT.lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})}).addTo(meteoMap).bindPopup('<b style="color:#C8813A">📍 Riposto</b>');L.marker([37.7510,14.9934],{icon:L.divIcon({className:'',html:'<div class="etna-marker">🌋</div>',iconSize:[24,24],iconAnchor:[12,20]})}).addTo(meteoMap).bindPopup('🌋 Etna 3340m');for(let a=0;a<360;a+=45){const len=0.55,dlat=len*Math.cos(a*Math.PI/180)/111,dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(DEFAULT.lat*Math.PI/180));L.polyline([[DEFAULT.lat,DEFAULT.lng],[DEFAULT.lat+dlat,DEFAULT.lng+dlng]],{color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(meteoMap);}setMeteoTile('topo');setTimeout(()=>meteoMap.invalidateSize(),300);setTimeout(async()=>{await initRV();await fetchWx();initBz();const ct=()=>{const el=document.getElementById('hdr-clock');if(el)el.textContent=new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit'});};ct();setInterval(ct,1000);setInterval(initRV,5*60*1000);setInterval(fetchWx,10*60*1000);},400);}
 
 // ══════════════════════════════════════════════
 // CONFIG
 // ══════════════════════════════════════════════
 // ── POSIZIONE: geolocalizzazione o default Riposto ──────
-// DEFAULT, POS, geoCircles, geoMarker already declared above
-
-
-
 
 function updateMapLocation(lat, lng, label, region) {
-  if(!meteoMap) return; // not initialized yet
+  if(!meteoMap) return;
   POS = { lat, lng };
   // Header
   document.getElementById('hdr-title').textContent = '⚡ METEO // ' + label.toUpperCase();
@@ -2295,13 +2253,8 @@ function updateMapLocation(lat, lng, label, region) {
   geoCircles = [];
   if (geoMarker) { meteoMap.removeLayer(geoMarker); geoMarker = null; }
   // Nuovi cerchi
-  geoCircles.push(
-    L.circle([lat,lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(meteoMap),
-    L.circle([lat,lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(meteoMap),
-    L.circle([lat,lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(meteoMap)
   );
   // Nuovo marker
-  geoMarker = L.marker([lat,lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
     .addTo(meteoMap)
     .bindPopup('<b style="color:#C8813A">📍 ' + label + '</b><br>' + lat.toFixed(4) + '°N · ' + lng.toFixed(4) + '°E');
   // Ricarica dati meteo per nuova posizione
@@ -2355,7 +2308,16 @@ tick(); setInterval(tick,1000);
 // ══════════════════════════════════════════════
 // MAP
 // ══════════════════════════════════════════════
-// meteoMap initialized lazily in initMeteo()
+
+
+// Radius rings (inizializzati con posizione default, aggiornati da updateMapLocation)
+);
+
+// Marker default (Riposto)
+  .addTo(meteoMap)
+  .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E<br>Ionio settentrionale');
+
+// Direction lines (cardinal + ordinal faint guides)
 
 // ══════════════════════════════════════════════
 // RAINVIEWER
@@ -2681,7 +2643,7 @@ function renderLog(){
     cont.innerHTML=demo+'<div style="font-size:9px;color:var(--text-dim);text-align:center;padding:6px 0">Nessun fulmine rilevato nel raggio</div>';
     return;
   }
-  cont.innerHTML=demo+lLog.meteoMap(s=>`
+  cont.innerHTML=demo+lLog.map(s=>`
     <div class="litem">
       <span>⚡ <b style="color:var(--text)">${s.d} km</b> ${s.dir}</span>
       <span class="ltime">${s.t}</span>
@@ -2707,81 +2669,10 @@ function bearing(la1,lo1,la2,lo2){
 // ══════════════════════════════════════════════
 // AUTO-REFRESH
 // ══════════════════════════════════════════════
-setInterval(initRV,5*60*1000);
-setInterval(fetchWx,10*60*1000);
 
 // ══════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════
-
-// ── SERVICE WORKER REGISTRATION ──────────────────────────
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', async () => {
-    try {
-      const reg = await navigator.serviceWorker.register('./sw.js');
-      console.log('[PWA] SW registrato:', reg.scope);
-
-      // Controlla aggiornamenti ogni 60 secondi
-      setInterval(() => reg.update(), 60 * 1000);
-
-      // Quando arriva un nuovo SW in waiting → ricarica automaticamente
-      reg.addEventListener('updatefound', () => {
-        const newSW = reg.installing;
-        newSW.addEventListener('statechange', () => {
-          if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
-            console.log('[PWA] Nuova versione disponibile — ricarico');
-            // Manda skipWaiting al nuovo SW e ricarica
-            newSW.postMessage({ action: 'skipWaiting' });
-          }
-        });
-      });
-
-      // Ricarica la pagina quando il nuovo SW prende il controllo
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) {
-          refreshing = true;
-          window.location.reload();
-        }
-      });
-
-    } catch (err) {
-      console.warn('[PWA] SW non registrato:', err);
-    }
-  });
-}
-
-// ── PWA INSTALL PROMPT ────────────────────────────────────
-let deferredPrompt = null;
-const banner = document.getElementById('pwa-banner');
-const installBtn = document.getElementById('pwa-install-btn');
-const dismissBtn = document.getElementById('pwa-dismiss-btn');
-
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  // Mostra banner dopo 3 secondi
-  setTimeout(() => { banner.style.display = 'flex'; }, 3000);
-});
-
-installBtn.addEventListener('click', async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  console.log('[PWA] Install outcome:', outcome);
-  deferredPrompt = null;
-  banner.style.display = 'none';
-});
-
-dismissBtn.addEventListener('click', () => {
-  banner.style.display = 'none';
-});
-
-window.addEventListener('appinstalled', () => {
-  banner.style.display = 'none';
-  console.log('[PWA] App installata!');
-});
-
 // ── ORIENTATION LOCK ──────────────────────────
 function lockLandscape(){try{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});}catch(e){}}
 lockLandscape();
