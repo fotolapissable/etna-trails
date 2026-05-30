@@ -13,584 +13,416 @@
 <meta name="apple-mobile-web-app-title" content="Etna Trails">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
 :root{
   --lava:#1a0a00;--lava2:#2a1200;--lava3:#3d1a00;
   --ember:#e8600a;--ember-dim:rgba(232,96,10,0.18);--ember-glow:rgba(232,96,10,0.4);
-  --gold:#c9a84c;--gold-dim:rgba(201,168,76,0.15);
-  --ash:#8a7a6a;--ash-light:#bfad9a;--snow:#f0ece4;
+  --gold:#c9a84c;--ash:#8a7a6a;--ash-light:#bfad9a;--snow:#f0ece4;
   --green-trail:#4a9e5c;--blue-trail:#3a7fbf;--red-trail:#bf3a3a;
-  --cyan:#00d4aa;--purple:#9b6dd6;
   --border:rgba(201,168,76,0.22);--border-bright:rgba(201,168,76,0.5);
-  --font-title:'Cinzel',serif;--font-body:'Crimson Pro',serif;--font-mono:'Share Tech Mono',monospace;
+  --font-t:'Cinzel',serif;--font-b:'Crimson Pro',serif;--font-m:'Share Tech Mono',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:var(--lava)}
-body{font-family:var(--font-body);color:var(--snow);
-  background:radial-gradient(ellipse at 30% 20%,rgba(232,96,10,0.08) 0%,transparent 60%),var(--lava);}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:var(--snow);font-family:var(--font-b)}
 
-/* ── HEADER ─────────────────────────────────── */
-#header{height:52px;display:flex;align-items:center;justify-content:space-between;
+/* HEADER */
+#hdr{height:52px;display:flex;align-items:center;justify-content:space-between;
   padding:0 14px;background:rgba(10,4,0,0.97);
-  border-bottom:1px solid var(--border-bright);
-  box-shadow:0 2px 20px rgba(232,96,10,0.15);position:relative;z-index:1000;}
-#hdr-left{display:flex;align-items:center;gap:10px}
-.hdr-volcano{width:28px;height:28px;
-  background:radial-gradient(circle at 50% 70%,var(--ember) 0%,var(--lava3) 60%);
-  clip-path:polygon(50% 0%,85% 100%,15% 100%);
-  filter:drop-shadow(0 0 6px var(--ember-glow));}
-#hdr-main{font-family:var(--font-title);font-size:14px;font-weight:900;
-  letter-spacing:3px;color:var(--gold);text-shadow:0 0 18px rgba(201,168,76,0.4);}
-#hdr-sub{font-size:8px;letter-spacing:2px;color:var(--ash);font-family:var(--font-mono);}
-#hdr-right{display:flex;align-items:center;gap:8px}
-#lang-toggle{display:flex;border:1px solid var(--border);border-radius:2px;overflow:hidden;}
-.lang-btn{background:none;border:none;color:var(--ash);font-family:var(--font-mono);
-  font-size:9px;letter-spacing:1px;padding:5px 8px;cursor:pointer;transition:all .2s;}
+  border-bottom:1px solid var(--border-bright);z-index:1000;position:relative;
+  box-shadow:0 2px 20px rgba(232,96,10,0.15)}
+#hdr-l{display:flex;align-items:center;gap:10px}
+.volcano{width:28px;height:28px;clip-path:polygon(50% 0%,85% 100%,15% 100%);
+  background:radial-gradient(circle at 50% 70%,var(--ember),var(--lava3));
+  filter:drop-shadow(0 0 6px var(--ember-glow))}
+#hdr-title{font-family:var(--font-t);font-size:14px;font-weight:900;letter-spacing:3px;color:var(--gold)}
+#hdr-sub{font-size:8px;letter-spacing:2px;color:var(--ash);font-family:var(--font-m)}
+#hdr-r{display:flex;align-items:center;gap:8px}
+#lang-toggle{display:flex;border:1px solid var(--border);border-radius:2px;overflow:hidden}
+.lang-btn{background:none;border:none;color:var(--ash);font-family:var(--font-m);
+  font-size:9px;letter-spacing:1px;padding:5px 8px;cursor:pointer;transition:all .2s}
 .lang-btn.active{background:var(--ember-dim);color:var(--ember)}
-#btn-add-trail{background:var(--ember);border:none;color:white;
-  font-family:var(--font-mono);font-size:9px;letter-spacing:1.5px;
-  padding:6px 10px;border-radius:2px;cursor:pointer;transition:all .2s;
-  box-shadow:0 0 12px rgba(232,96,10,0.3);}
-#btn-add-trail:hover{background:#ff7a20}
+#btn-propose{background:var(--ember);border:none;color:white;font-family:var(--font-m);
+  font-size:9px;letter-spacing:1.5px;padding:6px 10px;border-radius:2px;cursor:pointer;
+  box-shadow:0 0 12px rgba(232,96,10,0.3)}
+#btn-propose:hover{background:#ff7a20}
 
-/* ── LAYOUT ─────────────────────────────────── */
+/* LAYOUT */
 #main{display:flex;height:calc(100vh - 70px)}
 
-/* ── SIDEBAR ────────────────────────────────── */
+/* SIDEBAR */
 #sidebar{width:290px;min-width:290px;background:rgba(10,4,0,0.94);
-  border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+  border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
 
-/* Tab nav */
-#tab-nav{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
+/* TABS */
+#tab-nav{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
 .tab-btn{flex:1;background:none;border:none;border-bottom:2px solid transparent;
-  color:var(--ash);font-family:var(--font-mono);font-size:8px;letter-spacing:1px;
+  color:var(--ash);font-family:var(--font-m);font-size:8px;letter-spacing:1px;
   padding:8px 4px;cursor:pointer;transition:all .2s;text-transform:uppercase;
-  display:flex;flex-direction:column;align-items:center;gap:2px;}
-.tab-btn .tab-icon{font-size:14px;}
-.tab-btn.active{color:var(--gold);border-bottom-color:var(--ember);}
+  display:flex;flex-direction:column;align-items:center;gap:2px}
+.tab-btn .ti{font-size:14px}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--ember)}
 .tab-btn:hover:not(.active){color:var(--ash-light)}
 
-/* Tab panels */
-.tab-panel{display:none;flex:1;flex-direction:column;overflow:hidden;}
-.tab-panel.active{display:flex;}
+.tab-panel{display:none;flex:1;flex-direction:column;overflow:hidden}
+.tab-panel.active{display:flex}
 
-/* Search/filter bar */
-#search-bar{padding:8px 10px;border-bottom:1px solid var(--border);
-  background:rgba(26,10,0,0.5);flex-shrink:0;}
-.search-input{width:100%;background:rgba(255,255,255,0.05);
-  border:1px solid var(--border);border-radius:2px;
-  color:var(--snow);font-family:var(--font-body);font-size:12px;
-  padding:6px 8px;outline:none;transition:border-color .2s;}
+/* SEARCH */
+.search-wrap{padding:8px 10px;border-bottom:1px solid var(--border);
+  background:rgba(26,10,0,0.5);flex-shrink:0}
+.search-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);
+  border-radius:2px;color:var(--snow);font-family:var(--font-b);font-size:12px;
+  padding:6px 8px;outline:none;transition:border-color .2s}
 .search-input:focus{border-color:var(--gold)}
 .search-input::placeholder{color:var(--ash)}
+.diff-row{display:flex;gap:4px;margin-top:7px}
+.dtag{background:none;border:1px solid var(--border);color:var(--ash-light);
+  font-family:var(--font-m);font-size:7.5px;letter-spacing:1px;padding:3px 7px;
+  border-radius:2px;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.dtag.active.T{background:rgba(74,158,92,0.2);border-color:var(--green-trail);color:var(--green-trail)}
+.dtag.active.E{background:rgba(58,127,191,0.2);border-color:var(--blue-trail);color:var(--blue-trail)}
+.dtag.active.EE{background:rgba(191,58,58,0.2);border-color:var(--red-trail);color:var(--red-trail)}
 
-/* Diff filter chips */
-#diff-filters{display:flex;gap:4px;margin-top:7px;flex-wrap:wrap;}
-.ftag{background:none;border:1px solid var(--border);color:var(--ash-light);
-  font-family:var(--font-mono);font-size:7.5px;letter-spacing:1px;
-  padding:3px 7px;border-radius:2px;cursor:pointer;transition:all .2s;text-transform:uppercase;}
-.ftag.active.diff-T{background:rgba(74,158,92,0.2);border-color:var(--green-trail);color:var(--green-trail)}
-.ftag.active.diff-E{background:rgba(58,127,191,0.2);border-color:var(--blue-trail);color:var(--blue-trail)}
-.ftag.active.diff-EE{background:rgba(191,58,58,0.2);border-color:var(--red-trail);color:var(--red-trail)}
-
-/* Scrollable list */
-.item-list{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--lava3) transparent;}
+/* LISTS */
+.item-list{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--lava3) transparent}
 .item-list::-webkit-scrollbar{width:3px}
 .item-list::-webkit-scrollbar-thumb{background:var(--lava3)}
 
-/* Trail cards */
+/* TRAIL CARD */
 .trail-card{padding:11px 13px;border-bottom:1px solid rgba(201,168,76,0.08);
-  cursor:pointer;transition:all .2s;position:relative;overflow:hidden;
-  animation:fadeIn .3s ease-out both;}
+  cursor:pointer;transition:all .2s;position:relative;overflow:hidden;animation:fadeIn .3s ease-out both}
 .trail-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:var(--diff-color,var(--ash));opacity:.6;transition:opacity .2s;}
+  background:var(--dc,var(--ash));opacity:.6;transition:opacity .2s}
 .trail-card:hover{background:rgba(232,96,10,0.06)}
 .trail-card:hover::before,.trail-card.active::before{opacity:1}
 .trail-card.active{background:rgba(232,96,10,0.1)}
-.tc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:6px}
-.tc-name{font-family:var(--font-title);font-size:11px;font-weight:600;
-  color:var(--gold);letter-spacing:.3px;line-height:1.3;flex:1;}
-.diff-badge{font-family:var(--font-mono);font-size:8px;font-weight:bold;
-  padding:2px 5px;border-radius:2px;white-space:nowrap;flex-shrink:0;letter-spacing:1px;}
+.tc-name{font-family:var(--font-t);font-size:11px;color:var(--gold);
+  letter-spacing:.3px;line-height:1.3;margin-bottom:4px}
+.tc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;margin-bottom:4px}
+.tc-name{flex:1}
+.diff-badge{font-family:var(--font-m);font-size:8px;padding:2px 5px;border-radius:2px;
+  white-space:nowrap;flex-shrink:0;letter-spacing:1px}
 .diff-T{background:rgba(74,158,92,0.2);color:var(--green-trail);border:1px solid rgba(74,158,92,0.4)}
 .diff-E{background:rgba(58,127,191,0.2);color:var(--blue-trail);border:1px solid rgba(58,127,191,0.4)}
 .diff-EE{background:rgba(191,58,58,0.2);color:var(--red-trail);border:1px solid rgba(191,58,58,0.4)}
-.tc-stats{display:flex;gap:8px;margin-top:5px;flex-wrap:wrap;}
-.tc-stat{font-family:var(--font-mono);font-size:8px;color:var(--ash);display:flex;align-items:center;gap:2px;}
+.tc-stats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.tc-stat{font-family:var(--font-m);font-size:8px;color:var(--ash)}
 .tc-stat span{color:var(--ash-light)}
-.tc-desc{font-size:11px;color:var(--ash);margin-top:4px;line-height:1.4;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-style:italic;}
+.tc-desc{font-size:11px;color:var(--ash);line-height:1.4;font-style:italic;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
-/* Rifugio cards */
+/* RIFUGIO CARD */
 .rifugio-card{padding:10px 13px;border-bottom:1px solid rgba(201,168,76,0.08);
-  cursor:pointer;transition:all .2s;animation:fadeIn .3s ease-out both;}
+  cursor:pointer;transition:all .2s;animation:fadeIn .3s ease-out both}
 .rifugio-card:hover{background:rgba(201,168,76,0.05)}
 .rifugio-card.active{background:rgba(201,168,76,0.1)}
-.rc-name{font-family:var(--font-title);font-size:11px;font-weight:600;color:var(--gold);
-  letter-spacing:.3px;line-height:1.3;margin-bottom:4px;}
-.rc-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
-.rc-badge{font-family:var(--font-mono);font-size:7.5px;padding:2px 6px;
-  border-radius:2px;letter-spacing:.5px;}
-.rc-badge.libero{background:rgba(74,158,92,0.2);color:var(--green-trail);border:1px solid rgba(74,158,92,0.3)}
-.rc-badge.prenota{background:rgba(232,96,10,0.15);color:var(--ember);border:1px solid rgba(232,96,10,0.3)}
-.rc-badge.obblig{background:rgba(191,58,58,0.15);color:var(--red-trail);border:1px solid rgba(191,58,58,0.3)}
-.rc-stat{font-family:var(--font-mono);font-size:7.5px;color:var(--ash);}
+.rc-name{font-family:var(--font-t);font-size:11px;color:var(--gold);
+  letter-spacing:.3px;line-height:1.3;margin-bottom:4px}
+.rc-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.rc-badge{font-family:var(--font-m);font-size:7.5px;padding:2px 6px;border-radius:2px;letter-spacing:.5px}
+.libero{background:rgba(74,158,92,0.2);color:var(--green-trail);border:1px solid rgba(74,158,92,0.3)}
+.prenota{background:rgba(232,96,10,0.15);color:var(--ember);border:1px solid rgba(232,96,10,0.3)}
+.obblig{background:rgba(191,58,58,0.15);color:var(--red-trail);border:1px solid rgba(191,58,58,0.3)}
+.rc-stat{font-family:var(--font-m);font-size:7.5px;color:var(--ash)}
 .rc-stat span{color:var(--ash-light)}
-.rc-note{font-size:10.5px;color:var(--ash);margin-top:3px;font-style:italic;line-height:1.3;}
-.stars{color:var(--gold);font-size:9px;letter-spacing:1px;}
+.stars{color:var(--gold);font-size:9px}
+.rc-note{font-size:10.5px;color:var(--ash);margin-top:3px;font-style:italic;line-height:1.3}
 
-/* Emergency contacts */
-#emergency-panel{flex:1;overflow-y:auto;padding:12px;}
+/* EMERGENZE */
+#sos-list{flex:1;overflow-y:auto;padding:10px}
 .emerg-card{background:var(--lava2);border:1px solid var(--border);
-  border-radius:3px;padding:10px 12px;margin-bottom:8px;}
+  border-radius:3px;padding:10px 12px;margin-bottom:8px}
 .emerg-card.h24{border-left:3px solid var(--green-trail)}
-.emerg-card.non-h24{border-left:3px solid var(--ash)}
-.emerg-name{font-family:var(--font-mono);font-size:9px;letter-spacing:1px;
-  color:var(--ash-light);text-transform:uppercase;margin-bottom:5px;}
-.emerg-number{font-family:var(--font-title);font-size:20px;color:var(--gold);
-  font-weight:600;letter-spacing:1px;}
-.emerg-number a{color:inherit;text-decoration:none;}
+.emerg-card.noh24{border-left:3px solid var(--ash)}
+.emerg-name{font-family:var(--font-m);font-size:9px;letter-spacing:1px;
+  color:var(--ash-light);text-transform:uppercase;margin-bottom:5px}
+.emerg-number{font-family:var(--font-t);font-size:20px;color:var(--gold);font-weight:600}
+.emerg-number a{color:inherit;text-decoration:none}
 .emerg-number a:hover{color:var(--ember)}
-.emerg-badges{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap;align-items:center;}
-.emerg-badge{font-family:var(--font-mono);font-size:7px;padding:2px 5px;
-  border-radius:2px;letter-spacing:.5px;}
-.emerg-note{font-size:10.5px;color:var(--ash);margin-top:3px;font-style:italic;}
+.emerg-badges{display:flex;gap:5px;margin-top:4px;flex-wrap:wrap}
+.emerg-badge{font-family:var(--font-m);font-size:7px;padding:2px 5px;border-radius:2px}
+.emerg-note{font-size:10.5px;color:var(--ash);margin-top:3px;font-style:italic}
 
-/* ── MAP AREA ───────────────────────────────── */
+/* MAP */
 #map-wrap{flex:1;position:relative;min-height:0;overflow:hidden}
 #map{position:absolute;inset:0;z-index:1}
-
-#map-controls{position:absolute;top:10px;left:10px;z-index:500;display:flex;gap:5px;}
+#map-ctrl{position:absolute;top:10px;left:10px;z-index:500;display:flex;gap:5px}
 .mctrl-btn{background:rgba(10,4,0,0.9);border:1px solid var(--border);
-  color:var(--ash-light);font-family:var(--font-mono);font-size:8.5px;
+  color:var(--ash-light);font-family:var(--font-m);font-size:8.5px;
   letter-spacing:1px;padding:5px 9px;cursor:pointer;border-radius:2px;
-  transition:all .2s;backdrop-filter:blur(4px);}
+  transition:all .2s;backdrop-filter:blur(4px)}
 .mctrl-btn:hover{border-color:var(--gold);color:var(--snow)}
 .mctrl-btn.active{border-color:var(--ember);color:var(--ember);background:var(--ember-dim)}
-
-#layer-controls{position:absolute;top:10px;right:10px;z-index:500;
-  display:flex;flex-direction:column;gap:4px;}
+#layer-ctrl{position:absolute;top:10px;right:10px;z-index:500;
+  display:flex;flex-direction:column;gap:4px}
 .layer-btn{background:rgba(10,4,0,0.9);border:1px solid var(--border);
-  color:var(--ash);font-family:var(--font-mono);font-size:8px;
+  color:var(--ash);font-family:var(--font-m);font-size:8px;
   letter-spacing:1px;padding:4px 8px;cursor:pointer;border-radius:2px;
-  transition:all .2s;backdrop-filter:blur(4px);text-align:left;white-space:nowrap;}
+  transition:all .2s;backdrop-filter:blur(4px)}
 .layer-btn.active{color:var(--gold);border-color:rgba(201,168,76,0.5)}
+#legend{position:absolute;bottom:24px;right:10px;z-index:500;
+  background:rgba(10,4,0,0.9);border:1px solid var(--border);
+  border-radius:3px;padding:9px 12px;backdrop-filter:blur(4px)}
+.leg-item{display:flex;align-items:center;gap:6px;font-family:var(--font-m);
+  font-size:7.5px;color:var(--ash-light);margin-bottom:4px}
+.leg-item:last-child{margin-bottom:0}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.leg-sq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 
-/* ── DETAIL PANEL ───────────────────────────── */
+/* DETAIL PANEL */
 #detail-panel{position:absolute;bottom:0;left:0;right:0;
   background:rgba(10,4,0,0.97);border-top:1px solid var(--border-bright);
-  max-height:50%;overflow-y:auto;
-  transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
-  z-index:600;scrollbar-width:thin;scrollbar-color:var(--lava3) transparent;}
+  max-height:50%;overflow-y:auto;transform:translateY(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);z-index:600;
+  scrollbar-width:thin;scrollbar-color:var(--lava3) transparent}
 #detail-panel.open{transform:translateY(0)}
 #detail-inner{padding:14px 16px 20px}
-#detail-close{position:absolute;top:10px;right:12px;
-  background:none;border:1px solid var(--border);color:var(--ash);
-  font-family:var(--font-mono);font-size:9px;padding:3px 7px;cursor:pointer;border-radius:2px;}
+#detail-close{position:absolute;top:10px;right:12px;background:none;
+  border:1px solid var(--border);color:var(--ash);font-family:var(--font-m);
+  font-size:9px;padding:3px 7px;cursor:pointer;border-radius:2px}
 #detail-close:hover{border-color:var(--ember);color:var(--ember)}
-
-/* Detail photo */
-#detail-photo{width:100%;height:100px;
-  background:linear-gradient(135deg,var(--lava3) 0%,var(--lava2) 100%);
-  position:relative;overflow:hidden;margin-bottom:12px;border-radius:3px;}
+#detail-photo{width:100%;height:90px;background:linear-gradient(135deg,var(--lava3),var(--lava2));
+  position:relative;overflow:hidden;margin-bottom:12px;border-radius:3px}
 #detail-photo img{width:100%;height:100%;object-fit:cover;opacity:.75}
 #detail-photo-overlay{position:absolute;inset:0;
   background:linear-gradient(to top,rgba(10,4,0,.85) 0%,transparent 60%)}
 #detail-photo-credit{position:absolute;bottom:5px;right:7px;
-  font-family:var(--font-mono);font-size:7px;color:rgba(201,168,76,.7)}
-#detail-photo-placeholder{position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;font-size:32px;opacity:.2}
-
-#detail-name{font-family:var(--font-title);font-size:15px;font-weight:900;
+  font-family:var(--font-m);font-size:7px;color:rgba(201,168,76,.7)}
+#detail-photo-ph{position:absolute;inset:0;display:flex;
+  align-items:center;justify-content:center;font-size:28px;opacity:.2}
+#detail-name{font-family:var(--font-t);font-size:15px;font-weight:900;
   color:var(--gold);letter-spacing:.8px;margin-bottom:4px;padding-right:50px;line-height:1.3}
-#detail-zone{font-family:var(--font-mono);font-size:8px;letter-spacing:2px;
+#detail-zone{font-family:var(--font-m);font-size:8px;letter-spacing:2px;
   color:var(--ash);text-transform:uppercase;margin-bottom:10px}
 #detail-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
   gap:6px;margin-bottom:12px}
 .dstat{background:var(--lava2);border:1px solid var(--border);
   border-radius:3px;padding:7px 8px;text-align:center}
-.dstat-lbl{font-family:var(--font-mono);font-size:7px;letter-spacing:1.5px;
+.dstat-lbl{font-family:var(--font-m);font-size:7px;letter-spacing:1.5px;
   color:var(--ash);text-transform:uppercase;margin-bottom:2px}
-.dstat-val{font-family:var(--font-title);font-size:15px;color:var(--gold);font-weight:600}
+.dstat-val{font-family:var(--font-t);font-size:15px;color:var(--gold);font-weight:600}
 .dstat-unit{font-size:9px;color:var(--ash);margin-left:2px}
-
-/* Action buttons */
 #detail-actions{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
 .action-btn{display:flex;align-items:center;gap:5px;padding:6px 11px;
-  border-radius:2px;cursor:pointer;font-family:var(--font-mono);font-size:8.5px;
-  letter-spacing:1px;text-transform:uppercase;transition:all .2s;border:1px solid;
-  text-decoration:none;}
+  border-radius:2px;cursor:pointer;font-family:var(--font-m);font-size:8.5px;
+  letter-spacing:1px;text-transform:uppercase;transition:all .2s;border:1px solid;text-decoration:none}
 .action-btn.maps{background:rgba(66,133,244,.15);border-color:rgba(66,133,244,.4);color:#6ba3f5}
 .action-btn.maps:hover{background:rgba(66,133,244,.28)}
 .action-btn.gpx-dl{background:var(--ember-dim);border-color:rgba(232,96,10,.4);color:var(--ember)}
 .action-btn.gpx-dl:hover{background:rgba(232,96,10,.28)}
-.action-btn.gpx-dl.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
+.action-btn.gpx-dl.off{opacity:.35;cursor:not-allowed;pointer-events:none}
 .action-btn.call{background:rgba(74,158,92,.15);border-color:rgba(74,158,92,.4);color:var(--green-trail)}
-.action-btn.call:hover{background:rgba(74,158,92,.28)}
-
-#detail-desc{font-size:12.5px;color:var(--ash-light);line-height:1.7;
-  font-style:italic;border-left:2px solid var(--ember);padding-left:10px;margin-bottom:10px}
-#detail-poi h4,#detail-stagioni h4,#detail-extra h4,#gpx-controls h4{
-  font-family:var(--font-mono);font-size:8px;letter-spacing:2px;
-  color:var(--ash);text-transform:uppercase;margin-bottom:7px;}
+#detail-desc{font-size:12.5px;color:var(--ash-light);line-height:1.7;font-style:italic;
+  border-left:2px solid var(--ember);padding-left:10px;margin-bottom:10px}
+#detail-poi h4,#detail-stagioni h4,#detail-extra h4,#gpx-ctrl h4{
+  font-family:var(--font-m);font-size:8px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;margin-bottom:7px}
 .poi-item{display:flex;align-items:center;gap:7px;padding:4px 0;
   border-bottom:1px solid rgba(201,168,76,.08);font-size:11.5px;color:var(--ash-light)}
-.poi-quota{font-family:var(--font-mono);font-size:8.5px;color:var(--ember);min-width:52px}
-#detail-stagioni{margin-top:10px}
+.poi-quota{font-family:var(--font-m);font-size:8.5px;color:var(--ember);min-width:52px}
 .mesi-grid{display:flex;gap:3px;flex-wrap:wrap}
-.mese{font-family:var(--font-mono);font-size:7.5px;padding:3px 5px;border-radius:2px;
+.mese{font-family:var(--font-m);font-size:7.5px;padding:3px 5px;border-radius:2px;
   border:1px solid rgba(201,168,76,.15);color:var(--ash);text-transform:uppercase}
 .mese.ok{background:rgba(74,158,92,.2);border-color:rgba(74,158,92,.5);color:var(--green-trail)}
 #detail-extra{margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,168,76,.1)}
 .extra-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;font-size:11.5px}
-.extra-lbl{font-family:var(--font-mono);font-size:7.5px;color:var(--ash);
+.extra-lbl{font-family:var(--font-m);font-size:7.5px;color:var(--ash);
   min-width:70px;text-transform:uppercase;padding-top:2px}
 .extra-val{color:var(--ash-light);line-height:1.4;flex:1}
 
 /* GPX controls */
-#gpx-controls{margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,168,76,.1)}
-.gpx-btn-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.gpx-action-btn{background:var(--ember-dim);border:1px solid rgba(232,96,10,.4);
-  color:var(--ember);font-family:var(--font-mono);font-size:8px;letter-spacing:1px;
-  padding:5px 9px;border-radius:2px;cursor:pointer;transition:all .2s;text-transform:uppercase;
-  display:flex;align-items:center;gap:4px;}
-.gpx-action-btn:hover{background:rgba(232,96,10,.28)}
-.gpx-action-btn.danger{background:rgba(191,58,58,.15);border-color:rgba(191,58,58,.3);color:var(--red-trail)}
-#gpx-upload-input{display:none}
+#gpx-ctrl{margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,168,76,.1)}
+.gpx-btn-row{display:flex;gap:6px;flex-wrap:wrap}
+.gpx-ab{background:var(--ember-dim);border:1px solid rgba(232,96,10,.4);
+  color:var(--ember);font-family:var(--font-m);font-size:8px;letter-spacing:1px;
+  padding:5px 9px;border-radius:2px;cursor:pointer;transition:all .2s;
+  text-transform:uppercase;display:flex;align-items:center;gap:4px}
+.gpx-ab:hover{background:rgba(232,96,10,.28)}
+.gpx-ab.danger{background:rgba(191,58,58,.15);border-color:rgba(191,58,58,.3);color:var(--red-trail)}
+#gpx-file-input{display:none}
 .gpx-url-row{display:flex;gap:5px;margin-top:6px}
-#gpx-url-input{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);
-  border-radius:2px;color:var(--snow);font-family:var(--font-mono);font-size:9.5px;
-  padding:5px 7px;outline:none;transition:border-color .2s;min-width:0}
-#gpx-url-input:focus{border-color:var(--gold)}
-#gpx-url-input::placeholder{color:var(--ash)}
-#gpx-url-btn{background:none;border:1px solid var(--border);color:var(--ash-light);
-  font-family:var(--font-mono);font-size:8px;padding:5px 9px;
-  border-radius:2px;cursor:pointer;transition:all .2s;white-space:nowrap}
-#gpx-url-btn:hover{border-color:var(--gold);color:var(--gold)}
+#gpx-url{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);
+  border-radius:2px;color:var(--snow);font-family:var(--font-m);font-size:9px;
+  padding:5px 7px;outline:none;min-width:0}
+#gpx-url:focus{border-color:var(--gold)}
+#gpx-url::placeholder{color:var(--ash)}
+#gpx-url-load{background:none;border:1px solid var(--border);color:var(--ash-light);
+  font-family:var(--font-m);font-size:8px;padding:5px 9px;border-radius:2px;cursor:pointer;white-space:nowrap}
+#gpx-url-load:hover{border-color:var(--gold);color:var(--gold)}
 
 /* Elevation bar */
-#gpx-bar{position:absolute;bottom:0;left:0;right:0;z-index:550;
+#elev-bar{position:absolute;bottom:0;left:0;right:0;z-index:550;
   background:rgba(10,4,0,.96);border-top:1px solid var(--border-bright);
-  transition:height .35s cubic-bezier(.4,0,.2,1);height:0;overflow:hidden;}
-#gpx-bar.open{height:150px}
-#gpx-bar-inner{padding:8px 14px 6px;display:flex;flex-direction:column;height:100%}
-#gpx-bar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
-#gpx-bar-title{font-family:var(--font-mono);font-size:8px;letter-spacing:2px;
-  color:var(--gold);text-transform:uppercase;display:flex;align-items:center;gap:8px}
-#gpx-bar-stats{display:flex;gap:12px}
-.gpx-stat{font-family:var(--font-mono);font-size:8px;color:var(--ash);display:flex;align-items:center;gap:3px}
-.gpx-stat span{color:var(--ash-light)}
-#gpx-close-btn{background:none;border:1px solid var(--border);color:var(--ash);
-  font-family:var(--font-mono);font-size:9px;padding:3px 6px;cursor:pointer;border-radius:2px}
-#gpx-close-btn:hover{border-color:var(--ember);color:var(--ember)}
-#elevation-canvas{flex:1;width:100%;border-radius:2px;cursor:crosshair}
-#elev-tooltip{position:absolute;pointer-events:none;
-  background:rgba(10,4,0,.92);border:1px solid var(--border);
-  border-radius:2px;padding:4px 7px;font-family:var(--font-mono);font-size:8.5px;
-  color:var(--snow);white-space:nowrap;display:none;z-index:600}
-
-/* Leaflet popup */
-.leaflet-popup-content-wrapper{background:var(--lava2)!important;
-  border:1px solid var(--border-bright)!important;border-radius:3px!important;
-  box-shadow:0 4px 20px rgba(0,0,0,.5)!important;}
-.leaflet-popup-content{color:var(--snow)!important;font-family:var(--font-mono)!important;
-  font-size:10.5px!important;margin:9px 12px!important;}
-.leaflet-popup-tip{background:var(--lava2)!important}
-.leaflet-popup-close-button{color:var(--ash)!important}
-.etna-marker{font-size:20px;line-height:1;filter:drop-shadow(0 0 6px rgba(232,96,10,.8))}
-.trail-marker{width:13px;height:13px;border-radius:50%;
-  border:2px solid rgba(255,255,255,.6);cursor:pointer;transition:transform .2s;
-  box-shadow:0 0 6px rgba(0,0,0,.5);}
-.trail-marker:hover,.trail-marker.selected{transform:scale(1.4);border-color:var(--gold)}
-.trail-marker.T{background:var(--green-trail)}
-.trail-marker.E{background:var(--blue-trail)}
-.trail-marker.EE{background:var(--red-trail)}
-.rifugio-marker{width:16px;height:16px;border-radius:3px;
-  background:var(--gold);border:2px solid rgba(255,255,255,.7);
-  cursor:pointer;transition:transform .2s;box-shadow:0 0 6px rgba(0,0,0,.5);
-  display:flex;align-items:center;justify-content:center;font-size:9px;}
-.rifugio-marker:hover,.rifugio-marker.selected{transform:scale(1.3);border-color:white}
-.macro-marker{width:13px;height:13px;border-radius:50%;
-  background:var(--cyan);border:2px solid rgba(255,255,255,.6);
-  cursor:pointer;transition:transform .2s;box-shadow:0 0 6px rgba(0,0,0,.5);}
-.macro-marker:hover,.macro-marker.selected{transform:scale(1.4);border-color:white}
-
-#legend{position:absolute;bottom:20px;right:10px;z-index:500;
-  background:rgba(10,4,0,.9);border:1px solid var(--border);
-  border-radius:3px;padding:9px 12px;backdrop-filter:blur(4px);}
-.leg-item{display:flex;align-items:center;gap:6px;font-family:var(--font-mono);
-  font-size:7.5px;color:var(--ash-light);margin-bottom:4px;}
-.leg-item:last-child{margin-bottom:0}
-.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.leg-sq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+  transition:height .35s;height:0;overflow:hidden}
+#elev-bar.open{height:145px}
+#elev-inner{padding:7px 14px 5px;display:flex;flex-direction:column;height:100%}
+#elev-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+#elev-title{font-family:var(--font-m);font-size:8px;letter-spacing:2px;color:var(--gold);
+  text-transform:uppercase;display:flex;align-items:center;gap:8px}
+#elev-stats{display:flex;gap:12px}
+.elev-stat{font-family:var(--font-m);font-size:8px;color:var(--ash)}
+.elev-stat span{color:var(--ash-light)}
+#elev-close{background:none;border:1px solid var(--border);color:var(--ash);
+  font-family:var(--font-m);font-size:9px;padding:3px 6px;cursor:pointer;border-radius:2px}
+#elev-close:hover{border-color:var(--ember);color:var(--ember)}
+#elev-canvas{flex:1;width:100%;cursor:crosshair}
+#elev-tip{position:absolute;pointer-events:none;background:rgba(10,4,0,.92);
+  border:1px solid var(--border);border-radius:2px;padding:4px 7px;
+  font-family:var(--font-m);font-size:8.5px;color:var(--snow);
+  white-space:nowrap;display:none;z-index:600}
 
 /* Modal */
 #modal-overlay{display:none;position:fixed;inset:0;z-index:2000;
-  background:rgba(0,0,0,.8);backdrop-filter:blur(4px);
-  align-items:center;justify-content:center;}
+  background:rgba(0,0,0,.8);backdrop-filter:blur(4px);align-items:center;justify-content:center}
 #modal-overlay.open{display:flex}
-#modal{background:var(--lava2);border:1px solid var(--border-bright);
-  border-radius:4px;width:min(500px,95vw);max-height:90vh;overflow-y:auto;
-  box-shadow:0 8px 40px rgba(0,0,0,.6),0 0 40px rgba(232,96,10,.1);}
-#modal-header{padding:16px 18px 12px;border-bottom:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;}
-#modal-title{font-family:var(--font-title);font-size:13px;font-weight:900;
-  color:var(--gold);letter-spacing:2px;}
-#modal-close{background:none;border:1px solid var(--border);color:var(--ash);
-  font-family:var(--font-mono);font-size:10px;padding:4px 8px;cursor:pointer;border-radius:2px;}
-#modal-close:hover{border-color:var(--ember);color:var(--ember)}
+#modal{background:var(--lava2);border:1px solid var(--border-bright);border-radius:4px;
+  width:min(500px,95vw);max-height:90vh;overflow-y:auto;
+  box-shadow:0 8px 40px rgba(0,0,0,.6)}
+#modal-hdr{padding:16px 18px 12px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center}
+#modal-title{font-family:var(--font-t);font-size:13px;font-weight:900;color:var(--gold);letter-spacing:2px}
+#modal-x{background:none;border:1px solid var(--border);color:var(--ash);
+  font-family:var(--font-m);font-size:10px;padding:4px 8px;cursor:pointer;border-radius:2px}
+#modal-x:hover{border-color:var(--ember);color:var(--ember)}
 #modal-body{padding:16px 18px}
-.form-group{margin-bottom:12px}
-.form-label{display:block;font-family:var(--font-mono);font-size:8px;letter-spacing:1.5px;
+.fg{margin-bottom:12px}
+.fl{display:block;font-family:var(--font-m);font-size:8px;letter-spacing:1.5px;
   color:var(--ash);text-transform:uppercase;margin-bottom:4px}
-.form-input,.form-select,.form-textarea{width:100%;background:rgba(255,255,255,.05);
-  border:1px solid var(--border);border-radius:2px;color:var(--snow);
-  font-family:var(--font-body);font-size:12.5px;padding:7px 9px;outline:none;transition:border-color .2s}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold)}
-.form-select option{background:var(--lava2);color:var(--snow)}
-.form-textarea{min-height:70px;resize:vertical;line-height:1.5}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.fi,.fs,.ft{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);
+  border-radius:2px;color:var(--snow);font-family:var(--font-b);font-size:12.5px;
+  padding:7px 9px;outline:none;transition:border-color .2s}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--gold)}
+.fs option{background:var(--lava2);color:var(--snow)}
+.ft{min-height:70px;resize:vertical;line-height:1.5}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 #modal-info{background:var(--ember-dim);border:1px solid rgba(232,96,10,.3);
-  border-radius:3px;padding:9px 11px;margin-bottom:14px;
-  font-size:11px;color:var(--ash-light);line-height:1.5}
+  border-radius:3px;padding:9px 11px;margin-bottom:14px;font-size:11px;
+  color:var(--ash-light);line-height:1.5}
 #modal-info strong{color:var(--ember)}
 #btn-submit{width:100%;background:var(--ember);border:none;color:white;
-  font-family:var(--font-mono);font-size:9.5px;letter-spacing:2px;
-  padding:11px;border-radius:2px;cursor:pointer;transition:all .2s;text-transform:uppercase;
-  box-shadow:0 0 16px rgba(232,96,10,.3);}
+  font-family:var(--font-m);font-size:9.5px;letter-spacing:2px;padding:11px;
+  border-radius:2px;cursor:pointer;text-transform:uppercase}
 #btn-submit:hover{background:#ff7a20}
 #btn-submit:disabled{opacity:.5;cursor:not-allowed}
-#submit-success{display:none;text-align:center;padding:22px}
-#submit-success .big-check{font-size:36px;display:block;margin-bottom:10px}
-#submit-success p{font-size:12.5px;color:var(--ash-light);line-height:1.6}
+#submit-ok{display:none;text-align:center;padding:22px}
+#submit-ok .check{font-size:36px;display:block;margin-bottom:10px}
+#submit-ok p{font-size:12.5px;color:var(--ash-light);line-height:1.6}
+
+/* Leaflet overrides */
+.leaflet-popup-content-wrapper{background:var(--lava2)!important;
+  border:1px solid var(--border-bright)!important;border-radius:3px!important}
+.leaflet-popup-content{color:var(--snow)!important;font-family:var(--font-m)!important;
+  font-size:10.5px!important;margin:9px 12px!important}
+.leaflet-popup-tip{background:var(--lava2)!important}
+.leaflet-popup-close-button{color:var(--ash)!important}
+.tm{width:13px;height:13px;border-radius:50%;border:2px solid rgba(255,255,255,.6);
+  cursor:pointer;transition:transform .2s;box-shadow:0 0 6px rgba(0,0,0,.5)}
+.tm:hover,.tm.sel{transform:scale(1.4);border-color:var(--gold)}
+.tm.T{background:var(--green-trail)}.tm.E{background:var(--blue-trail)}.tm.EE{background:var(--red-trail)}
+.rm{width:16px;height:16px;border-radius:3px;background:var(--gold);
+  border:2px solid rgba(255,255,255,.7);cursor:pointer;transition:transform .2s;
+  display:flex;align-items:center;justify-content:center;font-size:9px}
+.rm:hover,.rm.sel{transform:scale(1.3);border-color:white}
+.em{font-size:20px;line-height:1;filter:drop-shadow(0 0 6px rgba(232,96,10,.8))}
 
 /* Footer */
 #brand-footer{position:fixed;bottom:0;left:0;right:0;z-index:5000;
   height:18px;display:flex;align-items:center;justify-content:center;
   background:rgba(4,2,0,.95);border-top:1px solid rgba(201,168,76,.15);
-  font-family:var(--font-mono);font-size:8px;letter-spacing:2px;}
+  font-family:var(--font-m);font-size:8px;letter-spacing:2px}
 
 /* Rotate overlay */
 #rotate-msg{display:none;position:fixed;inset:0;z-index:99999;
-  background:#1a0a00;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+  background:#1a0a00;flex-direction:column;align-items:center;justify-content:center;gap:14px}
 @media screen and (orientation:portrait) and (max-width:900px){#rotate-msg{display:flex!important}}
 @keyframes spin-phone{from{transform:rotate(0deg)}to{transform:rotate(90deg)}}
-
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-/* ══════════════════════════════════════════════
-   MOBILE THEME — più luminoso e leggibile
-   Attivo sotto 768px
-══════════════════════════════════════════════ */
-@media screen and (max-width: 768px) {
-
-  /* Sfondi più chiari */
-  :root {
-    --lava:#2a1500;
-    --lava2:#3a1e00;
-    --lava3:#4d2800;
-    --ash:#a08878;
-    --ash-light:#d4c0a8;
-    --snow:#ffffff;
-    --border:rgba(201,168,76,0.35);
-    --border-bright:rgba(201,168,76,0.65);
-  }
-
-  body {
-    background:
-      radial-gradient(ellipse at 30% 20%,rgba(232,96,10,0.12) 0%,transparent 60%),
-      #2a1500;
-  }
-
-  /* Header più leggibile */
-  #header {
-    background:rgba(20,8,0,0.99);
-    height:56px;
-  }
-  #hdr-main { font-size:15px; color:#e8c060; }
-  #hdr-sub  { font-size:9px;  color:#c8a880; }
-
-  /* Sidebar layout mobile — full width sopra mappa */
-  #main { flex-direction:column; height:calc(100vh - 74px); }
-  #sidebar {
-    width:100%; min-width:100%;
-    max-height:42%;
-    border-right:none;
-    border-bottom:1px solid var(--border-bright);
-  }
-
-  /* Tab nav */
-  .tab-btn {
-    font-size:9px;
-    padding:7px 2px;
-    color:#c8a880;
-  }
-  .tab-btn.active { color:#e8c060; border-bottom-color:var(--ember); }
-
-  /* Trail cards — testi più grandi e luminosi */
-  .tc-name  { font-size:13px; color:#e8c060; }
-  .tc-stat  { font-size:9.5px; }
-  .tc-stat span { color:#d4c0a8; }
-  .tc-desc  { font-size:12px; color:#c8a880; }
-
-  /* Rifugio cards */
-  .rc-name  { font-size:13px; color:#e8c060; }
-  .rc-stat  { font-size:9px; }
-  .rc-stat span { color:#d4c0a8; }
-  .rc-note  { font-size:11.5px; color:#c8a880; }
-  .stars    { font-size:11px; }
-
-  /* Diff badges */
-  .diff-badge { font-size:9.5px; padding:3px 7px; }
-
-  /* Map — prende lo spazio rimanente */
-  #map-wrap { flex:1; min-height:0; }
-
-  /* Detail panel — più spazio e testi grandi */
-  #detail-panel { max-height:60%; }
-  #detail-name  { font-size:16px; }
-  #detail-zone  { font-size:9.5px; color:#c8a880; }
-  .dstat-lbl    { font-size:8.5px; color:#c8a880; }
-  .dstat-val    { font-size:16px; }
-  #detail-desc  { font-size:13px; color:#d4c0a8; line-height:1.7; }
-  .poi-item     { font-size:13px; color:#d4c0a8; }
-  .poi-quota    { font-size:9.5px; }
-  .mese         { font-size:8.5px; }
-
-  /* Action buttons più grandi al touch */
-  .action-btn { font-size:10px; padding:9px 14px; }
-
-  /* Emergenze */
-  .emerg-name   { font-size:10px; color:#d4c0a8; }
-  .emerg-number { font-size:22px; }
-  .emerg-note   { font-size:12px; color:#c8a880; }
-
-  /* Map controls */
-  .mctrl-btn { font-size:10px; padding:7px 11px; }
-  .layer-btn { font-size:9.5px; padding:5px 9px; }
-
-  /* Legend */
-  #legend {
-    bottom:auto; top:10px; right:10px;
-  }
-  .leg-item { font-size:9px; }
-
-  /* Search input */
-  .search-input { font-size:14px; padding:8px 10px; }
-
-  /* Footer */
-  #brand-footer { font-size:7.5px; letter-spacing:1.5px; }
-
-  /* Rifugio badges */
-  .rc-badge { font-size:8.5px; padding:3px 7px; }
-
-  /* GPX controls */
-  .gpx-action-btn { font-size:9.5px; padding:7px 11px; }
-  #gpx-url-input  { font-size:11px; }
-
-  /* Popup map */
-  .leaflet-popup-content { font-size:12px !important; }
+/* Mobile */
+@media(max-width:768px){
+  :root{--lava:#2a1500;--lava2:#3a1e00;--ash:#a08878;--ash-light:#d4c0a8;--snow:#ffffff}
+  #main{flex-direction:column}
+  #sidebar{width:100%;min-width:100%;max-height:42%;border-right:none;border-bottom:1px solid var(--border-bright)}
+  #map-wrap{flex:1;min-height:0}
+  .tc-name{font-size:13px}.tc-stat{font-size:9.5px}.tc-desc{font-size:12px}
+  .rc-name{font-size:13px}.action-btn{font-size:10px;padding:9px 14px}
 }
-
-/* Extra small — schermi molto piccoli */
-@media screen and (max-width: 380px) {
-  #hdr-main { font-size:13px; letter-spacing:2px; }
-  .tab-btn .tab-icon { font-size:16px; }
-  .tab-btn span:last-child { display:none; }
+@media(max-width:380px){
+  .tab-btn span:last-child{display:none}
 }
-
-
 </style>
 </head>
 <body>
 
-<div id="header">
-  <div id="hdr-left">
-    <div class="hdr-volcano"></div>
+<div id="hdr">
+  <div id="hdr-l">
+    <div class="volcano"></div>
     <div>
-      <div id="hdr-main">ETNA TRAILS</div>
+      <div id="hdr-title">ETNA TRAILS</div>
       <div id="hdr-sub" data-it="SENTIERI · RIFUGI · ETNA & NEBRODI" data-en="TRAILS · REFUGES · ETNA & NEBRODI">SENTIERI · RIFUGI · ETNA & NEBRODI</div>
     </div>
   </div>
-  <div id="hdr-right">
+  <div id="hdr-r">
     <div id="lang-toggle">
       <button class="lang-btn active" onclick="setLang('it')">IT</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
-    <button id="btn-add-trail" onclick="openModal()">+ <span data-it="Proponi" data-en="Propose">Proponi</span></button>
+    <button id="btn-propose" onclick="openModal()">+ <span data-it="Proponi" data-en="Propose">Proponi</span></button>
   </div>
 </div>
 
 <div id="main">
   <div id="sidebar">
-
-    <!-- Tab navigation -->
     <div id="tab-nav">
       <button class="tab-btn active" onclick="setTab('sentieri')">
-        <span class="tab-icon">🥾</span>
-        <span data-it="Sentieri" data-en="Trails">Sentieri</span>
+        <span class="ti">🥾</span><span data-it="Sentieri" data-en="Trails">Sentieri</span>
       </button>
       <button class="tab-btn" onclick="setTab('rifugi')">
-        <span class="tab-icon">🏠</span>
-        <span data-it="Rifugi" data-en="Refuges">Rifugi</span>
+        <span class="ti">🏠</span><span data-it="Rifugi" data-en="Refuges">Rifugi</span>
       </button>
-
       <button class="tab-btn" onclick="setTab('sos')">
-        <span class="tab-icon">🆘</span>
-        <span>SOS</span>
-      </button>
-      <button class="tab-btn" onclick="openMeteo()">
-        <span class="tab-icon">⛅</span>
-        <span data-it="Meteo" data-en="Weather">Meteo</span>
+        <span class="ti">🆘</span><span>SOS</span>
       </button>
     </div>
 
-    <!-- SENTIERI -->
     <div class="tab-panel active" id="panel-sentieri">
-      <div id="search-bar">
-        <input type="text" class="search-input" id="search-sentieri"
-          placeholder="Cerca sentiero…" oninput="filterSentieri()">
-        <div id="diff-filters">
-          <button class="ftag diff-T active" onclick="toggleDiff('T')">T</button>
-          <button class="ftag diff-E active" onclick="toggleDiff('E')">E</button>
-          <button class="ftag diff-EE active" onclick="toggleDiff('EE')">EE</button>
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="s-sentieri" placeholder="Cerca sentiero…" oninput="filterSentieri()">
+        <div class="diff-row">
+          <button class="dtag T active" onclick="toggleDiff('T')">T</button>
+          <button class="dtag E active" onclick="toggleDiff('E')">E</button>
+          <button class="dtag EE active" onclick="toggleDiff('EE')">EE</button>
         </div>
       </div>
       <div class="item-list" id="sentieri-list"></div>
     </div>
 
-    <!-- RIFUGI -->
     <div class="tab-panel" id="panel-rifugi">
-      <div id="search-bar-rifugi" style="padding:8px 10px;border-bottom:1px solid var(--border);background:rgba(26,10,0,.5)">
-        <input type="text" class="search-input" id="search-rifugi"
-          placeholder="Cerca rifugio…" oninput="filterRifugi()">
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="s-rifugi" placeholder="Cerca rifugio…" oninput="filterRifugi()">
       </div>
       <div class="item-list" id="rifugi-list"></div>
     </div>
 
-    <!-- SOS -->
     <div class="tab-panel" id="panel-sos">
-      <div id="emergency-panel"></div>
+      <div id="sos-list"></div>
     </div>
-
-  </div><!-- /sidebar -->
+  </div>
 
   <div id="map-wrap">
     <div id="map"></div>
 
-    <div id="map-controls">
+    <div id="map-ctrl">
       <button class="mctrl-btn active" id="btn-topo" onclick="setTile('topo')">🗺 Topo</button>
       <button class="mctrl-btn" id="btn-sat" onclick="setTile('sat')">🛰 Sat</button>
       <button class="mctrl-btn" id="btn-dark" onclick="setTile('dark')">🌑 Dark</button>
     </div>
 
-    <div id="layer-controls">
-      <button class="layer-btn active" id="lyr-sentieri" onclick="toggleLayerVis('sentieri')">🥾 <span data-it="Sentieri" data-en="Trails">Sentieri</span></button>
-      <button class="layer-btn active" id="lyr-rifugi" onclick="toggleLayerVis('rifugi')">🏠 <span data-it="Rifugi" data-en="Refuges">Rifugi</span></button>
-
+    <div id="layer-ctrl">
+      <button class="layer-btn active" id="lyr-s" onclick="toggleLyr('s')">🥾 <span data-it="Sentieri" data-en="Trails">Sentieri</span></button>
+      <button class="layer-btn active" id="lyr-r" onclick="toggleLyr('r')">🏠 <span data-it="Rifugi" data-en="Refuges">Rifugi</span></button>
     </div>
 
     <div id="legend">
@@ -598,15 +430,13 @@ body{font-family:var(--font-body);color:var(--snow);
       <div class="leg-item"><div class="leg-dot" style="background:var(--blue-trail)"></div><span>E – Escursionistico</span></div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--red-trail)"></div><span>EE – Esperto</span></div>
       <div class="leg-item"><div class="leg-sq" style="background:var(--gold)"></div><span data-it="Rifugio/Bivacco" data-en="Refuge/Bivouac">Rifugio/Bivacco</span></div>
-
     </div>
 
-    <!-- Detail panel -->
     <div id="detail-panel">
       <div id="detail-inner">
         <button id="detail-close" onclick="closeDetail()">✕ <span data-it="chiudi" data-en="close">chiudi</span></button>
         <div id="detail-photo">
-          <div id="detail-photo-placeholder">🌋</div>
+          <div id="detail-photo-ph">🌋</div>
           <div id="detail-photo-overlay"></div>
           <div id="detail-photo-credit">© fotolapissable.it</div>
         </div>
@@ -618,143 +448,88 @@ body{font-family:var(--font-body);color:var(--snow);
         <div id="detail-poi"></div>
         <div id="detail-stagioni"></div>
         <div id="detail-extra"></div>
-        <div id="gpx-controls">
+        <div id="gpx-ctrl">
           <h4 data-it="TRACCIA GPX" data-en="GPX TRACK">TRACCIA GPX</h4>
           <div class="gpx-btn-row">
-            <button class="gpx-action-btn" onclick="document.getElementById('gpx-upload-input').click()">
-              📂 <span data-it="Carica .gpx" data-en="Load .gpx">Carica .gpx</span>
-            </button>
-            <button class="gpx-action-btn danger" id="gpx-clear-btn" onclick="clearGpx()" style="display:none">
-              🗑 <span data-it="Rimuovi" data-en="Remove">Rimuovi</span>
-            </button>
-            <input type="file" id="gpx-upload-input" accept=".gpx" onchange="loadGpxFile(event)">
+            <button class="gpx-ab" onclick="document.getElementById('gpx-file-input').click()">📂 <span data-it="Carica .gpx" data-en="Load .gpx">Carica .gpx</span></button>
+            <button class="gpx-ab danger" id="gpx-clear" onclick="clearGpx()" style="display:none">🗑 <span data-it="Rimuovi" data-en="Remove">Rimuovi</span></button>
+            <input type="file" id="gpx-file-input" accept=".gpx" onchange="loadGpxFile(event)">
           </div>
           <div class="gpx-url-row">
-            <input type="text" id="gpx-url-input" placeholder="URL Wikiloc / Komoot / .gpx diretto">
-            <button id="gpx-url-btn" onclick="loadGpxUrl()">↓ <span data-it="Carica" data-en="Load">Carica</span></button>
+            <input type="text" id="gpx-url" placeholder="URL Wikiloc / Komoot / .gpx">
+            <button id="gpx-url-load" onclick="loadGpxUrl()">↓ <span data-it="Carica" data-en="Load">Carica</span></button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Elevation profile -->
-    <div id="gpx-bar">
-      <div id="gpx-bar-inner">
-        <div id="gpx-bar-header">
-          <div id="gpx-bar-title">📈 <span data-it="PROFILO ALTIMETRICO" data-en="ELEVATION PROFILE">PROFILO ALTIMETRICO</span>
-            <div id="gpx-bar-stats"></div>
+    <div id="elev-bar">
+      <div id="elev-inner">
+        <div id="elev-head">
+          <div id="elev-title">📈 <span data-it="PROFILO ALTIMETRICO" data-en="ELEVATION PROFILE">PROFILO ALTIMETRICO</span>
+            <div id="elev-stats"></div>
           </div>
-          <button id="gpx-close-btn" onclick="closeElevation()">✕</button>
+          <button id="elev-close" onclick="closeElev()">✕</button>
         </div>
-        <canvas id="elevation-canvas"></canvas>
+        <canvas id="elev-canvas"></canvas>
       </div>
     </div>
-    <div id="elev-tooltip"></div>
+    <div id="elev-tip"></div>
   </div>
 </div>
 
-<!-- Submit modal -->
+<!-- Modal -->
 <div id="modal-overlay">
   <div id="modal">
-    <div id="modal-header">
+    <div id="modal-hdr">
       <div id="modal-title" data-it="🌋 PROPONI UN SENTIERO" data-en="🌋 PROPOSE A TRAIL">🌋 PROPONI UN SENTIERO</div>
-      <button id="modal-close" onclick="closeModal()">✕</button>
+      <button id="modal-x" onclick="closeModal()">✕</button>
     </div>
     <div id="modal-body">
-      <div id="submit-success" style="display:none">
-        <span class="big-check">✅</span><p id="success-msg"></p>
-      </div>
+      <div id="submit-ok" style="display:none"><span class="check">✅</span><p id="submit-ok-msg"></p></div>
       <div id="submit-form">
         <div id="modal-info">
           <strong data-it="Come funziona:" data-en="How it works:">Come funziona:</strong>
-          <span data-it=" La proposta viene inviata come issue su GitHub. Dopo verifica di fotolapissable apparirà sull'app." data-en=" Proposal sent as GitHub issue. After fotolapissable review it will appear in the app."> La proposta viene inviata come issue su GitHub. Dopo verifica di fotolapissable apparirà sull'app.</span>
+          <span data-it=" Proposta inviata come issue GitHub. Dopo verifica di fotolapissable apparirà sull'app." data-en=" Proposal sent as GitHub issue. After fotolapissable review it will appear in the app."> Proposta inviata come issue GitHub. Dopo verifica di fotolapissable apparirà sull'app.</span>
         </div>
-        <div class="form-group">
-          <label class="form-label" data-it="NOME SENTIERO *" data-en="TRAIL NAME *">NOME SENTIERO *</label>
-          <input type="text" class="form-input" id="f-nome" placeholder="Es. Monte Zoccolaro – Versante Est">
+        <div class="fg"><label class="fl" data-it="NOME *" data-en="NAME *">NOME *</label><input type="text" class="fi" id="f-nome"></div>
+        <div class="fr">
+          <div class="fg"><label class="fl" data-it="DIFFICOLTÀ *" data-en="DIFFICULTY *">DIFFICOLTÀ *</label>
+            <select class="fs" id="f-diff"><option value="">—</option><option>T</option><option>E</option><option>EE</option></select></div>
+          <div class="fg"><label class="fl" data-it="ZONA" data-en="AREA">ZONA</label>
+            <select class="fs" id="f-zona"><option value="">—</option><option>nord</option><option>sud</option><option>est</option><option>ovest</option><option>nord-est</option><option>sud-est</option></select></div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" data-it="DIFFICOLTÀ *" data-en="DIFFICULTY *">DIFFICOLTÀ *</label>
-            <select class="form-select" id="f-diff">
-              <option value="">—</option>
-              <option value="T">T – Turistico</option>
-              <option value="E">E – Escursionistico</option>
-              <option value="EE">EE – Esperto</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label" data-it="ZONA" data-en="AREA">ZONA</label>
-            <select class="form-select" id="f-zona">
-              <option value="">—</option>
-              <option>nord</option><option>sud</option><option>est</option><option>ovest</option>
-              <option>nord-est</option><option>sud-est</option><option>nord-ovest</option><option>sud-ovest</option>
-            </select>
-          </div>
+        <div class="fr">
+          <div class="fg"><label class="fl">KM</label><input type="number" class="fi" id="f-km" step="0.1" min="0"></div>
+          <div class="fg"><label class="fl" data-it="ORE" data-en="HOURS">ORE</label><input type="number" class="fi" id="f-ore" step="0.5" min="0"></div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">KM</label>
-            <input type="number" class="form-input" id="f-km" placeholder="es. 8.5" step="0.1" min="0">
-          </div>
-          <div class="form-group">
-            <label class="form-label" data-it="ORE" data-en="HOURS">ORE</label>
-            <input type="number" class="form-input" id="f-ore" placeholder="es. 4" step="0.5" min="0">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" data-it="QUOTA MIN (m)" data-en="MIN ELEV (m)">QUOTA MIN (m)</label>
-            <input type="number" class="form-input" id="f-qmin" placeholder="es. 1200">
-          </div>
-          <div class="form-group">
-            <label class="form-label" data-it="QUOTA MAX (m)" data-en="MAX ELEV (m)">QUOTA MAX (m)</label>
-            <input type="number" class="form-input" id="f-qmax" placeholder="es. 2900">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" data-it="LINK GPX (opzionale)" data-en="GPX LINK (optional)">LINK GPX (opzionale)</label>
-          <input type="text" class="form-input" id="f-gpx" placeholder="URL Wikiloc, Komoot, AllTrails…">
-        </div>
-        <div class="form-group">
-          <label class="form-label" data-it="DESCRIZIONE *" data-en="DESCRIPTION *">DESCRIZIONE *</label>
-          <textarea class="form-textarea" id="f-desc" placeholder="Descrivi il percorso…"></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label" data-it="TUO NOME / CONTATTO" data-en="YOUR NAME / CONTACT">TUO NOME / CONTATTO</label>
-          <input type="text" class="form-input" id="f-autore" placeholder="Nome, email o Instagram">
-        </div>
-        <button id="btn-submit" onclick="submitTrail()">
-          <span data-it="🌋 INVIA PROPOSTA" data-en="🌋 SEND PROPOSAL">🌋 INVIA PROPOSTA</span>
-        </button>
+        <div class="fg"><label class="fl" data-it="LINK GPX" data-en="GPX LINK">LINK GPX</label><input type="text" class="fi" id="f-gpx"></div>
+        <div class="fg"><label class="fl" data-it="DESCRIZIONE *" data-en="DESCRIPTION *">DESCRIZIONE *</label><textarea class="ft" id="f-desc"></textarea></div>
+        <div class="fg"><label class="fl" data-it="TUO NOME" data-en="YOUR NAME">TUO NOME</label><input type="text" class="fi" id="f-autore"></div>
+        <button id="btn-submit" onclick="submitTrail()"><span data-it="🌋 INVIA PROPOSTA" data-en="🌋 SEND PROPOSAL">🌋 INVIA PROPOSTA</span></button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Branding footer -->
+<!-- Footer -->
 <div id="brand-footer">
-  <a href="https://fotolapissable.it" target="_blank" rel="noopener" style="
-    color:rgba(201,168,76,.65);text-decoration:none;transition:color .2s;
-    display:flex;align-items:center;gap:4px;"
-    onmouseover="this.style.color='rgba(201,168,76,1)'"
-    onmouseout="this.style.color='rgba(201,168,76,.65)'">
+  <a href="https://fotolapissable.it" target="_blank" rel="noopener" style="color:rgba(201,168,76,.65);text-decoration:none;transition:color .2s"
+    onmouseover="this.style.color='rgba(201,168,76,1)'" onmouseout="this.style.color='rgba(201,168,76,.65)'">
     📸 &nbsp;FOTOLAPISSABLE.IT &nbsp;·&nbsp; FINE ART & NATURE PHOTOGRAPHY &nbsp;·&nbsp; RIPOSTO, SICILIA
   </a>
 </div>
 
-<!-- Rotate overlay -->
+<!-- Rotate -->
 <div id="rotate-msg">
   <div style="font-size:48px;animation:spin-phone 1.5s ease-in-out infinite alternate">📱</div>
-  <div style="font-size:10px;letter-spacing:3px;color:var(--gold);text-align:center;line-height:1.8">
-    RUOTA IL DISPOSITIVO<br><span style="color:var(--ash);font-size:8.5px">ROTATE YOUR DEVICE</span>
-  </div>
+  <div style="font-size:10px;letter-spacing:3px;color:var(--gold);text-align:center;line-height:1.8">RUOTA IL DISPOSITIVO<br><span style="color:var(--ash);font-size:8.5px">ROTATE YOUR DEVICE</span></div>
 </div>
 
 <script>
-// ══════════════════════════════════════════════
-//  ETNA TRAILS v3.0
-// ══════════════════════════════════════════════
+// ═══════════════════════════════════════════
+//  ETNA TRAILS — Main Script
+// ═══════════════════════════════════════════
 const GITHUB_REPO = 'fotolapissable/etna-trails';
 const MESI_IT = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
 const MESI_EN = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
@@ -763,18 +538,18 @@ let lang = 'it';
 let DB = {};
 let activeTab = 'sentieri';
 let activeDiffs = new Set(['T','E','EE']);
-let markers = { sentieri:{}, rifugi:{} };
-let layerVis = { sentieri:true, rifugi:true };
+let mkrs = { s:{}, r:{} };
+let lyrVis = { s:true, r:true };
 let activeItem = null;
 let tileLayer = null;
-let gpxLayer = null, gpxMarker = null, gpxPoints = [];
+let gpxLayer = null, gpxMark = null, gpxPts = [];
 const gpxCache = {};
 
-// ── LANGUAGE ──────────────────────────────────
+// ── LANGUAGE ─────────────────────────────────────────────
 function setLang(l) {
   lang = l;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim()===l.toUpperCase()));
-  document.querySelectorAll('[data-'+l+']').forEach(el => {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === l.toUpperCase()));
+  document.querySelectorAll('[data-' + l + ']').forEach(el => {
     if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder = el.dataset[l]||el.placeholder;
     else el.textContent = el.dataset[l];
   });
@@ -782,100 +557,73 @@ function setLang(l) {
   if(activeItem) showDetail(activeItem.type, activeItem.id);
 }
 
-// ── TABS ──────────────────────────────────────
+// ── TABS ─────────────────────────────────────────────────
 function setTab(tab) {
   activeTab = tab;
-  document.querySelectorAll('.tab-btn').forEach((b,i) => {
-    const tabs = ['sentieri','rifugi','sos'];
-    b.classList.toggle('active', tabs[i]===tab);
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    const oc = b.getAttribute('onclick') || '';
+    b.classList.toggle('active', oc === "setTab('" + tab + "')");
   });
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-'+tab).classList.add('active');
-  // Update map marker visibility hints
-  updateLayerBtns();
+  const panel = document.getElementById('panel-' + tab);
+  if(panel) panel.classList.add('active');
 }
 
-// ── MAP ───────────────────────────────────────
+// ── MAP ──────────────────────────────────────────────────
+const map = L.map('map', { center:[37.73, 15.00], zoom:10, zoomControl:true, attributionControl:true });
 
 const TILES = {
-  topo:'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-  sat:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  dark:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+  topo: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+  sat:  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
 };
-let tileLayerMain = null;
-function setTile(n){
-  if(tileLayerMain) map.removeLayer(tileLayerMain);
-  tileLayerMain = L.tileLayer(TILES[n],{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+
+function setTile(n) {
+  if(tileLayer) map.removeLayer(tileLayer);
+  tileLayer = L.tileLayer(TILES[n], { maxZoom:18, attribution:'© OpenStreetMap' }).addTo(map);
   document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+n));
 }
-const map = L.map('map',{center:[37.78,15.00],zoom:10,zoomControl:true,attributionControl:true});
-const TILES = {
-  topo:'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-  sat:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  dark:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-};
-function setMeteoTile(n){
-  if(tileLayer) meteoMap.removeLayer(tileLayer);
-  tileLayer = L.tileLayer(TILES[n],{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(meteoMap);
-  document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+n));
-}
-// Layer visibility
-function toggleLayerVis(type) {
-  layerVis[type] = !layerVis[type];
-  document.getElementById('lyr-'+type).classList.toggle('active', layerVis[type]);
-  Object.values(markers[type]).forEach(m => layerVis[type] ? m.addTo(meteoMap) : meteoMap.removeLayer(m));
-}
-function updateLayerBtns() {
-  Object.keys(layerVis).forEach(t => {
-    const btn = document.getElementById('lyr-'+t);
-    if(btn) btn.classList.toggle('active', layerVis[t]);
-  });
+setTile('dark');
+
+L.marker([37.7510, 14.9934], {
+  icon: L.divIcon({ className:'', html:'<div class="em">🌋</div>', iconSize:[24,24], iconAnchor:[12,20] })
+}).addTo(map).bindPopup('<b style="color:#e8600a">🌋 Etna</b><br>3340 m s.l.m.');
+
+function toggleLyr(t) {
+  lyrVis[t] = !lyrVis[t];
+  document.getElementById('lyr-'+t).classList.toggle('active', lyrVis[t]);
+  Object.values(mkrs[t]).forEach(m => lyrVis[t] ? m.addTo(map) : map.removeLayer(m));
 }
 
-// ── LOAD DATA ─────────────────────────────────
+// ── LOAD DATA ────────────────────────────────────────────
 async function loadData() {
   try {
-    const r = await fetch('./data.json?v='+Date.now());
+    const r = await fetch('./data.json?v=' + Date.now());
     DB = await r.json();
     renderAll();
     renderMarkers();
   } catch(e) { console.error('Error loading data:', e); }
 }
 
-// ── RENDER ALL LISTS ──────────────────────────
+// ── RENDER ───────────────────────────────────────────────
 function renderAll() {
   renderSentieri();
   renderRifugi();
-  renderEmergenze();
+  renderSos();
 }
 
-// ── SENTIERI ──────────────────────────────────
-function toggleDiff(d) {
-  activeDiffs.has(d) ? activeDiffs.delete(d) : activeDiffs.add(d);
-  document.querySelector('.ftag.diff-'+d).classList.toggle('active', activeDiffs.has(d));
-  filterSentieri();
-}
-function filterSentieri() {
-  const q = document.getElementById('search-sentieri').value.toLowerCase();
-  const list = (DB.sentieri||[]).filter(t => {
-    if(!activeDiffs.has(t.difficolta)) return false;
-    if(q && !(t.nome.it+' '+t.nome.en+' '+t.descrizione.it).toLowerCase().includes(q)) return false;
-    return true;
-  });
-  renderSentieri(list);
-}
 function renderSentieri(list) {
   list = list || DB.sentieri || [];
   const c = document.getElementById('sentieri-list');
   c.innerHTML = '';
-  list.forEach((t,i) => {
+  list.forEach((t, i) => {
     const el = document.createElement('div');
-    el.className = 'trail-card' + (activeItem&&activeItem.id===t.id&&activeItem.type==='sentiero'?' active':'');
-    el.style.setProperty('--diff-color', diffColor(t.difficolta));
+    el.className = 'trail-card' + (activeItem&&activeItem.id===t.id&&activeItem.type==='s'?' active':'');
+    el.style.setProperty('--dc', diffColor(t.difficolta));
     el.style.animationDelay = (i*.04)+'s';
-    el.onclick = () => { setTab('sentieri'); selectItem('sentiero',t.id); showDetail('sentiero',t.id); };
+    el.onclick = () => { selectItem('s', t.id); showDetail('s', t.id); };
     el.innerHTML = `
-      <div class="tc-header">
+      <div class="tc-head">
         <div class="tc-name">${t.nome[lang]}</div>
         <div class="diff-badge diff-${t.difficolta}">${t.difficolta}</div>
       </div>
@@ -890,174 +638,150 @@ function renderSentieri(list) {
   });
 }
 
-// ── RIFUGI ────────────────────────────────────
-function filterRifugi() {
-  const q = document.getElementById('search-rifugi').value.toLowerCase();
-  const list = (DB.rifugi||[]).filter(r =>
-    !q || (r.nome+' '+r.zona+' '+(r.note||'')).toLowerCase().includes(q)
-  );
-  renderRifugi(list);
+function filterSentieri() {
+  const q = document.getElementById('s-sentieri').value.toLowerCase();
+  renderSentieri((DB.sentieri||[]).filter(t => {
+    if(!activeDiffs.has(t.difficolta)) return false;
+    if(q && !(t.nome.it+' '+t.nome.en+' '+t.descrizione.it).toLowerCase().includes(q)) return false;
+    return true;
+  }));
 }
+
+function toggleDiff(d) {
+  activeDiffs.has(d) ? activeDiffs.delete(d) : activeDiffs.add(d);
+  document.querySelector('.dtag.'+d).classList.toggle('active', activeDiffs.has(d));
+  filterSentieri();
+}
+
 function renderRifugi(list) {
   list = list || DB.rifugi || [];
   const c = document.getElementById('rifugi-list');
   c.innerHTML = '';
-  list.forEach((r,i) => {
+  list.forEach((r, i) => {
     const el = document.createElement('div');
-    el.className = 'rifugio-card' + (activeItem&&activeItem.id===r.id&&activeItem.type==='rifugio'?' active':'');
+    el.className = 'rifugio-card' + (activeItem&&activeItem.id===r.id&&activeItem.type==='r'?' active':'');
     el.style.animationDelay = (i*.03)+'s';
-    el.onclick = () => { selectItem('rifugio',r.id); showDetail('rifugio',r.id); };
-    const acBadge = r.accesso==='LIBERO' ? 'libero' : r.accesso.includes('OBBLIG') ? 'obblig' : 'prenota';
-    const acLabel = r.accesso==='LIBERO' ? '🟢 Libero' : r.accesso.includes('OBBLIG') ? '🔴 Obbl.' : '🟡 Cons.';
-    const stars = '★'.repeat(r.stelle)+'☆'.repeat(5-r.stelle);
+    el.onclick = () => { selectItem('r', r.id); showDetail('r', r.id); };
+    const ac = r.accesso==='LIBERO' ? 'libero' : r.accesso.includes('OBBLIG') ? 'obblig' : 'prenota';
+    const acl = r.accesso==='LIBERO' ? '🟢 Libero' : r.accesso.includes('OBBLIG') ? '🔴 Obbl.' : '🟡 Cons.';
     el.innerHTML = `
       <div class="rc-name">${r.nome}</div>
       <div class="rc-row">
-        <span class="stars">${stars}</span>
-        <span class="rc-badge ${acBadge}">${acLabel}</span>
+        <span class="stars">${'★'.repeat(r.stelle||1)}</span>
+        <span class="rc-badge ${ac}">${acl}</span>
         <span class="rc-stat">🏔 <span>${r.quota}m</span></span>
         <span class="rc-stat">📍 <span>${r.km_da_riposto}km</span></span>
-        ${r.camino ? '<span class="rc-stat">🔥 <span>Camino</span></span>' : ''}
+        ${r.camino?'<span class="rc-stat">🔥 <span>Camino</span></span>':''}
       </div>
       <div class="rc-note">${r.note||''}</div>`;
     c.appendChild(el);
   });
 }
 
+function filterRifugi() {
+  const q = document.getElementById('s-rifugi').value.toLowerCase();
+  renderRifugi((DB.rifugi||[]).filter(r =>
+    !q || (r.nome+' '+r.zona+' '+(r.note||'')).toLowerCase().includes(q)
+  ));
+}
 
-// ── EMERGENZE ─────────────────────────────────
-function renderEmergenze() {
+function renderSos() {
   const list = DB.emergenze || [];
-  const c = document.getElementById('emergency-panel');
-  c.innerHTML = `<div style="font-family:var(--font-mono);font-size:8px;letter-spacing:2px;color:var(--ash);text-transform:uppercase;padding:10px 12px 6px;">
-    ${lang==='it'?'CONTATTI DI EMERGENZA':'EMERGENCY CONTACTS'}</div>`;
+  const c = document.getElementById('sos-list');
+  c.innerHTML = `<div style="font-family:var(--font-m);font-size:8px;letter-spacing:2px;color:var(--ash);text-transform:uppercase;padding:10px 12px 6px">${lang==='it'?'CONTATTI DI EMERGENZA':'EMERGENCY CONTACTS'}</div>`;
   list.forEach(e => {
     const el = document.createElement('div');
-    el.className = 'emerg-card ' + (e.h24 ? 'h24' : 'non-h24');
+    el.className = 'emerg-card ' + (e.h24 ? 'h24' : 'noh24');
     el.innerHTML = `
       <div class="emerg-name">${e.nome}</div>
       <div class="emerg-number"><a href="tel:${e.numero.replace(/\s/g,'')}">${e.numero}</a></div>
       <div class="emerg-badges">
         <span class="emerg-badge" style="background:rgba(74,158,92,.2);color:var(--green-trail);border:1px solid rgba(74,158,92,.3)">${e.h24?'✓ 24/7':'uffici'}</span>
-        ${e.whatsapp ? '<span class="emerg-badge" style="background:rgba(37,211,102,.15);color:#25d366;border:1px solid rgba(37,211,102,.3)">WhatsApp</span>' : ''}
+        ${e.whatsapp?'<span class="emerg-badge" style="background:rgba(37,211,102,.15);color:#25d366;border:1px solid rgba(37,211,102,.3)">WhatsApp</span>':''}
       </div>
-      <div class="emerg-note">${e.note}</div>`;
+      <div class="emerg-note">${e.note||''}</div>`;
     c.appendChild(el);
   });
 }
 
-// ── MARKERS ───────────────────────────────────
+// ── MARKERS ──────────────────────────────────────────────
 function renderMarkers() {
-  // Sentieri
   (DB.sentieri||[]).forEach(t => {
-    const m = L.marker([t.lat,t.lng],{icon:L.divIcon({className:'',
-      html:`<div class="trail-marker ${t.difficolta}" id="mk-s-${t.id}"></div>`,
-      iconSize:[13,13],iconAnchor:[6.5,6.5]})}).addTo(meteoMap);
+    const m = L.marker([t.lat, t.lng], {
+      icon: L.divIcon({ className:'', html:`<div class="tm ${t.difficolta}" id="mk-s-${t.id}"></div>`, iconSize:[13,13], iconAnchor:[6.5,6.5] })
+    }).addTo(map);
     m.bindPopup(`<b style="color:var(--gold)">${t.nome[lang]}</b><br>${t.difficolta} · ${t.distanza_km}km`);
-    m.on('click',()=>{setTab('sentieri');selectItem('sentiero',t.id);showDetail('sentiero',t.id);});
-    markers.sentieri[t.id] = m;
+    m.on('click', () => { setTab('sentieri'); selectItem('s', t.id); showDetail('s', t.id); });
+    mkrs.s[t.id] = m;
   });
-  // Rifugi
   (DB.rifugi||[]).forEach(r => {
-    const m = L.marker([r.lat,r.lng],{icon:L.divIcon({className:'',
-      html:`<div class="rifugio-marker" id="mk-r-${r.id}">🏠</div>`,
-      iconSize:[16,16],iconAnchor:[8,8]})}).addTo(meteoMap);
-    m.bindPopup(`<b style="color:var(--gold)">${r.nome}</b><br>${r.quota}m · ${r.accesso}`);
-    m.on('click',()=>{setTab('rifugi');selectItem('rifugio',r.id);showDetail('rifugio',r.id);});
-    markers.rifugi[r.id] = m;
+    const m = L.marker([r.lat, r.lng], {
+      icon: L.divIcon({ className:'', html:`<div class="rm" id="mk-r-${r.id}">🏠</div>`, iconSize:[16,16], iconAnchor:[8,8] })
+    }).addTo(map);
+    m.bindPopup(`<b style="color:var(--gold)">${r.nome}</b><br>${r.quota}m`);
+    m.on('click', () => { setTab('rifugi'); selectItem('r', r.id); showDetail('r', r.id); });
+    mkrs.r[r.id] = m;
   });
-
 }
 
-// ── SELECT / DESELECT ─────────────────────────
 function selectItem(type, id) {
-  activeItem = {type, id};
-  // deselect all
-  document.querySelectorAll('.trail-marker,.rifugio-marker,.macro-marker').forEach(el=>el.classList.remove('selected'));
-  const prefix = type==='sentiero'?'s':'r';
-  const el = document.querySelector(`#mk-${prefix}-${id}`);
-  if(el) el.classList.add('selected');
+  activeItem = { type, id };
+  document.querySelectorAll('.tm,.rm').forEach(el => el.classList.remove('sel'));
+  const el = document.querySelector('#mk-' + type + '-' + id);
+  if(el) el.classList.add('sel');
 }
 
-// ── SHOW DETAIL ───────────────────────────────
+// ── DETAIL PANEL ─────────────────────────────────────────
 function showDetail(type, id) {
-  const panel = document.getElementById('detail-panel');
-  let item, title, zone, desc='', stats='', poi='', stagioni='', extra='', showGpx=false;
-  let lat, lng, phone=null, foto=null, gpxFile=null;
+  let item, title='', zone='', desc='', stats='', poi='', stagioni='', extra='';
+  let lat, lng, phone=null, foto=null, gpxFile=null, showGpx=false;
 
-  if(type==='sentiero') {
-    item = (DB.sentieri||[]).find(x=>x.id===id);
+  if(type==='s') {
+    item = (DB.sentieri||[]).find(x => x.id===id);
     if(!item) return;
     title = item.nome[lang];
     zone = (lang==='it'?'ZONA: ':'AREA: ') + item.zona.toUpperCase();
     desc = item.descrizione[lang];
-    lat=item.lat; lng=item.lng; foto=item.foto; gpxFile=item.gpx;
-    showGpx=true;
+    lat=item.lat; lng=item.lng; foto=item.foto; gpxFile=item.gpx; showGpx=true;
     const sl = lang==='it'?['DISTANZA','DURATA','DISLIVELLO','QUOTA MAX','QUOTA MIN']:['DISTANCE','DURATION','ELEVATION','MAX ALT','MIN ALT'];
     const sv = [[item.distanza_km,'km'],[item.durata_ore,'h'],[item.dislivello,'m'],[item.quota_max,'m'],[item.quota_min,'m']];
-    stats = sv.map((v,i)=>`<div class="dstat"><div class="dstat-lbl">${sl[i]}</div><div class="dstat-val">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
+    stats = sv.map((v,i) => `<div class="dstat"><div class="dstat-lbl">${sl[i]}</div><div class="dstat-val">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
     if(item.punti_interesse&&item.punti_interesse.length)
-      poi=`<h4>${lang==='it'?'PUNTI DI INTERESSE':'POINTS OF INTEREST'}</h4>`+item.punti_interesse.map(p=>`<div class="poi-item"><span class="poi-quota">▲${p.quota}m</span><span>${p.nome[lang]}</span></div>`).join('');
-    const mesi=lang==='it'?MESI_IT:MESI_EN;
-    stagioni=`<h4>${lang==='it'?'PERIODO CONSIGLIATO':'BEST SEASON'}</h4><div class="mesi-grid">${mesi.map((m,i)=>`<div class="mese ${item.stagione&&item.stagione.includes(MESI_IT[i])?'ok':''}">${m.toUpperCase()}</div>`).join('')}</div>`;
-
-  } else if(type==='rifugio') {
-    item = (DB.rifugi||[]).find(x=>x.id===id);
+      poi = `<h4>${lang==='it'?'PUNTI DI INTERESSE':'POINTS OF INTEREST'}</h4>` +
+        item.punti_interesse.map(p => `<div class="poi-item"><span class="poi-quota">▲${p.quota}m</span><span>${p.nome[lang]}</span></div>`).join('');
+    const mesi = lang==='it'?MESI_IT:MESI_EN;
+    stagioni = `<h4>${lang==='it'?'PERIODO CONSIGLIATO':'BEST SEASON'}</h4><div class="mesi-grid">` +
+      mesi.map((m,i) => `<div class="mese ${item.stagione&&item.stagione.includes(MESI_IT[i])?'ok':''}">${m.toUpperCase()}</div>`).join('') + '</div>';
+  } else if(type==='r') {
+    item = (DB.rifugi||[]).find(x => x.id===id);
     if(!item) return;
     title = item.nome;
-    zone = item.zona.toUpperCase() + ' · ' + '★'.repeat(item.stelle);
+    zone = item.zona.toUpperCase();
     lat=item.lat; lng=item.lng; phone=item.telefono; foto=item.foto;
+    desc = item.note || '';
     const rl = lang==='it'?['QUOTA','KM DA RIPOSTO','COSTO','ACCESSO']:['ELEVATION','KM FROM RIPOSTO','COST','ACCESS'];
     const rv = [[item.quota,'m'],[item.km_da_riposto,'km'],[item.costo,''],[item.accesso,'']];
-    stats = rv.map((v,i)=>`<div class="dstat"><div class="dstat-lbl">${rl[i]}</div><div class="dstat-val" style="font-size:${i>=2?'10':'15'}px">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
-    desc = item.note||'';
+    stats = rv.map((v,i) => `<div class="dstat"><div class="dstat-lbl">${rl[i]}</div><div class="dstat-val" style="font-size:${i>=2?'10':'15'}px">${v[0]||''}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
     extra = `<h4>${lang==='it'?'DETTAGLI':'DETAILS'}</h4>
-      <div class="extra-row"><span class="extra-lbl">Tipo</span><span class="extra-val">${item.tipo}</span></div>
-      <div class="extra-row"><span class="extra-lbl">${lang==='it'?'Camino':'Fireplace'}</span><span class="extra-val">${item.camino?(lang==='it'?'🔥 Sì':'🔥 Yes'):(lang==='it'?'No':'No')}</span></div>
-      <div class="extra-row"><span class="extra-lbl">Tel.</span><span class="extra-val">${item.telefono}</span></div>`;
-
-  } else if(type==='macro') {
-    item = (DB.sentieri_macro||[]).find(x=>x.id===id);
-    if(!item) return;
-    title = item.nome[lang]||item.nome.it;
-    zone = item.difficolta.toUpperCase() + ' · ' + item.quota + 'm';
-    lat=item.lat; lng=item.lng; foto=item.foto;
-    const ml = lang==='it'?['DURATA','QUOTA','DIFFICOLTÀ','BASE']:['DURATION','ELEVATION','DIFFICULTY','BASE'];
-    const mv = [[item.durata_h,'h'],[item.quota,'m'],[item.difficolta,''],[item.base,'']];
-    stats = mv.map((v,i)=>`<div class="dstat"><div class="dstat-lbl">${ml[i]}</div><div class="dstat-val" style="font-size:${i>=2?'10':'15'}px">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
-    desc = item.flora_fauna;
-    extra = `<h4>${lang==='it'?'NOTE FOTOGRAFICHE':'PHOTO NOTES'}</h4>
-      <div class="extra-row"><span class="extra-lbl">Info</span><span class="extra-val">${item.note||''}</span></div>
-      <div class="extra-row"><span class="extra-lbl">${lang==='it'?'Asciug.':'Dry time'}</span><span class="extra-val">${item.asciugatura}</span></div>
-      <div class="extra-row"><span class="extra-lbl">Accesso</span><span class="extra-val">${item.accesso}</span></div>`;
-
-  } else if(type==='planning') {
-    item = (DB.planning||[]).find(x=>x.id===id);
-    if(!item) return;
-    title = item.scenario;
-    zone = (lang==='it'?'PARTENZA: ':'DEPARTURE: ') + item.partenza;
-    const pl = lang==='it'?['DURATA','KM','RITORNO','RIFUGIO']:['DURATION','KM','RETURN','REFUGE'];
-    const pv = [[item.durata,''],[item.km,'km'],[item.ritorno,''],[item.rifugio_base,'']];
-    stats = pv.map((v,i)=>`<div class="dstat"><div class="dstat-lbl">${pl[i]}</div><div class="dstat-val" style="font-size:10px">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
-    desc = item.rifocilli;
-    extra = `<h4>${lang==='it'?'DETTAGLI USCITA':'OUTING DETAILS'}</h4>
-      <div class="extra-row"><span class="extra-lbl">📷 Equip.</span><span class="extra-val">${item.equipaggiamento}</span></div>
-      <div class="extra-row"><span class="extra-lbl">🍽 ${lang==='it'?'Pranzo':'Lunch'}</span><span class="extra-val">${item.pranzo_bivacco}</span></div>`;
+      <div class="extra-row"><span class="extra-lbl">Tipo</span><span class="extra-val">${item.tipo||''}</span></div>
+      <div class="extra-row"><span class="extra-lbl">${lang==='it'?'Camino':'Fireplace'}</span><span class="extra-val">${item.camino?'🔥 Sì':'No'}</span></div>
+      ${item.posti_letto?`<div class="extra-row"><span class="extra-lbl">${lang==='it'?'Posti':'Beds'}</span><span class="extra-val">${item.posti_letto}</span></div>`:''}
+      ${item.servizi?`<div class="extra-row"><span class="extra-lbl">Servizi</span><span class="extra-val">${item.servizi}</span></div>`:''}`;
   }
 
   if(!item) return;
 
   // Photo
-  const photoEl = document.getElementById('detail-photo');
-  const oldImg = photoEl.querySelector('img');
+  const ph = document.getElementById('detail-photo');
+  const oldImg = ph.querySelector('img');
   if(oldImg) oldImg.remove();
-  document.getElementById('detail-photo-placeholder').style.display = 'flex';
+  document.getElementById('detail-photo-ph').style.display = 'flex';
   if(foto) {
     const img = document.createElement('img');
     img.src = foto; img.alt = title;
-    img.onerror = () => { img.remove(); document.getElementById('detail-photo-placeholder').style.display='flex'; };
-    document.getElementById('detail-photo-placeholder').style.display = 'none';
-    photoEl.insertBefore(img, photoEl.firstChild);
+    img.onerror = () => { img.remove(); document.getElementById('detail-photo-ph').style.display='flex'; };
+    document.getElementById('detail-photo-ph').style.display = 'none';
+    ph.insertBefore(img, ph.firstChild);
   }
 
   document.getElementById('detail-name').textContent = title;
@@ -1067,52 +791,46 @@ function showDetail(type, id) {
   document.getElementById('detail-poi').innerHTML = poi;
   document.getElementById('detail-stagioni').innerHTML = stagioni;
   document.getElementById('detail-extra').innerHTML = extra;
-  document.getElementById('gpx-controls').style.display = showGpx ? 'block' : 'none';
+  document.getElementById('gpx-ctrl').style.display = showGpx ? 'block' : 'none';
 
-  // Action buttons
-  const actions = document.getElementById('detail-actions');
-  actions.innerHTML = '';
+  // Actions
+  const act = document.getElementById('detail-actions');
+  act.innerHTML = '';
   if(lat && lng) {
-    const mapsBtn = document.createElement('a');
-    mapsBtn.className = 'action-btn maps';
-    const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-    mapsBtn.href = isMobile
-      ? `geo:${lat},${lng}?q=${lat},${lng}(${encodeURIComponent(title)})`
-      : `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-    mapsBtn.target = '_blank'; mapsBtn.rel = 'noopener';
-    mapsBtn.innerHTML = `🗺 ${lang==='it'?'Apri nella mappa':'Open in maps'}`;
-    actions.appendChild(mapsBtn);
+    const isMob = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    const a = document.createElement('a');
+    a.className = 'action-btn maps';
+    a.href = isMob ? `geo:${lat},${lng}?q=${lat},${lng}(${encodeURIComponent(title)})` : `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+    a.target = '_blank'; a.rel = 'noopener';
+    a.innerHTML = `🗺 ${lang==='it'?'Apri nella mappa':'Open in maps'}`;
+    act.appendChild(a);
   }
   if(gpxFile) {
-    const gpxBtn = document.createElement('button');
-    gpxBtn.className = 'action-btn gpx-dl';
-    gpxBtn.innerHTML = `⬇ ${lang==='it'?'Scarica GPX':'Download GPX'}`;
-    gpxBtn.onclick = () => downloadGpxFile(gpxFile, title);
-    actions.appendChild(gpxBtn);
+    const b = document.createElement('button');
+    b.className = 'action-btn gpx-dl';
+    b.innerHTML = `⬇ ${lang==='it'?'Scarica GPX':'Download GPX'}`;
+    b.onclick = () => downloadGpx(gpxFile, title);
+    act.appendChild(b);
   }
   if(phone) {
-    const callBtn = document.createElement('a');
-    callBtn.className = 'action-btn call';
-    callBtn.href = 'tel:'+phone.replace(/\s/g,'');
-    callBtn.innerHTML = `📞 ${phone}`;
-    actions.appendChild(callBtn);
+    const a = document.createElement('a');
+    a.className = 'action-btn call';
+    a.href = 'tel:' + phone.replace(/\s/g,'');
+    a.innerHTML = `📞 ${phone}`;
+    act.appendChild(a);
   }
 
-  panel.classList.add('open');
-  if(lat && lng) meteoMap.setView([lat, lng], 13);
+  document.getElementById('detail-panel').classList.add('open');
+  if(lat && lng) map.setView([lat, lng], 13);
 
-  // Auto-load GPX
   if(gpxFile && showGpx) {
-    if(gpxCache[id]) { processGpx(gpxCache[id], title); }
-    else {
-      fetch(gpxFile).then(r=>r.text()).then(xml=>{gpxCache[id]=xml;processGpx(xml,title);}).catch(()=>{});
-    }
-  } else if(!gpxFile && showGpx) { clearGpx(); }
+    if(gpxCache[id]) processGpx(gpxCache[id], title);
+    else fetch(gpxFile).then(r=>r.text()).then(xml=>{gpxCache[id]=xml;processGpx(xml,title);}).catch(()=>{});
+  } else if(showGpx) { clearGpx(); }
 
-  // Scroll card
   setTimeout(() => {
     const cards = document.querySelectorAll('.trail-card');
-    if(type==='sentiero') {
+    if(type==='s') {
       const idx = (DB.sentieri||[]).findIndex(x=>x.id===id);
       if(cards[idx]) cards[idx].scrollIntoView({behavior:'smooth',block:'nearest'});
     }
@@ -1122,52 +840,22 @@ function showDetail(type, id) {
 function closeDetail() {
   document.getElementById('detail-panel').classList.remove('open');
   activeItem = null;
-  document.querySelectorAll('.trail-marker,.rifugio-marker,.macro-marker').forEach(el=>el.classList.remove('selected'));
+  document.querySelectorAll('.tm,.rm').forEach(el => el.classList.remove('sel'));
 }
 
-// ── MODAL ─────────────────────────────────────
-function openModal() {
-  document.getElementById('modal-overlay').classList.add('open');
-  document.getElementById('submit-form').style.display='block';
-  document.getElementById('submit-success').style.display='none';
-}
-function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
-document.getElementById('modal-overlay').addEventListener('click', e => {
-  if(e.target===document.getElementById('modal-overlay')) closeModal();
-});
-
-// ── SUBMIT ────────────────────────────────────
-async function submitTrail() {
-  const nome = document.getElementById('f-nome').value.trim();
-  const diff = document.getElementById('f-diff').value;
-  const desc = document.getElementById('f-desc').value.trim();
-  if(!nome||!diff||!desc){alert(lang==='it'?'Compila Nome, Difficoltà e Descrizione.':'Fill Name, Difficulty and Description.');return;}
-  document.getElementById('btn-submit').disabled=true;
-  const body=`## 🌋 Proposta Sentiero\n**Nome:** ${nome}\n**Difficoltà:** ${diff}\n**Zona:** ${document.getElementById('f-zona').value||'—'}\n**Km:** ${document.getElementById('f-km').value||'—'}\n**Ore:** ${document.getElementById('f-ore').value||'—'}\n**Quota min:** ${document.getElementById('f-qmin').value||'—'}m\n**Quota max:** ${document.getElementById('f-qmax').value||'—'}m\n**GPX:** ${document.getElementById('f-gpx').value||'—'}\n**Autore:** ${document.getElementById('f-autore').value||'Anonimo'}\n\n### Descrizione\n${desc}\n\n---\n*Etna Trails App · fotolapissable.it*`;
-  try {
-    await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues`,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({title:`🥾 Nuovo sentiero: ${nome}`,body,labels:['nuovo-sentiero']})});
-  } catch(e) {
-    window.open(`https://github.com/${GITHUB_REPO}/issues/new?title=${encodeURIComponent('🥾 '+nome)}&body=${encodeURIComponent(body)}`,'_blank');
-  }
-  document.getElementById('submit-form').style.display='none';
-  document.getElementById('submit-success').style.display='block';
-  document.getElementById('success-msg').innerHTML=lang==='it'?`Proposta per <strong>${nome}</strong> inviata! Sarà revisionata da fotolapissable.`:`Proposal for <strong>${nome}</strong> sent! fotolapissable will review it.`;
-  document.getElementById('btn-submit').disabled=false;
-}
-
-// ── GPX ENGINE ────────────────────────────────
+// ── GPX ──────────────────────────────────────────────────
 function parseGpx(xml) {
-  const doc = new DOMParser().parseFromString(xml,'application/xml');
+  const doc = new DOMParser().parseFromString(xml, 'application/xml');
   if(doc.querySelector('parsererror')) throw new Error('GPX non valido');
   const pts = doc.querySelectorAll('trkpt,rtept,wpt');
-  if(!pts.length) throw new Error('Nessun punto nel GPX');
-  let totalDist=0, prev=null, points=[];
+  if(!pts.length) throw new Error('Nessun punto');
+  let dist=0, prev=null, points=[];
   pts.forEach(pt => {
     const lat=parseFloat(pt.getAttribute('lat')), lng=parseFloat(pt.getAttribute('lon'));
     const eleEl=pt.querySelector('ele'); const ele=eleEl?parseFloat(eleEl.textContent):null;
     if(isNaN(lat)||isNaN(lng)) return;
-    if(prev) totalDist += haversineKm(prev.lat,prev.lng,lat,lng);
-    points.push({lat,lng,ele,dist:totalDist}); prev={lat,lng};
+    if(prev) dist += haversineKm(prev.lat,prev.lng,lat,lng);
+    points.push({lat,lng,ele,dist}); prev={lat,lng};
   });
   return points;
 }
@@ -1183,133 +871,154 @@ function loadGpxFile(e){
   r.readAsText(f); e.target.value='';
 }
 async function loadGpxUrl(){
-  const url=document.getElementById('gpx-url-input').value.trim(); if(!url) return;
-  const btn=document.getElementById('gpx-url-btn'); btn.textContent='⏳'; btn.disabled=true;
+  const url=document.getElementById('gpx-url').value.trim(); if(!url) return;
+  const btn=document.getElementById('gpx-url-load'); btn.textContent='⏳'; btn.disabled=true;
   try{
     let text;
-    try{const r=await fetch(url);if(!r.ok) throw new Error();text=await r.text();}
+    try{const r=await fetch(url);if(!r.ok)throw new Error();text=await r.text();}
     catch{const r2=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(url));text=await r2.text();}
-    processGpx(text,url.split('/').pop().replace('.gpx',''));
-    document.getElementById('gpx-url-input').value='';
+    processGpx(text, url.split('/').pop().replace('.gpx',''));
+    document.getElementById('gpx-url').value='';
   }catch{alert(lang==='it'?'Impossibile caricare il GPX.':'Cannot load GPX.');}
   btn.textContent=lang==='it'?'↓ Carica':'↓ Load'; btn.disabled=false;
 }
-function processGpx(xml,name){
+function processGpx(xml, name){
   const pts=parseGpx(xml); if(!pts.length) return;
-  gpxPoints=pts;
-  if(gpxLayer){meteoMap.removeLayer(gpxLayer);gpxLayer=null;}
-  if(gpxMarker){meteoMap.removeLayer(gpxMarker);gpxMarker=null;}
-  const color=activeItem&&activeItem.type==='sentiero'?diffColor((DB.sentieri||[]).find(t=>t.id===activeItem.id)?.difficolta||'E'):'#e8600a';
-  const c=color.replace('var(--green-trail)','#4a9e5c').replace('var(--blue-trail)','#3a7fbf').replace('var(--red-trail)','#bf3a3a');
-  gpxLayer=L.polyline(pts.map(p=>[p.lat,p.lng]),{color:c,weight:3.5,opacity:.9,lineJoin:'round'}).addTo(meteoMap);
-  gpxMarker=L.marker([pts[0].lat,pts[0].lng],{icon:L.divIcon({className:'',html:'<div style="width:10px;height:10px;border-radius:50%;background:#e8600a;border:2px solid #fff;box-shadow:0 0 6px rgba(232,96,10,.8)"></div>',iconSize:[10,10],iconAnchor:[5,5]})}).addTo(meteoMap);
-  meteoMap.fitBounds(gpxLayer.getBounds(),{padding:[30,30]});
-  document.getElementById('gpx-clear-btn').style.display='flex';
+  gpxPts=pts;
+  if(gpxLayer){map.removeLayer(gpxLayer);gpxLayer=null;}
+  if(gpxMark){map.removeLayer(gpxMark);gpxMark=null;}
+  const t=activeItem&&activeItem.type==='s'?(DB.sentieri||[]).find(x=>x.id===activeItem.id):null;
+  const col = t ? diffColor(t.difficolta).replace('var(--green-trail)','#4a9e5c').replace('var(--blue-trail)','#3a7fbf').replace('var(--red-trail)','#bf3a3a') : '#e8600a';
+  gpxLayer=L.polyline(pts.map(p=>[p.lat,p.lng]),{color:col,weight:3.5,opacity:.9,lineJoin:'round'}).addTo(map);
+  gpxMark=L.marker([pts[0].lat,pts[0].lng],{icon:L.divIcon({className:'',html:'<div style="width:10px;height:10px;border-radius:50%;background:#e8600a;border:2px solid #fff;box-shadow:0 0 6px rgba(232,96,10,.8)"></div>',iconSize:[10,10],iconAnchor:[5,5]})}).addTo(map);
+  map.fitBounds(gpxLayer.getBounds(),{padding:[30,30]});
+  document.getElementById('gpx-clear').style.display='flex';
   const withEle=pts.filter(p=>p.ele!==null);
-  if(withEle.length>1) openElevation(withEle,name);
+  if(withEle.length>1) openElev(withEle,name);
 }
 function clearGpx(){
-  if(gpxLayer){meteoMap.removeLayer(gpxLayer);gpxLayer=null;}
-  if(gpxMarker){meteoMap.removeLayer(gpxMarker);gpxMarker=null;}
-  gpxPoints=[];
-  document.getElementById('gpx-clear-btn').style.display='none';
-  closeElevation();
+  if(gpxLayer){map.removeLayer(gpxLayer);gpxLayer=null;}
+  if(gpxMark){map.removeLayer(gpxMark);gpxMark=null;}
+  gpxPts=[];
+  document.getElementById('gpx-clear').style.display='none';
+  closeElev();
 }
-function downloadGpxFile(url,name){
-  if(gpxCache[activeItem?.id]){
-    const b=new Blob([gpxCache[activeItem.id]],{type:'application/gpx+xml'});
-    const a=document.createElement('a'); a.href=URL.createObjectURL(b);
-    a.download=(name||'traccia').replace(/[^a-zA-Z0-9]/g,'-')+'.gpx'; a.click();
-  } else {
-    fetch(url).then(r=>r.blob()).then(b=>{
-      const a=document.createElement('a'); a.href=URL.createObjectURL(b);
-      a.download=(name||'traccia').replace(/[^a-zA-Z0-9]/g,'-')+'.gpx'; a.click();
-    }).catch(()=>window.open(url,'_blank'));
-  }
+function downloadGpx(url,name){
+  const id=activeItem&&activeItem.id;
+  const data=id&&gpxCache[id]?gpxCache[id]:null;
+  if(data){
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/gpx+xml'}));
+    a.download=(name||'traccia').replace(/[^a-zA-Z0-9]/g,'-')+'.gpx';a.click();
+  } else { window.open(url,'_blank'); }
 }
 
-// ── ELEVATION PROFILE ─────────────────────────
-function openElevation(pts,name){
-  const bar=document.getElementById('gpx-bar'); bar.classList.add('open');
+// ── ELEVATION ────────────────────────────────────────────
+function openElev(pts,name){
+  document.getElementById('elev-bar').classList.add('open');
   const eles=pts.map(p=>p.ele); let gain=0,loss=0;
   for(let i=1;i<eles.length;i++){const d=eles[i]-eles[i-1];if(d>0)gain+=d;else loss+=Math.abs(d);}
-  document.getElementById('gpx-bar-stats').innerHTML=`
-    <div class="gpx-stat">📏<span>${pts[pts.length-1].dist.toFixed(1)}km</span></div>
-    <div class="gpx-stat">⬆<span>+${Math.round(gain)}m</span></div>
-    <div class="gpx-stat">⬇<span>-${Math.round(loss)}m</span></div>
-    <div class="gpx-stat">▲<span>${Math.round(Math.max(...eles))}m</span></div>`;
-  requestAnimationFrame(()=>drawElevChart(pts));
+  document.getElementById('elev-stats').innerHTML=`
+    <div class="elev-stat">📏<span>${pts[pts.length-1].dist.toFixed(1)}km</span></div>
+    <div class="elev-stat">⬆<span>+${Math.round(gain)}m</span></div>
+    <div class="elev-stat">⬇<span>-${Math.round(loss)}m</span></div>
+    <div class="elev-stat">▲<span>${Math.round(Math.max(...eles))}m</span></div>`;
+  requestAnimationFrame(()=>drawElev(pts));
 }
-function closeElevation(){document.getElementById('gpx-bar').classList.remove('open');}
-function drawElevChart(pts){
-  const cv=document.getElementById('elevation-canvas'),ctx=cv.getContext('2d');
+function closeElev(){document.getElementById('elev-bar').classList.remove('open');}
+function drawElev(pts){
+  const cv=document.getElementById('elev-canvas'),ctx=cv.getContext('2d');
   const W=cv.offsetWidth,H=cv.offsetHeight; cv.width=W; cv.height=H;
-  const p={t:6,r:10,b:18,l:38}; const cW=W-p.l-p.r,cH=H-p.t-p.b;
+  const p={t:6,r:10,b:18,l:38},cW=W-p.l-p.r,cH=H-p.t-p.b;
   const eles=pts.map(p=>p.ele),dists=pts.map(p=>p.dist);
   const eMin=Math.min(...eles)-30,eMax=Math.max(...eles)+30,dMax=dists[dists.length-1];
   const xS=d=>p.l+(d/dMax)*cW, yS=e=>p.t+cH-((e-eMin)/(eMax-eMin))*cH;
   const g=ctx.createLinearGradient(0,p.t,0,p.t+cH);
-  g.addColorStop(0,'rgba(232,96,10,.35)'); g.addColorStop(1,'rgba(232,96,10,.03)');
-  ctx.beginPath(); ctx.moveTo(xS(dists[0]),yS(eles[0]));
+  g.addColorStop(0,'rgba(232,96,10,.35)');g.addColorStop(1,'rgba(232,96,10,.03)');
+  ctx.beginPath();ctx.moveTo(xS(dists[0]),yS(eles[0]));
   pts.forEach(pt=>ctx.lineTo(xS(pt.dist),yS(pt.ele)));
-  ctx.lineTo(xS(dists[dists.length-1]),p.t+cH); ctx.lineTo(xS(dists[0]),p.t+cH);
-  ctx.closePath(); ctx.fillStyle=g; ctx.fill();
-  ctx.beginPath(); ctx.moveTo(xS(dists[0]),yS(eles[0]));
+  ctx.lineTo(xS(dists[dists.length-1]),p.t+cH);ctx.lineTo(xS(dists[0]),p.t+cH);
+  ctx.closePath();ctx.fillStyle=g;ctx.fill();
+  ctx.beginPath();ctx.moveTo(xS(dists[0]),yS(eles[0]));
   pts.forEach(pt=>ctx.lineTo(xS(pt.dist),yS(pt.ele)));
-  ctx.strokeStyle='#e8600a'; ctx.lineWidth=1.8; ctx.lineJoin='round'; ctx.stroke();
-  ctx.strokeStyle='rgba(201,168,76,.12)'; ctx.lineWidth=1;
+  ctx.strokeStyle='#e8600a';ctx.lineWidth=1.8;ctx.lineJoin='round';ctx.stroke();
+  ctx.strokeStyle='rgba(201,168,76,.12)';ctx.lineWidth=1;
   for(let i=0;i<=4;i++){
     const e=eMin+(eMax-eMin)*(i/4),y=yS(e);
     ctx.beginPath();ctx.moveTo(p.l,y);ctx.lineTo(p.l+cW,y);ctx.stroke();
-    ctx.fillStyle='rgba(191,168,76,.7)';ctx.font=`9px 'Share Tech Mono'`;ctx.textAlign='right';
-    ctx.fillText(Math.round(e)+'m',p.l-3,y+3);
+    ctx.fillStyle='rgba(191,168,76,.7)';ctx.font="9px 'Share Tech Mono'";
+    ctx.textAlign='right';ctx.fillText(Math.round(e)+'m',p.l-3,y+3);
   }
   const kmStep=dMax>20?5:dMax>10?2:1;
   for(let km=0;km<=dMax;km+=kmStep){
     const x=xS(km);
     ctx.strokeStyle='rgba(201,168,76,.12)';ctx.beginPath();ctx.moveTo(x,p.t);ctx.lineTo(x,p.t+cH);ctx.stroke();
-    ctx.fillStyle='rgba(191,168,76,.6)';ctx.font=`8px 'Share Tech Mono'`;ctx.textAlign='center';
-    ctx.fillText(km+'km',x,p.t+cH+12);
+    ctx.fillStyle='rgba(191,168,76,.6)';ctx.font="8px 'Share Tech Mono'";
+    ctx.textAlign='center';ctx.fillText(km+'km',x,p.t+cH+12);
   }
   cv._pts=pts;cv._p=p;cv._cW=cW;cv._cH=cH;cv._eMin=eMin;cv._eMax=eMax;cv._dMax=dMax;
   cv.onmousemove=e=>hoverElev(e,cv);
-  cv.onmouseleave=()=>{document.getElementById('elev-tooltip').style.display='none';};
+  cv.onmouseleave=()=>{document.getElementById('elev-tip').style.display='none';};
 }
 function hoverElev(e,cv){
   const r=cv.getBoundingClientRect(),mx=e.clientX-r.left;
   const p=cv._p; if(mx<p.l||mx>p.l+cv._cW) return;
-  const frac=(mx-p.l)/cv._cW,dist=frac*cv._dMax;
+  const dist=(mx-p.l)/cv._cW*cv._dMax;
   let near=cv._pts[0],minD=Infinity;
   cv._pts.forEach(pt=>{const d=Math.abs(pt.dist-dist);if(d<minD){minD=d;near=pt;}});
-  if(gpxMarker) gpxMarker.setLatLng([near.lat,near.lng]);
-  const tt=document.getElementById('elev-tooltip');
+  if(gpxMark) gpxMark.setLatLng([near.lat,near.lng]);
+  const tt=document.getElementById('elev-tip');
   tt.style.display='block';tt.style.left=(e.clientX+10)+'px';tt.style.top=(e.clientY-28)+'px';
   tt.textContent=`${near.dist.toFixed(2)}km · ${Math.round(near.ele)}m`;
 }
 
-// ── HELPERS ───────────────────────────────────
+// ── MODAL ────────────────────────────────────────────────
+function openModal(){document.getElementById('modal-overlay').classList.add('open');document.getElementById('submit-form').style.display='block';document.getElementById('submit-ok').style.display='none';}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
+document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))closeModal();});
+
+async function submitTrail(){
+  const nome=document.getElementById('f-nome').value.trim();
+  const diff=document.getElementById('f-diff').value;
+  const desc=document.getElementById('f-desc').value.trim();
+  if(!nome||!diff||!desc){alert(lang==='it'?'Compila Nome, Difficoltà e Descrizione.':'Fill Name, Difficulty and Description.');return;}
+  document.getElementById('btn-submit').disabled=true;
+  const body=`## 🌋 Proposta Sentiero\n**Nome:** ${nome}\n**Difficoltà:** ${diff}\n**Zona:** ${document.getElementById('f-zona').value||'—'}\n**Km:** ${document.getElementById('f-km').value||'—'}\n**Ore:** ${document.getElementById('f-ore').value||'—'}\n**GPX:** ${document.getElementById('f-gpx').value||'—'}\n**Autore:** ${document.getElementById('f-autore').value||'Anonimo'}\n\n### Descrizione\n${desc}\n\n---\n*Etna Trails · fotolapissable.it*`;
+  try{await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues`,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/vnd.github+json'},body:JSON.stringify({title:`🥾 Nuovo sentiero: ${nome}`,body,labels:['nuovo-sentiero']})});}
+  catch{window.open(`https://github.com/${GITHUB_REPO}/issues/new?title=${encodeURIComponent('🥾 '+nome)}&body=${encodeURIComponent(body)}`,'_blank');}
+  document.getElementById('submit-form').style.display='none';
+  document.getElementById('submit-ok').style.display='block';
+  document.getElementById('submit-ok-msg').innerHTML=lang==='it'?`Proposta per <strong>${nome}</strong> inviata!`:`Proposal for <strong>${nome}</strong> sent!`;
+  document.getElementById('btn-submit').disabled=false;
+}
+
+// ── HELPERS ──────────────────────────────────────────────
 function diffColor(d){return d==='T'?'var(--green-trail)':d==='E'?'var(--blue-trail)':'var(--red-trail)';}
 
+// ── MAP SIZE FIX ─────────────────────────────────────────
+function fixMap(){map.invalidateSize();}
+window.addEventListener('load',()=>{setTimeout(fixMap,100);setTimeout(fixMap,500);});
+window.addEventListener('resize',fixMap);
 
-// ══════════════════════════════════════════════
-//  METEO INTEGRATION
-// ══════════════════════════════════════════════
-function openMeteo() {
-  document.getElementById('meteo-panel').classList.add('open');
-  document.getElementById('meteo-back-btn').classList.add('visible');
-  document.getElementById('brand-footer').style.display = 'none';
-  initMeteo();
-  // Invalidate meteo map after panel opens
-  setTimeout(() => {
-    if(meteoMap) meteoMap.invalidateSize();
-  }, 350);
+// ── ORIENTATION LOCK ─────────────────────────────────────
+function lockLandscape(){try{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});}catch(e){}}
+lockLandscape();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)lockLandscape();});
+
+// ── SERVICE WORKER ───────────────────────────────────────
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./sw.js').then(reg=>{
+    setInterval(()=>reg.update(),60*1000);
+    reg.addEventListener('updatefound',()=>{
+      const sw=reg.installing;
+      sw.addEventListener('statechange',()=>{if(sw.state==='installed'&&navigator.serviceWorker.controller)sw.postMessage({action:'skipWaiting'});});
+    });
+  }).catch(e=>console.warn('[PWA]',e));
+  let refreshing=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!refreshing){refreshing=true;location.reload();}});
 }
 
-function closeMeteo() {
-  document.getElementById('meteo-panel').classList.remove('open');
-  document.getElementById('meteo-back-btn').classList.remove('visible');
-  document.getElementById('brand-footer').style.display = '';
-  // Restore trails view
-  setTab('sentieri');
-  setTimeout(() => map.invalidateSize(), 200);
-}
+// ── INIT ─────────────────────────────────────────────────
+loadData();
+</script>
+</body>
+</html>
