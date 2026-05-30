@@ -472,6 +472,109 @@ body {
 }
 #toggle-sidebar { display:none }
 
+
+/* ── GPX PANEL ──────────────────────────────── */
+#gpx-bar {
+  position:absolute;bottom:0;left:0;right:0;z-index:550;
+  background:rgba(10,4,0,0.96);
+  border-top:1px solid var(--border-bright);
+  transition:height .35s cubic-bezier(.4,0,.2,1);
+  height:0;overflow:hidden;
+}
+#gpx-bar.open { height:160px }
+
+#gpx-bar-inner {
+  padding:10px 16px 8px;
+  display:flex;flex-direction:column;height:100%;
+}
+
+#gpx-bar-header {
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:6px;
+}
+#gpx-bar-title {
+  font-family:var(--font-mono);font-size:8.5px;letter-spacing:2px;
+  color:var(--gold);text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+}
+#gpx-bar-stats {
+  display:flex;gap:14px;
+}
+.gpx-stat {
+  font-family:var(--font-mono);font-size:8px;color:var(--ash);
+  display:flex;align-items:center;gap:3px;
+}
+.gpx-stat span { color:var(--ash-light) }
+
+#gpx-close-btn {
+  background:none;border:1px solid var(--border);color:var(--ash);
+  font-family:var(--font-mono);font-size:9px;padding:3px 7px;
+  cursor:pointer;border-radius:2px;flex-shrink:0;
+}
+#gpx-close-btn:hover { border-color:var(--ember);color:var(--ember) }
+
+#elevation-canvas {
+  flex:1;width:100%;border-radius:2px;
+  cursor:crosshair;
+}
+
+/* GPX controls in detail panel */
+#gpx-controls {
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid rgba(201,168,76,0.12);
+}
+#gpx-controls h4 {
+  font-family:var(--font-mono);font-size:8.5px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;margin-bottom:8px;
+}
+.gpx-btn-row {
+  display:flex;gap:7px;flex-wrap:wrap;align-items:center;
+}
+.gpx-action-btn {
+  background:var(--ember-dim);border:1px solid rgba(232,96,10,0.4);
+  color:var(--ember);font-family:var(--font-mono);font-size:8.5px;
+  letter-spacing:1px;padding:6px 10px;border-radius:2px;
+  cursor:pointer;transition:all .2s;text-transform:uppercase;
+  display:flex;align-items:center;gap:5px;
+}
+.gpx-action-btn:hover { background:rgba(232,96,10,0.28);border-color:var(--ember) }
+.gpx-action-btn.secondary {
+  background:var(--gold-dim);border-color:rgba(201,168,76,0.3);color:var(--gold);
+}
+.gpx-action-btn.secondary:hover { background:rgba(201,168,76,0.22) }
+.gpx-action-btn.danger {
+  background:rgba(191,58,58,0.15);border-color:rgba(191,58,58,0.3);color:var(--red-trail);
+}
+
+#gpx-upload-input { display:none }
+
+.gpx-url-row {
+  display:flex;gap:6px;margin-top:7px;
+}
+#gpx-url-input {
+  flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);
+  border-radius:2px;color:var(--snow);font-family:var(--font-mono);font-size:10px;
+  padding:6px 8px;outline:none;transition:border-color .2s;min-width:0;
+}
+#gpx-url-input:focus { border-color:var(--gold) }
+#gpx-url-input::placeholder { color:var(--ash) }
+#gpx-url-btn {
+  background:none;border:1px solid var(--border);color:var(--ash-light);
+  font-family:var(--font-mono);font-size:8.5px;padding:6px 10px;
+  border-radius:2px;cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+#gpx-url-btn:hover { border-color:var(--gold);color:var(--gold) }
+
+/* cursor indicator on elevation chart */
+#elev-tooltip {
+  position:absolute;pointer-events:none;
+  background:rgba(10,4,0,0.92);border:1px solid var(--border);
+  border-radius:2px;padding:4px 8px;
+  font-family:var(--font-mono);font-size:9px;color:var(--snow);
+  white-space:nowrap;display:none;z-index:600;
+}
+
 /* ── ANIMATIONS ─────────────────────────────── */
 @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
 .trail-card { animation:fadeIn .3s ease-out both }
@@ -549,8 +652,45 @@ body {
         <div id="detail-desc"></div>
         <div id="detail-poi"></div>
         <div id="detail-stagioni"></div>
+        <!-- GPX controls inside detail -->
+        <div id="gpx-controls">
+          <h4 data-it="TRACCIA GPX" data-en="GPX TRACK">TRACCIA GPX</h4>
+          <div class="gpx-btn-row">
+            <button class="gpx-action-btn" onclick="document.getElementById('gpx-upload-input').click()">
+              📂 <span data-it="Carica file .gpx" data-en="Load .gpx file">Carica file .gpx</span>
+            </button>
+            <button class="gpx-action-btn secondary" id="gpx-clear-btn" onclick="clearGpx()" style="display:none">
+              🗑 <span data-it="Rimuovi traccia" data-en="Remove track">Rimuovi traccia</span>
+            </button>
+            <input type="file" id="gpx-upload-input" accept=".gpx" onchange="loadGpxFile(event)">
+          </div>
+          <div class="gpx-url-row">
+            <input type="text" id="gpx-url-input"
+              placeholder="URL Wikiloc / Komoot / link diretto .gpx"
+              data-it="URL Wikiloc / Komoot / link diretto .gpx"
+              data-en="Wikiloc / Komoot / direct .gpx URL">
+            <button id="gpx-url-btn" onclick="loadGpxUrl()">
+              <span data-it="↓ Carica" data-en="↓ Load">↓ Carica</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Elevation profile bar -->
+    <div id="gpx-bar">
+      <div id="gpx-bar-inner">
+        <div id="gpx-bar-header">
+          <div id="gpx-bar-title">
+            📈 <span id="gpx-bar-name" data-it="PROFILO ALTIMETRICO" data-en="ELEVATION PROFILE">PROFILO ALTIMETRICO</span>
+            <div id="gpx-bar-stats"></div>
+          </div>
+          <button id="gpx-close-btn" onclick="closeElevation()">✕</button>
+        </div>
+        <canvas id="elevation-canvas"></canvas>
+      </div>
+    </div>
+    <div id="elev-tooltip"></div>
   </div>
 </div>
 
@@ -628,6 +768,14 @@ body {
         <div class="form-group">
           <label class="form-label" data-it="DESCRIZIONE *" data-en="DESCRIPTION *">DESCRIZIONE *</label>
           <textarea class="form-textarea" id="f-desc" placeholder="Descrivi il percorso, punti notevoli, consigli…"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-it="LINK GPX (opzionale)" data-en="GPX LINK (optional)">LINK GPX (opzionale)</label>
+          <input type="text" class="form-input" id="f-gpx"
+            placeholder="URL Wikiloc, Komoot, AllTrails o link diretto .gpx"
+            data-it="URL Wikiloc, Komoot, AllTrails o link diretto .gpx"
+            data-en="Wikiloc, Komoot, AllTrails URL or direct .gpx link">
         </div>
 
         <div class="form-group">
@@ -939,6 +1087,7 @@ async function submitTrail() {
 **Durata:** ${document.getElementById('f-ore').value || '—'} h
 **Quota min:** ${document.getElementById('f-qmin').value || '—'} m
 **Quota max:** ${document.getElementById('f-qmax').value || '—'} m
+**Link GPX:** ${document.getElementById('f-gpx').value || '—'}
 **Autore/Contatto:** ${document.getElementById('f-autore').value || 'Anonimo'}
 
 ### Descrizione
@@ -987,6 +1136,313 @@ function diffColor(d) {
 
 // ── INIT ──────────────────────────────────────
 loadTrails();
+
+
+// ══════════════════════════════════════════════
+//  GPX ENGINE
+// ══════════════════════════════════════════════
+
+let gpxLayer = null;         // Leaflet polyline
+let gpxMarker = null;        // cursor marker on map
+let gpxPoints = [];          // [{lat, lng, ele, dist}]
+let gpxAnimFrame = null;
+
+// ── PARSE GPX ────────────────────────────────────────────────────────────
+function parseGpx(xmlText) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlText, 'application/xml');
+  if(doc.querySelector('parsererror')) throw new Error('GPX non valido');
+
+  const trkpts = doc.querySelectorAll('trkpt, rtept, wpt');
+  if(!trkpts.length) throw new Error('Nessun punto trovato nel GPX');
+
+  const points = [];
+  let totalDist = 0;
+  let prev = null;
+
+  trkpts.forEach(pt => {
+    const lat = parseFloat(pt.getAttribute('lat'));
+    const lng = parseFloat(pt.getAttribute('lon'));
+    const eleEl = pt.querySelector('ele');
+    const ele = eleEl ? parseFloat(eleEl.textContent) : null;
+
+    if(isNaN(lat) || isNaN(lng)) return;
+
+    let dist = 0;
+    if(prev) {
+      dist = haversineKm(prev.lat, prev.lng, lat, lng);
+      totalDist += dist;
+    }
+    points.push({ lat, lng, ele, dist: totalDist });
+    prev = { lat, lng };
+  });
+
+  return points;
+}
+
+function haversineKm(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const dLat = (lat2-lat1)*Math.PI/180;
+  const dLng = (lng2-lng1)*Math.PI/180;
+  const a = Math.sin(dLat/2)**2 +
+    Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+// ── LOAD FROM FILE ───────────────────────────────────────────────────────
+function loadGpxFile(event) {
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      processGpx(e.target.result, file.name.replace('.gpx',''));
+    } catch(err) {
+      alert((lang==='it'?'Errore: ':'Error: ') + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ── LOAD FROM URL ────────────────────────────────────────────────────────
+async function loadGpxUrl() {
+  const url = document.getElementById('gpx-url-input').value.trim();
+  if(!url) return;
+
+  const btn = document.getElementById('gpx-url-btn');
+  btn.textContent = lang==='it' ? '⏳ Carico…' : '⏳ Loading…';
+  btn.disabled = true;
+
+  try {
+    // Try direct fetch first; if CORS blocks, use a CORS proxy
+    let text;
+    try {
+      const r = await fetch(url);
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      text = await r.text();
+    } catch(e) {
+      // Fallback: cors-anywhere or allorigins proxy
+      const proxy = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+      const r2 = await fetch(proxy);
+      if(!r2.ok) throw new Error('Proxy error');
+      text = await r2.text();
+    }
+    const name = url.split('/').pop().replace('.gpx','') || 'traccia';
+    processGpx(text, name);
+    document.getElementById('gpx-url-input').value = '';
+  } catch(err) {
+    alert(lang==='it'
+      ? 'Impossibile caricare il GPX. Verifica il link o prova con il file diretto.'
+      : 'Cannot load GPX. Check the link or try uploading the file directly.');
+  }
+  btn.textContent = lang==='it' ? '↓ Carica' : '↓ Load';
+  btn.disabled = false;
+}
+
+// ── PROCESS GPX ──────────────────────────────────────────────────────────
+function processGpx(xmlText, name) {
+  const points = parseGpx(xmlText);
+  if(!points.length) { alert(lang==='it'?'Nessun punto trovato.':'No points found.'); return; }
+
+  gpxPoints = points;
+
+  // Clear previous
+  if(gpxLayer) { map.removeLayer(gpxLayer); gpxLayer=null; }
+  if(gpxMarker) { map.removeLayer(gpxMarker); gpxMarker=null; }
+
+  // Draw polyline
+  const color = activeTrailId ? diffColor(trails.find(t=>t.id===activeTrailId)?.difficolta||'E') : '#e8600a';
+  const latlngs = points.map(p => [p.lat, p.lng]);
+  gpxLayer = L.polyline(latlngs, {
+    color: color.replace('var(--green-trail)','#4a9e5c')
+                .replace('var(--blue-trail)','#3a7fbf')
+                .replace('var(--red-trail)','#bf3a3a'),
+    weight: 3.5,
+    opacity: 0.9,
+    lineJoin: 'round',
+    lineCap: 'round'
+  }).addTo(map);
+
+  // Cursor marker
+  gpxMarker = L.marker(latlngs[0], {
+    icon: L.divIcon({
+      className:'',
+      html:'<div style="width:10px;height:10px;border-radius:50%;background:#e8600a;border:2px solid #fff;box-shadow:0 0 6px rgba(232,96,10,0.8)"></div>',
+      iconSize:[10,10], iconAnchor:[5,5]
+    }),
+    zIndexOffset: 1000
+  }).addTo(map);
+
+  // Fit map
+  map.fitBounds(gpxLayer.getBounds(), {padding:[30,30]});
+
+  // Show clear button
+  document.getElementById('gpx-clear-btn').style.display = 'flex';
+
+  // Draw elevation profile
+  const withEle = points.filter(p => p.ele !== null);
+  if(withEle.length > 1) {
+    openElevation(withEle, name);
+  }
+}
+
+// ── CLEAR GPX ────────────────────────────────────────────────────────────
+function clearGpx() {
+  if(gpxLayer) { map.removeLayer(gpxLayer); gpxLayer=null; }
+  if(gpxMarker) { map.removeLayer(gpxMarker); gpxMarker=null; }
+  gpxPoints = [];
+  document.getElementById('gpx-clear-btn').style.display = 'none';
+  closeElevation();
+}
+
+// ── ELEVATION PROFILE ────────────────────────────────────────────────────
+function openElevation(points, name) {
+  const bar = document.getElementById('gpx-bar');
+  bar.classList.add('open');
+
+  // Stats
+  const eles = points.map(p=>p.ele);
+  const eMin = Math.min(...eles);
+  const eMax = Math.max(...eles);
+  let gain=0, loss=0;
+  for(let i=1;i<eles.length;i++){
+    const d=eles[i]-eles[i-1];
+    if(d>0) gain+=d; else loss+=Math.abs(d);
+  }
+  const totalKm = points[points.length-1].dist.toFixed(1);
+
+  document.getElementById('gpx-bar-stats').innerHTML = `
+    <div class="gpx-stat">📏 <span>${totalKm} km</span></div>
+    <div class="gpx-stat">⬆ <span>+${Math.round(gain)}m</span></div>
+    <div class="gpx-stat">⬇ <span>-${Math.round(loss)}m</span></div>
+    <div class="gpx-stat">▲ <span>${Math.round(eMax)}m</span></div>
+  `;
+
+  // Draw chart after layout settles
+  requestAnimationFrame(() => drawElevationChart(points));
+}
+
+function closeElevation() {
+  document.getElementById('gpx-bar').classList.remove('open');
+  if(gpxAnimFrame) { cancelAnimationFrame(gpxAnimFrame); gpxAnimFrame=null; }
+}
+
+function drawElevationChart(points) {
+  const canvas = document.getElementById('elevation-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth;
+  const H = canvas.offsetHeight;
+  canvas.width = W;
+  canvas.height = H;
+
+  const pad = { top:6, right:10, bottom:18, left:38 };
+  const cW = W - pad.left - pad.right;
+  const cH = H - pad.top - pad.bottom;
+
+  const eles = points.map(p=>p.ele);
+  const dists = points.map(p=>p.dist);
+  const eMin = Math.min(...eles) - 30;
+  const eMax = Math.max(...eles) + 30;
+  const dMax = dists[dists.length-1];
+
+  const xScale = d => pad.left + (d/dMax)*cW;
+  const yScale = e => pad.top + cH - ((e-eMin)/(eMax-eMin))*cH;
+
+  // Background gradient
+  const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top+cH);
+  grad.addColorStop(0, 'rgba(232,96,10,0.35)');
+  grad.addColorStop(1, 'rgba(232,96,10,0.03)');
+
+  // Area fill
+  ctx.beginPath();
+  ctx.moveTo(xScale(dists[0]), yScale(eles[0]));
+  points.forEach(p => ctx.lineTo(xScale(p.dist), yScale(p.ele)));
+  ctx.lineTo(xScale(dists[dists.length-1]), pad.top+cH);
+  ctx.lineTo(xScale(dists[0]), pad.top+cH);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Profile line
+  ctx.beginPath();
+  ctx.moveTo(xScale(dists[0]), yScale(eles[0]));
+  points.forEach(p => ctx.lineTo(xScale(p.dist), yScale(p.ele)));
+  ctx.strokeStyle = '#e8600a';
+  ctx.lineWidth = 1.8;
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+
+  // Grid lines Y
+  ctx.strokeStyle = 'rgba(201,168,76,0.12)';
+  ctx.lineWidth = 1;
+  const gridCount = 4;
+  for(let i=0;i<=gridCount;i++){
+    const e = eMin + (eMax-eMin)*(i/gridCount);
+    const y = yScale(e);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+cW, y); ctx.stroke();
+    ctx.fillStyle='rgba(191,168,76,0.6)';
+    ctx.font=`9px 'Share Tech Mono'`;
+    ctx.textAlign='right';
+    ctx.fillText(Math.round(e)+'m', pad.left-4, y+3);
+  }
+
+  // Grid lines X (distance ticks)
+  const kmStep = dMax > 20 ? 5 : dMax > 10 ? 2 : 1;
+  for(let km=0; km<=dMax; km+=kmStep){
+    const x = xScale(km);
+    ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, pad.top+cH); ctx.stroke();
+    ctx.fillStyle='rgba(191,168,76,0.5)';
+    ctx.font=`8px 'Share Tech Mono'`;
+    ctx.textAlign='center';
+    ctx.fillText(km+'km', x, pad.top+cH+12);
+  }
+
+  // Store points for hover
+  canvas._points = points;
+  canvas._pad = pad;
+  canvas._cW = cW;
+  canvas._cH = cH;
+  canvas._eMin = eMin;
+  canvas._eMax = eMax;
+  canvas._dMax = dMax;
+
+  // Hover interaction
+  canvas.onmousemove = e => handleElevHover(e, canvas);
+  canvas.onmouseleave = () => {
+    document.getElementById('elev-tooltip').style.display='none';
+    if(gpxMarker && gpxPoints.length) gpxMarker.setLatLng([gpxPoints[0].lat, gpxPoints[0].lng]);
+  };
+}
+
+function handleElevHover(e, canvas) {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const p = canvas._pad;
+  if(mx < p.left || mx > p.left+canvas._cW) return;
+
+  const frac = (mx - p.left) / canvas._cW;
+  const dist = frac * canvas._dMax;
+  const pts = canvas._points;
+
+  // Find nearest point
+  let near = pts[0];
+  let minD = Infinity;
+  pts.forEach(pt => {
+    const d = Math.abs(pt.dist - dist);
+    if(d < minD) { minD = d; near = pt; }
+  });
+
+  // Move map marker
+  if(gpxMarker) gpxMarker.setLatLng([near.lat, near.lng]);
+
+  // Tooltip
+  const tt = document.getElementById('elev-tooltip');
+  tt.style.display = 'block';
+  tt.style.left = (e.clientX + 10) + 'px';
+  tt.style.top  = (e.clientY - 30) + 'px';
+  tt.textContent = `${near.dist.toFixed(2)} km · ${Math.round(near.ele)} m`;
+}
 
 // ── SERVICE WORKER ────────────────────────────
 if('serviceWorker' in navigator) {
