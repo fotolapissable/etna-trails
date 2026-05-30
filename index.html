@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="screen-orientation" content="landscape">
+<style>
+/* Force landscape on portrait mobile */
+@media screen and (orientation: portrait) and (max-width: 900px) {
+  #rotate-msg {
+    display:flex !important;
+  }
+}
+</style>
 <title>Etna Trails · fotolapissable</title>
 
 <!-- PWA -->
@@ -791,6 +800,27 @@ body {
   </div>
 </div>
 
+
+<!-- ══ ROTATE OVERLAY ══════════════════════════════════ -->
+<div id="rotate-msg" style="
+  display:none;position:fixed;inset:0;z-index:99999;
+  background:#1a0a00;flex-direction:column;
+  align-items:center;justify-content:center;gap:16px;
+  font-family:'Share Tech Mono',monospace;
+">
+  <div style="font-size:52px;animation:spin-phone 1.5s ease-in-out infinite alternate">📱</div>
+  <div style="font-size:11px;letter-spacing:3px;color:#c9a84c;text-align:center;line-height:1.8">
+    RUOTA IL DISPOSITIVO<br>
+    <span style="color:#8a7a6a;font-size:9px;letter-spacing:2px">ROTATE YOUR DEVICE</span>
+  </div>
+  <div style="font-size:28px;opacity:0.5">↻</div>
+</div>
+<style>
+@keyframes spin-phone {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(90deg); }
+}
+</style>
 <!-- ══ BRANDING FOOTER ══════════════════════════════════ -->
 <div id="brand-footer">
   <a href="https://fotolapissable.it" target="_blank" rel="noopener" style="
@@ -1444,6 +1474,20 @@ function handleElevHover(e, canvas) {
   tt.textContent = `${near.dist.toFixed(2)} km · ${Math.round(near.ele)} m`;
 }
 
+
+// ── SCREEN ORIENTATION LOCK ───────────────────────────
+function lockLandscape() {
+  try {
+    if(screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(() => {});
+    }
+  } catch(e) {}
+}
+// Lock on PWA launch and on any visibility change
+lockLandscape();
+document.addEventListener('visibilitychange', () => {
+  if(!document.hidden) lockLandscape();
+});
 // ── SERVICE WORKER ────────────────────────────
 if('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js')
