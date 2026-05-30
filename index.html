@@ -867,7 +867,7 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
     <div id="map"></div>
 
     <div id="map-controls">
-      <button class="mctrl-btn active" id="btn-topo" onclick="setTile('topo')">🗺 Topo</button>
+      <button class="mctrl-btn active" id="btn-topo" onclick="setTile('dark')">🗺 Topo</button>
       <button class="mctrl-btn" id="btn-sat" onclick="setTile('sat')">🛰 Sat</button>
       <button class="mctrl-btn" id="btn-dark" onclick="setTile('dark')">🌑 Dark</button>
     </div>
@@ -2232,7 +2232,7 @@ let meteoMap   = null;
 let meteoInitialized = false;
 function openMeteo(){document.getElementById('meteo-panel').classList.add('open');document.getElementById('meteo-back-btn').classList.add('visible');document.getElementById('brand-footer').style.display='none';initMeteo();}
 function closeMeteo(){document.getElementById('meteo-panel').classList.remove('open');document.getElementById('meteo-back-btn').classList.remove('visible');document.getElementById('brand-footer').style.display='';setTab('sentieri');setTimeout(()=>map.invalidateSize(),200);}
-function initMeteo(){if(meteoInitialized)return;meteoInitialized=true;meteoMap=L.map('mapc',{center:[DEFAULT.lat,DEFAULT.lng],zoom:9,zoomControl:false,attributionControl:true});L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'©OSM',subdomains:'abcd',maxZoom:19}).addTo(meteoMap);geoCircles=[L.circle([DEFAULT.lat,DEFAULT.lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(meteoMap),L.circle([DEFAULT.lat,DEFAULT.lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(meteoMap),L.circle([DEFAULT.lat,DEFAULT.lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(meteoMap)];geoMarker=L.marker([DEFAULT.lat,DEFAULT.lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})}).addTo(meteoMap).bindPopup('<b style="color:#C8813A">📍 Riposto</b>');L.marker([37.7510,14.9934],{icon:L.divIcon({className:'',html:'<div class="etna-marker">🌋</div>',iconSize:[24,24],iconAnchor:[12,20]})}).addTo(meteoMap).bindPopup('🌋 Etna 3340m');for(let a=0;a<360;a+=45){const len=0.55,dlat=len*Math.cos(a*Math.PI/180)/111,dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(DEFAULT.lat*Math.PI/180));L.polyline([[DEFAULT.lat,DEFAULT.lng],[DEFAULT.lat+dlat,DEFAULT.lng+dlng]],{color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(meteoMap);}setMeteoTile('topo');setTimeout(()=>meteoMap.invalidateSize(),300);setTimeout(async()=>{await initRV();await fetchWx();initBz();const ct=()=>{const el=document.getElementById('hdr-clock');if(el)el.textContent=new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit'});};ct();setInterval(ct,1000);setInterval(initRV,5*60*1000);setInterval(fetchWx,10*60*1000);},400);}
+function initMeteo(){if(meteoInitialized)return;meteoInitialized=true;meteoMap=L.map('mapc',{center:[DEFAULT.lat,DEFAULT.lng],zoom:9,zoomControl:false,attributionControl:true});L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'©OSM',subdomains:'abcd',maxZoom:19}).addTo(meteoMap);geoCircles=[L.circle([DEFAULT.lat,DEFAULT.lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(meteoMap),L.circle([DEFAULT.lat,DEFAULT.lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(meteoMap),L.circle([DEFAULT.lat,DEFAULT.lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(meteoMap)];geoMarker=L.marker([DEFAULT.lat,DEFAULT.lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})}).addTo(meteoMap).bindPopup('<b style="color:#C8813A">📍 Riposto</b>');L.marker([37.7510,14.9934],{icon:L.divIcon({className:'',html:'<div class="etna-marker">🌋</div>',iconSize:[24,24],iconAnchor:[12,20]})}).addTo(meteoMap).bindPopup('🌋 Etna 3340m');for(let a=0;a<360;a+=45){const len=0.55,dlat=len*Math.cos(a*Math.PI/180)/111,dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(DEFAULT.lat*Math.PI/180));L.polyline([[DEFAULT.lat,DEFAULT.lng],[DEFAULT.lat+dlat,DEFAULT.lng+dlng]],{color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(meteoMap);}setMeteoTile('dark');setTimeout(()=>meteoMap.invalidateSize(),300);setTimeout(async()=>{await initRV();await fetchWx();initBz();const ct=()=>{const el=document.getElementById('hdr-clock');if(el)el.textContent=new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit',second:'2-digit'});};ct();setInterval(ct,1000);setInterval(initRV,5*60*1000);setInterval(fetchWx,10*60*1000);},400);}
 
 // ══════════════════════════════════════════════
 // CONFIG
@@ -2253,11 +2253,16 @@ function updateMapLocation(lat, lng, label, region) {
   geoCircles = [];
   if (geoMarker) { meteoMap.removeLayer(geoMarker); geoMarker = null; }
   // Nuovi cerchi
-  );
+  geoCircles = [
+    L.circle([lat,lng],{radius:50000,color:'#C8813A',weight:1.2,fillColor:'#C8813A',fillOpacity:.025,dashArray:'6,5'}).addTo(meteoMap),
+    L.circle([lat,lng],{radius:25000,color:'#C8813A',weight:.5,fillOpacity:0,dashArray:'3,7',opacity:.35}).addTo(meteoMap),
+    L.circle([lat,lng],{radius:10000,color:'#C8813A',weight:.4,fillOpacity:0,dashArray:'2,8',opacity:.25}).addTo(meteoMap)
+  ];
   // Nuovo marker
+  if(geoMarker) { meteoMap.removeLayer(geoMarker); geoMarker = null; }
+  geoMarker = L.marker([lat,lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
     .addTo(meteoMap)
     .bindPopup('<b style="color:#C8813A">📍 ' + label + '</b><br>' + lat.toFixed(4) + '°N · ' + lng.toFixed(4) + '°E');
-  // Ricarica dati meteo per nuova posizione
   initRV();
   fetchWx();
 }
