@@ -512,7 +512,7 @@ body{font-family:var(--font-body);color:var(--snow);
     <div class="hdr-volcano"></div>
     <div>
       <div id="hdr-main">ETNA TRAILS</div>
-      <div id="hdr-sub" data-it="SENTIERI · RIFUGI · MACRO · ETNA & NEBRODI" data-en="TRAILS · REFUGES · MACRO · ETNA & NEBRODI">SENTIERI · RIFUGI · MACRO · ETNA & NEBRODI</div>
+      <div id="hdr-sub" data-it="SENTIERI · RIFUGI · ETNA & NEBRODI" data-en="TRAILS · REFUGES · ETNA & NEBRODI">SENTIERI · RIFUGI · ETNA & NEBRODI</div>
     </div>
   </div>
   <div id="hdr-right">
@@ -796,6 +796,18 @@ function setTab(tab) {
 }
 
 // ── MAP ───────────────────────────────────────
+
+const TILES = {
+  topo:'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+  sat:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  dark:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+};
+let tileLayerMain = null;
+function setTile(n){
+  if(tileLayerMain) map.removeLayer(tileLayerMain);
+  tileLayerMain = L.tileLayer(TILES[n],{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+  document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+n));
+}
 const map = L.map('map',{center:[37.78,15.00],zoom:10,zoomControl:true,attributionControl:true});
 const TILES = {
   topo:'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
@@ -1301,4 +1313,3 @@ function closeMeteo() {
   setTab('sentieri');
   setTimeout(() => map.invalidateSize(), 200);
 }
-</html>
