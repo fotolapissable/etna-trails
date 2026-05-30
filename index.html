@@ -142,29 +142,6 @@ body{font-family:var(--font-body);color:var(--snow);
 .rc-note{font-size:10.5px;color:var(--ash);margin-top:3px;font-style:italic;line-height:1.3;}
 .stars{color:var(--gold);font-size:9px;letter-spacing:1px;}
 
-/* Macro cards */
-.macro-card{padding:10px 13px;border-bottom:1px solid rgba(201,168,76,0.08);
-  cursor:pointer;transition:all .2s;border-left:3px solid transparent;
-  animation:fadeIn .3s ease-out both;}
-.macro-card:hover{background:rgba(0,212,170,0.05);border-left-color:var(--cyan)}
-.macro-card.active{background:rgba(0,212,170,0.08);border-left-color:var(--cyan)}
-.mc-name{font-family:var(--font-title);font-size:11px;font-weight:600;color:var(--cyan);
-  letter-spacing:.3px;line-height:1.3;margin-bottom:3px;}
-.mc-ff{font-size:10.5px;color:var(--ash-light);font-style:italic;line-height:1.3;margin-bottom:3px;}
-.mc-note{font-size:10px;color:var(--ash);line-height:1.3;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-
-/* Planning cards */
-.plan-card{padding:10px 13px;border-bottom:1px solid rgba(201,168,76,0.08);
-  cursor:pointer;transition:all .2s;animation:fadeIn .3s ease-out both;}
-.plan-card:hover{background:rgba(155,109,214,0.05)}
-.plan-card.active{background:rgba(155,109,214,0.1)}
-.pc-name{font-family:var(--font-title);font-size:11px;font-weight:600;color:var(--purple);
-  letter-spacing:.3px;line-height:1.3;margin-bottom:4px;}
-.pc-row{display:flex;gap:8px;flex-wrap:wrap;}
-.pc-stat{font-family:var(--font-mono);font-size:7.5px;color:var(--ash);}
-.pc-stat span{color:var(--ash-light)}
-
 /* Emergency contacts */
 #emergency-panel{flex:1;overflow-y:auto;padding:12px;}
 .emerg-card{background:var(--lava2);border:1px solid var(--border);
@@ -183,8 +160,8 @@ body{font-family:var(--font-body);color:var(--snow);
 .emerg-note{font-size:10.5px;color:var(--ash);margin-top:3px;font-style:italic;}
 
 /* ── MAP AREA ───────────────────────────────── */
-#map-wrap{flex:1;position:relative}
-#map{width:100%;height:100%;z-index:1}
+#map-wrap{flex:1;position:relative;min-height:0;overflow:hidden}
+#map{position:absolute;inset:0;z-index:1}
 
 #map-controls{position:absolute;top:10px;left:10px;z-index:500;display:flex;gap:5px;}
 .mctrl-btn{background:rgba(10,4,0,0.9);border:1px solid var(--border);
@@ -403,6 +380,129 @@ body{font-family:var(--font-body);color:var(--snow);
 @keyframes spin-phone{from{transform:rotate(0deg)}to{transform:rotate(90deg)}}
 
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ══════════════════════════════════════════════
+   MOBILE THEME — più luminoso e leggibile
+   Attivo sotto 768px
+══════════════════════════════════════════════ */
+@media screen and (max-width: 768px) {
+
+  /* Sfondi più chiari */
+  :root {
+    --lava:#2a1500;
+    --lava2:#3a1e00;
+    --lava3:#4d2800;
+    --ash:#a08878;
+    --ash-light:#d4c0a8;
+    --snow:#ffffff;
+    --border:rgba(201,168,76,0.35);
+    --border-bright:rgba(201,168,76,0.65);
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse at 30% 20%,rgba(232,96,10,0.12) 0%,transparent 60%),
+      #2a1500;
+  }
+
+  /* Header più leggibile */
+  #header {
+    background:rgba(20,8,0,0.99);
+    height:56px;
+  }
+  #hdr-main { font-size:15px; color:#e8c060; }
+  #hdr-sub  { font-size:9px;  color:#c8a880; }
+
+  /* Sidebar layout mobile — full width sopra mappa */
+  #main { flex-direction:column; height:calc(100vh - 74px); }
+  #sidebar {
+    width:100%; min-width:100%;
+    max-height:42%;
+    border-right:none;
+    border-bottom:1px solid var(--border-bright);
+  }
+
+  /* Tab nav */
+  .tab-btn {
+    font-size:9px;
+    padding:7px 2px;
+    color:#c8a880;
+  }
+  .tab-btn.active { color:#e8c060; border-bottom-color:var(--ember); }
+
+  /* Trail cards — testi più grandi e luminosi */
+  .tc-name  { font-size:13px; color:#e8c060; }
+  .tc-stat  { font-size:9.5px; }
+  .tc-stat span { color:#d4c0a8; }
+  .tc-desc  { font-size:12px; color:#c8a880; }
+
+  /* Rifugio cards */
+  .rc-name  { font-size:13px; color:#e8c060; }
+  .rc-stat  { font-size:9px; }
+  .rc-stat span { color:#d4c0a8; }
+  .rc-note  { font-size:11.5px; color:#c8a880; }
+  .stars    { font-size:11px; }
+
+  /* Diff badges */
+  .diff-badge { font-size:9.5px; padding:3px 7px; }
+
+  /* Map — prende lo spazio rimanente */
+  #map-wrap { flex:1; min-height:0; }
+
+  /* Detail panel — più spazio e testi grandi */
+  #detail-panel { max-height:60%; }
+  #detail-name  { font-size:16px; }
+  #detail-zone  { font-size:9.5px; color:#c8a880; }
+  .dstat-lbl    { font-size:8.5px; color:#c8a880; }
+  .dstat-val    { font-size:16px; }
+  #detail-desc  { font-size:13px; color:#d4c0a8; line-height:1.7; }
+  .poi-item     { font-size:13px; color:#d4c0a8; }
+  .poi-quota    { font-size:9.5px; }
+  .mese         { font-size:8.5px; }
+
+  /* Action buttons più grandi al touch */
+  .action-btn { font-size:10px; padding:9px 14px; }
+
+  /* Emergenze */
+  .emerg-name   { font-size:10px; color:#d4c0a8; }
+  .emerg-number { font-size:22px; }
+  .emerg-note   { font-size:12px; color:#c8a880; }
+
+  /* Map controls */
+  .mctrl-btn { font-size:10px; padding:7px 11px; }
+  .layer-btn { font-size:9.5px; padding:5px 9px; }
+
+  /* Legend */
+  #legend {
+    bottom:auto; top:10px; right:10px;
+  }
+  .leg-item { font-size:9px; }
+
+  /* Search input */
+  .search-input { font-size:14px; padding:8px 10px; }
+
+  /* Footer */
+  #brand-footer { font-size:7.5px; letter-spacing:1.5px; }
+
+  /* Rifugio badges */
+  .rc-badge { font-size:8.5px; padding:3px 7px; }
+
+  /* GPX controls */
+  .gpx-action-btn { font-size:9.5px; padding:7px 11px; }
+  #gpx-url-input  { font-size:11px; }
+
+  /* Popup map */
+  .leaflet-popup-content { font-size:12px !important; }
+}
+
+/* Extra small — schermi molto piccoli */
+@media screen and (max-width: 380px) {
+  #hdr-main { font-size:13px; letter-spacing:2px; }
+  .tab-btn .tab-icon { font-size:16px; }
+  .tab-btn span:last-child { display:none; }
+}
+
+
 </style>
 </head>
 <body>
@@ -412,7 +512,7 @@ body{font-family:var(--font-body);color:var(--snow);
     <div class="hdr-volcano"></div>
     <div>
       <div id="hdr-main">ETNA TRAILS</div>
-      <div id="hdr-sub" data-it="SENTIERI · RIFUGI · MACRO · ETNA & NEBRODI" data-en="TRAILS · REFUGES · MACRO · ETNA & NEBRODI">SENTIERI · RIFUGI · MACRO · ETNA & NEBRODI</div>
+      <div id="hdr-sub" data-it="SENTIERI · RIFUGI · ETNA & NEBRODI" data-en="TRAILS · REFUGES · ETNA & NEBRODI">SENTIERI · RIFUGI · ETNA & NEBRODI</div>
     </div>
   </div>
   <div id="hdr-right">
@@ -437,17 +537,14 @@ body{font-family:var(--font-body);color:var(--snow);
         <span class="tab-icon">🏠</span>
         <span data-it="Rifugi" data-en="Refuges">Rifugi</span>
       </button>
-      <button class="tab-btn" onclick="setTab('macro')">
-        <span class="tab-icon">🔬</span>
-        <span data-it="Macro" data-en="Macro">Macro</span>
-      </button>
-      <button class="tab-btn" onclick="setTab('planning')">
-        <span class="tab-icon">🗓</span>
-        <span data-it="Piano" data-en="Plan">Piano</span>
-      </button>
+
       <button class="tab-btn" onclick="setTab('sos')">
         <span class="tab-icon">🆘</span>
         <span>SOS</span>
+      </button>
+      <button class="tab-btn" onclick="openMeteo()">
+        <span class="tab-icon">⛅</span>
+        <span data-it="Meteo" data-en="Weather">Meteo</span>
       </button>
     </div>
 
@@ -474,16 +571,6 @@ body{font-family:var(--font-body);color:var(--snow);
       <div class="item-list" id="rifugi-list"></div>
     </div>
 
-    <!-- MACRO -->
-    <div class="tab-panel" id="panel-macro">
-      <div class="item-list" id="macro-list"></div>
-    </div>
-
-    <!-- PLANNING -->
-    <div class="tab-panel" id="panel-planning">
-      <div class="item-list" id="planning-list"></div>
-    </div>
-
     <!-- SOS -->
     <div class="tab-panel" id="panel-sos">
       <div id="emergency-panel"></div>
@@ -503,7 +590,7 @@ body{font-family:var(--font-body);color:var(--snow);
     <div id="layer-controls">
       <button class="layer-btn active" id="lyr-sentieri" onclick="toggleLayerVis('sentieri')">🥾 <span data-it="Sentieri" data-en="Trails">Sentieri</span></button>
       <button class="layer-btn active" id="lyr-rifugi" onclick="toggleLayerVis('rifugi')">🏠 <span data-it="Rifugi" data-en="Refuges">Rifugi</span></button>
-      <button class="layer-btn active" id="lyr-macro" onclick="toggleLayerVis('macro')">🔬 Macro</button>
+
     </div>
 
     <div id="legend">
@@ -511,7 +598,7 @@ body{font-family:var(--font-body);color:var(--snow);
       <div class="leg-item"><div class="leg-dot" style="background:var(--blue-trail)"></div><span>E – Escursionistico</span></div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--red-trail)"></div><span>EE – Esperto</span></div>
       <div class="leg-item"><div class="leg-sq" style="background:var(--gold)"></div><span data-it="Rifugio/Bivacco" data-en="Refuge/Bivouac">Rifugio/Bivacco</span></div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--cyan)"></div><span>Macro Photo</span></div>
+
     </div>
 
     <!-- Detail panel -->
@@ -676,8 +763,8 @@ let lang = 'it';
 let DB = {};
 let activeTab = 'sentieri';
 let activeDiffs = new Set(['T','E','EE']);
-let markers = { sentieri:{}, rifugi:{}, macro:{} };
-let layerVis = { sentieri:true, rifugi:true, macro:true };
+let markers = { sentieri:{}, rifugi:{} };
+let layerVis = { sentieri:true, rifugi:true };
 let activeItem = null;
 let tileLayer = null;
 let gpxLayer = null, gpxMarker = null, gpxPoints = [];
@@ -699,7 +786,7 @@ function setLang(l) {
 function setTab(tab) {
   activeTab = tab;
   document.querySelectorAll('.tab-btn').forEach((b,i) => {
-    const tabs = ['sentieri','rifugi','macro','planning','sos'];
+    const tabs = ['sentieri','rifugi','sos'];
     b.classList.toggle('active', tabs[i]===tab);
   });
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -709,26 +796,34 @@ function setTab(tab) {
 }
 
 // ── MAP ───────────────────────────────────────
+
+const TILES = {
+  topo:'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+  sat:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  dark:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+};
+let tileLayerMain = null;
+function setTile(n){
+  if(tileLayerMain) map.removeLayer(tileLayerMain);
+  tileLayerMain = L.tileLayer(TILES[n],{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+  document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+n));
+}
 const map = L.map('map',{center:[37.78,15.00],zoom:10,zoomControl:true,attributionControl:true});
 const TILES = {
   topo:'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
   sat:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
   dark:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
 };
-function setTile(n){
-  if(tileLayer) map.removeLayer(tileLayer);
-  tileLayer = L.tileLayer(TILES[n],{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+function setMeteoTile(n){
+  if(tileLayer) meteoMap.removeLayer(tileLayer);
+  tileLayer = L.tileLayer(TILES[n],{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(meteoMap);
   document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+n));
 }
-setTile('topo');
-L.marker([37.7510,14.9934],{icon:L.divIcon({className:'',html:'<div class="etna-marker">🌋</div>',iconSize:[24,24],iconAnchor:[12,20]})}).addTo(map)
-  .bindPopup('<b style="color:#e8600a">🌋 Etna</b><br>3340 m s.l.m.');
-
 // Layer visibility
 function toggleLayerVis(type) {
   layerVis[type] = !layerVis[type];
   document.getElementById('lyr-'+type).classList.toggle('active', layerVis[type]);
-  Object.values(markers[type]).forEach(m => layerVis[type] ? m.addTo(map) : map.removeLayer(m));
+  Object.values(markers[type]).forEach(m => layerVis[type] ? m.addTo(meteoMap) : meteoMap.removeLayer(m));
 }
 function updateLayerBtns() {
   Object.keys(layerVis).forEach(t => {
@@ -751,8 +846,6 @@ async function loadData() {
 function renderAll() {
   renderSentieri();
   renderRifugi();
-  renderMacro();
-  renderPlanning();
   renderEmergenze();
 }
 
@@ -801,7 +894,7 @@ function renderSentieri(list) {
 function filterRifugi() {
   const q = document.getElementById('search-rifugi').value.toLowerCase();
   const list = (DB.rifugi||[]).filter(r =>
-    !q || (r.nome+' '+r.zona+' '+(r.note_foto||'')).toLowerCase().includes(q)
+    !q || (r.nome+' '+r.zona+' '+(r.note||'')).toLowerCase().includes(q)
   );
   renderRifugi(list);
 }
@@ -826,55 +919,11 @@ function renderRifugi(list) {
         <span class="rc-stat">📍 <span>${r.km_da_riposto}km</span></span>
         ${r.camino ? '<span class="rc-stat">🔥 <span>Camino</span></span>' : ''}
       </div>
-      <div class="rc-note">${r.note_foto||''}</div>`;
+      <div class="rc-note">${r.note||''}</div>`;
     c.appendChild(el);
   });
 }
 
-// ── MACRO ─────────────────────────────────────
-function renderMacro(list) {
-  list = list || DB.sentieri_macro || [];
-  const c = document.getElementById('macro-list');
-  c.innerHTML = '';
-  list.forEach((m,i) => {
-    const el = document.createElement('div');
-    el.className = 'macro-card' + (activeItem&&activeItem.id===m.id&&activeItem.type==='macro'?' active':'');
-    el.style.animationDelay = (i*.04)+'s';
-    el.onclick = () => { selectItem('macro',m.id); showDetail('macro',m.id); };
-    el.innerHTML = `
-      <div class="mc-name">${m.nome[lang]||m.nome.it}</div>
-      <div class="tc-stats">
-        <div class="tc-stat">⏱ <span>${m.durata_h}h</span></div>
-        <div class="tc-stat">🏔 <span>${m.quota}m</span></div>
-        <div class="tc-stat">📊 <span>${m.difficolta}</span></div>
-      </div>
-      <div class="mc-ff">🔍 ${m.flora_fauna}</div>
-      <div class="mc-note">📷 ${m.note_foto}</div>`;
-    c.appendChild(el);
-  });
-}
-
-// ── PLANNING ──────────────────────────────────
-function renderPlanning(list) {
-  list = list || DB.planning || [];
-  const c = document.getElementById('planning-list');
-  c.innerHTML = '';
-  list.forEach((p,i) => {
-    const el = document.createElement('div');
-    el.className = 'plan-card' + (activeItem&&activeItem.id===p.id&&activeItem.type==='planning'?' active':'');
-    el.style.animationDelay = (i*.04)+'s';
-    el.onclick = () => { selectItem('planning',p.id); showDetail('planning',p.id); };
-    el.innerHTML = `
-      <div class="pc-name">${p.scenario}</div>
-      <div class="pc-row">
-        <div class="pc-stat">🕐 <span>${p.partenza}</span></div>
-        <div class="pc-stat">⏱ <span>${p.durata}</span></div>
-        <div class="pc-stat">📍 <span>${p.km}km</span></div>
-        <div class="pc-stat">🏠 <span>${p.rifugio_base}</span></div>
-      </div>`;
-    c.appendChild(el);
-  });
-}
 
 // ── EMERGENZE ─────────────────────────────────
 function renderEmergenze() {
@@ -903,7 +952,7 @@ function renderMarkers() {
   (DB.sentieri||[]).forEach(t => {
     const m = L.marker([t.lat,t.lng],{icon:L.divIcon({className:'',
       html:`<div class="trail-marker ${t.difficolta}" id="mk-s-${t.id}"></div>`,
-      iconSize:[13,13],iconAnchor:[6.5,6.5]})}).addTo(map);
+      iconSize:[13,13],iconAnchor:[6.5,6.5]})}).addTo(meteoMap);
     m.bindPopup(`<b style="color:var(--gold)">${t.nome[lang]}</b><br>${t.difficolta} · ${t.distanza_km}km`);
     m.on('click',()=>{setTab('sentieri');selectItem('sentiero',t.id);showDetail('sentiero',t.id);});
     markers.sentieri[t.id] = m;
@@ -912,20 +961,12 @@ function renderMarkers() {
   (DB.rifugi||[]).forEach(r => {
     const m = L.marker([r.lat,r.lng],{icon:L.divIcon({className:'',
       html:`<div class="rifugio-marker" id="mk-r-${r.id}">🏠</div>`,
-      iconSize:[16,16],iconAnchor:[8,8]})}).addTo(map);
+      iconSize:[16,16],iconAnchor:[8,8]})}).addTo(meteoMap);
     m.bindPopup(`<b style="color:var(--gold)">${r.nome}</b><br>${r.quota}m · ${r.accesso}`);
     m.on('click',()=>{setTab('rifugi');selectItem('rifugio',r.id);showDetail('rifugio',r.id);});
     markers.rifugi[r.id] = m;
   });
-  // Macro
-  (DB.sentieri_macro||[]).forEach(s => {
-    const m = L.marker([s.lat,s.lng],{icon:L.divIcon({className:'',
-      html:`<div class="macro-marker" id="mk-m-${s.id}"></div>`,
-      iconSize:[13,13],iconAnchor:[6.5,6.5]})}).addTo(map);
-    m.bindPopup(`<b style="color:var(--cyan)">${s.nome[lang]||s.nome.it}</b><br>🔍 ${s.flora_fauna}`);
-    m.on('click',()=>{setTab('macro');selectItem('macro',s.id);showDetail('macro',s.id);});
-    markers.macro[s.id] = m;
-  });
+
 }
 
 // ── SELECT / DESELECT ─────────────────────────
@@ -933,7 +974,7 @@ function selectItem(type, id) {
   activeItem = {type, id};
   // deselect all
   document.querySelectorAll('.trail-marker,.rifugio-marker,.macro-marker').forEach(el=>el.classList.remove('selected'));
-  const prefix = type==='sentiero'?'s':type==='rifugio'?'r':'m';
+  const prefix = type==='sentiero'?'s':'r';
   const el = document.querySelector(`#mk-${prefix}-${id}`);
   if(el) el.classList.add('selected');
 }
@@ -969,7 +1010,7 @@ function showDetail(type, id) {
     const rl = lang==='it'?['QUOTA','KM DA RIPOSTO','COSTO','ACCESSO']:['ELEVATION','KM FROM RIPOSTO','COST','ACCESS'];
     const rv = [[item.quota,'m'],[item.km_da_riposto,'km'],[item.costo,''],[item.accesso,'']];
     stats = rv.map((v,i)=>`<div class="dstat"><div class="dstat-lbl">${rl[i]}</div><div class="dstat-val" style="font-size:${i>=2?'10':'15'}px">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
-    desc = item.note_foto||'';
+    desc = item.note||'';
     extra = `<h4>${lang==='it'?'DETTAGLI':'DETAILS'}</h4>
       <div class="extra-row"><span class="extra-lbl">Tipo</span><span class="extra-val">${item.tipo}</span></div>
       <div class="extra-row"><span class="extra-lbl">${lang==='it'?'Camino':'Fireplace'}</span><span class="extra-val">${item.camino?(lang==='it'?'🔥 Sì':'🔥 Yes'):(lang==='it'?'No':'No')}</span></div>
@@ -986,7 +1027,7 @@ function showDetail(type, id) {
     stats = mv.map((v,i)=>`<div class="dstat"><div class="dstat-lbl">${ml[i]}</div><div class="dstat-val" style="font-size:${i>=2?'10':'15'}px">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
     desc = item.flora_fauna;
     extra = `<h4>${lang==='it'?'NOTE FOTOGRAFICHE':'PHOTO NOTES'}</h4>
-      <div class="extra-row"><span class="extra-lbl">📷</span><span class="extra-val">${item.note_foto}</span></div>
+      <div class="extra-row"><span class="extra-lbl">Info</span><span class="extra-val">${item.note||''}</span></div>
       <div class="extra-row"><span class="extra-lbl">${lang==='it'?'Asciug.':'Dry time'}</span><span class="extra-val">${item.asciugatura}</span></div>
       <div class="extra-row"><span class="extra-lbl">Accesso</span><span class="extra-val">${item.accesso}</span></div>`;
 
@@ -1034,7 +1075,10 @@ function showDetail(type, id) {
   if(lat && lng) {
     const mapsBtn = document.createElement('a');
     mapsBtn.className = 'action-btn maps';
-    mapsBtn.href = `geo:${lat},${lng}?q=${lat},${lng}(${encodeURIComponent(title)})`;
+    const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    mapsBtn.href = isMobile
+      ? `geo:${lat},${lng}?q=${lat},${lng}(${encodeURIComponent(title)})`
+      : `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
     mapsBtn.target = '_blank'; mapsBtn.rel = 'noopener';
     mapsBtn.innerHTML = `🗺 ${lang==='it'?'Apri nella mappa':'Open in maps'}`;
     actions.appendChild(mapsBtn);
@@ -1055,7 +1099,7 @@ function showDetail(type, id) {
   }
 
   panel.classList.add('open');
-  if(lat && lng) map.setView([lat, lng], 13);
+  if(lat && lng) meteoMap.setView([lat, lng], 13);
 
   // Auto-load GPX
   if(gpxFile && showGpx) {
@@ -1153,20 +1197,20 @@ async function loadGpxUrl(){
 function processGpx(xml,name){
   const pts=parseGpx(xml); if(!pts.length) return;
   gpxPoints=pts;
-  if(gpxLayer){map.removeLayer(gpxLayer);gpxLayer=null;}
-  if(gpxMarker){map.removeLayer(gpxMarker);gpxMarker=null;}
+  if(gpxLayer){meteoMap.removeLayer(gpxLayer);gpxLayer=null;}
+  if(gpxMarker){meteoMap.removeLayer(gpxMarker);gpxMarker=null;}
   const color=activeItem&&activeItem.type==='sentiero'?diffColor((DB.sentieri||[]).find(t=>t.id===activeItem.id)?.difficolta||'E'):'#e8600a';
   const c=color.replace('var(--green-trail)','#4a9e5c').replace('var(--blue-trail)','#3a7fbf').replace('var(--red-trail)','#bf3a3a');
-  gpxLayer=L.polyline(pts.map(p=>[p.lat,p.lng]),{color:c,weight:3.5,opacity:.9,lineJoin:'round'}).addTo(map);
-  gpxMarker=L.marker([pts[0].lat,pts[0].lng],{icon:L.divIcon({className:'',html:'<div style="width:10px;height:10px;border-radius:50%;background:#e8600a;border:2px solid #fff;box-shadow:0 0 6px rgba(232,96,10,.8)"></div>',iconSize:[10,10],iconAnchor:[5,5]})}).addTo(map);
-  map.fitBounds(gpxLayer.getBounds(),{padding:[30,30]});
+  gpxLayer=L.polyline(pts.map(p=>[p.lat,p.lng]),{color:c,weight:3.5,opacity:.9,lineJoin:'round'}).addTo(meteoMap);
+  gpxMarker=L.marker([pts[0].lat,pts[0].lng],{icon:L.divIcon({className:'',html:'<div style="width:10px;height:10px;border-radius:50%;background:#e8600a;border:2px solid #fff;box-shadow:0 0 6px rgba(232,96,10,.8)"></div>',iconSize:[10,10],iconAnchor:[5,5]})}).addTo(meteoMap);
+  meteoMap.fitBounds(gpxLayer.getBounds(),{padding:[30,30]});
   document.getElementById('gpx-clear-btn').style.display='flex';
   const withEle=pts.filter(p=>p.ele!==null);
   if(withEle.length>1) openElevation(withEle,name);
 }
 function clearGpx(){
-  if(gpxLayer){map.removeLayer(gpxLayer);gpxLayer=null;}
-  if(gpxMarker){map.removeLayer(gpxMarker);gpxMarker=null;}
+  if(gpxLayer){meteoMap.removeLayer(gpxLayer);gpxLayer=null;}
+  if(gpxMarker){meteoMap.removeLayer(gpxMarker);gpxMarker=null;}
   gpxPoints=[];
   document.getElementById('gpx-clear-btn').style.display='none';
   closeElevation();
@@ -1246,28 +1290,26 @@ function hoverElev(e,cv){
 // ── HELPERS ───────────────────────────────────
 function diffColor(d){return d==='T'?'var(--green-trail)':d==='E'?'var(--blue-trail)':'var(--red-trail)';}
 
-// ── ORIENTATION LOCK ──────────────────────────
-function lockLandscape(){try{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});}catch(e){}}
-lockLandscape();
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)lockLandscape();});
 
-// ── SERVICE WORKER ────────────────────────────
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./sw.js').then(reg=>{
-    setInterval(()=>reg.update(),60*1000);
-    reg.addEventListener('updatefound',()=>{
-      const sw=reg.installing;
-      sw.addEventListener('statechange',()=>{
-        if(sw.state==='installed'&&navigator.serviceWorker.controller) sw.postMessage({action:'skipWaiting'});
-      });
-    });
-  }).catch(e=>console.warn('[PWA]',e));
-  let refreshing=false;
-  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!refreshing){refreshing=true;location.reload();}});
+// ══════════════════════════════════════════════
+//  METEO INTEGRATION
+// ══════════════════════════════════════════════
+function openMeteo() {
+  document.getElementById('meteo-panel').classList.add('open');
+  document.getElementById('meteo-back-btn').classList.add('visible');
+  document.getElementById('brand-footer').style.display = 'none';
+  initMeteo();
+  // Invalidate meteo map after panel opens
+  setTimeout(() => {
+    if(meteoMap) meteoMap.invalidateSize();
+  }, 350);
 }
 
-// ── INIT ──────────────────────────────────────
-loadData();
-</script>
-</body>
-</html>
+function closeMeteo() {
+  document.getElementById('meteo-panel').classList.remove('open');
+  document.getElementById('meteo-back-btn').classList.remove('visible');
+  document.getElementById('brand-footer').style.display = '';
+  // Restore trails view
+  setTab('sentieri');
+  setTimeout(() => map.invalidateSize(), 200);
+}
