@@ -1194,6 +1194,7 @@ let geoCircles = [];
 let geoMarker  = null;
 
 function updateMapLocation(lat, lng, label, region) {
+  if(!meteoMap) return; // not initialized yet
   POS = { lat, lng };
   // Header
   document.getElementById('hdr-title').textContent = '⚡ METEO // ' + label.toUpperCase();
@@ -2246,17 +2247,14 @@ function initMeteo() {
     geoMarker = L.marker([DEFAULT.lat,DEFAULT.lng],{icon:L.divIcon({className:'',html:'<div class="rpulse"></div>',iconSize:[12,12],iconAnchor:[6,6]})})
       .addTo(meteoMap)
       .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E');
-  .addTo(meteoMap)
-  .bindPopup('<b style="color:#C8813A">📍 Riposto, CT</b><br>37.7285°N · 15.2027°E<br>Ionio settentrionale');
-
-// Direction lines (cardinal + ordinal faint guides)
-for(let a=0;a<360;a+=45){
-  const len=0.55;
-  const dlat=len*Math.cos(a*Math.PI/180)/111;
-  const dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(POS.lat*Math.PI/180));
-  L.polyline([[POS.lat,POS.lng],[POS.lat+dlat,POS.lng+dlng]],
+    // Direction lines (cardinal + ordinal faint guides)
+    for(let a=0;a<360;a+=45){
+    const len=0.55;
+    const dlat=len*Math.cos(a*Math.PI/180)/111;
+    const dlng=len*Math.sin(a*Math.PI/180)/(111*Math.cos(POS.lat*Math.PI/180));
+    L.polyline([[POS.lat,POS.lng],[POS.lat+dlat,POS.lng+dlng]],
     {color:'rgba(200,129,58,0.12)',weight:.8,dashArray:'2,8'}).addTo(meteoMap);
-}
+    }
 
   }
   setTimeout(async () => {
@@ -2284,6 +2282,7 @@ for(let a=0;a<360;a+=45){
 
 
 function updateMapLocation(lat, lng, label, region) {
+  if(!meteoMap) return; // not initialized yet
   POS = { lat, lng };
   // Header
   document.getElementById('hdr-title').textContent = '⚡ METEO // ' + label.toUpperCase();
