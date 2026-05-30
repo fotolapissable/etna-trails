@@ -1266,7 +1266,7 @@ tick(); setInterval(tick,1000);
 // ══════════════════════════════════════════════
 // MAP
 // ══════════════════════════════════════════════
-const map = L.map('map',{center:[POS.lat,POS.lng],zoom:9,zoomControl:false,attributionControl:true});
+let meteoMap = null; // initialized lazily
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
   attribution:'©<a href="https://www.openstreetmap.org">OSM</a> ©<a href="https://carto.com">CartoDB</a>',
@@ -2237,7 +2237,7 @@ function openMeteo() {
   initMeteo();
   // Invalidate meteo map after panel opens
   setTimeout(() => {
-    if(typeof meteoMap !== 'undefined') meteoMap.invalidateSize();
+    if(meteoMap) meteoMap.invalidateSize();
   }, 350);
 }
 
@@ -2245,6 +2245,9 @@ function closeMeteo() {
   document.getElementById('meteo-panel').classList.remove('open');
   document.getElementById('meteo-back-btn').classList.remove('visible');
   document.getElementById('brand-footer').style.display = '';
+  // Restore trails view
+  setTab('sentieri');
+  setTimeout(() => map.invalidateSize(), 200);
 }
 
 
@@ -2256,6 +2259,10 @@ let meteoInitialized = false;
 function initMeteo() {
   if(meteoInitialized) return;
   meteoInitialized = true;
+  // Initialize meteo map lazily
+  if(!meteoMap) {
+    meteoMap = L.map('mapc',{center:[POS.lat,POS.lng],zoom:9,zoomControl:false,attributionControl:true});
+  }
   setTimeout(async () => {
     await initRV();
     await fetchWx();
