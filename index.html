@@ -2215,45 +2215,53 @@ if('serviceWorker' in navigator){
 // URL con cache-busting via timestamp per forzare refresh
 // Fallback su SkylineWebcams embed e link diretto INGV
 
+// Webcam: URL diretti JPEG senza proxy — il tag <img> non ha restrizioni CORS
+// SkylineWebcams e INGV espongono JPEG statici aggiornati ogni ~60s
+// crossOrigin NON va usato su img tag con sorgenti esterne (causa errori)
 const WEBCAMS = [
   {
     id: 0,
-    nameIt: 'Cratere di Sud-Est · INGV',
-    nameEn: 'Southeast Crater · INGV',
-    // INGV EMV = telecamera versante est/sud-est (Monte Vetore), punta ai crateri
-    url: 'https://api.allorigins.win/raw?url=' +
-      encodeURIComponent('https://www.ct.ingv.it/sezioniesterne/webcam/emv/last.jpg'),
-    fallback: 'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/vulcano-etna.jpg',
-    ingvUrl: 'https://www.ct.ingv.it/sezioniesterne/webcam/Webcam.php?Vulcano=Emv',
-    source: 'INGV · EMV'
+    nameIt: 'Etna Sud · SkylineWebcams',
+    nameEn: 'Etna South · SkylineWebcams',
+    urls: [
+      'https://images-webcams.skylinewebcams.com/webcam/1635135561.jpg',
+      'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/vulcano-etna.jpg'
+    ],
+    ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/vulcano-etna.html',
+    source: 'SkylineWebcams · Etna Sud'
   },
   {
     id: 1,
     nameIt: 'Rifugio Sapienza · SkylineWebcams',
     nameEn: 'Sapienza Refuge · SkylineWebcams',
-    url: 'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-rifugio-sapienza.jpg',
-    fallback: null,
+    urls: [
+      'https://images-webcams.skylinewebcams.com/webcam/1635138765.jpg',
+      'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-rifugio-sapienza.jpg'
+    ],
     ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-rifugio-sapienza.html',
-    source: 'SkylineWebcams'
+    source: 'SkylineWebcams · Sapienza'
   },
   {
     id: 2,
-    nameIt: 'Versante Est · INGV EMCT',
-    nameEn: 'East Slope · INGV EMCT',
-    url: 'https://api.allorigins.win/raw?url=' +
-      encodeURIComponent('https://www.ct.ingv.it/sezioniesterne/webcam/emct/last.jpg'),
-    fallback: 'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-milo.jpg',
-    ingvUrl: 'https://www.ct.ingv.it/sezioniesterne/webcam/Webcam.php?Vulcano=Emct',
-    source: 'INGV · EMCT'
+    nameIt: 'Etna Milo · SkylineWebcams',
+    nameEn: 'Etna Milo · SkylineWebcams',
+    urls: [
+      'https://images-webcams.skylinewebcams.com/webcam/1491294793.jpg',
+      'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-milo.jpg'
+    ],
+    ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-milo.html',
+    source: 'SkylineWebcams · Milo'
   },
   {
     id: 3,
-    nameIt: 'Versante Nord · SkylineWebcams',
-    nameEn: 'North Slope · SkylineWebcams',
-    url: 'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-nord.jpg',
-    fallback: null,
+    nameIt: 'Etna Nord · SkylineWebcams',
+    nameEn: 'Etna North · SkylineWebcams',
+    urls: [
+      'https://images-webcams.skylinewebcams.com/webcam/1491295060.jpg',
+      'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-nord.jpg'
+    ],
     ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-nord.html',
-    source: 'SkylineWebcams'
+    source: 'SkylineWebcams · Nord'
   }
 ];
 
@@ -2268,114 +2276,81 @@ function selectCam(idx) {
   loadWebcamImage(idx);
 }
 
-async function loadWebcamImage(idx) {
+function loadWebcamImage(idx) {
   const cam = WEBCAMS[idx];
   const img = document.getElementById('webcam-img');
   const noimg = document.getElementById('webcam-noimg');
+  if(!img || !noimg) return;
+
   const nameEl = document.getElementById('webcam-cam-name');
   const timeEl = document.getElementById('webcam-time');
   const srcLink = document.getElementById('webcam-src-link');
   const directLink = document.getElementById('webcam-direct-link');
 
-  img.classList.add('loading');
   noimg.style.display = 'none';
   img.style.display = 'block';
+  img.classList.add('loading');
 
-  nameEl.textContent = lang === 'it' ? cam.nameIt : cam.nameEn;
-  srcLink.href = cam.ingvUrl;
-  srcLink.textContent = cam.source;
-  directLink.href = cam.ingvUrl;
+  if(nameEl) nameEl.textContent = lang === 'it' ? cam.nameIt : cam.nameEn;
+  if(srcLink) { srcLink.href = cam.ingvUrl; srcLink.textContent = cam.source; }
+  if(directLink) directLink.href = cam.ingvUrl;
 
-  // Cache-bust per forzare immagine fresca
-  const bust = '?t=' + Date.now();
-  const tryUrl = cam.url.includes('allorigins') ? cam.url + bust : cam.url + bust;
+  // Prova gli URL in sequenza — img tag non ha CORS
+  let urlIdx = 0;
+  const bust = '?_=' + Math.floor(Date.now() / 60000); // cambia ogni minuto
 
-  const loadImg = (src) => new Promise((resolve, reject) => {
-    const testImg = new Image();
-    testImg.crossOrigin = 'anonymous';
-    testImg.onload = () => resolve(src);
-    testImg.onerror = () => reject();
-    testImg.src = src;
-    setTimeout(() => reject(), 8000);
-  });
-
-  try {
-    const src = await loadImg(tryUrl);
-    img.src = src;
-    img.classList.remove('loading');
-    const now = new Date();
-    timeEl.textContent = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'}) + ' UTC+2';
-  } catch {
-    // Prova fallback
-    if(cam.fallback) {
-      try {
-        const src2 = await loadImg(cam.fallback + bust);
-        img.src = src2;
-        img.classList.remove('loading');
+  function tryNext() {
+    if(urlIdx >= cam.urls.length) {
+      // Tutti falliti — mostra messaggio con link
+      img.style.display = 'none';
+      noimg.style.display = 'flex';
+      if(timeEl) timeEl.textContent = '';
+      return;
+    }
+    img.onload = () => {
+      img.classList.remove('loading');
+      if(timeEl) {
         const now = new Date();
         timeEl.textContent = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'});
-        return;
-      } catch {}
-    }
-    // Nessuna immagine disponibile
-    img.style.display = 'none';
-    noimg.style.display = 'flex';
-    timeEl.textContent = '';
+      }
+    };
+    img.onerror = () => { urlIdx++; tryNext(); };
+    img.src = cam.urls[urlIdx] + bust;
+    urlIdx++;
   }
+  tryNext();
 }
 
 function refreshWebcam() {
   const btn = document.getElementById('webcam-refresh');
+  if(!btn) return;
   const arrow = btn.querySelector('span:first-child');
-  arrow.style.display = 'inline-block';
-  arrow.style.animation = 'spin .8s linear infinite';
+  if(arrow) { arrow.style.display = 'inline-block'; arrow.style.animation = 'spin .8s linear infinite'; }
   loadWebcamImage(activeCamIdx);
-  setTimeout(() => { arrow.style.animation = ''; }, 1200);
+  setTimeout(() => { if(arrow) arrow.style.animation = ''; }, 1500);
 }
 
-// Aggiorna tremore da EtnaMonitor (API pubblica semplice)
-async function fetchTremor() {
-  try {
-    const r = await fetch('https://etnamonitor.it/api/tremor/latest', { signal: AbortSignal.timeout(5000) });
-    const d = await r.json();
-    const val = d.rms || d.value || d.tremor;
-    if(val) renderTremor(val);
-  } catch {
-    // Silenzioso — non critico
-  }
-}
-
-function renderTremor(val) {
+// Tremore: rimosso fetch API (CORS bloccato da GitHub Pages)
+// La barra mostra stato statico — link a EtnaMonitor per dati live
+function initTremorStatic() {
   const fill = document.getElementById('tremor-fill');
   const valEl = document.getElementById('tremor-val');
   if(!fill || !valEl) return;
-
-  valEl.textContent = Math.round(val).toLocaleString() + ' nm/s';
-
-  // Scala log: 10=quiete, 100=basso, 1000=moderato, 10000=alto
-  const pct = Math.min(100, Math.max(5, (Math.log10(Math.max(1, val)) / 4) * 100));
-  fill.style.width = pct + '%';
-
-  if(val < 100) {
-    fill.style.background = '#4a9e5c'; // verde — quiete
-  } else if(val < 1000) {
-    fill.style.background = '#c9a84c'; // giallo — moderato
-  } else if(val < 5000) {
-    fill.style.background = '#e8600a'; // arancione — alto
-  } else {
-    fill.style.background = '#bf3a3a'; // rosso — eruzione
-  }
+  // Stato statico visivo — utente può cliccare su EtnaMonitor per dati reali
+  fill.style.width = '30%';
+  fill.style.background = '#4a9e5c';
+  valEl.innerHTML = '<a href="https://etnamonitor.it" target="_blank" rel="noopener" style="color:var(--ember);text-decoration:none;font-size:7px">Live su EtnaMonitor →</a>';
 }
 
 function initWebcam() {
-  loadWebcamImage(0);
-  fetchTremor();
-  // Auto-refresh ogni 90 secondi (le INGV aggiornano ogni ~60s)
+  // Piccolo delay per garantire che il DOM sia pronto
+  setTimeout(() => {
+    loadWebcamImage(0);
+    initTremorStatic();
+  }, 100);
+  // Auto-refresh ogni 90 secondi
   webcamInterval = setInterval(() => {
-    if(activeTab === 'meteo') {
-      loadWebcamImage(activeCamIdx);
-      fetchTremor();
-    }
+    if(activeTab === 'meteo') loadWebcamImage(activeCamIdx);
   }, 90 * 1000);
 }
 
@@ -2437,11 +2412,21 @@ async function fetchIngvAlert() {
   footerEl.style.display = 'none';
 
   try {
-    // Fetch pagina Protezione Civile via proxy
-    const proxyUrl = 'https://api.allorigins.win/raw?url=' +
-      encodeURIComponent('https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/');
-    const r = await fetch(proxyUrl, { signal: AbortSignal.timeout(10000) });
-    const html = await r.text();
+    // Prova diversi proxy CORS — allorigins bloccato da GitHub Pages
+    const proxies = [
+      'https://corsproxy.io/?' + encodeURIComponent('https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/'),
+      'https://api.codetabs.com/v1/proxy?quest=https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/'
+    ];
+
+    let html = null;
+    for(const proxy of proxies) {
+      try {
+        const r = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
+        if(r.ok) { html = await r.text(); break; }
+      } catch { continue; }
+    }
+
+    if(!html) throw new Error('Proxy non disponibile');
 
     // Parse livello dalla pagina
     let level = parseIngvLevel(html);
