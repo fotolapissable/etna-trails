@@ -736,7 +736,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
     <div id="splash-title">ETNA TRAILS</div>
     <div id="splash-subtitle" data-it="Sentieri · Rifugi · Natura" data-en="Trails · Refuges · Nature">Sentieri · Rifugi · Natura</div>
     <div id="splash-tagline">
-      <span data-it="Da <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota." data-en="From <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em> — the volcano is within reach. Explore Etna's trails, discover mountain refuges, check altitude weather.">Da <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota.</span>
+      <span data-it="Da <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em>, <em>Linguaglossa</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota." data-en="From <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em>, <em>Linguaglossa</em> — the volcano is within reach. Explore Etna's trails, discover mountain refuges, check altitude weather.">Da <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota.</span>
     </div>
     <div id="splash-langs">
       <button class="splash-lang active" onclick="splashSetLang('it')">🇮🇹 Italiano</button>
@@ -868,7 +868,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
         <div class="scopri-hero-title" data-it="Costa Ionica · Etna" data-en="Ionian Coast · Etna">Costa Ionica · Etna</div>
         <div class="scopri-hero-sub" data-it="La guida per i turisti della costa" data-en="The guide for coastal visitors">La guida per i turisti della costa</div>
         <div class="scopri-hero-text">
-          <span data-it="Sei a Riposto, Giarre o sulla costa ionica? Il vulcano più alto d'Europa è a 30 minuti da te. Questa guida ti porta dal mare al cratere." data-en="You're in Riposto, Giarre or on the Ionian coast? Europe's highest volcano is 30 minutes away. This guide takes you from sea to crater.">Sei a Riposto, Giarre o sulla costa ionica? Il vulcano più alto d'Europa è a 30 minuti da te. Questa guida ti porta dal mare al cratere.</span>
+          <span data-it="Sei a Riposto, Giarre, Zafferana o Linguaglossa? Il vulcano più alto d'Europa è a 30–45 minuti da te. Questa guida ti porta dal mare al cratere." data-en="You're in Riposto, Giarre, Zafferana or Linguaglossa? Europe's highest volcano is 30–45 minutes away. This guide takes you from sea to crater.">Sei a Riposto, Giarre o sulla costa ionica? Il vulcano più alto d'Europa è a 30 minuti da te. Questa guida ti porta dal mare al cratere.</span>
         </div>
       </div>
 
@@ -1975,17 +1975,12 @@ function splashSetLang(l) {
 function closeSplash() {
   const splash = document.getElementById('splash');
   splash.classList.add('hiding');
-  try { localStorage.setItem('etna-splash-seen', '1'); } catch(e) {}
   setTimeout(() => { splash.style.display = 'none'; }, 650);
 }
 
 function initSplash() {
-  let seen = false;
-  try { seen = localStorage.getItem('etna-splash-seen') === '1'; } catch(e) {}
-  if(seen) {
-    document.getElementById('splash').style.display = 'none';
-  }
-  // If already seen, still apply language from storage
+  // Splash esce ad ogni apertura/ricarica
+  // Recupera eventuale lingua salvata
   try {
     const savedLang = localStorage.getItem('etna-lang');
     if(savedLang) splashSetLang(savedLang);
