@@ -824,6 +824,125 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   font-family:var(--font-m);font-size:8px;color:var(--ash);letter-spacing:1px;
 }
 
+
+/* ═══════════════════════════════════════
+   WEBCAM LIVE
+═══════════════════════════════════════ */
+#webcam-section{
+  padding:8px 10px;border-top:1px solid var(--border);flex-shrink:0;
+}
+#webcam-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:8px;
+}
+#webcam-title{
+  font-family:var(--font-m);font-size:8px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;
+  display:flex;align-items:center;gap:6px;
+}
+.live-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#bf3a3a;
+  box-shadow:0 0 6px rgba(191,58,58,0.8);
+  animation:livepulse 1.5s ease-in-out infinite;
+  flex-shrink:0;
+}
+@keyframes livepulse{
+  0%,100%{opacity:1;box-shadow:0 0 4px rgba(191,58,58,0.6)}
+  50%{opacity:.6;box-shadow:0 0 10px rgba(191,58,58,1)}
+}
+#webcam-refresh{
+  background:none;border:none;color:var(--ash);
+  font-family:var(--font-m);font-size:8px;letter-spacing:1px;
+  cursor:pointer;padding:3px 7px;border:1px solid var(--border);
+  border-radius:2px;transition:all .2s;display:flex;align-items:center;gap:4px;
+}
+#webcam-refresh:hover{color:var(--gold);border-color:var(--gold)}
+#webcam-refresh.spinning span{animation:spin .8s linear infinite;display:inline-block}
+
+/* Selector webcam */
+#webcam-selector{
+  display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap;
+}
+.wcam-btn{
+  flex:1;min-width:0;
+  background:none;border:1px solid var(--border);
+  color:var(--ash);font-family:var(--font-m);font-size:7.5px;
+  letter-spacing:.5px;padding:4px 6px;border-radius:2px;
+  cursor:pointer;transition:all .2s;text-align:center;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.wcam-btn.active{
+  background:rgba(232,96,10,0.15);border-color:var(--ember);color:var(--ember);
+}
+.wcam-btn:hover:not(.active){color:var(--ash-light)}
+
+/* Frame webcam */
+#webcam-frame-wrap{
+  position:relative;
+  background:var(--lava2);border:1px solid var(--border);border-radius:3px;
+  overflow:hidden;
+}
+#webcam-img{
+  width:100%;display:block;
+  min-height:130px;
+  object-fit:cover;
+  transition:opacity .3s;
+  background:var(--lava2);
+}
+#webcam-img.loading{opacity:0.3}
+#webcam-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top, rgba(10,4,0,.9) 0%, transparent 100%);
+  padding:6px 8px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+#webcam-cam-name{
+  font-family:var(--font-m);font-size:8px;color:var(--gold);letter-spacing:1px;
+}
+#webcam-time{
+  font-family:var(--font-m);font-size:7px;color:var(--ash);
+}
+#webcam-noimg{
+  display:none;
+  flex-direction:column;align-items:center;justify-content:center;
+  height:130px;gap:6px;
+  font-family:var(--font-m);font-size:8px;color:var(--ash);letter-spacing:1px;
+  text-align:center;padding:10px;
+}
+#webcam-noimg a{
+  color:var(--ember);text-decoration:none;font-size:9px;
+  border:1px solid rgba(232,96,10,0.3);padding:4px 10px;border-radius:2px;margin-top:4px;
+}
+
+/* Barra tremore (bonus) */
+#tremor-bar{
+  margin-top:6px;display:flex;align-items:center;gap:8px;
+  padding:5px 8px;background:var(--lava2);border:1px solid var(--border);
+  border-radius:3px;
+}
+#tremor-label{
+  font-family:var(--font-m);font-size:7.5px;color:var(--ash);
+  text-transform:uppercase;letter-spacing:1px;flex-shrink:0;
+}
+#tremor-track{
+  flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;
+}
+#tremor-fill{
+  height:100%;border-radius:2px;transition:width .8s,background .5s;
+  background:var(--green-trail);width:20%;
+}
+#tremor-val{
+  font-family:var(--font-m);font-size:8px;color:var(--ash-light);
+  flex-shrink:0;min-width:60px;text-align:right;
+}
+#webcam-source{
+  margin-top:5px;font-family:var(--font-m);font-size:7px;color:var(--ash);
+  text-align:right;letter-spacing:.5px;
+}
+#webcam-source a{color:rgba(201,168,76,0.5);text-decoration:none}
+#webcam-source a:hover{color:var(--gold)}
+
 </style>
 </head>
 <body>
@@ -1390,6 +1509,7 @@ function setTab(tab) {
     updateWindyFrame(activeMeteoQuota);
     loadMeteo(activeMeteoQuota);
     fetchIngvAlert();
+    initWebcam();
   }
 }
 
@@ -2084,6 +2204,180 @@ if('serviceWorker' in navigator){
   navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!refreshing){refreshing=true;location.reload();}});
 }
 
+
+
+
+// ═══════════════════════════════════════════
+//  WEBCAM LIVE ETNA
+// ═══════════════════════════════════════════
+
+// Le webcam INGV espongono JPEG statici aggiornati ogni ~60s
+// URL con cache-busting via timestamp per forzare refresh
+// Fallback su SkylineWebcams embed e link diretto INGV
+
+const WEBCAMS = [
+  {
+    id: 0,
+    nameIt: 'Cratere di Sud-Est · INGV',
+    nameEn: 'Southeast Crater · INGV',
+    // INGV EMV = telecamera versante est/sud-est (Monte Vetore), punta ai crateri
+    url: 'https://api.allorigins.win/raw?url=' +
+      encodeURIComponent('https://www.ct.ingv.it/sezioniesterne/webcam/emv/last.jpg'),
+    fallback: 'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/vulcano-etna.jpg',
+    ingvUrl: 'https://www.ct.ingv.it/sezioniesterne/webcam/Webcam.php?Vulcano=Emv',
+    source: 'INGV · EMV'
+  },
+  {
+    id: 1,
+    nameIt: 'Rifugio Sapienza · SkylineWebcams',
+    nameEn: 'Sapienza Refuge · SkylineWebcams',
+    url: 'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-rifugio-sapienza.jpg',
+    fallback: null,
+    ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-rifugio-sapienza.html',
+    source: 'SkylineWebcams'
+  },
+  {
+    id: 2,
+    nameIt: 'Versante Est · INGV EMCT',
+    nameEn: 'East Slope · INGV EMCT',
+    url: 'https://api.allorigins.win/raw?url=' +
+      encodeURIComponent('https://www.ct.ingv.it/sezioniesterne/webcam/emct/last.jpg'),
+    fallback: 'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-milo.jpg',
+    ingvUrl: 'https://www.ct.ingv.it/sezioniesterne/webcam/Webcam.php?Vulcano=Emct',
+    source: 'INGV · EMCT'
+  },
+  {
+    id: 3,
+    nameIt: 'Versante Nord · SkylineWebcams',
+    nameEn: 'North Slope · SkylineWebcams',
+    url: 'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-nord.jpg',
+    fallback: null,
+    ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-nord.html',
+    source: 'SkylineWebcams'
+  }
+];
+
+let activeCamIdx = 0;
+let webcamInterval = null;
+
+function selectCam(idx) {
+  activeCamIdx = idx;
+  document.querySelectorAll('.wcam-btn').forEach((b, i) =>
+    b.classList.toggle('active', i === idx)
+  );
+  loadWebcamImage(idx);
+}
+
+async function loadWebcamImage(idx) {
+  const cam = WEBCAMS[idx];
+  const img = document.getElementById('webcam-img');
+  const noimg = document.getElementById('webcam-noimg');
+  const nameEl = document.getElementById('webcam-cam-name');
+  const timeEl = document.getElementById('webcam-time');
+  const srcLink = document.getElementById('webcam-src-link');
+  const directLink = document.getElementById('webcam-direct-link');
+
+  img.classList.add('loading');
+  noimg.style.display = 'none';
+  img.style.display = 'block';
+
+  nameEl.textContent = lang === 'it' ? cam.nameIt : cam.nameEn;
+  srcLink.href = cam.ingvUrl;
+  srcLink.textContent = cam.source;
+  directLink.href = cam.ingvUrl;
+
+  // Cache-bust per forzare immagine fresca
+  const bust = '?t=' + Date.now();
+  const tryUrl = cam.url.includes('allorigins') ? cam.url + bust : cam.url + bust;
+
+  const loadImg = (src) => new Promise((resolve, reject) => {
+    const testImg = new Image();
+    testImg.crossOrigin = 'anonymous';
+    testImg.onload = () => resolve(src);
+    testImg.onerror = () => reject();
+    testImg.src = src;
+    setTimeout(() => reject(), 8000);
+  });
+
+  try {
+    const src = await loadImg(tryUrl);
+    img.src = src;
+    img.classList.remove('loading');
+    const now = new Date();
+    timeEl.textContent = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'}) + ' UTC+2';
+  } catch {
+    // Prova fallback
+    if(cam.fallback) {
+      try {
+        const src2 = await loadImg(cam.fallback + bust);
+        img.src = src2;
+        img.classList.remove('loading');
+        const now = new Date();
+        timeEl.textContent = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'});
+        return;
+      } catch {}
+    }
+    // Nessuna immagine disponibile
+    img.style.display = 'none';
+    noimg.style.display = 'flex';
+    timeEl.textContent = '';
+  }
+}
+
+function refreshWebcam() {
+  const btn = document.getElementById('webcam-refresh');
+  const arrow = btn.querySelector('span:first-child');
+  arrow.style.display = 'inline-block';
+  arrow.style.animation = 'spin .8s linear infinite';
+  loadWebcamImage(activeCamIdx);
+  setTimeout(() => { arrow.style.animation = ''; }, 1200);
+}
+
+// Aggiorna tremore da EtnaMonitor (API pubblica semplice)
+async function fetchTremor() {
+  try {
+    const r = await fetch('https://etnamonitor.it/api/tremor/latest', { signal: AbortSignal.timeout(5000) });
+    const d = await r.json();
+    const val = d.rms || d.value || d.tremor;
+    if(val) renderTremor(val);
+  } catch {
+    // Silenzioso — non critico
+  }
+}
+
+function renderTremor(val) {
+  const fill = document.getElementById('tremor-fill');
+  const valEl = document.getElementById('tremor-val');
+  if(!fill || !valEl) return;
+
+  valEl.textContent = Math.round(val).toLocaleString() + ' nm/s';
+
+  // Scala log: 10=quiete, 100=basso, 1000=moderato, 10000=alto
+  const pct = Math.min(100, Math.max(5, (Math.log10(Math.max(1, val)) / 4) * 100));
+  fill.style.width = pct + '%';
+
+  if(val < 100) {
+    fill.style.background = '#4a9e5c'; // verde — quiete
+  } else if(val < 1000) {
+    fill.style.background = '#c9a84c'; // giallo — moderato
+  } else if(val < 5000) {
+    fill.style.background = '#e8600a'; // arancione — alto
+  } else {
+    fill.style.background = '#bf3a3a'; // rosso — eruzione
+  }
+}
+
+function initWebcam() {
+  loadWebcamImage(0);
+  fetchTremor();
+  // Auto-refresh ogni 90 secondi (le INGV aggiornano ogni ~60s)
+  webcamInterval = setInterval(() => {
+    if(activeTab === 'meteo') {
+      loadWebcamImage(activeCamIdx);
+      fetchTremor();
+    }
+  }, 90 * 1000);
+}
 
 
 // ═══════════════════════════════════════════
