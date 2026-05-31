@@ -1109,7 +1109,50 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <!-- Timestamp aggiornamento -->
       <div id="meteo-updated"></div>
 
-    </div>
+      <!-- Webcam Live -->
+      <div id="webcam-section">
+        <div id="webcam-header">
+          <div id="webcam-title">
+            <div class="live-dot"></div>
+            <span data-it="WEBCAM LIVE · ETNA" data-en="LIVE WEBCAM · ETNA">WEBCAM LIVE · ETNA</span>
+          </div>
+          <button id="webcam-refresh" onclick="refreshWebcam()">
+            <span>↻</span>
+            <span data-it="Aggiorna" data-en="Refresh">Aggiorna</span>
+          </button>
+        </div>
+        <div id="webcam-selector">
+          <button class="wcam-btn active" onclick="selectCam(0)">🌋 Etna Sud</button>
+          <button class="wcam-btn" onclick="selectCam(1)">🏔 Sapienza</button>
+          <button class="wcam-btn" onclick="selectCam(2)">🌊 Milo Est</button>
+          <button class="wcam-btn" onclick="selectCam(3)">❄️ Nord</button>
+        </div>
+        <div id="webcam-frame-wrap">
+          <img id="webcam-img" src="" alt="Webcam Etna live" loading="lazy">
+          <div id="webcam-overlay">
+            <span id="webcam-cam-name">Etna Sud · SkylineWebcams</span>
+            <span id="webcam-time"></span>
+          </div>
+          <div id="webcam-noimg">
+            <span>📷</span>
+            <span data-it="Immagine non disponibile" data-en="Image not available">Immagine non disponibile</span>
+            <a id="webcam-direct-link" href="https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/vulcano-etna.html" target="_blank" rel="noopener" data-it="Apri webcam →" data-en="Open webcam →">Apri webcam →</a>
+          </div>
+        </div>
+        <div id="tremor-bar" title="Tremore vulcanico — dati EtnaMonitor">
+          <span id="tremor-label" data-it="Tremore" data-en="Tremor">Tremore</span>
+          <div id="tremor-track"><div id="tremor-fill"></div></div>
+          <span id="tremor-val"></span>
+        </div>
+        <div id="webcam-source">
+          <span data-it="Fonte: " data-en="Source: ">Fonte: </span>
+          <a id="webcam-src-link" href="https://www.skylinewebcams.com" target="_blank" rel="noopener">SkylineWebcams</a>
+          &nbsp;·&nbsp;
+          <a href="https://etnamonitor.it" target="_blank" rel="noopener">EtnaMonitor</a>
+        </div>
+      </div>
+
+    </div><!-- end panel-meteo -->
 
 
     <!-- SCOPRI / DISCOVER -->
@@ -1527,7 +1570,7 @@ function setTile(n) {
   tileLayer = L.tileLayer(TILES[n], { maxZoom:18, attribution:'© OpenStreetMap' }).addTo(map);
   document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+n));
 }
-setTile('dark');
+setTile('topo');
 
 L.marker([37.7510, 14.9934], {
   icon: L.divIcon({ className:'', html:'<div class="em">🌋</div>', iconSize:[24,24], iconAnchor:[12,20] })
