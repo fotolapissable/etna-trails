@@ -1157,10 +1157,11 @@ function windDir(deg) {
 }
 
 // Quote: coordinate leggermente diverse per microclima Etna
+// Coordinate versante EST dell'Etna (Zafferana / Milo / Rifugio Sapienza lato est)
 const QUOTA_LEVELS = {
-  1000: { lat: 37.785, lng: 14.960, label: '1000m' },
-  2000: { lat: 37.765, lng: 14.978, label: '2000m' },
-  3300: { lat: 37.751, lng: 14.993, label: 'Vetta 3300m' }
+  1000: { lat: 37.720, lng: 15.105, label: '1000m – Versante Est' },  // zona Zafferana Etnea
+  2000: { lat: 37.710, lng: 15.065, label: '2000m – Versante Est' },  // zona Rifugio Citelli
+  3300: { lat: 37.748, lng: 15.003, label: 'Vetta 3300m' }            // cratere sommitale
 };
 
 let activeMeteoQuota = 1000;
