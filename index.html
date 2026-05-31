@@ -145,6 +145,91 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 .emerg-badge{font-family:var(--font-m);font-size:7px;padding:2px 5px;border-radius:2px}
 .emerg-note{font-size:10.5px;color:var(--ash);margin-top:3px;font-style:italic}
 
+/* ═══════════════════════════════════
+   METEO TAB
+═══════════════════════════════════ */
+#panel-meteo{overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--lava3) transparent}
+#panel-meteo::-webkit-scrollbar{width:3px}
+#panel-meteo::-webkit-scrollbar-thumb{background:var(--lava3)}
+
+/* Alert meteo condizioni estreme */
+#meteo-alert{display:none;margin:8px 10px 0;padding:7px 10px;
+  background:rgba(191,58,58,0.15);border:1px solid rgba(191,58,58,0.5);
+  border-left:3px solid var(--red-trail);border-radius:2px;
+  font-family:var(--font-m);font-size:8px;letter-spacing:.5px;color:#e07070;line-height:1.5}
+
+/* Quota selector */
+#meteo-top{padding:8px 10px 0;flex-shrink:0}
+#meteo-quota-row{display:flex;gap:4px;margin-bottom:8px}
+#meteo-quota-row .dtag{flex:1;text-align:center;padding:4px 0}
+#meteo-quota-row .dtag.active{background:rgba(232,96,10,0.2);border-color:var(--ember);color:var(--ember)}
+
+/* Strip numerica corrente */
+#meteo-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;
+  padding:0 10px 8px;border-bottom:1px solid var(--border);flex-shrink:0}
+.mstat{background:var(--lava2);border:1px solid var(--border);
+  border-radius:3px;padding:7px 5px;text-align:center;position:relative;overflow:hidden}
+.mstat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--ember);opacity:0;transition:opacity .3s}
+.mstat.hi::after{opacity:1}
+.mstat-val{font-family:var(--font-t);font-size:15px;color:var(--gold);font-weight:600;line-height:1}
+.mstat-val.big{font-size:20px}
+.mstat-lbl{font-family:var(--font-m);font-size:7px;color:var(--ash);
+  letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+.mstat-sub{font-family:var(--font-m);font-size:7px;color:var(--ash);margin-top:1px}
+
+/* Windy iframe */
+#meteo-iframe-wrap{position:relative;flex-shrink:0;margin:0;overflow:hidden;
+  border-bottom:1px solid var(--border)}
+#meteo-frame{width:100%;height:230px;border:none;display:block;
+  filter:saturate(0.7) brightness(0.85);transition:filter .3s}
+#meteo-frame:hover{filter:saturate(1) brightness(1)}
+#meteo-iframe-label{position:absolute;top:6px;left:8px;
+  font-family:var(--font-m);font-size:7px;letter-spacing:2px;
+  color:rgba(201,168,76,0.7);text-transform:uppercase;pointer-events:none;
+  background:rgba(10,4,0,0.7);padding:2px 6px;border-radius:2px}
+
+/* Forecast 48h */
+#meteo-forecast{padding:8px 10px;flex-shrink:0}
+#meteo-forecast-title{font-family:var(--font-m);font-size:8px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;margin-bottom:6px;
+  display:flex;justify-content:space-between;align-items:center}
+#meteo-forecast-title span{color:var(--ember);font-size:7px}
+.fc-day-hdr{font-family:var(--font-m);font-size:7.5px;letter-spacing:2px;
+  color:var(--gold);text-transform:uppercase;padding:5px 0 3px;
+  border-bottom:1px solid rgba(201,168,76,0.15);margin-bottom:3px}
+.fc-row{display:flex;align-items:center;gap:5px;padding:4px 0;
+  border-bottom:1px solid rgba(201,168,76,0.05);transition:background .2s;border-radius:2px}
+.fc-row:hover{background:rgba(232,96,10,0.04)}
+.fc-time{font-family:var(--font-m);font-size:8.5px;min-width:38px;color:var(--ash)}
+.fc-icon{font-size:13px;min-width:18px;text-align:center}
+.fc-temp{font-family:var(--font-t);font-size:12px;color:var(--gold);min-width:36px;font-weight:600}
+.fc-wind{font-family:var(--font-m);font-size:8px;color:var(--ash-light);min-width:52px}
+.fc-rain{font-family:var(--font-m);font-size:8px;color:var(--blue-trail);min-width:30px}
+.fc-wind-dir{font-family:var(--font-m);font-size:8px;color:var(--ash);min-width:22px}
+
+/* Wind rose indicator */
+.wind-arrow{display:inline-block;transition:transform .3s}
+
+/* Aggiornamento timestamp */
+#meteo-updated{padding:6px 10px 10px;font-family:var(--font-m);font-size:7px;
+  color:var(--ash);letter-spacing:1px;text-align:right;border-top:1px solid var(--border)}
+#meteo-updated a{color:rgba(201,168,76,0.5);text-decoration:none}
+#meteo-updated a:hover{color:var(--gold)}
+
+/* Loading spinner */
+.meteo-loading{display:flex;align-items:center;justify-content:center;
+  height:60px;gap:8px;font-family:var(--font-m);font-size:9px;color:var(--ash);
+  letter-spacing:2px}
+.spinner{width:16px;height:16px;border:2px solid var(--lava3);
+  border-top-color:var(--ember);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Error state */
+.meteo-error{padding:14px;text-align:center;font-family:var(--font-m);
+  font-size:9px;color:var(--ash);letter-spacing:1px;line-height:1.8}
+.meteo-error a{color:var(--ember);text-decoration:none}
+
 /* MAP */
 #map-wrap{flex:1;position:relative;min-height:0;overflow:hidden}
 #map{position:absolute;inset:0;z-index:1}
@@ -348,6 +433,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   #map-wrap{flex:1;min-height:0}
   .tc-name{font-size:13px}.tc-stat{font-size:9.5px}.tc-desc{font-size:12px}
   .rc-name{font-size:13px}.action-btn{font-size:10px;padding:9px 14px}
+  #meteo-frame{height:180px}
 }
 @media(max-width:380px){
   .tab-btn span:last-child{display:none}
@@ -382,11 +468,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <button class="tab-btn" onclick="setTab('rifugi')">
         <span class="ti">🏠</span><span data-it="Rifugi" data-en="Refuges">Rifugi</span>
       </button>
+      <button class="tab-btn" onclick="setTab('meteo')">
+        <span class="ti">🌤</span><span data-it="Meteo" data-en="Weather">Meteo</span>
+      </button>
       <button class="tab-btn" onclick="setTab('sos')">
         <span class="ti">🆘</span><span>SOS</span>
       </button>
     </div>
 
+    <!-- SENTIERI -->
     <div class="tab-panel active" id="panel-sentieri">
       <div class="search-wrap">
         <input type="text" class="search-input" id="s-sentieri" placeholder="Cerca sentiero…" oninput="filterSentieri()">
@@ -399,6 +489,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <div class="item-list" id="sentieri-list"></div>
     </div>
 
+    <!-- RIFUGI -->
     <div class="tab-panel" id="panel-rifugi">
       <div class="search-wrap">
         <input type="text" class="search-input" id="s-rifugi" placeholder="Cerca rifugio…" oninput="filterRifugi()">
@@ -406,6 +497,55 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <div class="item-list" id="rifugi-list"></div>
     </div>
 
+    <!-- METEO -->
+    <div class="tab-panel" id="panel-meteo">
+
+      <!-- Alert condizioni avverse -->
+      <div id="meteo-alert"></div>
+
+      <!-- Selector quota -->
+      <div id="meteo-top">
+        <div id="meteo-quota-row">
+          <button class="dtag active" onclick="setMeteoQuota(1000)">🌿 1000m</button>
+          <button class="dtag" onclick="setMeteoQuota(2000)">⛰ 2000m</button>
+          <button class="dtag" onclick="setMeteoQuota(3300)">🌋 Vetta</button>
+        </div>
+      </div>
+
+      <!-- Dati correnti (strip 4 box) -->
+      <div id="meteo-strip">
+        <div class="meteo-loading" style="grid-column:1/-1">
+          <div class="spinner"></div>
+          <span>CARICAMENTO</span>
+        </div>
+      </div>
+
+      <!-- Windy iframe -->
+      <div id="meteo-iframe-wrap">
+        <div id="meteo-iframe-label">🌬 WIND · CLOUD · ECMWF</div>
+        <iframe id="meteo-frame"
+          src="https://embed.windy.com/embed2.html?lat=37.751&lon=14.993&detailLat=37.751&detailLon=14.993&width=650&height=230&zoom=9&level=850h&overlay=wind&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=true&type=map&location=coordinates&detail=true&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"
+          frameborder="0"
+          allowfullscreen
+          loading="lazy"
+          title="Windy meteo Etna">
+        </iframe>
+      </div>
+
+      <!-- Forecast 48h -->
+      <div id="meteo-forecast">
+        <div class="meteo-loading">
+          <div class="spinner"></div>
+          <span>PREVISIONI</span>
+        </div>
+      </div>
+
+      <!-- Timestamp aggiornamento -->
+      <div id="meteo-updated"></div>
+
+    </div>
+
+    <!-- SOS -->
     <div class="tab-panel" id="panel-sos">
       <div id="sos-list"></div>
     </div>
@@ -555,6 +695,8 @@ function setLang(l) {
   });
   renderAll();
   if(activeItem) showDetail(activeItem.type, activeItem.id);
+  // Aggiorna testi meteo se il tab è attivo
+  if(activeTab === 'meteo') refreshMeteoLabels();
 }
 
 // ── TABS ─────────────────────────────────────────────────
@@ -567,6 +709,11 @@ function setTab(tab) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   const panel = document.getElementById('panel-' + tab);
   if(panel) panel.classList.add('active');
+  // Carica meteo al primo accesso al tab
+  if(tab === 'meteo' && !window._meteoLoaded) {
+    window._meteoLoaded = true;
+    loadMeteo(activeMeteoQuota);
+  }
 }
 
 // ── MAP ──────────────────────────────────────────────────
@@ -970,6 +1117,218 @@ function hoverElev(e,cv){
   tt.style.display='block';tt.style.left=(e.clientX+10)+'px';tt.style.top=(e.clientY-28)+'px';
   tt.textContent=`${near.dist.toFixed(2)}km · ${Math.round(near.ele)}m`;
 }
+
+// ═══════════════════════════════════════════
+//  METEO — Open-Meteo + Windy
+// ═══════════════════════════════════════════
+
+// Codici WMO → emoji + descrizione
+const WMO = {
+  0:  { i:'☀️',  it:'Sereno',          en:'Clear sky' },
+  1:  { i:'🌤',  it:'Poco nuvoloso',    en:'Mainly clear' },
+  2:  { i:'⛅',  it:'Nuvoloso',         en:'Partly cloudy' },
+  3:  { i:'☁️',  it:'Coperto',          en:'Overcast' },
+  45: { i:'🌫',  it:'Nebbia',           en:'Fog' },
+  48: { i:'🌫',  it:'Nebbia ghiacciata',en:'Icy fog' },
+  51: { i:'🌦',  it:'Pioggerella',      en:'Light drizzle' },
+  53: { i:'🌦',  it:'Pioviggine',       en:'Moderate drizzle' },
+  55: { i:'🌧',  it:'Pioggerella intensa',en:'Dense drizzle' },
+  61: { i:'🌧',  it:'Pioggia leggera',  en:'Slight rain' },
+  63: { i:'🌧',  it:'Pioggia moderata', en:'Moderate rain' },
+  65: { i:'🌧',  it:'Pioggia forte',    en:'Heavy rain' },
+  71: { i:'❄️',  it:'Neve leggera',     en:'Slight snow' },
+  73: { i:'❄️',  it:'Neve moderata',    en:'Moderate snow' },
+  75: { i:'❄️',  it:'Neve intensa',     en:'Heavy snow' },
+  77: { i:'🌨',  it:'Granuli di neve',  en:'Snow grains' },
+  80: { i:'🌦',  it:'Rovesci leggeri',  en:'Slight showers' },
+  81: { i:'🌧',  it:'Rovesci moderati', en:'Moderate showers' },
+  82: { i:'⛈',  it:'Rovesci violenti', en:'Violent showers' },
+  85: { i:'🌨',  it:'Neve a rovesci',   en:'Snow showers' },
+  86: { i:'🌨',  it:'Neve a rovesci',   en:'Heavy snow showers' },
+  95: { i:'⛈',  it:'Temporale',        en:'Thunderstorm' },
+  96: { i:'⛈',  it:'Temporale con grandine',en:'Thunderstorm+hail' },
+  99: { i:'⛈',  it:'Temporale con grandine forte',en:'Thunderstorm+heavy hail' }
+};
+
+// Direzione vento in gradi → stringa
+function windDir(deg) {
+  const dirs = ['N','NE','E','SE','S','SO','O','NO'];
+  return dirs[Math.round(deg/45) % 8];
+}
+
+// Quote: coordinate leggermente diverse per microclima Etna
+const QUOTA_LEVELS = {
+  1000: { lat: 37.785, lng: 14.960, label: '1000m' },
+  2000: { lat: 37.765, lng: 14.978, label: '2000m' },
+  3300: { lat: 37.751, lng: 14.993, label: 'Vetta 3300m' }
+};
+
+let activeMeteoQuota = 1000;
+let meteoData = null; // cache risposta API
+
+function setMeteoQuota(q) {
+  activeMeteoQuota = q;
+  // aggiorna stile bottoni
+  document.querySelectorAll('#meteo-quota-row .dtag').forEach((b,i) => {
+    b.classList.toggle('active', [1000,2000,3300][i] === q);
+  });
+  // Se abbiamo già dati in cache per questa quota, non riscaricare
+  loadMeteo(q);
+}
+
+async function loadMeteo(quota) {
+  const c = QUOTA_LEVELS[quota];
+  const strip = document.getElementById('meteo-strip');
+  const forecast = document.getElementById('meteo-forecast');
+
+  // Loading state
+  strip.innerHTML = `<div class="meteo-loading" style="grid-column:1/-1"><div class="spinner"></div><span>CARICAMENTO</span></div>`;
+  forecast.innerHTML = `<div class="meteo-loading"><div class="spinner"></div><span>${lang==='it'?'PREVISIONI':'FORECAST'}</span></div>`;
+
+  try {
+    const url = `https://api.open-meteo.com/v1/forecast`
+      + `?latitude=${c.lat}&longitude=${c.lng}`
+      + `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,weather_code,cloud_cover,precipitation`
+      + `&hourly=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation_probability,weather_code,cloud_cover`
+      + `&wind_speed_unit=kmh&forecast_days=3&timezone=Europe%2FRome`;
+
+    const r = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    meteoData = d;
+
+    renderMeteoStrip(d.current, quota);
+    renderForecast(d.hourly, quota);
+    checkMeteoAlert(d.current, quota);
+    document.getElementById('meteo-updated').innerHTML =
+      `${lang==='it'?'Aggiornato':'Updated'}: ${new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})} &nbsp;·&nbsp; <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>`;
+
+  } catch(e) {
+    console.warn('[Meteo]', e);
+    strip.innerHTML = `<div class="meteo-error" style="grid-column:1/-1">
+      ⚠️ ${lang==='it'?'Dati non disponibili. Controlla la connessione.':'Data unavailable. Check your connection.'}
+      <br><a href="#" onclick="loadMeteo(${quota});return false">${lang==='it'?'Riprova':'Retry'}</a>
+    </div>`;
+    forecast.innerHTML = '';
+  }
+}
+
+function renderMeteoStrip(cur, quota) {
+  const wmo = WMO[cur.weather_code] || { i:'🌡', it:'—', en:'—' };
+  const windLabel = lang==='it' ? 'Vento' : 'Wind';
+  const gustLabel = lang==='it' ? 'Raffica' : 'Gust';
+  const humLabel  = lang==='it' ? 'Umidità' : 'Humidity';
+
+  // Evidenzia con accent bar bottom se vento > 50 km/h
+  const windHi = cur.wind_speed_10m > 50;
+  const gustHi = cur.wind_gusts_10m > 70;
+
+  document.getElementById('meteo-strip').innerHTML = `
+    <div class="mstat">
+      <div class="mstat-val big">${wmo.i}</div>
+      <div class="mstat-lbl">${wmo[lang]||wmo.it}</div>
+      <div class="mstat-sub">${QUOTA_LEVELS[quota].label}</div>
+    </div>
+    <div class="mstat">
+      <div class="mstat-val">${Math.round(cur.temperature_2m)}°</div>
+      <div class="mstat-lbl">Temp</div>
+      <div class="mstat-sub">💧 ${cur.relative_humidity_2m}%</div>
+    </div>
+    <div class="mstat ${windHi?'hi':''}">
+      <div class="mstat-val">${Math.round(cur.wind_speed_10m)}</div>
+      <div class="mstat-lbl">${windLabel} km/h</div>
+      <div class="mstat-sub">${windDir(cur.wind_direction_10m)}</div>
+    </div>
+    <div class="mstat ${gustHi?'hi':''}">
+      <div class="mstat-val">${Math.round(cur.wind_gusts_10m)}</div>
+      <div class="mstat-lbl">${gustLabel} km/h</div>
+      <div class="mstat-sub">☁️ ${cur.cloud_cover}%</div>
+    </div>`;
+}
+
+function renderForecast(hourly, quota) {
+  const now = new Date();
+  const todayStr = now.toLocaleDateString('it-IT', {weekday:'long', day:'numeric', month:'long'});
+  const c = document.getElementById('meteo-forecast');
+  c.innerHTML = '';
+
+  // Titolo sezione
+  const title = document.createElement('div');
+  title.id = 'meteo-forecast-title';
+  title.innerHTML = `${lang==='it'?'PROSSIME 48H':'NEXT 48H'} <span>${QUOTA_LEVELS[quota].label}</span>`;
+  c.appendChild(title);
+
+  let lastDay = null;
+  let count = 0;
+
+  hourly.time.forEach((t, i) => {
+    if(count >= 24) return; // max 24 righe (ogni 2h = 48h)
+    const d = new Date(t);
+    if(d < now) return; // solo futuro
+    if(d.getHours() % 2 !== 0) return; // ogni 2 ore
+
+    // Separatore giorno
+    const dayKey = d.toLocaleDateString('it-IT', {weekday:'short', day:'numeric', month:'short'});
+    if(dayKey !== lastDay) {
+      const hdr = document.createElement('div');
+      hdr.className = 'fc-day-hdr';
+      const isToday = d.toDateString() === now.toDateString();
+      hdr.textContent = isToday ? (lang==='it'?'OGGI':'TODAY') : dayKey.toUpperCase();
+      c.appendChild(hdr);
+      lastDay = dayKey;
+    }
+
+    const wmo = WMO[hourly.weather_code[i]] || { i:'🌡', it:'—', en:'—' };
+    const windHi = hourly.wind_speed_10m[i] > 50;
+    const row = document.createElement('div');
+    row.className = 'fc-row';
+    row.innerHTML = `
+      <span class="fc-time">${String(d.getHours()).padStart(2,'0')}:00</span>
+      <span class="fc-icon">${wmo.i}</span>
+      <span class="fc-temp">${Math.round(hourly.temperature_2m[i])}°</span>
+      <span class="fc-wind" style="${windHi?'color:var(--ember)':''}">💨 ${Math.round(hourly.wind_speed_10m[i])}km/h</span>
+      <span class="fc-wind-dir">${windDir(hourly.wind_direction_10m[i])}</span>
+      <span class="fc-rain">🌧 ${hourly.precipitation_probability[i]}%</span>`;
+    c.appendChild(row);
+    count++;
+  });
+}
+
+// Alert automatico per condizioni pericolose
+function checkMeteoAlert(cur, quota) {
+  const alerts = [];
+  const alert = document.getElementById('meteo-alert');
+
+  if(cur.wind_speed_10m > 60)
+    alerts.push(lang==='it' ? `⚠️ Vento forte: ${Math.round(cur.wind_speed_10m)} km/h` : `⚠️ Strong wind: ${Math.round(cur.wind_speed_10m)} km/h`);
+  if(cur.wind_gusts_10m > 80)
+    alerts.push(lang==='it' ? `⚠️ Raffiche: ${Math.round(cur.wind_gusts_10m)} km/h` : `⚠️ Gusts: ${Math.round(cur.wind_gusts_10m)} km/h`);
+  if([95,96,99].includes(cur.weather_code))
+    alerts.push(lang==='it' ? '⛈ Temporale in corso — evitare escursioni' : '⛈ Thunderstorm — avoid hiking');
+  if(quota >= 2000 && cur.temperature_2m < 0)
+    alerts.push(lang==='it' ? `🧊 Temperatura sotto zero: ${Math.round(cur.temperature_2m)}°C` : `🧊 Below zero: ${Math.round(cur.temperature_2m)}°C`);
+
+  if(alerts.length) {
+    alert.style.display = 'block';
+    alert.innerHTML = alerts.join('<br>');
+  } else {
+    alert.style.display = 'none';
+  }
+}
+
+// Aggiorna label lingua senza rifare fetch
+function refreshMeteoLabels() {
+  if(meteoData) {
+    renderMeteoStrip(meteoData.current, activeMeteoQuota);
+    renderForecast(meteoData.hourly, activeMeteoQuota);
+    checkMeteoAlert(meteoData.current, activeMeteoQuota);
+  }
+}
+
+// Aggiornamento automatico ogni 30 minuti se tab meteo visibile
+setInterval(() => {
+  if(activeTab === 'meteo') loadMeteo(activeMeteoQuota);
+}, 30 * 60 * 1000);
 
 // ── MODAL ────────────────────────────────────────────────
 function openModal(){document.getElementById('modal-overlay').classList.add('open');document.getElementById('submit-form').style.display='block';document.getElementById('submit-ok').style.display='none';}
