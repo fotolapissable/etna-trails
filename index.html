@@ -829,17 +829,49 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
    WEBCAM LIVE
 ═══════════════════════════════════════ */
 #webcam-section{
-  padding:8px 10px;border-top:1px solid var(--border);flex-shrink:0;
+  padding:8px 10px 12px;border-top:1px solid var(--border);flex-shrink:0;
 }
 #webcam-header{
   display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 #webcam-title{
   font-family:var(--font-m);font-size:8px;letter-spacing:2px;
   color:var(--ash);text-transform:uppercase;
   display:flex;align-items:center;gap:6px;
 }
+#webcam-note{
+  font-family:var(--font-m);font-size:7.5px;color:var(--ash);
+  letter-spacing:.5px;margin-bottom:8px;font-style:italic;
+}
+#webcam-grid{
+  display:flex;flex-direction:column;gap:5px;
+}
+.wcam-card{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 10px;border-radius:3px;
+  background:var(--lava2);border:1px solid var(--border);
+  text-decoration:none;transition:all .2s;cursor:pointer;
+}
+.wcam-card:hover{
+  background:rgba(232,96,10,0.08);border-color:rgba(232,96,10,0.35);
+  transform:translateX(2px);
+}
+.wcam-card-icon{font-size:18px;flex-shrink:0}
+.wcam-card-body{flex:1;min-width:0}
+.wcam-card-name{
+  font-family:var(--font-t);font-size:11px;color:var(--gold);
+  letter-spacing:.3px;margin-bottom:1px;
+}
+.wcam-card-src{
+  font-family:var(--font-m);font-size:7.5px;color:var(--ash);
+  letter-spacing:.5px;
+}
+.wcam-card-arrow{
+  font-size:14px;color:var(--ember);flex-shrink:0;
+  opacity:.6;transition:opacity .2s;
+}
+.wcam-card:hover .wcam-card-arrow{opacity:1}
 .live-dot{
   width:7px;height:7px;border-radius:50%;
   background:#bf3a3a;
@@ -851,97 +883,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   0%,100%{opacity:1;box-shadow:0 0 4px rgba(191,58,58,0.6)}
   50%{opacity:.6;box-shadow:0 0 10px rgba(191,58,58,1)}
 }
-#webcam-refresh{
-  background:none;border:none;color:var(--ash);
-  font-family:var(--font-m);font-size:8px;letter-spacing:1px;
-  cursor:pointer;padding:3px 7px;border:1px solid var(--border);
-  border-radius:2px;transition:all .2s;display:flex;align-items:center;gap:4px;
-}
-#webcam-refresh:hover{color:var(--gold);border-color:var(--gold)}
-#webcam-refresh.spinning span{animation:spin .8s linear infinite;display:inline-block}
-
-/* Selector webcam */
-#webcam-selector{
-  display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap;
-}
-.wcam-btn{
-  flex:1;min-width:0;
-  background:none;border:1px solid var(--border);
-  color:var(--ash);font-family:var(--font-m);font-size:7.5px;
-  letter-spacing:.5px;padding:4px 6px;border-radius:2px;
-  cursor:pointer;transition:all .2s;text-align:center;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.wcam-btn.active{
-  background:rgba(232,96,10,0.15);border-color:var(--ember);color:var(--ember);
-}
-.wcam-btn:hover:not(.active){color:var(--ash-light)}
-
-/* Frame webcam */
-#webcam-frame-wrap{
-  position:relative;
-  background:var(--lava2);border:1px solid var(--border);border-radius:3px;
-  overflow:hidden;
-}
-#webcam-img{
-  width:100%;display:block;
-  min-height:130px;
-  object-fit:cover;
-  transition:opacity .3s;
-  background:var(--lava2);
-}
-#webcam-img.loading{opacity:0.3}
-#webcam-overlay{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(to top, rgba(10,4,0,.9) 0%, transparent 100%);
-  padding:6px 8px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-#webcam-cam-name{
-  font-family:var(--font-m);font-size:8px;color:var(--gold);letter-spacing:1px;
-}
-#webcam-time{
-  font-family:var(--font-m);font-size:7px;color:var(--ash);
-}
-#webcam-noimg{
-  display:none;
-  flex-direction:column;align-items:center;justify-content:center;
-  height:130px;gap:6px;
-  font-family:var(--font-m);font-size:8px;color:var(--ash);letter-spacing:1px;
-  text-align:center;padding:10px;
-}
-#webcam-noimg a{
-  color:var(--ember);text-decoration:none;font-size:9px;
-  border:1px solid rgba(232,96,10,0.3);padding:4px 10px;border-radius:2px;margin-top:4px;
-}
-
-/* Barra tremore (bonus) */
-#tremor-bar{
-  margin-top:6px;display:flex;align-items:center;gap:8px;
-  padding:5px 8px;background:var(--lava2);border:1px solid var(--border);
-  border-radius:3px;
-}
-#tremor-label{
-  font-family:var(--font-m);font-size:7.5px;color:var(--ash);
-  text-transform:uppercase;letter-spacing:1px;flex-shrink:0;
-}
-#tremor-track{
-  flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;
-}
-#tremor-fill{
-  height:100%;border-radius:2px;transition:width .8s,background .5s;
-  background:var(--green-trail);width:20%;
-}
-#tremor-val{
-  font-family:var(--font-m);font-size:8px;color:var(--ash-light);
-  flex-shrink:0;min-width:60px;text-align:right;
-}
-#webcam-source{
-  margin-top:5px;font-family:var(--font-m);font-size:7px;color:var(--ash);
-  text-align:right;letter-spacing:.5px;
-}
-#webcam-source a{color:rgba(201,168,76,0.5);text-decoration:none}
-#webcam-source a:hover{color:var(--gold)}
 
 </style>
 </head>
@@ -1116,39 +1057,57 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
             <div class="live-dot"></div>
             <span data-it="WEBCAM LIVE · ETNA" data-en="LIVE WEBCAM · ETNA">WEBCAM LIVE · ETNA</span>
           </div>
-          <button id="webcam-refresh" onclick="refreshWebcam()">
-            <span>↻</span>
-            <span data-it="Aggiorna" data-en="Refresh">Aggiorna</span>
-          </button>
         </div>
-        <div id="webcam-selector">
-          <button class="wcam-btn active" onclick="selectCam(0)">🌋 Etna Sud</button>
-          <button class="wcam-btn" onclick="selectCam(1)">🏔 Sapienza</button>
-          <button class="wcam-btn" onclick="selectCam(2)">🌊 Milo Est</button>
-          <button class="wcam-btn" onclick="selectCam(3)">❄️ Nord</button>
-        </div>
-        <div id="webcam-frame-wrap">
-          <img id="webcam-img" src="" alt="Webcam Etna live" loading="lazy">
-          <div id="webcam-overlay">
-            <span id="webcam-cam-name">Etna Sud · SkylineWebcams</span>
-            <span id="webcam-time"></span>
-          </div>
-          <div id="webcam-noimg">
-            <span>📷</span>
-            <span data-it="Immagine non disponibile" data-en="Image not available">Immagine non disponibile</span>
-            <a id="webcam-direct-link" href="https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/vulcano-etna.html" target="_blank" rel="noopener" data-it="Apri webcam →" data-en="Open webcam →">Apri webcam →</a>
-          </div>
-        </div>
-        <div id="tremor-bar" title="Tremore vulcanico — dati EtnaMonitor">
-          <span id="tremor-label" data-it="Tremore" data-en="Tremor">Tremore</span>
-          <div id="tremor-track"><div id="tremor-fill"></div></div>
-          <span id="tremor-val"></span>
-        </div>
-        <div id="webcam-source">
-          <span data-it="Fonte: " data-en="Source: ">Fonte: </span>
-          <a id="webcam-src-link" href="https://www.skylinewebcams.com" target="_blank" rel="noopener">SkylineWebcams</a>
-          &nbsp;·&nbsp;
-          <a href="https://etnamonitor.it" target="_blank" rel="noopener">EtnaMonitor</a>
+        <div id="webcam-note" data-it="Apri in una nuova scheda per la visione ottimale" data-en="Open in a new tab for optimal viewing">Apri in una nuova scheda per la visione ottimale</div>
+        <div id="webcam-grid">
+          <a class="wcam-card" href="https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/vulcano-etna.html" target="_blank" rel="noopener">
+            <div class="wcam-card-icon">🌋</div>
+            <div class="wcam-card-body">
+              <div class="wcam-card-name" data-it="Etna · Crateri Sud" data-en="Etna · South Craters">Etna · Crateri Sud</div>
+              <div class="wcam-card-src">SkylineWebcams</div>
+            </div>
+            <div class="wcam-card-arrow">→</div>
+          </a>
+          <a class="wcam-card" href="https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-rifugio-sapienza.html" target="_blank" rel="noopener">
+            <div class="wcam-card-icon">🏔</div>
+            <div class="wcam-card-body">
+              <div class="wcam-card-name" data-it="Rifugio Sapienza" data-en="Sapienza Refuge">Rifugio Sapienza</div>
+              <div class="wcam-card-src">SkylineWebcams</div>
+            </div>
+            <div class="wcam-card-arrow">→</div>
+          </a>
+          <a class="wcam-card" href="https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-milo.html" target="_blank" rel="noopener">
+            <div class="wcam-card-icon">🌊</div>
+            <div class="wcam-card-body">
+              <div class="wcam-card-name" data-it="Milo · Versante Est" data-en="Milo · East Slope">Milo · Versante Est</div>
+              <div class="wcam-card-src">SkylineWebcams</div>
+            </div>
+            <div class="wcam-card-arrow">→</div>
+          </a>
+          <a class="wcam-card" href="https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-nord.html" target="_blank" rel="noopener">
+            <div class="wcam-card-icon">❄️</div>
+            <div class="wcam-card-body">
+              <div class="wcam-card-name" data-it="Versante Nord" data-en="North Slope">Versante Nord</div>
+              <div class="wcam-card-src">SkylineWebcams</div>
+            </div>
+            <div class="wcam-card-arrow">→</div>
+          </a>
+          <a class="wcam-card" href="https://www.ct.ingv.it/sezioniesterne/StreamingEtna.php" target="_blank" rel="noopener">
+            <div class="wcam-card-icon">🔬</div>
+            <div class="wcam-card-body">
+              <div class="wcam-card-name" data-it="Streaming INGV Ufficiale" data-en="INGV Official Stream">Streaming INGV Ufficiale</div>
+              <div class="wcam-card-src">INGV Osservatorio Etneo</div>
+            </div>
+            <div class="wcam-card-arrow">→</div>
+          </a>
+          <a class="wcam-card" href="https://etnamonitor.it/webcam-etna" target="_blank" rel="noopener">
+            <div class="wcam-card-icon">📊</div>
+            <div class="wcam-card-body">
+              <div class="wcam-card-name" data-it="Webcam + Tremore Live" data-en="Webcam + Live Tremor">Webcam + Tremore Live</div>
+              <div class="wcam-card-src">EtnaMonitor</div>
+            </div>
+            <div class="wcam-card-arrow">→</div>
+          </a>
         </div>
       </div>
 
