@@ -524,7 +524,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <div id="meteo-iframe-wrap">
         <div id="meteo-iframe-label">🌬 WIND · CLOUD · ECMWF</div>
         <iframe id="meteo-frame"
-          src="https://embed.windy.com/embed2.html?lat=37.751&lon=14.993&detailLat=37.751&detailLon=14.993&width=650&height=230&zoom=9&level=850h&overlay=wind&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=true&type=map&location=coordinates&detail=true&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"
+          src="about:blank"
           frameborder="0"
           allowfullscreen
           loading="lazy"
@@ -712,6 +712,7 @@ function setTab(tab) {
   // Carica meteo al primo accesso al tab
   if(tab === 'meteo' && !window._meteoLoaded) {
     window._meteoLoaded = true;
+    updateWindyFrame(activeMeteoQuota);
     loadMeteo(activeMeteoQuota);
   }
 }
@@ -1157,15 +1158,42 @@ function windDir(deg) {
 }
 
 // Quote: coordinate leggermente diverse per microclima Etna
-// Coordinate versante EST dell'Etna (Zafferana / Milo / Rifugio Sapienza lato est)
+// Coordinate versante EST dell'Etna (Zafferana / Milo / Rifugio Citelli)
+// lng > 15.05 garantisce versante est, lontano da Bronte (lng ~14.83)
 const QUOTA_LEVELS = {
-  1000: { lat: 37.720, lng: 15.105, label: '1000m – Versante Est' },  // zona Zafferana Etnea
-  2000: { lat: 37.710, lng: 15.065, label: '2000m – Versante Est' },  // zona Rifugio Citelli
-  3300: { lat: 37.748, lng: 15.003, label: 'Vetta 3300m' }            // cratere sommitale
+  1000: { lat: 37.693, lng: 15.112, label: '1000m – Zafferana',  wlat: 37.693, wlng: 15.112 },
+  2000: { lat: 37.706, lng: 15.058, label: '2000m – Rif. Citelli', wlat: 37.706, wlng: 15.058 },
+  3300: { lat: 37.748, lng: 15.003, label: 'Vetta 3300m',         wlat: 37.748, wlng: 15.003 }
 };
 
 let activeMeteoQuota = 1000;
 let meteoData = null; // cache risposta API
+let windyLoaded = false;
+
+// Aggiorna iframe Windy centrandolo sulle coordinate della quota selezionata
+function updateWindyFrame(quota) {
+  const c = QUOTA_LEVELS[quota];
+  const lat = c.wlat, lng = c.wlng;
+  const params = new URLSearchParams({
+    lat: lat, lon: lng,
+    detailLat: lat, detailLon: lng,
+    width: 650, height: 230,
+    zoom: 10,
+    level: 'surface',
+    overlay: 'wind',
+    product: 'ecmwf',
+    menu: '', message: 'true', marker: 'true',
+    calendar: 'now', pressure: 'true',
+    type: 'map', location: 'coordinates',
+    detail: 'true',
+    metricWind: 'km/h',
+    metricTemp: '°C',
+    radarRange: -1
+  });
+  const frame = document.getElementById('meteo-frame');
+  frame.src = 'https://embed.windy.com/embed2.html?' + params.toString();
+  windyLoaded = true;
+}
 
 function setMeteoQuota(q) {
   activeMeteoQuota = q;
@@ -1173,7 +1201,7 @@ function setMeteoQuota(q) {
   document.querySelectorAll('#meteo-quota-row .dtag').forEach((b,i) => {
     b.classList.toggle('active', [1000,2000,3300][i] === q);
   });
-  // Se abbiamo già dati in cache per questa quota, non riscaricare
+  updateWindyFrame(q);
   loadMeteo(q);
 }
 
