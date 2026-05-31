@@ -53,7 +53,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 #main{display:flex;height:calc(100vh - 70px)}
 
 /* SIDEBAR */
-#sidebar{width:290px;min-width:290px;background:rgba(10,4,0,0.94);
+#sidebar{width:340px;min-width:340px;background:rgba(10,4,0,0.94);
   border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
 
 /* TABS */
@@ -417,9 +417,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 
 /* Footer */
 #brand-footer{position:fixed;bottom:0;left:0;right:0;z-index:5000;
-  height:18px;display:flex;align-items:center;justify-content:center;
-  background:rgba(4,2,0,.95);border-top:1px solid rgba(201,168,76,.15);
-  font-family:var(--font-m);font-size:8px;letter-spacing:2px}
+  height:22px;display:flex;align-items:center;justify-content:center;
+  background:rgba(4,2,0,.98);border-top:1px solid rgba(201,168,76,.35);
+  font-family:var(--font-m);font-size:9px;letter-spacing:2px;
+  box-shadow:0 -2px 12px rgba(232,96,10,0.08)}
 
 /* Rotate overlay */
 #rotate-msg{display:none;position:fixed;inset:0;z-index:99999;
@@ -538,10 +539,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 }
 #splash-btn:hover{background:#ff7a20;box-shadow:0 0 36px rgba(232,96,10,0.8)}
 #splash-brand{
-  font-family:var(--font-m);font-size:7.5px;letter-spacing:2px;
-  color:rgba(201,168,76,0.45);text-transform:uppercase;
+  font-family:var(--font-m);font-size:9px;letter-spacing:2px;
+  color:rgba(201,168,76,0.75);text-transform:uppercase;
+  background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);
+  padding:6px 14px;border-radius:2px;
 }
-#splash-brand a{color:inherit;text-decoration:none}
+#splash-brand a{color:inherit;text-decoration:none;transition:color .2s}
 #splash-brand a:hover{color:var(--gold)}
 #splash-langs{
   display:flex;gap:8px;margin-bottom:18px;
@@ -671,13 +674,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 
 /* Contatto guida */
 .guida-card{
-  background:linear-gradient(135deg,rgba(232,96,10,0.12),rgba(201,168,76,0.06));
-  border:1px solid rgba(232,96,10,0.3);border-radius:3px;
+  background:linear-gradient(135deg,rgba(232,96,10,0.14),rgba(201,168,76,0.08));
+  border:1px solid rgba(201,168,76,0.35);border-radius:3px;
   padding:12px 13px;
+  box-shadow:0 0 18px rgba(201,168,76,0.06);
 }
 .guida-name{
-  font-family:var(--font-t);font-size:13px;color:var(--gold);
+  font-family:var(--font-t);font-size:15px;color:var(--gold);
   font-weight:900;letter-spacing:.5px;margin-bottom:3px;
+  text-shadow:0 0 16px rgba(201,168,76,0.3);
 }
 .guida-role{
   font-family:var(--font-m);font-size:8px;color:var(--ember);
@@ -736,7 +741,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
     <div id="splash-title">ETNA TRAILS</div>
     <div id="splash-subtitle" data-it="Sentieri · Rifugi · Natura" data-en="Trails · Refuges · Nature">Sentieri · Rifugi · Natura</div>
     <div id="splash-tagline">
-      <span data-it="Da <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em>, <em>Linguaglossa</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota." data-en="From <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em>, <em>Linguaglossa</em> — the volcano is within reach. Explore Etna's trails, discover mountain refuges, check altitude weather.">Da <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota.</span>
+      <span data-it="Da <em>Riposto</em>, <em>Zafferana</em>, <em>Linguaglossa</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota." data-en="From <em>Riposto</em>, <em>Zafferana</em>, <em>Linguaglossa</em> — the volcano is within reach. Explore Etna's trails, discover mountain refuges, check altitude weather.">Da <em>Riposto</em>, <em>Zafferana</em>, <em>Linguaglossa</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota.</span>
     </div>
     <div id="splash-langs">
       <button class="splash-lang active" onclick="splashSetLang('it')">🇮🇹 Italiano</button>
@@ -868,7 +873,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
         <div class="scopri-hero-title" data-it="Costa Ionica · Etna" data-en="Ionian Coast · Etna">Costa Ionica · Etna</div>
         <div class="scopri-hero-sub" data-it="La guida per i turisti della costa" data-en="The guide for coastal visitors">La guida per i turisti della costa</div>
         <div class="scopri-hero-text">
-          <span data-it="Sei a Riposto, Giarre, Zafferana o Linguaglossa? Il vulcano più alto d'Europa è a 30–45 minuti da te. Questa guida ti porta dal mare al cratere." data-en="You're in Riposto, Giarre, Zafferana or Linguaglossa? Europe's highest volcano is 30–45 minutes away. This guide takes you from sea to crater.">Sei a Riposto, Giarre o sulla costa ionica? Il vulcano più alto d'Europa è a 30 minuti da te. Questa guida ti porta dal mare al cratere.</span>
+          <span data-it="Sei a Riposto, Zafferana o Linguaglossa? Il vulcano più alto d'Europa è a 30–45 minuti da te. Questa guida ti porta dal mare al cratere." data-en="You're in Riposto, Zafferana or Linguaglossa? Europe's highest volcano is 30–45 minutes away. This guide takes you from sea to crater.">Sei a Riposto, Zafferana o Linguaglossa? Il vulcano più alto d'Europa è a 30–45 minuti da te. Questa guida ti porta dal mare al cratere.</span>
         </div>
       </div>
 
@@ -885,7 +890,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
           <div class="base-card">
             <div class="base-card-icon">🏖</div>
             <div>
-              <div class="base-name">Riposto · Giarre</div>
+              <div class="base-name">Riposto</div>
               <div class="base-km" data-it="30–40 min · 28 km da Rifugio Sapienza" data-en="30–40 min · 28 km to Rifugio Sapienza">30–40 min · 28 km da Rifugio Sapienza</div>
               <div class="base-note" data-it="Punto di partenza ideale. SP7 Zafferana–Etna porta direttamente al versante est. Parcheggio gratuito a Zafferana." data-en="Ideal starting point. SP7 Zafferana–Etna leads directly to the east slope. Free parking in Zafferana.">Punto di partenza ideale. SP7 Zafferana–Etna porta direttamente al versante est. Parcheggio gratuito a Zafferana.</div>
             </div>
@@ -1194,9 +1199,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 
 <!-- Footer -->
 <div id="brand-footer">
-  <a href="https://fotolapissable.it" target="_blank" rel="noopener" style="color:rgba(201,168,76,.65);text-decoration:none;transition:color .2s"
-    onmouseover="this.style.color='rgba(201,168,76,1)'" onmouseout="this.style.color='rgba(201,168,76,.65)'">
-    📸 &nbsp;FOTOLAPISSABLE.IT &nbsp;·&nbsp; FINE ART & NATURE PHOTOGRAPHY &nbsp;·&nbsp; RIPOSTO, SICILIA
+  <a href="https://fotolapissable.it" target="_blank" rel="noopener" style="color:rgba(201,168,76,.85);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:6px"
+    onmouseover="this.style.color='rgba(255,210,80,1)'" onmouseout="this.style.color='rgba(201,168,76,.85)'">
+    📸 <strong style="color:inherit;font-weight:normal">FOTOLAPISSABLE.IT</strong> &nbsp;·&nbsp; FINE ART & NATURE PHOTOGRAPHY &nbsp;·&nbsp; RIPOSTO, SICILIA
   </a>
 </div>
 
