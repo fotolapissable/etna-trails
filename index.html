@@ -2258,52 +2258,40 @@ if('serviceWorker' in navigator){
 // URL con cache-busting via timestamp per forzare refresh
 // Fallback su SkylineWebcams embed e link diretto INGV
 
-// Webcam: URL diretti JPEG senza proxy — il tag <img> non ha restrizioni CORS
-// SkylineWebcams e INGV espongono JPEG statici aggiornati ogni ~60s
-// crossOrigin NON va usato su img tag con sorgenti esterne (causa errori)
+// Webcam via iframe embed — SkylineWebcams blocca hotlink su img diretti
+// Gli embed ufficiali funzionano sempre senza restrizioni
 const WEBCAMS = [
   {
     id: 0,
     nameIt: 'Etna Sud · SkylineWebcams',
     nameEn: 'Etna South · SkylineWebcams',
-    urls: [
-      'https://images-webcams.skylinewebcams.com/webcam/1635135561.jpg',
-      'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/vulcano-etna.jpg'
-    ],
-    ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/vulcano-etna.html',
+    // embed ufficiale SkylineWebcams — ID webcam Etna Sud
+    embedUrl: 'https://www.skylinewebcams.com/embed/1635135561.html',
+    directUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/vulcano-etna.html',
     source: 'SkylineWebcams · Etna Sud'
   },
   {
     id: 1,
     nameIt: 'Rifugio Sapienza · SkylineWebcams',
     nameEn: 'Sapienza Refuge · SkylineWebcams',
-    urls: [
-      'https://images-webcams.skylinewebcams.com/webcam/1635138765.jpg',
-      'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-rifugio-sapienza.jpg'
-    ],
-    ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-rifugio-sapienza.html',
+    embedUrl: 'https://www.skylinewebcams.com/embed/1635138765.html',
+    directUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-rifugio-sapienza.html',
     source: 'SkylineWebcams · Sapienza'
   },
   {
     id: 2,
     nameIt: 'Etna Milo · SkylineWebcams',
     nameEn: 'Etna Milo · SkylineWebcams',
-    urls: [
-      'https://images-webcams.skylinewebcams.com/webcam/1491294793.jpg',
-      'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-milo.jpg'
-    ],
-    ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-milo.html',
+    embedUrl: 'https://www.skylinewebcams.com/embed/1491294793.html',
+    directUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-milo.html',
     source: 'SkylineWebcams · Milo'
   },
   {
     id: 3,
     nameIt: 'Etna Nord · SkylineWebcams',
     nameEn: 'Etna North · SkylineWebcams',
-    urls: [
-      'https://images-webcams.skylinewebcams.com/webcam/1491295060.jpg',
-      'https://skylinewebcams.com/img/webcam/italia/sicilia/catania/etna-nord.jpg'
-    ],
-    ingvUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-nord.html',
+    embedUrl: 'https://www.skylinewebcams.com/embed/1491295060.html',
+    directUrl: 'https://www.skylinewebcams.com/it/webcam/italia/sicilia/catania/etna-nord.html',
     source: 'SkylineWebcams · Nord'
   }
 ];
@@ -2316,52 +2304,48 @@ function selectCam(idx) {
   document.querySelectorAll('.wcam-btn').forEach((b, i) =>
     b.classList.toggle('active', i === idx)
   );
-  loadWebcamImage(idx);
+  loadWebcamIframe(idx);
 }
 
-function loadWebcamImage(idx) {
+function loadWebcamIframe(idx) {
   const cam = WEBCAMS[idx];
-  const img = document.getElementById('webcam-img');
-  const noimg = document.getElementById('webcam-noimg');
-  if(!img || !noimg) return;
+  const wrap = document.getElementById('webcam-frame-wrap');
+  if(!wrap) return;
 
   const nameEl = document.getElementById('webcam-cam-name');
-  const timeEl = document.getElementById('webcam-time');
   const srcLink = document.getElementById('webcam-src-link');
   const directLink = document.getElementById('webcam-direct-link');
-
-  noimg.style.display = 'none';
-  img.style.display = 'block';
-  img.classList.add('loading');
+  const timeEl = document.getElementById('webcam-time');
 
   if(nameEl) nameEl.textContent = lang === 'it' ? cam.nameIt : cam.nameEn;
-  if(srcLink) { srcLink.href = cam.ingvUrl; srcLink.textContent = cam.source; }
-  if(directLink) directLink.href = cam.ingvUrl;
-
-  // Prova gli URL in sequenza — img tag non ha CORS
-  let urlIdx = 0;
-  const bust = '?_=' + Math.floor(Date.now() / 60000); // cambia ogni minuto
-
-  function tryNext() {
-    if(urlIdx >= cam.urls.length) {
-      // Tutti falliti — mostra messaggio con link
-      img.style.display = 'none';
-      noimg.style.display = 'flex';
-      if(timeEl) timeEl.textContent = '';
-      return;
-    }
-    img.onload = () => {
-      img.classList.remove('loading');
-      if(timeEl) {
-        const now = new Date();
-        timeEl.textContent = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'});
-      }
-    };
-    img.onerror = () => { urlIdx++; tryNext(); };
-    img.src = cam.urls[urlIdx] + bust;
-    urlIdx++;
+  if(srcLink) { srcLink.href = cam.directUrl; srcLink.textContent = cam.source; }
+  if(directLink) directLink.href = cam.directUrl;
+  if(timeEl) {
+    const now = new Date();
+    timeEl.textContent = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'});
   }
-  tryNext();
+
+  // Rimuovi img/noimg, inserisci iframe
+  const oldImg = document.getElementById('webcam-img');
+  const oldNoimg = document.getElementById('webcam-noimg');
+  const oldIframe = document.getElementById('webcam-iframe');
+  if(oldImg) oldImg.style.display = 'none';
+  if(oldNoimg) oldNoimg.style.display = 'none';
+  if(oldIframe) oldIframe.remove();
+
+  const iframe = document.createElement('iframe');
+  iframe.id = 'webcam-iframe';
+  iframe.src = cam.embedUrl;
+  iframe.frameBorder = '0';
+  iframe.allowFullscreen = true;
+  iframe.loading = 'lazy';
+  iframe.style.cssText = 'width:100%;height:190px;border:none;display:block;';
+  iframe.title = cam.nameIt;
+
+  // Inserisci prima dell'overlay
+  const overlay = document.getElementById('webcam-overlay');
+  if(overlay) wrap.insertBefore(iframe, overlay);
+  else wrap.appendChild(iframe);
 }
 
 function refreshWebcam() {
@@ -2369,31 +2353,35 @@ function refreshWebcam() {
   if(!btn) return;
   const arrow = btn.querySelector('span:first-child');
   if(arrow) { arrow.style.display = 'inline-block'; arrow.style.animation = 'spin .8s linear infinite'; }
-  loadWebcamImage(activeCamIdx);
+  // Ricarica iframe cambiando src
+  const iframe = document.getElementById('webcam-iframe');
+  if(iframe) { const src = iframe.src; iframe.src = ''; iframe.src = src; }
   setTimeout(() => { if(arrow) arrow.style.animation = ''; }, 1500);
 }
 
-// Tremore: rimosso fetch API (CORS bloccato da GitHub Pages)
-// La barra mostra stato statico — link a EtnaMonitor per dati live
 function initTremorStatic() {
   const fill = document.getElementById('tremor-fill');
   const valEl = document.getElementById('tremor-val');
   if(!fill || !valEl) return;
-  // Stato statico visivo — utente può cliccare su EtnaMonitor per dati reali
   fill.style.width = '30%';
   fill.style.background = '#4a9e5c';
-  valEl.innerHTML = '<a href="https://etnamonitor.it" target="_blank" rel="noopener" style="color:var(--ember);text-decoration:none;font-size:7px">Live su EtnaMonitor →</a>';
+  valEl.innerHTML = '<a href="https://etnamonitor.it" target="_blank" rel="noopener" style="color:var(--ember);text-decoration:none;font-size:7px">Live →</a>';
 }
 
 function initWebcam() {
-  // Piccolo delay per garantire che il DOM sia pronto
   setTimeout(() => {
-    loadWebcamImage(0);
+    loadWebcamIframe(0);
     initTremorStatic();
-  }, 100);
-  // Auto-refresh ogni 90 secondi
+  }, 200);
+  // Aggiorna timestamp ogni 90s (l'iframe si aggiorna da solo)
   webcamInterval = setInterval(() => {
-    if(activeTab === 'meteo') loadWebcamImage(activeCamIdx);
+    if(activeTab === 'meteo') {
+      const timeEl = document.getElementById('webcam-time');
+      if(timeEl) {
+        const now = new Date();
+        timeEl.textContent = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'});
+      }
+    }
   }, 90 * 1000);
 }
 
