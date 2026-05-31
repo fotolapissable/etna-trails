@@ -441,9 +441,317 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 @media(max-width:380px){
   .tab-btn span:last-child{display:none}
 }
+
+/* ═══════════════════════════════════════
+   SPLASH SCREEN
+═══════════════════════════════════════ */
+#splash{
+  position:fixed;inset:0;z-index:9000;
+  background:var(--lava);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  transition:opacity .6s ease, transform .6s ease;
+  overflow:hidden;
+}
+#splash.hiding{opacity:0;transform:scale(1.03);pointer-events:none}
+#splash-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 80%, rgba(232,96,10,0.28) 0%, transparent 60%),
+    radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0400 0%, #1a0800 40%, #2a0f00 100%);
+}
+/* lava animated blobs */
+#splash-bg::before{
+  content:'';position:absolute;
+  width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle, rgba(232,96,10,0.18), transparent 70%);
+  top:55%;left:50%;transform:translate(-50%,-50%);
+  animation:lavapulse 4s ease-in-out infinite;
+}
+#splash-bg::after{
+  content:'';position:absolute;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle, rgba(201,168,76,0.12), transparent 70%);
+  top:42%;left:52%;transform:translate(-50%,-50%);
+  animation:lavapulse 3s ease-in-out infinite reverse;
+}
+@keyframes lavapulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7}
+  50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}
+}
+#splash-volcano{
+  position:relative;z-index:1;
+  font-size:52px;
+  filter:drop-shadow(0 0 24px rgba(232,96,10,0.8));
+  animation:volcanopulse 2s ease-in-out infinite;
+  margin-bottom:6px;
+}
+@keyframes volcanopulse{
+  0%,100%{filter:drop-shadow(0 0 16px rgba(232,96,10,0.6))}
+  50%{filter:drop-shadow(0 0 32px rgba(232,96,10,1))}
+}
+#splash-content{
+  position:relative;z-index:1;
+  text-align:center;padding:0 28px;
+  animation:fadeInUp .8s ease both;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:none}
+}
+#splash-city{
+  font-family:var(--font-m);font-size:9px;letter-spacing:4px;
+  color:var(--ember);text-transform:uppercase;margin-bottom:10px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+#splash-city::before,#splash-city::after{
+  content:'';width:30px;height:1px;background:var(--ember);opacity:.5;
+}
+#splash-title{
+  font-family:var(--font-t);font-size:28px;font-weight:900;
+  color:var(--gold);letter-spacing:3px;line-height:1.1;
+  margin-bottom:6px;
+  text-shadow:0 0 30px rgba(201,168,76,0.4);
+}
+#splash-subtitle{
+  font-family:var(--font-t);font-size:13px;
+  color:var(--ash-light);letter-spacing:2px;
+  margin-bottom:18px;font-style:italic;
+}
+#splash-tagline{
+  font-family:var(--font-b);font-size:13px;
+  color:var(--ash-light);line-height:1.7;
+  margin-bottom:24px;max-width:280px;
+  border-top:1px solid rgba(201,168,76,0.2);
+  border-bottom:1px solid rgba(201,168,76,0.2);
+  padding:12px 0;
+}
+#splash-tagline em{color:var(--gold);font-style:normal}
+#splash-btn{
+  background:var(--ember);border:none;color:white;
+  font-family:var(--font-m);font-size:10px;letter-spacing:3px;
+  padding:12px 32px;border-radius:2px;cursor:pointer;
+  text-transform:uppercase;
+  box-shadow:0 0 24px rgba(232,96,10,0.5);
+  transition:all .2s;margin-bottom:20px;
+}
+#splash-btn:hover{background:#ff7a20;box-shadow:0 0 36px rgba(232,96,10,0.8)}
+#splash-brand{
+  font-family:var(--font-m);font-size:7.5px;letter-spacing:2px;
+  color:rgba(201,168,76,0.45);text-transform:uppercase;
+}
+#splash-brand a{color:inherit;text-decoration:none}
+#splash-brand a:hover{color:var(--gold)}
+#splash-langs{
+  display:flex;gap:8px;margin-bottom:18px;
+}
+.splash-lang{
+  background:none;border:1px solid var(--border);
+  color:var(--ash);font-family:var(--font-m);font-size:9px;
+  letter-spacing:1px;padding:5px 14px;border-radius:2px;cursor:pointer;
+  transition:all .2s;
+}
+.splash-lang.active{
+  background:var(--ember-dim);border-color:var(--ember);color:var(--ember);
+}
+
+/* ═══════════════════════════════════════
+   TAB SCOPRI
+═══════════════════════════════════════ */
+#panel-scopri{
+  overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--lava3) transparent;
+}
+#panel-scopri::-webkit-scrollbar{width:3px}
+#panel-scopri::-webkit-scrollbar-thumb{background:var(--lava3)}
+
+.scopri-hero{
+  padding:14px 13px 10px;
+  background:linear-gradient(135deg,rgba(232,96,10,0.12),rgba(201,168,76,0.05));
+  border-bottom:1px solid var(--border);
+}
+.scopri-hero-title{
+  font-family:var(--font-t);font-size:13px;font-weight:900;
+  color:var(--gold);letter-spacing:1px;margin-bottom:4px;
+}
+.scopri-hero-sub{
+  font-family:var(--font-m);font-size:8px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;margin-bottom:8px;
+}
+.scopri-hero-text{
+  font-size:12px;color:var(--ash-light);line-height:1.6;
+  font-style:italic;
+  border-left:2px solid var(--ember);padding-left:8px;
+}
+
+.scopri-section{
+  border-bottom:1px solid rgba(201,168,76,0.08);
+}
+.scopri-section-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 13px;cursor:pointer;transition:background .2s;
+  user-select:none;
+}
+.scopri-section-hdr:hover{background:rgba(232,96,10,0.04)}
+.scopri-section-hdr-l{display:flex;align-items:center;gap:8px}
+.scopri-section-icon{font-size:16px}
+.scopri-section-title{
+  font-family:var(--font-m);font-size:9px;letter-spacing:1.5px;
+  color:var(--ash-light);text-transform:uppercase;
+}
+.scopri-chevron{
+  font-size:10px;color:var(--ash);transition:transform .3s;
+}
+.scopri-section.open .scopri-chevron{transform:rotate(90deg)}
+.scopri-body{
+  display:none;padding:0 13px 12px;
+  animation:fadeIn .2s ease;
+}
+.scopri-section.open .scopri-body{display:block}
+
+/* Basi di partenza */
+.base-card{
+  background:var(--lava2);border:1px solid var(--border);
+  border-radius:3px;padding:9px 11px;margin-bottom:6px;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.base-card-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.base-name{
+  font-family:var(--font-t);font-size:11px;color:var(--gold);
+  letter-spacing:.3px;margin-bottom:2px;
+}
+.base-km{
+  font-family:var(--font-m);font-size:8px;color:var(--ember);
+  margin-bottom:2px;letter-spacing:.5px;
+}
+.base-note{font-size:11px;color:var(--ash);line-height:1.4}
+
+/* Come arrivare */
+.transport-row{
+  display:flex;align-items:flex-start;gap:9px;
+  padding:6px 0;border-bottom:1px solid rgba(201,168,76,0.06);
+  font-size:11.5px;color:var(--ash-light);line-height:1.4;
+}
+.transport-row:last-child{border-bottom:none}
+.transport-icon{font-size:18px;flex-shrink:0}
+
+/* Cosa sapere */
+.know-item{
+  display:flex;gap:8px;padding:6px 0;
+  border-bottom:1px solid rgba(201,168,76,0.06);
+  font-size:11.5px;color:var(--ash-light);line-height:1.4;
+}
+.know-item:last-child{border-bottom:none}
+.know-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--ember);flex-shrink:0;margin-top:5px;
+}
+.know-item.warn .know-dot{background:var(--red-trail)}
+.know-item.warn{color:rgba(191,100,100,0.9)}
+
+/* Etna in pillole */
+.pill-stat{
+  display:inline-flex;flex-direction:column;align-items:center;
+  background:var(--lava2);border:1px solid var(--border);
+  border-radius:3px;padding:8px 12px;margin:3px;
+}
+.pill-val{
+  font-family:var(--font-t);font-size:18px;color:var(--gold);font-weight:600;
+}
+.pill-lbl{
+  font-family:var(--font-m);font-size:7px;color:var(--ash);
+  letter-spacing:1px;text-transform:uppercase;margin-top:2px;
+}
+.pill-grid{display:flex;flex-wrap:wrap;margin-bottom:8px}
+.etna-text{
+  font-size:11.5px;color:var(--ash-light);line-height:1.6;
+  font-style:italic;
+}
+
+/* Contatto guida */
+.guida-card{
+  background:linear-gradient(135deg,rgba(232,96,10,0.12),rgba(201,168,76,0.06));
+  border:1px solid rgba(232,96,10,0.3);border-radius:3px;
+  padding:12px 13px;
+}
+.guida-name{
+  font-family:var(--font-t);font-size:13px;color:var(--gold);
+  font-weight:900;letter-spacing:.5px;margin-bottom:3px;
+}
+.guida-role{
+  font-family:var(--font-m);font-size:8px;color:var(--ember);
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;
+}
+.guida-desc{
+  font-size:11.5px;color:var(--ash-light);line-height:1.5;
+  margin-bottom:10px;font-style:italic;
+}
+.guida-links{display:flex;gap:6px;flex-wrap:wrap}
+.guida-link{
+  display:flex;align-items:center;gap:5px;
+  padding:6px 10px;border-radius:2px;
+  font-family:var(--font-m);font-size:8px;letter-spacing:1px;
+  text-transform:uppercase;text-decoration:none;
+  border:1px solid;transition:all .2s;cursor:pointer;
+}
+.guida-link.web{background:rgba(201,168,76,0.12);border-color:rgba(201,168,76,0.35);color:var(--gold)}
+.guida-link.web:hover{background:rgba(201,168,76,0.22)}
+.guida-link.ig{background:rgba(232,96,10,0.12);border-color:rgba(232,96,10,0.35);color:var(--ember)}
+.guida-link.ig:hover{background:rgba(232,96,10,0.22)}
+.guida-link.wa{background:rgba(37,211,102,0.12);border-color:rgba(37,211,102,0.3);color:#25d366}
+.guida-link.wa:hover{background:rgba(37,211,102,0.22)}
+
+/* Link utili */
+.link-row{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 0;border-bottom:1px solid rgba(201,168,76,0.06);
+}
+.link-row:last-child{border-bottom:none}
+.link-icon{font-size:16px;flex-shrink:0}
+.link-info{flex:1}
+.link-name{font-family:var(--font-m);font-size:9px;color:var(--ash-light);letter-spacing:.5px}
+.link-desc{font-size:10.5px;color:var(--ash);margin-top:1px}
+.link-go{
+  font-family:var(--font-m);font-size:8px;color:var(--ember);
+  text-decoration:none;border:1px solid rgba(232,96,10,0.3);
+  padding:3px 7px;border-radius:2px;white-space:nowrap;transition:all .2s;
+}
+.link-go:hover{background:var(--ember-dim)}
+
 </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════
+     SPLASH SCREEN
+═══════════════════════════════════════ -->
+<div id="splash">
+  <div id="splash-bg"></div>
+  <div id="splash-volcano">🌋</div>
+  <div id="splash-content">
+    <div id="splash-city">
+      <span data-it="Costa Ionica Etnea" data-en="Ionian Etna Coast">Costa Ionica Etnea</span>
+    </div>
+    <div id="splash-title">ETNA TRAILS</div>
+    <div id="splash-subtitle" data-it="Sentieri · Rifugi · Natura" data-en="Trails · Refuges · Nature">Sentieri · Rifugi · Natura</div>
+    <div id="splash-tagline">
+      <span data-it="Da <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota." data-en="From <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em> — the volcano is within reach. Explore Etna's trails, discover mountain refuges, check altitude weather.">Da <em>Riposto</em>, <em>Giarre</em>, <em>Zafferana</em> — il vulcano è a portata di mano. Esplora i sentieri dell'Etna, scopri i rifugi, verifica il meteo in quota.</span>
+    </div>
+    <div id="splash-langs">
+      <button class="splash-lang active" onclick="splashSetLang('it')">🇮🇹 Italiano</button>
+      <button class="splash-lang" onclick="splashSetLang('en')">🇬🇧 English</button>
+    </div>
+    <button id="splash-btn" onclick="closeSplash()">
+      <span data-it="🌋 Esplora l'Etna" data-en="🌋 Explore Etna">🌋 Esplora l'Etna</span>
+    </button>
+    <div id="splash-brand">
+      <a href="https://fotolapissable.it" target="_blank" rel="noopener">📸 fotolapissable.it</a>
+      &nbsp;·&nbsp; Fine Art & Nature Photography
+    </div>
+  </div>
+</div>
+
 
 <div id="hdr">
   <div id="hdr-l">
@@ -473,6 +781,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       </button>
       <button class="tab-btn" onclick="setTab('meteo')">
         <span class="ti">🌤</span><span data-it="Meteo" data-en="Weather">Meteo</span>
+      </button>
+      <button class="tab-btn" onclick="setTab('scopri')">
+        <span class="ti">🧭</span><span data-it="Scopri" data-en="Discover">Scopri</span>
       </button>
       <button class="tab-btn" onclick="setTab('sos')">
         <span class="ti">🆘</span><span>SOS</span>
@@ -547,6 +858,232 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <div id="meteo-updated"></div>
 
     </div>
+
+
+    <!-- SCOPRI / DISCOVER -->
+    <div class="tab-panel" id="panel-scopri">
+
+      <!-- Hero intro -->
+      <div class="scopri-hero">
+        <div class="scopri-hero-title" data-it="Costa Ionica · Etna" data-en="Ionian Coast · Etna">Costa Ionica · Etna</div>
+        <div class="scopri-hero-sub" data-it="La guida per i turisti della costa" data-en="The guide for coastal visitors">La guida per i turisti della costa</div>
+        <div class="scopri-hero-text">
+          <span data-it="Sei a Riposto, Giarre o sulla costa ionica? Il vulcano più alto d'Europa è a 30 minuti da te. Questa guida ti porta dal mare al cratere." data-en="You're in Riposto, Giarre or on the Ionian coast? Europe's highest volcano is 30 minutes away. This guide takes you from sea to crater.">Sei a Riposto, Giarre o sulla costa ionica? Il vulcano più alto d'Europa è a 30 minuti da te. Questa guida ti porta dal mare al cratere.</span>
+        </div>
+      </div>
+
+      <!-- Sezione 1: Basi di partenza -->
+      <div class="scopri-section open" id="sec-basi">
+        <div class="scopri-section-hdr" onclick="toggleScopri('basi')">
+          <div class="scopri-section-hdr-l">
+            <span class="scopri-section-icon">📍</span>
+            <span class="scopri-section-title" data-it="DA DOVE SI PARTE" data-en="STARTING POINTS">DA DOVE SI PARTE</span>
+          </div>
+          <span class="scopri-chevron">▶</span>
+        </div>
+        <div class="scopri-body">
+          <div class="base-card">
+            <div class="base-card-icon">🏖</div>
+            <div>
+              <div class="base-name">Riposto · Giarre</div>
+              <div class="base-km" data-it="30–40 min · 28 km da Rifugio Sapienza" data-en="30–40 min · 28 km to Rifugio Sapienza">30–40 min · 28 km da Rifugio Sapienza</div>
+              <div class="base-note" data-it="Punto di partenza ideale. SP7 Zafferana–Etna porta direttamente al versante est. Parcheggio gratuito a Zafferana." data-en="Ideal starting point. SP7 Zafferana–Etna leads directly to the east slope. Free parking in Zafferana.">Punto di partenza ideale. SP7 Zafferana–Etna porta direttamente al versante est. Parcheggio gratuito a Zafferana.</div>
+            </div>
+          </div>
+          <div class="base-card">
+            <div class="base-card-icon">🌳</div>
+            <div>
+              <div class="base-name">Zafferana Etnea</div>
+              <div class="base-km" data-it="15 min · 8 km dal versante est" data-en="15 min · 8 km from east slope">15 min · 8 km dal versante est</div>
+              <div class="base-note" data-it="Ottima base intermedia. Bar, ristoranti, supermercato. Qui si rifornisce acqua e viveri prima di salire." data-en="Excellent intermediate base. Bars, restaurants, supermarket. Stock up on water and food here before ascending.">Ottima base intermedia. Bar, ristoranti, supermercato. Qui si rifornisce acqua e viveri prima di salire.</div>
+            </div>
+          </div>
+          <div class="base-card">
+            <div class="base-card-icon">🌲</div>
+            <div>
+              <div class="base-name">Linguaglossa</div>
+              <div class="base-km" data-it="35 min · versante nord-est" data-en="35 min · northeast slope">35 min · versante nord-est</div>
+              <div class="base-note" data-it="Porta d'accesso al versante nord-est. Piano Provenzana e Rifugio Citelli partono da qui. Paese pittoresco con ottima gastronomia." data-en="Gateway to the northeast slope. Piano Provenzana and Rifugio Citelli start here. Picturesque village with excellent local food.">Porta d'accesso al versante nord-est. Piano Provenzana e Rifugio Citelli partono da qui. Paese pittoresco con ottima gastronomia.</div>
+            </div>
+          </div>
+          <div class="base-card">
+            <div class="base-card-icon">🚡</div>
+            <div>
+              <div class="base-name" data-it="Rifugio Sapienza · Funivia" data-en="Rifugio Sapienza · Cable Car">Rifugio Sapienza · Funivia</div>
+              <div class="base-km" data-it="45–55 min · 1920 m s.l.m." data-en="45–55 min · 1920m a.s.l.">45–55 min · 1920 m s.l.m.</div>
+              <div class="base-note" data-it="Base principale versante sud. Funivia fino a 2500 m, poi fuoristrada fino a 2900 m. Partenza per i crateri sommitali." data-en="Main south slope base. Cable car to 2500m, then 4WD to 2900m. Departure point for summit craters.">Base principale versante sud. Funivia fino a 2500 m, poi fuoristrada fino a 2900 m. Partenza per i crateri sommitali.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sezione 2: Come arrivare -->
+      <div class="scopri-section" id="sec-arrivo">
+        <div class="scopri-section-hdr" onclick="toggleScopri('arrivo')">
+          <div class="scopri-section-hdr-l">
+            <span class="scopri-section-icon">🚗</span>
+            <span class="scopri-section-title" data-it="COME ARRIVARE" data-en="GETTING THERE">COME ARRIVARE</span>
+          </div>
+          <span class="scopri-chevron">▶</span>
+        </div>
+        <div class="scopri-body">
+          <div class="transport-row">
+            <span class="transport-icon">🚗</span>
+            <span data-it="<strong style='color:var(--gold)'>Auto</strong> — Il mezzo indispensabile. Dalla costa ionica: A18 uscita Giarre, poi SP7 verso Zafferana. Strade in buone condizioni fino a 1900 m. Parcheggi gratuiti nei punti di partenza." data-en="<strong style='color:var(--gold)'>Car</strong> — Essential transport. From the Ionian coast: A18 exit Giarre, then SP7 to Zafferana. Good roads up to 1900m. Free parking at trailheads."><strong style="color:var(--gold)">Auto</strong> — Il mezzo indispensabile. Dalla costa ionica: A18 uscita Giarre, poi SP7 verso Zafferana. Strade in buone condizioni fino a 1900 m. Parcheggi gratuiti nei punti di partenza.</span>
+          </div>
+          <div class="transport-row">
+            <span class="transport-icon">🚌</span>
+            <span data-it="<strong style='color:var(--gold)'>Bus</strong> — AST Catania–Etna: bus stagionale per Rifugio Sapienza (lug–set). Interbus da Taormina/Catania. Verifica orari prima di partire." data-en="<strong style='color:var(--gold)'>Bus</strong> — AST Catania–Etna: seasonal bus to Rifugio Sapienza (Jul–Sep). Interbus from Taormina/Catania. Check schedules before departing."><strong style="color:var(--gold)">Bus</strong> — AST Catania–Etna: bus stagionale per Rifugio Sapienza (lug–set). Interbus da Taormina/Catania. Verifica orari prima di partire.</span>
+          </div>
+          <div class="transport-row">
+            <span class="transport-icon">🚂</span>
+            <span data-it="<strong style='color:var(--gold)'>Treno</strong> — Ferrovia Circumetnea: collegamento panoramico intorno all'Etna. Non porta ai sentieri direttamente ma ottimo per vedere il vulcano da angolazioni diverse." data-en="<strong style='color:var(--gold)'>Train</strong> — Circumetnea Railway: scenic route around Etna. Doesn't reach trailheads directly but great for panoramic views of the volcano."><strong style="color:var(--gold)">Treno</strong> — Ferrovia Circumetnea: collegamento panoramico intorno all'Etna. Non porta ai sentieri direttamente ma ottimo per vedere il vulcano da angolazioni diverse.</span>
+          </div>
+          <div class="transport-row">
+            <span class="transport-icon">✈️</span>
+            <span data-it="<strong style='color:var(--gold)'>Aereo</strong> — Aeroporto Catania–Fontanarossa (CTA): 40 min dalla costa ionica. Connessioni dirette da tutta Europa. Auto a noleggio disponibile in aeroporto." data-en="<strong style='color:var(--gold)'>Plane</strong> — Catania–Fontanarossa Airport (CTA): 40 min from the Ionian coast. Direct connections from all over Europe. Car rental available at airport."><strong style="color:var(--gold)">Aereo</strong> — Aeroporto Catania–Fontanarossa (CTA): 40 min dalla costa ionica. Connessioni dirette da tutta Europa. Auto a noleggio disponibile in aeroporto.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sezione 3: Cosa sapere -->
+      <div class="scopri-section" id="sec-sapere">
+        <div class="scopri-section-hdr" onclick="toggleScopri('sapere')">
+          <div class="scopri-section-hdr-l">
+            <span class="scopri-section-icon">⚠️</span>
+            <span class="scopri-section-title" data-it="COSA SAPERE PRIMA" data-en="KNOW BEFORE YOU GO">COSA SAPERE PRIMA</span>
+          </div>
+          <span class="scopri-chevron">▶</span>
+        </div>
+        <div class="scopri-body">
+          <div class="know-item">
+            <div class="know-dot"></div>
+            <span data-it="<strong style='color:var(--ash-light)'>Abbigliamento a strati</strong> — anche in estate la temperatura scende rapidamente con la quota. +10°C a Riposto possono diventare 0°C in vetta." data-en="<strong style='color:var(--ash-light)'>Layer up</strong> — even in summer temperatures drop sharply with altitude. +10°C at sea level can become 0°C at the summit."><strong style="color:var(--ash-light)">Abbigliamento a strati</strong> — anche in estate la temperatura scende rapidamente con la quota. +10°C a Riposto possono diventare 0°C in vetta.</span>
+          </div>
+          <div class="know-item">
+            <div class="know-dot"></div>
+            <span data-it="<strong style='color:var(--ash-light)'>Acqua abbondante</strong> — almeno 1,5 litri a persona. Sopra i 1800 m non ci sono fontane. Rifornirsi a Zafferana o Linguaglossa." data-en="<strong style='color:var(--ash-light)'>Plenty of water</strong> — at least 1.5 litres per person. No fountains above 1800m. Stock up in Zafferana or Linguaglossa."><strong style="color:var(--ash-light)">Acqua abbondante</strong> — almeno 1,5 litri a persona. Sopra i 1800 m non ci sono fontane. Rifornirsi a Zafferana o Linguaglossa.</span>
+          </div>
+          <div class="know-item">
+            <div class="know-dot"></div>
+            <span data-it="<strong style='color:var(--ash-light)'>Scarpe da trekking</strong> — il terreno lavico è irregolare e tagliente. Sneakers e sandali non sono adatti oltre i 1500 m." data-en="<strong style='color:var(--ash-light)'>Hiking boots</strong> — lava terrain is uneven and sharp. Sneakers and sandals are not suitable above 1500m."><strong style="color:var(--ash-light)">Scarpe da trekking</strong> — il terreno lavico è irregolare e tagliente. Sneakers e sandali non sono adatti oltre i 1500 m.</span>
+          </div>
+          <div class="know-item">
+            <div class="know-dot"></div>
+            <span data-it="<strong style='color:var(--ash-light)'>Meteo in quota</strong> — controlla sempre il tab Meteo prima di partire. Il vulcano crea condizioni locali imprevedibili." data-en="<strong style='color:var(--ash-light)'>Altitude weather</strong> — always check the Weather tab before departing. The volcano creates unpredictable local conditions."><strong style="color:var(--ash-light)">Meteo in quota</strong> — controlla sempre il tab Meteo prima di partire. Il vulcano crea condizioni locali imprevedibili.</span>
+          </div>
+          <div class="know-item warn">
+            <div class="know-dot"></div>
+            <span data-it="<strong style='color:rgba(210,100,100,0.9)'>Guida alpina obbligatoria</strong> sopra i 2900 m (zona sommitale). Senza guida autorizzata non è consentito l'accesso ai crateri attivi." data-en="<strong style='color:rgba(210,100,100,0.9)'>Alpine guide required</strong> above 2900m (summit zone). Access to active craters is not permitted without an authorised guide."><strong style="color:rgba(210,100,100,0.9)">Guida alpina obbligatoria</strong> sopra i 2900 m (zona sommitale). Senza guida autorizzata non è consentito l'accesso ai crateri attivi.</span>
+          </div>
+          <div class="know-item warn">
+            <div class="know-dot"></div>
+            <span data-it="<strong style='color:rgba(210,100,100,0.9)'>Gas vulcanici</strong> — in caso di vento debole o inversione termica i gas possono accumularsi nelle depressioni. In caso di odore di zolfo intenso, allontanarsi." data-en="<strong style='color:rgba(210,100,100,0.9)'>Volcanic gases</strong> — in low wind or thermal inversion conditions gases can accumulate in hollows. If you smell strong sulphur, move away."><strong style="color:rgba(210,100,100,0.9)">Gas vulcanici</strong> — in caso di vento debole o inversione termica i gas possono accumularsi nelle depressioni. In caso di odore di zolfo intenso, allontanarsi.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sezione 4: Etna in pillole -->
+      <div class="scopri-section" id="sec-etna">
+        <div class="scopri-section-hdr" onclick="toggleScopri('etna')">
+          <div class="scopri-section-hdr-l">
+            <span class="scopri-section-icon">🌋</span>
+            <span class="scopri-section-title" data-it="ETNA IN PILLOLE" data-en="ETNA AT A GLANCE">ETNA IN PILLOLE</span>
+          </div>
+          <span class="scopri-chevron">▶</span>
+        </div>
+        <div class="scopri-body">
+          <div class="pill-grid">
+            <div class="pill-stat"><span class="pill-val">3329</span><span class="pill-lbl" data-it="m quota" data-en="m altitude">m quota</span></div>
+            <div class="pill-stat"><span class="pill-val">UNESCO</span><span class="pill-lbl" data-it="dal 2013" data-en="since 2013">dal 2013</span></div>
+            <div class="pill-stat"><span class="pill-val">500k</span><span class="pill-lbl" data-it="anni età" data-en="years old">anni età</span></div>
+            <div class="pill-stat"><span class="pill-val">1669</span><span class="pill-lbl" data-it="eruzione più grande" data-en="biggest eruption">eruzione più grande</span></div>
+          </div>
+          <div class="etna-text">
+            <span data-it="L'Etna è il vulcano attivo più alto d'Europa e uno dei più attivi al mondo. Dal versante est, quello che guarda lo Ionio e Riposto, si godono i tramonti più fotogenici — il vulcano si staglia sul mare con una luce che cambia ogni stagione. Patrimonio UNESCO dal 2013, ospita ecosistemi unici: dalla macchia mediterranea alle nevi eterne, dai crateri fumanti alle foreste di betulle. Non è solo un vulcano — è un mondo verticale." data-en="Etna is the highest active volcano in Europe and one of the most active in the world. From the eastern slope, facing the Ionian Sea and Riposto, you get the most photogenic sunsets — the volcano stands against the sea in light that changes every season. A UNESCO World Heritage Site since 2013, it hosts unique ecosystems: from Mediterranean scrub to eternal snows, from smoking craters to birch forests. It's not just a volcano — it's a vertical world.">L'Etna è il vulcano attivo più alto d'Europa e uno dei più attivi al mondo. Dal versante est, quello che guarda lo Ionio e Riposto, si godono i tramonti più fotogenici — il vulcano si staglia sul mare con una luce che cambia ogni stagione. Patrimonio UNESCO dal 2013, ospita ecosistemi unici: dalla macchia mediterranea alle nevi eterne, dai crateri fumanti alle foreste di betulle. Non è solo un vulcano — è un mondo verticale.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sezione 5: Escursioni fotografiche guidate -->
+      <div class="scopri-section" id="sec-guida">
+        <div class="scopri-section-hdr" onclick="toggleScopri('guida')">
+          <div class="scopri-section-hdr-l">
+            <span class="scopri-section-icon">📸</span>
+            <span class="scopri-section-title" data-it="ESCURSIONI GUIDATE" data-en="GUIDED TOURS">ESCURSIONI GUIDATE</span>
+          </div>
+          <span class="scopri-chevron">▶</span>
+        </div>
+        <div class="scopri-body">
+          <div class="guida-card">
+            <div class="guida-name">Michele · fotolapissable</div>
+            <div class="guida-role" data-it="Fine Art & Nature Photographer · Riposto" data-en="Fine Art & Nature Photographer · Riposto">Fine Art & Nature Photographer · Riposto</div>
+            <div class="guida-desc">
+              <span data-it="Escursioni fotografiche personalizzate sull'Etna e sulla costa ionica. Macro di insetti e fiori, paesaggi al tramonto, alba sul cratere. Per principianti e fotografi esperti. Partenza da Riposto." data-en="Personalised photography hikes on Etna and the Ionian coast. Macro of insects and flowers, sunset landscapes, dawn at the crater. For beginners and experienced photographers. Departing from Riposto.">Escursioni fotografiche personalizzate sull'Etna e sulla costa ionica. Macro di insetti e fiori, paesaggi al tramonto, alba sul cratere. Per principianti e fotografi esperti. Partenza da Riposto.</span>
+            </div>
+            <div class="guida-links">
+              <a href="https://fotolapissable.it" target="_blank" rel="noopener" class="guida-link web">🌐 fotolapissable.it</a>
+              <a href="https://instagram.com/fotolapissable_official" target="_blank" rel="noopener" class="guida-link ig">📷 Instagram</a>
+              <a href="https://wa.me/39NUMERODA_INSERIRE" target="_blank" rel="noopener" class="guida-link wa">💬 WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sezione 6: Link utili -->
+      <div class="scopri-section" id="sec-links">
+        <div class="scopri-section-hdr" onclick="toggleScopri('links')">
+          <div class="scopri-section-hdr-l">
+            <span class="scopri-section-icon">🔗</span>
+            <span class="scopri-section-title" data-it="LINK UTILI" data-en="USEFUL LINKS">LINK UTILI</span>
+          </div>
+          <span class="scopri-chevron">▶</span>
+        </div>
+        <div class="scopri-body">
+          <div class="link-row">
+            <span class="link-icon">🏔</span>
+            <div class="link-info">
+              <div class="link-name">Parco dell'Etna</div>
+              <div class="link-desc" data-it="Sentieri ufficiali, regolamenti, notizie chiusure" data-en="Official trails, regulations, closure notices">Sentieri ufficiali, regolamenti, notizie chiusure</div>
+            </div>
+            <a href="https://www.parcoetna.it" target="_blank" rel="noopener" class="link-go">→</a>
+          </div>
+          <div class="link-row">
+            <span class="link-icon">🔬</span>
+            <div class="link-info">
+              <div class="link-name">INGV Catania</div>
+              <div class="link-desc" data-it="Bollettino vulcanico, sismicità, livello allerta" data-en="Volcanic bulletin, seismicity, alert level">Bollettino vulcanico, sismicità, livello allerta</div>
+            </div>
+            <a href="https://www.ct.ingv.it" target="_blank" rel="noopener" class="link-go">→</a>
+          </div>
+          <div class="link-row">
+            <span class="link-icon">🚡</span>
+            <div class="link-info">
+              <div class="link-name" data-it="Funivia dell'Etna" data-en="Etna Cable Car">Funivia dell'Etna</div>
+              <div class="link-desc" data-it="Orari, prezzi, condizioni operative" data-en="Timetables, prices, operating conditions">Orari, prezzi, condizioni operative</div>
+            </div>
+            <a href="https://www.funiviaetna.com" target="_blank" rel="noopener" class="link-go">→</a>
+          </div>
+          <div class="link-row">
+            <span class="link-icon">🥾</span>
+            <div class="link-info">
+              <div class="link-name">CAI Sicilia</div>
+              <div class="link-desc" data-it="Club Alpino Italiano — guide, bivacchi, soccorso" data-en="Italian Alpine Club — guides, bivouacs, rescue">Club Alpino Italiano — guide, bivacchi, soccorso</div>
+            </div>
+            <a href="https://www.caisicilia.it" target="_blank" rel="noopener" class="link-go">→</a>
+          </div>
+          <div class="link-row">
+            <span class="link-icon">📸</span>
+            <div class="link-info">
+              <div class="link-name">fotolapissable.it</div>
+              <div class="link-desc" data-it="Stampe fine art dell'Etna e della costa ionica" data-en="Fine art prints of Etna and the Ionian coast">Stampe fine art dell'Etna e della costa ionica</div>
+            </div>
+            <a href="https://fotolapissable.it" target="_blank" rel="noopener" class="link-go">→</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end panel-scopri -->
 
     <!-- SOS -->
     <div class="tab-panel" id="panel-sos">
@@ -691,10 +1228,11 @@ const gpxCache = {};
 // ── LANGUAGE ─────────────────────────────────────────────
 function setLang(l) {
   lang = l;
+  try { localStorage.setItem('etna-lang', l); } catch(e) {}
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === l.toUpperCase()));
   document.querySelectorAll('[data-' + l + ']').forEach(el => {
     if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder = el.dataset[l]||el.placeholder;
-    else el.textContent = el.dataset[l];
+    else el.innerHTML = el.dataset[l];
   });
   renderAll();
   if(activeItem) showDetail(activeItem.type, activeItem.id);
@@ -1411,7 +1949,63 @@ if('serviceWorker' in navigator){
   navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!refreshing){refreshing=true;location.reload();}});
 }
 
+
+// ═══════════════════════════════════════════
+//  SPLASH SCREEN
+// ═══════════════════════════════════════════
+function splashSetLang(l) {
+  lang = l;
+  // sync main lang buttons
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.textContent.trim() === l.toUpperCase())
+  );
+  // sync splash lang buttons
+  document.querySelectorAll('.splash-lang').forEach(b =>
+    b.classList.toggle('active', b.textContent.includes(l === 'it' ? 'Italiano' : 'English'))
+  );
+  // update all data-it / data-en elements (including splash)
+  document.querySelectorAll('[data-' + l + ']').forEach(el => {
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')
+      el.placeholder = el.dataset[l] || el.placeholder;
+    else
+      el.innerHTML = el.dataset[l];
+  });
+}
+
+function closeSplash() {
+  const splash = document.getElementById('splash');
+  splash.classList.add('hiding');
+  try { localStorage.setItem('etna-splash-seen', '1'); } catch(e) {}
+  setTimeout(() => { splash.style.display = 'none'; }, 650);
+}
+
+function initSplash() {
+  let seen = false;
+  try { seen = localStorage.getItem('etna-splash-seen') === '1'; } catch(e) {}
+  if(seen) {
+    document.getElementById('splash').style.display = 'none';
+  }
+  // If already seen, still apply language from storage
+  try {
+    const savedLang = localStorage.getItem('etna-lang');
+    if(savedLang) splashSetLang(savedLang);
+  } catch(e) {}
+}
+
+// Salva lingua scelta al cambio
+// (patching setLang post-definition to persist to localStorage)
+
+// ═══════════════════════════════════════════
+//  TAB SCOPRI — accordion sections
+// ═══════════════════════════════════════════
+function toggleScopri(id) {
+  const sec = document.getElementById('sec-' + id);
+  if(!sec) return;
+  sec.classList.toggle('open');
+}
+
 // ── INIT ─────────────────────────────────────────────────
+initSplash();
 loadData();
 </script>
 </body>
