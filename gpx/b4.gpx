@@ -1,1994 +1,758 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<gpx version="1.1" creator="OsmAndRouterV2" xmlns="http://www.topografix.com/GPX/1/1" xmlns:osmand="https://osmand.net" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="Wikiloc - https://www.wikiloc.com" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
-    <name>Sat Feb 10 2024</name>
+    <name>Wikiloc - Rifugio Saletti</name>
+    <author>
+      <name>Etnanatura</name>
+      <link href="https://www.wikiloc.com/wikiloc/user.do?id=571613">
+        <text>Etnanatura on Wikiloc</text>
+      </link>
+    </author>
+    <link href="https://www.wikiloc.com/hiking-trails/rifugio-saletti-110753528">
+      <text>Rifugio Saletti on Wikiloc</text>
+    </link>
+    <time>2022-08-15T17:28:28Z</time>
   </metadata>
-  <rte>
-    <rtept lat="37.8397162" lon="14.9887526">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>0</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8390723" lon="14.9882913">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>11</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8380725" lon="14.9878728">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>27</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8393773" lon="14.9884737">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>46</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8384368" lon="14.9885809">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>69</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8384877" lon="14.9896753">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>75</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8381233" lon="14.9893963">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>82</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.837759" lon="14.989332">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>88</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8377505" lon="14.99107">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>97</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8370896" lon="14.9902225">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>105</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8367846" lon="14.989568">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>111</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8358101" lon="14.9921966">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>125</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8348527" lon="14.992497">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>130</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8349289" lon="14.9915636">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>136</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8351153" lon="14.9904799">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>144</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8343273" lon="14.9890852">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>153</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8329037" lon="14.9841499">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>171</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8331071" lon="14.9824226">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>181</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8326749" lon="14.9819076">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>187</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8327682" lon="14.9814463">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>193</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8319716" lon="14.9812746">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>201</trkpt_idx>
-      </extensions>
-    </rtept>
-    <rtept lat="37.8319716" lon="14.9809957">
-      <extensions>
-        <gpxtpx:TrackPointExtension />
-        <profile>pedestrian</profile>
-        <trkpt_idx>202</trkpt_idx>
-      </extensions>
-    </rtept>
-  </rte>
   <trk>
+    <name>Rifugio Saletti</name>
+    <cmt>https://www.etnanatura.it/paginasentiero.php?nome=Rifugio_Saletti</cmt>
+    
     <trkseg>
-      <trkpt lat="37.8397309" lon="14.9887774">
-        <ele>1227.1</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8397374" lon="14.9887714">
-        <ele>1227</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.839748" lon="14.9887607">
-        <ele>1226</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8397586" lon="14.9887526">
-        <ele>1226</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8397268" lon="14.9887043">
-        <ele>1226.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8396718" lon="14.9886614">
-        <ele>1228</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8395637" lon="14.988597">
-        <ele>1230.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.839354" lon="14.9884817">
-        <ele>1232.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8391104" lon="14.9883556">
-        <ele>1238.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390702" lon="14.9883074">
-        <ele>1239.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390719" lon="14.9882909">
-        <ele>1239.6</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390719" lon="14.9882909">
-        <ele>1239.6</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390787" lon="14.9882215">
-        <ele>1240</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.839157" lon="14.9881276">
-        <ele>1239.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8391719" lon="14.9879962">
-        <ele>1239.6</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8391337" lon="14.9878675">
-        <ele>1239.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390617" lon="14.9877951">
-        <ele>1239</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8389452" lon="14.987787">
-        <ele>1239.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8388266" lon="14.9878675">
-        <ele>1241.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8387037" lon="14.9878889">
-        <ele>1243.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8385957" lon="14.9878514">
-        <ele>1244.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384961" lon="14.9877226">
-        <ele>1243.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8383712" lon="14.9877092">
-        <ele>1247</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8382335" lon="14.9877173">
-        <ele>1252</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8381233" lon="14.9877575">
-        <ele>1256</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.838081" lon="14.9878487">
-        <ele>1257</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8380831" lon="14.9878713">
-        <ele>1256.9</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8380831" lon="14.9878713">
-        <ele>1256.9</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.838081" lon="14.9878487">
-        <ele>1257</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8381233" lon="14.9877575">
-        <ele>1256</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8382335" lon="14.9877173">
-        <ele>1252</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8383712" lon="14.9877092">
-        <ele>1247</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384961" lon="14.9877226">
-        <ele>1243.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8385957" lon="14.9878514">
-        <ele>1244.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8387037" lon="14.9878889">
-        <ele>1243.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8388266" lon="14.9878675">
-        <ele>1241.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8389452" lon="14.987787">
-        <ele>1239.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390617" lon="14.9877951">
-        <ele>1239</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8391337" lon="14.9878675">
-        <ele>1239.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8391719" lon="14.9879962">
-        <ele>1239.6</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.839157" lon="14.9881276">
-        <ele>1239.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390787" lon="14.9882215">
-        <ele>1240</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390702" lon="14.9883074">
-        <ele>1239.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8391104" lon="14.9883556">
-        <ele>1238.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.839354" lon="14.9884817">
-        <ele>1232</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8393667" lon="14.9884623">
-        <ele>1232</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8393667" lon="14.9884623">
-        <ele>1232</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.839354" lon="14.9884817">
-        <ele>1232.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8391104" lon="14.9883556">
-        <ele>1238.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390702" lon="14.9883074">
-        <ele>1239.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390787" lon="14.9882215">
-        <ele>1240</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.839157" lon="14.9881276">
-        <ele>1239.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8391719" lon="14.9879962">
-        <ele>1239.6</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8391337" lon="14.9878675">
-        <ele>1239.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8390617" lon="14.9877951">
-        <ele>1239</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8389452" lon="14.987787">
-        <ele>1239.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8388266" lon="14.9878675">
-        <ele>1241.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8387037" lon="14.9878889">
-        <ele>1243.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8385957" lon="14.9878514">
-        <ele>1244.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384961" lon="14.9877226">
-        <ele>1243.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8383712" lon="14.9877092">
-        <ele>1247</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8382335" lon="14.9877173">
-        <ele>1252</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8381233" lon="14.9877575">
-        <ele>1256</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.838081" lon="14.9878487">
-        <ele>1257</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8380916" lon="14.9879694">
-        <ele>1256.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.838261" lon="14.9881411">
-        <ele>1252.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8383479" lon="14.988243">
-        <ele>1253.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8383923" lon="14.9884334">
-        <ele>1255.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384183" lon="14.988586">
-        <ele>1257</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384183" lon="14.988586">
-        <ele>1257</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384623" lon="14.9888465">
-        <ele>1259</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384728" lon="14.9892488">
-        <ele>1263.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8385173" lon="14.9893883">
-        <ele>1264.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8385258" lon="14.9895975">
-        <ele>1267</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384856" lon="14.9896726">
-        <ele>1267.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384856" lon="14.9896726">
-        <ele>1267.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384856" lon="14.9896726">
-        <ele>1267.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8384326" lon="14.9897236">
-        <ele>1268.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8383542" lon="14.9897128">
-        <ele>1269.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8382843" lon="14.9896324">
-        <ele>1271</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8381636" lon="14.989458">
-        <ele>1271.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8381219" lon="14.989398">
-        <ele>1272</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8381219" lon="14.989398">
-        <ele>1272</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8380365" lon="14.9892756">
-        <ele>1272.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8379348" lon="14.9891818">
-        <ele>1274.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8378522" lon="14.9891683">
-        <ele>1276.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8377675" lon="14.9892086">
-        <ele>1279.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8377604" lon="14.9893318">
-        <ele>1280.3</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8377604" lon="14.9893318">
-        <ele>1280.3</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8377569" lon="14.9893937">
-        <ele>1280.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8377484" lon="14.989686">
-        <ele>1282.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8377399" lon="14.9899408">
-        <ele>1286.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8378035" lon="14.9901125">
-        <ele>1285.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8378543" lon="14.9902117">
-        <ele>1285.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8378416" lon="14.9909306">
-        <ele>1291.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8377717" lon="14.9910834">
-        <ele>1293</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8377533" lon="14.9910876">
-        <ele>1293.4</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8377533" lon="14.9910876">
-        <ele>1293.4</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8376785" lon="14.9911049">
-        <ele>1295</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8375938" lon="14.9910083">
-        <ele>1296.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.837526" lon="14.990783">
-        <ele>1298.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8373904" lon="14.9905095">
-        <ele>1300.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8372442" lon="14.9903619">
-        <ele>1302.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8370896" lon="14.9902573">
-        <ele>1305.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8370768" lon="14.9902339">
-        <ele>1306.1</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8370768" lon="14.9902339">
-        <ele>1306.1</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8370218" lon="14.9901339">
-        <ele>1307.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8369307" lon="14.9898148">
-        <ele>1309.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8368693" lon="14.9895707">
-        <ele>1310.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8368185" lon="14.9895304">
-        <ele>1311.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8367793" lon="14.9895482">
-        <ele>1312.9</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8367793" lon="14.9895482">
-        <ele>1312.9</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8367655" lon="14.9895546">
-        <ele>1313.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8366977" lon="14.9899623">
-        <ele>1317.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8366024" lon="14.9903244">
-        <ele>1320.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8364668" lon="14.9906731">
-        <ele>1324</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.836344" lon="14.9908555">
-        <ele>1326.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8362677" lon="14.991121">
-        <ele>1329.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.836219" lon="14.9914026">
-        <ele>1332</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8361936" lon="14.9916762">
-        <ele>1333</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8361681" lon="14.9917486">
-        <ele>1333.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.836094" lon="14.9918345">
-        <ele>1335</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8359203" lon="14.9920732">
-        <ele>1335.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8358334" lon="14.9921966">
-        <ele>1335</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8358121" lon="14.9922044">
-        <ele>1335.3</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8358121" lon="14.9922044">
-        <ele>1335.3</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8353632" lon="14.9923709">
-        <ele>1341.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8350031" lon="14.992505">
-        <ele>1346.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8349077" lon="14.9925238">
-        <ele>1348.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8348517" lon="14.9925013">
-        <ele>1350.3</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8348517" lon="14.9925013">
-        <ele>1350.3</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8348272" lon="14.9924916">
-        <ele>1351</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8347976" lon="14.9924085">
-        <ele>1352.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.834806" lon="14.9923065">
-        <ele>1352.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8349056" lon="14.9916843">
-        <ele>1358.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8349357" lon="14.9915661">
-        <ele>1360.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8349357" lon="14.9915661">
-        <ele>1360.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8349437" lon="14.9915341">
-        <ele>1360.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8351005" lon="14.9913195">
-        <ele>1363.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8351365" lon="14.991129">
-        <ele>1364.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8351217" lon="14.9908206">
-        <ele>1365.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8351365" lon="14.9906221">
-        <ele>1366</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8351429" lon="14.9904907">
-        <ele>1365.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8351306" lon="14.990467">
-        <ele>1365.4</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8351306" lon="14.990467">
-        <ele>1365.4</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8350539" lon="14.9903217">
-        <ele>1364.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8349946" lon="14.9903056">
-        <ele>1365.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8349713" lon="14.9902171">
-        <ele>1363.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.834931" lon="14.99015">
-        <ele>1362.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8347637" lon="14.9899837">
-        <ele>1364.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8346853" lon="14.9898013">
-        <ele>1364</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8343824" lon="14.9892059">
-        <ele>1362.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8343224" lon="14.9890892">
-        <ele>1366.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8343224" lon="14.9890892">
-        <ele>1366.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8343188" lon="14.9890825">
-        <ele>1366.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8343548" lon="14.9888465">
-        <ele>1364.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8343612" lon="14.9886346">
-        <ele>1361</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8343019" lon="14.9884737">
-        <ele>1359.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8341239" lon="14.9882215">
-        <ele>1360.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8338782" lon="14.9877012">
-        <ele>1367.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.833732" lon="14.9872935">
-        <ele>1368.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8335435" lon="14.9864888">
-        <ele>1368.7</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8335456" lon="14.9864137">
-        <ele>1368.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8335795" lon="14.9862313">
-        <ele>1367.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.833588" lon="14.986057">
-        <ele>1365</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8335117" lon="14.9858397">
-        <ele>1362</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8332575" lon="14.9853784">
-        <ele>1362.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8332236" lon="14.9852604">
-        <ele>1363.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8331558" lon="14.9847668">
-        <ele>1362.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.833124" lon="14.9846435">
-        <ele>1362</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.832872" lon="14.9841776">
-        <ele>1361</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.832872" lon="14.9841776">
-        <ele>1361</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8328656" lon="14.984166">
-        <ele>1361</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8328232" lon="14.9840373">
-        <ele>1362</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8328021" lon="14.9838093">
-        <ele>1363</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8328529" lon="14.9835545">
-        <ele>1363.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8329503" lon="14.9832755">
-        <ele>1364.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8329779" lon="14.9830663">
-        <ele>1363.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8330541" lon="14.9827391">
-        <ele>1360.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8331007" lon="14.9824601">
-        <ele>1358.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8330958" lon="14.9824251">
-        <ele>1358.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8330958" lon="14.9824251">
-        <ele>1358.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8330902" lon="14.982385">
-        <ele>1358.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8329948" lon="14.9823019">
-        <ele>1358.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8329016" lon="14.9822214">
-        <ele>1358.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8326961" lon="14.9820095">
-        <ele>1364.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8326691" lon="14.9819101">
-        <ele>1365.7</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8326691" lon="14.9819101">
-        <ele>1365.7</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8326538" lon="14.981854">
-        <ele>1366.5</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8326771" lon="14.9817091">
-        <ele>1366.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8327279" lon="14.9815965">
-        <ele>1366</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8327936" lon="14.981508">
-        <ele>1365.9</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8327892" lon="14.9814439">
-        <ele>1365.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8327892" lon="14.9814439">
-        <ele>1365.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8327872" lon="14.9814168">
-        <ele>1365.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8325245" lon="14.9813792">
-        <ele>1369.8</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8324673" lon="14.981229">
-        <ele>1371</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8324144" lon="14.9810842">
-        <ele>1370.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8321559" lon="14.9809742">
-        <ele>1373</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8320394" lon="14.9809903">
-        <ele>1375.2</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8319855" lon="14.9809861">
-        <ele>1376.6</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8319855" lon="14.9809861">
-        <ele>1376.6</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <trkpt lat="37.8319855" lon="14.9809861">
-        <ele>1376.6</ele>
-        <extensions>
-          <gpxtpx:TrackPointExtension />
-        </extensions>
-      </trkpt>
-      <extensions>
-        <osmand:route>
-          <segment id="355570947" length="2" startTrkptIdx="0" segmentTime="5" speed="1.11" turnType="C" types="0,1,2,3,4,5,6" pointTypes=";" />
-          <segment id="355570950" length="2" startTrkptIdx="1" segmentTime="1.36" speed="1.11" types="7,8" pointTypes=";" />
-          <segment id="355570951" length="2" startTrkptIdx="2" segmentTime="1.24" speed="1.11" types="2,9" pointTypes=";" />
-          <segment id="52070386" length="8" startTrkptIdx="3" segmentTime="184.8" speed="0.51" turnType="TL" turnAngle="-109.37" types="0,1,10,11,12,13,14,15,16,17,18,19,20,21,22,23" pointTypes=";;;;;;;" names="26,27,28,29,30,31" />
-          <segment id="52070386" length="16" startTrkptIdx="10" segmentTime="302.46" speed="0.61" turnType="C" types="32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47" pointTypes=";;48;;48;49;;;;;50;;;;;" names="53,54,55,56,57,58" />
-          <segment id="52070386" length="18" startTrkptIdx="25" segmentTime="213.18" speed="1.04" turnType="C" types="59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74" pointTypes=";;;;;77;;;;;76;75;;75;;;;" names="86,87,88,89,90,91" />
-          <segment id="303658456" length="2" startTrkptIdx="42" segmentTime="18.22" speed="1.11" turnType="TL" turnAngle="-72.42" types="78,59,60,61,79,80,81,63,82,83" pointTypes=";" />
-          <segment id="303658456" length="2" startTrkptIdx="43" segmentTime="18.22" speed="1.11" turnType="C" skipTurn="true" types="92,93,94,95,96,97,98,99,100,101" pointTypes=";" />
-          <segment id="52070386" length="22" startTrkptIdx="44" segmentTime="516.82" speed="0.61" turnType="TR" turnAngle="72.42" types="93,94,95,102,99,103,104,105,106,107,108,109,110,111,112,113" pointTypes=";;;;114;;114;115;;;;;116;;;;;115;;;;" names="119,120,121,122,123,124" />
-          <segment id="52070386" length="6" startTrkptIdx="65" segmentTime="186.38" speed="0.6" turnType="C" types="125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140" pointTypes=";;;;;" names="143,144,145,146,147,148" />
-          <segment id="52070386" length="7" startTrkptIdx="70" segmentTime="107.95" speed="0.71" turnType="C" types="149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164" pointTypes=";;;;;;" names="167,168,169,170,171,172" />
-          <segment id="52070386" length="6" startTrkptIdx="76" segmentTime="128.04" speed="0.55" turnType="C" types="173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188" pointTypes=";;;;;" names="191,192,193,194,195,196" />
-          <segment id="52070386" length="9" startTrkptIdx="81" segmentTime="280.2" speed="0.64" turnType="C" types="197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212" pointTypes=";;;;213;213;;;" names="216,217,218,219,220,221" />
-          <segment id="52070386" length="7" startTrkptIdx="89" segmentTime="192.63" speed="0.59" turnType="C" types="222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237" pointTypes=";;;;;;" names="240,241,242,243,244,245" />
-          <segment id="52070386" length="2" startTrkptIdx="95" segmentTime="26.14" speed="0.51" turnType="TSLR" turnLanes="+TSLR,TSLR" turnAngle="27.06" types="222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237" pointTypes=";" names="240,241,242,243,244,245" />
-          <segment id="52070386" length="6" startTrkptIdx="96" segmentTime="124.06" speed="0.63" turnType="C" types="246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261" pointTypes=";;;;;" names="264,265,266,267,268,269" />
-          <segment id="52070386" length="13" startTrkptIdx="101" segmentTime="409.68" speed="0.65" turnType="C" types="270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285" pointTypes=";;;;;;;;;;;;" names="289,290,291,292,293,294" />
-          <segment id="549625758" length="2" startTrkptIdx="113" segmentTime="97.17" speed="0.56" turnType="TSLR" turnLanes="+TSLR,TSLL" turnAngle="31.97" types="270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285" pointTypes="286;" names="295,289,290,291,292,293,294" />
-          <segment id="549625758" length="5" startTrkptIdx="114" segmentTime="218.78" speed="0.53" turnType="C" types="296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311" pointTypes=";312;;;" names="315,316,317,318,319,320,321" />
-          <segment id="549625758" length="6" startTrkptIdx="118" segmentTime="171.97" speed="0.56" turnType="C" types="322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337" pointTypes=";;338;;;" names="341,342,343,344,345,346,347" />
-          <segment id="549625758" length="8" startTrkptIdx="123" segmentTime="172.97" speed="0.76" turnType="C" types="348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363" pointTypes=";366;365;364;;;;" names="369,370,371,372,373,374,375" />
-          <segment id="549625758" length="9" startTrkptIdx="130" segmentTime="187.85" speed="0.84" turnType="C" types="376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391" pointTypes=";393;;;392;;;;" names="396,397,398,399,400,401,402" />
-          <segment id="549625758" length="18" startTrkptIdx="138" segmentTime="548.19" speed="0.89" turnType="C" types="403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418" pointTypes=";;;;422;421;420;;;;;;420;419;;;;" names="425,426,427,428,429,430,431" />
-          <segment id="549625758" length="10" startTrkptIdx="155" segmentTime="215.32" speed="0.99" turnType="C" types="432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447" pointTypes=";451;450;449;448;;;;;" names="454,455,456,457,458,459,460" />
-          <segment id="549625758" length="6" startTrkptIdx="164" segmentTime="127.26" speed="0.6" turnType="C" types="461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476" pointTypes=";478;477,461,462,478;;;" names="481,482,483,484,485,486,487" />
-          <segment id="549625758" length="6" startTrkptIdx="169" segmentTime="67.83" speed="0.85" turnType="C" types="488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503" pointTypes=";;;;;" names="506,507,508,509,510,511,512" />
-          <segment id="549625758" length="6" startTrkptIdx="174" segmentTime="143.82" speed="0.67" turnType="C" types="513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528" pointTypes=";;529;;;" names="538,539,540,541,542,543,544" />
-          <segment id="52070399" length="3" startTrkptIdx="179" segmentTime="47.26" speed="0.44" types="513,514,515,516,530,531,517,518,519,520,521,522,523,524,525,526,527,532,533,534,535" pointTypes=";;" names="538,539,540,541,542,543,544" />
-          <segment id="52070399" length="2" startTrkptIdx="181" segmentTime="7.01" speed="1.11" turnType="C" types="545,546,547,548,549,550,551,552,553,554,555,556,557,558,559,560,561,562,563,564,565" pointTypes=";" names="568,569,570,571,572,573,574" />
-        </osmand:route>
-        <osmand:types>
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="path" />
-          <type t="smoothness" v="impassable" />
-          <type t="surface" v="pebblestone" />
-          <type t="osmand_highway_integrity_brouting" v="7" />
-          <type t="osmand_highway_integrity_brouting_low" v="yes" />
-          <type t="highway" v="steps" />
-          <type t="osmand_highway_integrity_brouting" v="0" />
-          <type t="osmand_highway_integrity_brouting" v="4" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_1" v="1" />
-          <type t="osmand_ele_decline_5" v="1" />
-          <type t="osmand_ele_decline_3" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_1" v="1" />
-          <type t="osmand_ele_decline_5" v="1" />
-          <type t="osmand_ele_decline_3" v="1" />
-          <type t="access" v="yes" />
-          <type t="motor_vehicle" v="private" />
-          <type t="smoothness" v="bad" />
-          <type t="surface" v="unpaved" />
-          <type t="osmand_highway_integrity_brouting" v="6" />
-          <type t="osmand_highway_integrity_brouting_low" v="yes" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="access" v="yes" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="private" />
-          <type t="smoothness" v="bad" />
-          <type t="surface" v="unpaved" />
-          <type t="tracktype" v="grade3" />
-          <type t="osmand_highway_integrity_brouting" v="6" />
-          <type t="osmand_highway_integrity_brouting_low" v="yes" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_1" v="1" />
-          <type t="osmand_ele_decline_5" v="1" />
-          <type t="osmand_ele_decline_3" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_3" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_11" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_11" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_3" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_3" v="1" />
-          <type t="osmand_ele_decline_5" v="1" />
-          <type t="osmand_ele_decline_11" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_7" v="1" />
-          <type t="osmand_ele_decline_11" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_7" v="1" />
-          <type t="osmand_ele_decline_1" v="1" />
-          <type t="osmand_ele_decline_11" v="1" />
-          <type t="osmand_ele_decline_3" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_1" v="1" />
-          <type t="osmand_ele_decline_3" v="1" />
-          <type t="osmand_ele_decline_5" v="1" />
-          <type t="osmand_ele_decline_7" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="barrier" v="gate" />
-          <type t="osmand_ele_decline_1" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="3" />
-          <type t="osmand_ele_decline_7" v="1" />
-          <type t="mtb:scale:uphill" v="2" />
-          <type t="surface" v="sand" />
-          <type t="osmand_highway_integrity_brouting" v="5" />
-          <type t="osmand_highway_integrity_brouting_low" v="yes" />
-          <type t="mtb:scale" v="1" />
-          <type t="route_mtb" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-          <type t="bicycle" v="yes" />
-          <type t="foot" v="yes" />
-          <type t="highway" v="track" />
-          <type t="motor_vehicle" v="forestry" />
-          <type t="mtb:scale:uphill" v="2" />
-          <type t="surface" v="sand" />
-          <type t="tracktype" v="grade3" />
-          <type t="route_hiking_1" v="" />
-          <type t="route_hiking_1_osmc_stub_name" v="." />
-          <type t="route_hiking_1_osmc_text" v="718" />
-          <type t="route_hiking_1_osmc_textcolor" v="black" />
-          <type t="route_hiking_1_operator" v="Parco dell'Etna" />
-          <type t="route_hiking_1_network" v="lwn" />
-          <type t="route_hiking_1_osmc_foreground" v="white_stripe_3" />
-          <type t="route_hiking_1_osmc_background" v="red_3" />
-          <type t="route_hiking_1_osmc_waycolor" v="red" />
-          <type t="route_hiking" v="" />
-          <type t="osmand_highway_integrity_brouting" v="5" />
-          <type t="osmand_highway_integrity_brouting_low" v="yes" />
-          <type t="mtb:scale" v="1" />
-          <type t="route_mtb" v="1" />
-          <type t="name" v="" />
-          <type t="ref" v="" />
-          <type t="name" v="Sentiero Rifugio Saletti" />
-          <type t="route_hiking_1_from" v="Case Caldarera" />
-          <type t="route_hiking_1_name" v="Case Caldarera - Cisternazza - Pista Altomontana" />
-          <type t="route_hiking_1_ref" v="718" />
-          <type t="route_hiking_1_symbol" v="718 on white red flag" />
-          <type t="route_hiking_1_to" v="Pista Altomontana 701" />
-          <type t="route_hiking_1_symbol:it" v="718 su bandierina bianca e rossa" />
-        </osmand:types>
-      </extensions>
+      <trkpt lat="37.855300" lon="14.986680">
+        <ele>931.741</ele>
+        <time>2022-08-15T17:30:10Z</time>
+      </trkpt>
+      <trkpt lat="37.855120" lon="14.985770">
+        <ele>931.881</ele>
+        <time>2022-08-15T17:30:50Z</time>
+      </trkpt>
+      <trkpt lat="37.854800" lon="14.985160">
+        <ele>933.309</ele>
+        <time>2022-08-15T17:31:30Z</time>
+      </trkpt>
+      <trkpt lat="37.854570" lon="14.984940">
+        <ele>936.409</ele>
+        <time>2022-08-15T17:32:10Z</time>
+      </trkpt>
+      <trkpt lat="37.853550" lon="14.984430">
+        <ele>943.185</ele>
+        <time>2022-08-15T17:32:50Z</time>
+      </trkpt>
+      <trkpt lat="37.853330" lon="14.984260">
+        <ele>945.575</ele>
+        <time>2022-08-15T17:33:30Z</time>
+      </trkpt>
+      <trkpt lat="37.852790" lon="14.983350">
+        <ele>954.974</ele>
+        <time>2022-08-15T17:34:10Z</time>
+      </trkpt>
+      <trkpt lat="37.852600" lon="14.983210">
+        <ele>955.121</ele>
+        <time>2022-08-15T17:34:50Z</time>
+      </trkpt>
+      <trkpt lat="37.851550" lon="14.982660">
+        <ele>962.389</ele>
+        <time>2022-08-15T17:35:30Z</time>
+      </trkpt>
+      <trkpt lat="37.850650" lon="14.981790">
+        <ele>965.927</ele>
+        <time>2022-08-15T17:36:10Z</time>
+      </trkpt>
+      <trkpt lat="37.850400" lon="14.981830">
+        <ele>970.199</ele>
+        <time>2022-08-15T17:36:50Z</time>
+      </trkpt>
+      <trkpt lat="37.850340" lon="14.981900">
+        <ele>971.756</ele>
+        <time>2022-08-15T17:37:30Z</time>
+      </trkpt>
+      <trkpt lat="37.850380" lon="14.982490">
+        <ele>977.162</ele>
+        <time>2022-08-15T17:38:10Z</time>
+      </trkpt>
+      <trkpt lat="37.850570" lon="14.982970">
+        <ele>977.863</ele>
+        <time>2022-08-15T17:38:50Z</time>
+      </trkpt>
+      <trkpt lat="37.851030" lon="14.983690">
+        <ele>979.044</ele>
+        <time>2022-08-15T17:39:30Z</time>
+      </trkpt>
+      <trkpt lat="37.851040" lon="14.983850">
+        <ele>981.218</ele>
+        <time>2022-08-15T17:40:10Z</time>
+      </trkpt>
+      <trkpt lat="37.850960" lon="14.983940">
+        <ele>984.709</ele>
+        <time>2022-08-15T17:40:50Z</time>
+      </trkpt>
+      <trkpt lat="37.850660" lon="14.983880">
+        <ele>991.237</ele>
+        <time>2022-08-15T17:41:30Z</time>
+      </trkpt>
+      <trkpt lat="37.849920" lon="14.983370">
+        <ele>993.557</ele>
+        <time>2022-08-15T17:42:10Z</time>
+      </trkpt>
+      <trkpt lat="37.849770" lon="14.983190">
+        <ele>996.186</ele>
+        <time>2022-08-15T17:42:50Z</time>
+      </trkpt>
+      <trkpt lat="37.849510" lon="14.982600">
+        <ele>995.793</ele>
+        <time>2022-08-15T17:43:30Z</time>
+      </trkpt>
+      <trkpt lat="37.849320" lon="14.982480">
+        <ele>997.181</ele>
+        <time>2022-08-15T17:44:10Z</time>
+      </trkpt>
+      <trkpt lat="37.849290" lon="14.983050">
+        <ele>1004.269</ele>
+        <time>2022-08-15T17:44:50Z</time>
+      </trkpt>
+      <trkpt lat="37.850620" lon="14.985240">
+        <ele>1006.061</ele>
+        <time>2022-08-15T17:45:30Z</time>
+      </trkpt>
+      <trkpt lat="37.850710" lon="14.985480">
+        <ele>1005.638</ele>
+        <time>2022-08-15T17:46:10Z</time>
+      </trkpt>
+      <trkpt lat="37.850740" lon="14.985910">
+        <ele>1006.274</ele>
+        <time>2022-08-15T17:46:50Z</time>
+      </trkpt>
+      <trkpt lat="37.850700" lon="14.986770">
+        <ele>1012.443</ele>
+        <time>2022-08-15T17:47:30Z</time>
+      </trkpt>
+      <trkpt lat="37.850560" lon="14.987480">
+        <ele>1017.864</ele>
+        <time>2022-08-15T17:48:10Z</time>
+      </trkpt>
+      <trkpt lat="37.850570" lon="14.987900">
+        <ele>1021.510</ele>
+        <time>2022-08-15T17:48:50Z</time>
+      </trkpt>
+      <trkpt lat="37.850910" lon="14.990440">
+        <ele>1029.309</ele>
+        <time>2022-08-15T17:49:30Z</time>
+      </trkpt>
+      <trkpt lat="37.850910" lon="14.990830">
+        <ele>1029.915</ele>
+        <time>2022-08-15T17:50:10Z</time>
+      </trkpt>
+      <trkpt lat="37.850810" lon="14.991210">
+        <ele>1033.575</ele>
+        <time>2022-08-15T17:50:50Z</time>
+      </trkpt>
+      <trkpt lat="37.850480" lon="14.991680">
+        <ele>1044.284</ele>
+        <time>2022-08-15T17:51:30Z</time>
+      </trkpt>
+      <trkpt lat="37.850340" lon="14.992000">
+        <ele>1047.381</ele>
+        <time>2022-08-15T17:52:10Z</time>
+      </trkpt>
+      <trkpt lat="37.850130" lon="14.993980">
+        <ele>1046.999</ele>
+        <time>2022-08-15T17:52:50Z</time>
+      </trkpt>
+      <trkpt lat="37.850040" lon="14.994490">
+        <ele>1051.087</ele>
+        <time>2022-08-15T17:53:30Z</time>
+      </trkpt>
+      <trkpt lat="37.849990" lon="14.994570">
+        <ele>1053.379</ele>
+        <time>2022-08-15T17:54:10Z</time>
+      </trkpt>
+      <trkpt lat="37.849820" lon="14.994620">
+        <ele>1059.926</ele>
+        <time>2022-08-15T17:54:50Z</time>
+      </trkpt>
+      <trkpt lat="37.849670" lon="14.994450">
+        <ele>1062.892</ele>
+        <time>2022-08-15T17:55:30Z</time>
+      </trkpt>
+      <trkpt lat="37.849560" lon="14.994010">
+        <ele>1062.262</ele>
+        <time>2022-08-15T17:56:10Z</time>
+      </trkpt>
+      <trkpt lat="37.849420" lon="14.993770">
+        <ele>1065.283</ele>
+        <time>2022-08-15T17:56:50Z</time>
+      </trkpt>
+      <trkpt lat="37.849290" lon="14.993700">
+        <ele>1068.611</ele>
+        <time>2022-08-15T17:57:30Z</time>
+      </trkpt>
+      <trkpt lat="37.849090" lon="14.993780">
+        <ele>1073.809</ele>
+        <time>2022-08-15T17:58:10Z</time>
+      </trkpt>
+      <trkpt lat="37.849000" lon="14.994150">
+        <ele>1074.857</ele>
+        <time>2022-08-15T17:58:50Z</time>
+      </trkpt>
+      <trkpt lat="37.849330" lon="14.994870">
+        <ele>1072.537</ele>
+        <time>2022-08-15T17:59:30Z</time>
+      </trkpt>
+      <trkpt lat="37.849330" lon="14.995160">
+        <ele>1070.346</ele>
+        <time>2022-08-15T18:00:10Z</time>
+      </trkpt>
+      <trkpt lat="37.848920" lon="14.995330">
+        <ele>1076.893</ele>
+        <time>2022-08-15T18:00:50Z</time>
+      </trkpt>
+      <trkpt lat="37.848570" lon="14.994920">
+        <ele>1085.181</ele>
+        <time>2022-08-15T18:01:30Z</time>
+      </trkpt>
+      <trkpt lat="37.848180" lon="14.994680">
+        <ele>1093.539</ele>
+        <time>2022-08-15T18:02:10Z</time>
+      </trkpt>
+      <trkpt lat="37.847750" lon="14.994260">
+        <ele>1095.711</ele>
+        <time>2022-08-15T18:02:50Z</time>
+      </trkpt>
+      <trkpt lat="37.847690" lon="14.993940">
+        <ele>1098.118</ele>
+        <time>2022-08-15T18:03:30Z</time>
+      </trkpt>
+      <trkpt lat="37.847750" lon="14.993750">
+        <ele>1099.044</ele>
+        <time>2022-08-15T18:04:10Z</time>
+      </trkpt>
+      <trkpt lat="37.848110" lon="14.993460">
+        <ele>1099.764</ele>
+        <time>2022-08-15T18:04:50Z</time>
+      </trkpt>
+      <trkpt lat="37.848150" lon="14.993010">
+        <ele>1099.806</ele>
+        <time>2022-08-15T18:05:30Z</time>
+      </trkpt>
+      <trkpt lat="37.848080" lon="14.992430">
+        <ele>1098.116</ele>
+        <time>2022-08-15T18:06:10Z</time>
+      </trkpt>
+      <trkpt lat="37.847990" lon="14.992090">
+        <ele>1103.109</ele>
+        <time>2022-08-15T18:06:50Z</time>
+      </trkpt>
+      <trkpt lat="37.847600" lon="14.991320">
+        <ele>1107.777</ele>
+        <time>2022-08-15T18:07:30Z</time>
+      </trkpt>
+      <trkpt lat="37.847400" lon="14.991020">
+        <ele>1111.567</ele>
+        <time>2022-08-15T18:08:10Z</time>
+      </trkpt>
+      <trkpt lat="37.846750" lon="14.990260">
+        <ele>1115.356</ele>
+        <time>2022-08-15T18:08:50Z</time>
+      </trkpt>
+      <trkpt lat="37.846340" lon="14.989630">
+        <ele>1119.443</ele>
+        <time>2022-08-15T18:09:30Z</time>
+      </trkpt>
+      <trkpt lat="37.846050" lon="14.989270">
+        <ele>1121.671</ele>
+        <time>2022-08-15T18:10:10Z</time>
+      </trkpt>
+      <trkpt lat="37.845650" lon="14.989110">
+        <ele>1124.049</ele>
+        <time>2022-08-15T18:10:50Z</time>
+      </trkpt>
+      <trkpt lat="37.845400" lon="14.989070">
+        <ele>1128.541</ele>
+        <time>2022-08-15T18:11:30Z</time>
+      </trkpt>
+      <trkpt lat="37.845170" lon="14.989220">
+        <ele>1134.368</ele>
+        <time>2022-08-15T18:12:10Z</time>
+      </trkpt>
+      <trkpt lat="37.845110" lon="14.989510">
+        <ele>1137.574</ele>
+        <time>2022-08-15T18:12:50Z</time>
+      </trkpt>
+      <trkpt lat="37.845460" lon="14.991390">
+        <ele>1138.716</ele>
+        <time>2022-08-15T18:13:30Z</time>
+      </trkpt>
+      <trkpt lat="37.845520" lon="14.991800">
+        <ele>1138.876</ele>
+        <time>2022-08-15T18:14:10Z</time>
+      </trkpt>
+      <trkpt lat="37.845500" lon="14.992060">
+        <ele>1140.613</ele>
+        <time>2022-08-15T18:14:50Z</time>
+      </trkpt>
+      <trkpt lat="37.845310" lon="14.992480">
+        <ele>1145.509</ele>
+        <time>2022-08-15T18:15:30Z</time>
+      </trkpt>
+      <trkpt lat="37.845200" lon="14.992574">
+        <ele>1146.872</ele>
+        <time>2022-08-15T18:16:10Z</time>
+      </trkpt>
+      <trkpt lat="37.845189" lon="14.992709">
+        <ele>1147.022</ele>
+        <time>2022-08-15T18:16:50Z</time>
+      </trkpt>
+      <trkpt lat="37.845200" lon="14.992574">
+        <ele>1146.831</ele>
+        <time>2022-08-15T18:17:30Z</time>
+      </trkpt>
+      <trkpt lat="37.845096" lon="14.992459">
+        <ele>1148.128</ele>
+        <time>2022-08-15T18:18:10Z</time>
+      </trkpt>
+      <trkpt lat="37.845102" lon="14.992323">
+        <ele>1148.386</ele>
+        <time>2022-08-15T18:18:50Z</time>
+      </trkpt>
+      <trkpt lat="37.844986" lon="14.992126">
+        <ele>1150.234</ele>
+        <time>2022-08-15T18:19:30Z</time>
+      </trkpt>
+      <trkpt lat="37.844825" lon="14.991955">
+        <ele>1152.536</ele>
+        <time>2022-08-15T18:20:10Z</time>
+      </trkpt>
+      <trkpt lat="37.844804" lon="14.991790">
+        <ele>1152.413</ele>
+        <time>2022-08-15T18:20:50Z</time>
+      </trkpt>
+      <trkpt lat="37.844727" lon="14.991541">
+        <ele>1152.529</ele>
+        <time>2022-08-15T18:21:30Z</time>
+      </trkpt>
+      <trkpt lat="37.844700" lon="14.991325">
+        <ele>1151.965</ele>
+        <time>2022-08-15T18:22:10Z</time>
+      </trkpt>
+      <trkpt lat="37.844656" lon="14.991155">
+        <ele>1151.468</ele>
+        <time>2022-08-15T18:22:50Z</time>
+      </trkpt>
+      <trkpt lat="37.844624" lon="14.990949">
+        <ele>1150.214</ele>
+        <time>2022-08-15T18:23:30Z</time>
+      </trkpt>
+      <trkpt lat="37.844600" lon="14.990773">
+        <ele>1149.109</ele>
+        <time>2022-08-15T18:24:10Z</time>
+      </trkpt>
+      <trkpt lat="37.844541" lon="14.990575">
+        <ele>1147.857</ele>
+        <time>2022-08-15T18:24:50Z</time>
+      </trkpt>
+      <trkpt lat="37.844342" lon="14.990320">
+        <ele>1148.737</ele>
+        <time>2022-08-15T18:25:30Z</time>
+      </trkpt>
+      <trkpt lat="37.844160" lon="14.990236">
+        <ele>1151.516</ele>
+        <time>2022-08-15T18:26:10Z</time>
+      </trkpt>
+      <trkpt lat="37.844038" lon="14.990156">
+        <ele>1152.863</ele>
+        <time>2022-08-15T18:26:50Z</time>
+      </trkpt>
+      <trkpt lat="37.843921" lon="14.989847">
+        <ele>1153.421</ele>
+        <time>2022-08-15T18:27:30Z</time>
+      </trkpt>
+      <trkpt lat="37.843698" lon="14.989292">
+        <ele>1158.719</ele>
+        <time>2022-08-15T18:28:10Z</time>
+      </trkpt>
+      <trkpt lat="37.843916" lon="14.988693">
+        <ele>1151.251</ele>
+        <time>2022-08-15T18:28:50Z</time>
+      </trkpt>
+      <trkpt lat="37.844554" lon="14.987668">
+        <ele>1153.338</ele>
+        <time>2022-08-15T18:29:30Z</time>
+      </trkpt>
+      <trkpt lat="37.844177" lon="14.987964">
+        <ele>1155.934</ele>
+        <time>2022-08-15T18:30:10Z</time>
+      </trkpt>
+      <trkpt lat="37.843630" lon="14.988518">
+        <ele>1154.447</ele>
+        <time>2022-08-15T18:30:50Z</time>
+      </trkpt>
+      <trkpt lat="37.843339" lon="14.987962">
+        <ele>1160.929</ele>
+        <time>2022-08-15T18:31:30Z</time>
+      </trkpt>
+      <trkpt lat="37.842981" lon="14.987804">
+        <ele>1168.221</ele>
+        <time>2022-08-15T18:32:10Z</time>
+      </trkpt>
+      <trkpt lat="37.842549" lon="14.987824">
+        <ele>1175.009</ele>
+        <time>2022-08-15T18:32:50Z</time>
+      </trkpt>
+      <trkpt lat="37.842113" lon="14.987808">
+        <ele>1182.065</ele>
+        <time>2022-08-15T18:33:30Z</time>
+      </trkpt>
+      <trkpt lat="37.841675" lon="14.987741">
+        <ele>1188.265</ele>
+        <time>2022-08-15T18:34:10Z</time>
+      </trkpt>
+      <trkpt lat="37.841170" lon="14.987765">
+        <ele>1194.914</ele>
+        <time>2022-08-15T18:34:50Z</time>
+      </trkpt>
+      <trkpt lat="37.841005" lon="14.987924">
+        <ele>1198.611</ele>
+        <time>2022-08-15T18:35:30Z</time>
+      </trkpt>
+      <trkpt lat="37.840454" lon="14.988236">
+        <ele>1210.719</ele>
+        <time>2022-08-15T18:36:10Z</time>
+      </trkpt>
+      <trkpt lat="37.839694" lon="14.987362">
+        <ele>1224.817</ele>
+        <time>2022-08-15T18:36:50Z</time>
+      </trkpt>
+      <trkpt lat="37.839471" lon="14.988126">
+        <ele>1233.649</ele>
+        <time>2022-08-15T18:37:30Z</time>
+      </trkpt>
+      <trkpt lat="37.839723" lon="14.988719">
+        <ele>1229.426</ele>
+        <time>2022-08-15T18:38:10Z</time>
+      </trkpt>
+      <trkpt lat="37.839100" lon="14.988330">
+        <ele>1242.912</ele>
+        <time>2022-08-15T18:38:50Z</time>
+      </trkpt>
+      <trkpt lat="37.839110" lon="14.988140">
+        <ele>1241.092</ele>
+        <time>2022-08-15T18:39:30Z</time>
+      </trkpt>
+      <trkpt lat="37.839180" lon="14.988020">
+        <ele>1238.673</ele>
+        <time>2022-08-15T18:40:10Z</time>
+      </trkpt>
+      <trkpt lat="37.839050" lon="14.987790">
+        <ele>1239.820</ele>
+        <time>2022-08-15T18:40:50Z</time>
+      </trkpt>
+      <trkpt lat="37.838680" lon="14.987860">
+        <ele>1246.109</ele>
+        <time>2022-08-15T18:41:30Z</time>
+      </trkpt>
+      <trkpt lat="37.838390" lon="14.987700">
+        <ele>1249.460</ele>
+        <time>2022-08-15T18:42:10Z</time>
+      </trkpt>
+      <trkpt lat="37.838150" lon="14.987740">
+        <ele>1255.460</ele>
+        <time>2022-08-15T18:42:50Z</time>
+      </trkpt>
+      <trkpt lat="37.838100" lon="14.987810">
+        <ele>1257.499</ele>
+        <time>2022-08-15T18:43:30Z</time>
+      </trkpt>
+      <trkpt lat="37.838120" lon="14.988000">
+        <ele>1259.286</ele>
+        <time>2022-08-15T18:44:10Z</time>
+      </trkpt>
+      <trkpt lat="37.838320" lon="14.988160">
+        <ele>1257.034</ele>
+        <time>2022-08-15T18:44:50Z</time>
+      </trkpt>
+      <trkpt lat="37.838380" lon="14.988320">
+        <ele>1256.752</ele>
+        <time>2022-08-15T18:45:30Z</time>
+      </trkpt>
+      <trkpt lat="37.838500" lon="14.988900">
+        <ele>1257.944</ele>
+        <time>2022-08-15T18:46:10Z</time>
+      </trkpt>
+      <trkpt lat="37.838490" lon="14.989120">
+        <ele>1260.231</ele>
+        <time>2022-08-15T18:46:50Z</time>
+      </trkpt>
+      <trkpt lat="37.838540" lon="14.989530">
+        <ele>1264.557</ele>
+        <time>2022-08-15T18:47:30Z</time>
+      </trkpt>
+      <trkpt lat="37.838530" lon="14.989620">
+        <ele>1265.868</ele>
+        <time>2022-08-15T18:48:10Z</time>
+      </trkpt>
+      <trkpt lat="37.838410" lon="14.989730">
+        <ele>1270.142</ele>
+        <time>2022-08-15T18:48:50Z</time>
+      </trkpt>
+      <trkpt lat="37.838280" lon="14.989640">
+        <ele>1271.926</ele>
+        <time>2022-08-15T18:49:30Z</time>
+      </trkpt>
+      <trkpt lat="37.838090" lon="14.989330">
+        <ele>1272.509</ele>
+        <time>2022-08-15T18:50:10Z</time>
+      </trkpt>
+      <trkpt lat="37.837920" lon="14.989170">
+        <ele>1274.947</ele>
+        <time>2022-08-15T18:50:50Z</time>
+      </trkpt>
+      <trkpt lat="37.837820" lon="14.989140">
+        <ele>1277.717</ele>
+        <time>2022-08-15T18:51:30Z</time>
+      </trkpt>
+      <trkpt lat="37.837770" lon="14.989250">
+        <ele>1280.266</ele>
+        <time>2022-08-15T18:52:10Z</time>
+      </trkpt>
+      <trkpt lat="37.837770" lon="14.989520">
+        <ele>1282.583</ele>
+        <time>2022-08-15T18:52:50Z</time>
+      </trkpt>
+      <trkpt lat="37.837740" lon="14.989640">
+        <ele>1284.071</ele>
+        <time>2022-08-15T18:53:30Z</time>
+      </trkpt>
+      <trkpt lat="37.837710" lon="14.989630">
+        <ele>1285.049</ele>
+        <time>2022-08-15T18:54:10Z</time>
+      </trkpt>
+      <trkpt lat="37.837730" lon="14.989770">
+        <ele>1284.951</ele>
+        <time>2022-08-15T18:54:50Z</time>
+      </trkpt>
+      <trkpt lat="37.837860" lon="14.990240">
+        <ele>1285.898</ele>
+        <time>2022-08-15T18:55:30Z</time>
+      </trkpt>
+      <trkpt lat="37.837840" lon="14.990400">
+        <ele>1289.124</ele>
+        <time>2022-08-15T18:56:10Z</time>
+      </trkpt>
+      <trkpt lat="37.837852" lon="14.990630">
+        <ele>1292.075</ele>
+        <time>2022-08-15T18:56:50Z</time>
+      </trkpt>
+      <trkpt lat="37.837860" lon="14.990760">
+        <ele>1292.928</ele>
+        <time>2022-08-15T18:57:30Z</time>
+      </trkpt>
+      <trkpt lat="37.837800" lon="14.991020">
+        <ele>1296.020</ele>
+        <time>2022-08-15T18:58:10Z</time>
+      </trkpt>
+      <trkpt lat="37.837730" lon="14.991070">
+        <ele>1297.809</ele>
+        <time>2022-08-15T18:58:50Z</time>
+      </trkpt>
+      <trkpt lat="37.837660" lon="14.991050">
+        <ele>1299.198</ele>
+        <time>2022-08-15T18:59:30Z</time>
+      </trkpt>
+      <trkpt lat="37.837400" lon="14.990500">
+        <ele>1302.398</ele>
+        <time>2022-08-15T19:00:10Z</time>
+      </trkpt>
+      <trkpt lat="37.837060" lon="14.990280">
+        <ele>1310.867</ele>
+        <time>2022-08-15T19:00:50Z</time>
+      </trkpt>
+      <trkpt lat="37.836880" lon="14.989640">
+        <ele>1314.014</ele>
+        <time>2022-08-15T19:01:30Z</time>
+      </trkpt>
+      <trkpt lat="37.836750" lon="14.989590">
+        <ele>1318.232</ele>
+        <time>2022-08-15T19:02:10Z</time>
+      </trkpt>
+      <trkpt lat="37.836640" lon="14.990200">
+        <ele>1323.660</ele>
+        <time>2022-08-15T19:02:50Z</time>
+      </trkpt>
+      <trkpt lat="37.836550" lon="14.990530">
+        <ele>1325.032</ele>
+        <time>2022-08-15T19:03:30Z</time>
+      </trkpt>
+      <trkpt lat="37.836350" lon="14.990900">
+        <ele>1328.279</ele>
+        <time>2022-08-15T19:04:10Z</time>
+      </trkpt>
+      <trkpt lat="37.836140" lon="14.991780">
+        <ele>1336.115</ele>
+        <time>2022-08-15T19:04:50Z</time>
+      </trkpt>
+      <trkpt lat="37.835874" lon="14.992142">
+        <ele>1338.621</ele>
+        <time>2022-08-15T19:05:30Z</time>
+      </trkpt>
+      <trkpt lat="37.835325" lon="14.992377">
+        <ele>1342.541</ele>
+        <time>2022-08-15T19:06:10Z</time>
+      </trkpt>
+      <trkpt lat="37.834887" lon="14.992532">
+        <ele>1349.605</ele>
+        <time>2022-08-15T19:06:50Z</time>
+      </trkpt>
+      <trkpt lat="37.834806" lon="14.992472">
+        <ele>1351.209</ele>
+        <time>2022-08-15T19:07:30Z</time>
+      </trkpt>
+      <trkpt lat="37.834787" lon="14.992381">
+        <ele>1351.823</ele>
+        <time>2022-08-15T19:08:10Z</time>
+      </trkpt>
+      <trkpt lat="37.834878" lon="14.992010">
+        <ele>1351.673</ele>
+        <time>2022-08-15T19:08:50Z</time>
+      </trkpt>
+      <trkpt lat="37.834985" lon="14.991484">
+        <ele>1360.872</ele>
+        <time>2022-08-15T19:09:30Z</time>
+      </trkpt>
+      <trkpt lat="37.835097" lon="14.991376">
+        <ele>1361.979</ele>
+        <time>2022-08-15T19:10:10Z</time>
+      </trkpt>
+      <trkpt lat="37.835136" lon="14.990929">
+        <ele>1369.197</ele>
+        <time>2022-08-15T19:10:50Z</time>
+      </trkpt>
+      <trkpt lat="37.835133" lon="14.990494">
+        <ele>1368.635</ele>
+        <time>2022-08-15T19:11:30Z</time>
+      </trkpt>
+      <trkpt lat="37.834997" lon="14.990241">
+        <ele>1369.497</ele>
+        <time>2022-08-15T19:12:10Z</time>
+      </trkpt>
+      <trkpt lat="37.834853" lon="14.990046">
+        <ele>1368.594</ele>
+        <time>2022-08-15T19:12:50Z</time>
+      </trkpt>
+      <trkpt lat="37.834650" lon="14.989726">
+        <ele>1366.950</ele>
+        <time>2022-08-15T19:13:30Z</time>
+      </trkpt>
+      <trkpt lat="37.834524" lon="14.989444">
+        <ele>1365.324</ele>
+        <time>2022-08-15T19:14:10Z</time>
+      </trkpt>
+      <trkpt lat="37.834311" lon="14.989042">
+        <ele>1367.404</ele>
+        <time>2022-08-15T19:14:50Z</time>
+      </trkpt>
+      <trkpt lat="37.834368" lon="14.988908">
+        <ele>1365.314</ele>
+        <time>2022-08-15T19:15:30Z</time>
+      </trkpt>
+      <trkpt lat="37.834347" lon="14.988659">
+        <ele>1364.709</ele>
+        <time>2022-08-15T19:16:10Z</time>
+      </trkpt>
+      <trkpt lat="37.834338" lon="14.988508">
+        <ele>1363.943</ele>
+        <time>2022-08-15T19:16:50Z</time>
+      </trkpt>
+      <trkpt lat="37.834133" lon="14.988174">
+        <ele>1364.723</ele>
+        <time>2022-08-15T19:17:30Z</time>
+      </trkpt>
+      <trkpt lat="37.833937" lon="14.987807">
+        <ele>1364.712</ele>
+        <time>2022-08-15T19:18:10Z</time>
+      </trkpt>
+      <trkpt lat="37.833658" lon="14.987069">
+        <ele>1371.229</ele>
+        <time>2022-08-15T19:18:50Z</time>
+      </trkpt>
+      <trkpt lat="37.833561" lon="14.986371">
+        <ele>1372.127</ele>
+        <time>2022-08-15T19:19:30Z</time>
+      </trkpt>
+      <trkpt lat="37.833565" lon="14.985899">
+        <ele>1365.915</ele>
+        <time>2022-08-15T19:20:10Z</time>
+      </trkpt>
+      <trkpt lat="37.833330" lon="14.985530">
+        <ele>1366.097</ele>
+        <time>2022-08-15T19:20:50Z</time>
+      </trkpt>
+      <trkpt lat="37.833180" lon="14.985086">
+        <ele>1368.684</ele>
+        <time>2022-08-15T19:21:30Z</time>
+      </trkpt>
+      <trkpt lat="37.833136" lon="14.984757">
+        <ele>1366.850</ele>
+        <time>2022-08-15T19:22:10Z</time>
+      </trkpt>
+      <trkpt lat="37.832838" lon="14.984136">
+        <ele>1367.552</ele>
+        <time>2022-08-15T19:22:50Z</time>
+      </trkpt>
+      <trkpt lat="37.832787" lon="14.983881">
+        <ele>1368.953</ele>
+        <time>2022-08-15T19:23:30Z</time>
+      </trkpt>
+      <trkpt lat="37.832945" lon="14.983191">
+        <ele>1367.108</ele>
+        <time>2022-08-15T19:24:10Z</time>
+      </trkpt>
+      <trkpt lat="37.833094" lon="14.982426">
+        <ele>1366.009</ele>
+        <time>2022-08-15T19:24:50Z</time>
+      </trkpt>
+      <trkpt lat="37.832987" lon="14.982295">
+        <ele>1367.586</ele>
+        <time>2022-08-15T19:25:30Z</time>
+      </trkpt>
+      <trkpt lat="37.832829" lon="14.982175">
+        <ele>1369.956</ele>
+        <time>2022-08-15T19:26:10Z</time>
+      </trkpt>
+      <trkpt lat="37.832691" lon="14.981936">
+        <ele>1372.165</ele>
+        <time>2022-08-15T19:26:50Z</time>
+      </trkpt>
+      <trkpt lat="37.832658" lon="14.981739">
+        <ele>1372.042</ele>
+        <time>2022-08-15T19:27:30Z</time>
+      </trkpt>
+      <trkpt lat="37.832829" lon="14.981494">
+        <ele>1367.140</ele>
+        <time>2022-08-15T19:28:10Z</time>
+      </trkpt>
+      <trkpt lat="37.832781" lon="14.981416">
+        <ele>1368.078</ele>
+        <time>2022-08-15T19:28:50Z</time>
+      </trkpt>
+      <trkpt lat="37.832598" lon="14.981370">
+        <ele>1372.530</ele>
+        <time>2022-08-15T19:29:30Z</time>
+      </trkpt>
+      <trkpt lat="37.832491" lon="14.981356">
+        <ele>1375.037</ele>
+        <time>2022-08-15T19:30:10Z</time>
+      </trkpt>
+      <trkpt lat="37.832458" lon="14.981086">
+        <ele>1374.733</ele>
+        <time>2022-08-15T19:30:50Z</time>
+      </trkpt>
+      <trkpt lat="37.832190" lon="14.980956">
+        <ele>1379.296</ele>
+        <time>2022-08-15T19:31:30Z</time>
+      </trkpt>
+      <trkpt lat="37.832167" lon="14.981106">
+        <ele>1380.431</ele>
+        <time>2022-08-15T19:32:10Z</time>
+      </trkpt>
     </trkseg>
-  </trk>
-</gpx>
+  </trk></gpx>
