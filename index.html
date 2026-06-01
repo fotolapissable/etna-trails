@@ -1747,6 +1747,7 @@ function showDetail(type, id) {
     title = item.nome;
     zone = item.zona.toUpperCase();
     lat=item.lat; lng=item.lng; phone=item.telefono; foto=item.foto;
+    gpxFile=item.gpx; showGpx=true;
     desc = item.note || '';
     const rl = lang==='it'?['QUOTA','KM DA RIPOSTO','COSTO','ACCESSO']:['ELEVATION','KM FROM RIPOSTO','COST','ACCESS'];
     const rv = [[item.quota,'m'],[item.km_da_riposto,'km'],[item.costo,''],[item.accesso,'']];

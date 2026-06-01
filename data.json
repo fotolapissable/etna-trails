@@ -330,7 +330,8 @@
       "note": "Prenotazione consigliata. Camino disponibile. Ottima base per escursioni sull'Altomontana nord.",
       "foto": "foto/r3.jpg",
       "lat": 37.822,
-      "lng": 14.985
+      "lng": 14.985,
+      "gpx": null
     },
     {
       "id": "r5",
@@ -349,7 +350,8 @@
       "note": "Libero accesso. Zona tranquilla e riparata, ideale per soste durante la Pista Altomontana.",
       "foto": "foto/r5.jpg",
       "lat": 37.816,
-      "lng": 14.972
+      "lng": 14.972,
+      "gpx": null
     },
     {
       "id": "r6",
@@ -368,7 +370,8 @@
       "note": "Libero accesso. Bosco misto di roverella e pino. Facile da raggiungere dall'Altomontana.",
       "foto": "foto/r6.jpg",
       "lat": 37.812,
-      "lng": 14.97
+      "lng": 14.97,
+      "gpx": null
     },
     {
       "id": "r9",
@@ -387,7 +390,8 @@
       "note": "Prenotazione obbligatoria. Pranzo completo disponibile. Area attrezzata con camino interno.",
       "foto": "foto/r9.jpg",
       "lat": 37.96,
-      "lng": 15.03
+      "lng": 15.03,
+      "gpx": null
     },
     {
       "id": "r10",
@@ -406,7 +410,8 @@
       "note": "Chiavi tramite CAI Linguaglossa (095 643264). Grotte vulcaniche accessibili nelle vicinanze.",
       "foto": "foto/r10.jpg",
       "lat": 37.86,
-      "lng": 15.02
+      "lng": 15.02,
+      "gpx": null
     },
     {
       "id": "r11",
@@ -425,7 +430,8 @@
       "note": "Libero accesso. Area pic-nic coperta con tettoia. Adatta per famiglie e gruppi.",
       "foto": "foto/r11.jpg",
       "lat": 37.98,
-      "lng": 15.12
+      "lng": 15.12,
+      "gpx": null
     },
     {
       "id": "r12",
@@ -444,7 +450,8 @@
       "note": "Libero accesso. Pranzo disponibile a consumo. Panorama sulla costa di Milazzo.",
       "foto": "foto/r12.jpg",
       "lat": 37.975,
-      "lng": 15.115
+      "lng": 15.115,
+      "gpx": null
     },
     {
       "id": "r13",
@@ -463,7 +470,8 @@
       "note": "Accesso consigliato con prenotazione. Bivacco naturale tra le rocce. Zona Riserva Malabotta.",
       "foto": "foto/r13.jpg",
       "lat": 37.93,
-      "lng": 15.06
+      "lng": 15.06,
+      "gpx": null
     },
     {
       "id": "r14",
@@ -482,7 +490,8 @@
       "note": "Prenotazione consigliata. Pranzo a consumo. Punto di partenza per i sentieri dei Nebrodi est.",
       "foto": "foto/r14.jpg",
       "lat": 37.995,
-      "lng": 15.13
+      "lng": 15.13,
+      "gpx": null
     },
     {
       "id": "r15",
@@ -501,7 +510,8 @@
       "note": "Libero accesso. Pranzo disponibile a consumo lungo il torrente Vacco.",
       "foto": "foto/r15.jpg",
       "lat": 38.01,
-      "lng": 15.37
+      "lng": 15.37,
+      "gpx": null
     },
     {
       "id": "r23",
@@ -520,7 +530,8 @@
       "note": "Prenotazione consigliata. Albergo con ristorante tipico. Immerso nella Pineta Ragabo.",
       "foto": "foto/r23.jpg",
       "lat": 37.8083,
-      "lng": 15.0664
+      "lng": 15.0664,
+      "gpx": null
     },
     {
       "id": "r17",
@@ -539,7 +550,8 @@
       "note": "Prenotazione consigliata. Struttura moderna con comfort. Base per Piano Provenzana.",
       "foto": "foto/r17.jpg",
       "lat": 37.828,
-      "lng": 15.043
+      "lng": 15.043,
+      "gpx": null
     },
     {
       "id": "r21",
@@ -558,7 +570,8 @@
       "note": "Prenotazione obbligatoria. Ristorante e Wi-Fi. Base strategica per Monti Sartorius e Valle del Bove.",
       "foto": "foto/r21.jpg",
       "lat": 37.7634,
-      "lng": 15.0581
+      "lng": 15.0581,
+      "gpx": null
     },
     {
       "id": "r19",
@@ -577,7 +590,8 @@
       "note": "Libero accesso. Bar e ristorante a consumo. Accesso rapido a Piano Provenzana.",
       "foto": "foto/r19.jpg",
       "lat": 37.826,
-      "lng": 15.041
+      "lng": 15.041,
+      "gpx": null
     },
     {
       "id": "r20",
@@ -596,7 +610,8 @@
       "note": "Prenotazione consigliata. Ristorante, bar, camere private. Hub principale Etna Sud, aperto tutto l'anno.",
       "foto": "foto/r20.jpg",
       "lat": 37.6994,
-      "lng": 15.0178
+      "lng": 15.0178,
+      "gpx": null
     },
     {
       "id": "r22",
@@ -615,7 +630,8 @@
       "note": "Prenotazione consigliata. Ristorante e noleggio attrezzatura. Vicino all'osservatorio astrofisico.",
       "foto": "foto/r22.jpg",
       "lat": 37.6841,
-      "lng": 14.9744
+      "lng": 14.9744,
+      "gpx": null
     },
     {
       "id": "r24",
@@ -634,7 +650,8 @@
       "note": "Libero accesso. Punto informativo del Parco. Noleggio MTB ed escursioni guidate disponibili.",
       "foto": "foto/r24.jpg",
       "lat": 37.7457,
-      "lng": 14.8715
+      "lng": 14.8715,
+      "gpx": null
     },
     {
       "id": "b1",
@@ -653,7 +670,8 @@
       "note": "Libero accesso. Struttura in pietra lavica con tavoli interni ed esterni. Sulla Pista Altomontana.",
       "foto": "foto/b1.jpg",
       "lat": 37.7328,
-      "lng": 14.9494
+      "lng": 14.9494,
+      "gpx": null
     },
     {
       "id": "b2",
@@ -672,7 +690,8 @@
       "note": "Libero accesso. Brande in terracotta e legnaia spesso rifornita. Versante Ovest.",
       "foto": "foto/b2.jpg",
       "lat": 37.7451,
-      "lng": 14.9082
+      "lng": 14.9082,
+      "gpx": null
     },
     {
       "id": "b3",
@@ -691,7 +710,8 @@
       "note": "Libero accesso. Struttura interamente in legno nella faggeta di Timparossa. Molto evocativo.",
       "foto": "foto/b3.jpg",
       "lat": 37.7892,
-      "lng": 15.0314
+      "lng": 15.0314,
+      "gpx": null
     },
     {
       "id": "b4",
@@ -710,7 +730,8 @@
       "note": "Libero accesso. Ampia struttura in muratura. Facile accesso, circondata da pini larici.",
       "foto": "foto/b4.jpg",
       "lat": 37.8319,
-      "lng": 14.9811
+      "lng": 14.9811,
+      "gpx": null
     },
     {
       "id": "b5",
@@ -729,7 +750,8 @@
       "note": "Libero accesso. Nel cuore della faggeta nord. Ottimo riparo d'emergenza.",
       "foto": "foto/b5.jpg",
       "lat": 37.8233,
-      "lng": 14.9617
+      "lng": 14.9617,
+      "gpx": null
     },
     {
       "id": "b6",
@@ -748,7 +770,8 @@
       "note": "Libero accesso. Piccolo ricovero in pietra lavica. Spazio interno limitato, 4 posti.",
       "foto": "foto/b6.jpg",
       "lat": 37.7864,
-      "lng": 15.0228
+      "lng": 15.0228,
+      "gpx": null
     },
     {
       "id": "b7",
@@ -767,7 +790,8 @@
       "note": "Libero accesso. Capanna pastorale tradizionale etnea. Utile per ripararsi da vento e pioggia improvvisa.",
       "foto": "foto/b7.jpg",
       "lat": 37.6922,
-      "lng": 14.9855
+      "lng": 14.9855,
+      "gpx": null
     },
     {
       "id": "b8",
@@ -786,7 +810,8 @@
       "note": "Accesso regolato dal Servizio Forestale Regionale a pagamento. Fontana esterna attiva. Ideale per gruppi.",
       "foto": "foto/b8.jpg",
       "lat": 37.8531,
-      "lng": 14.9881
+      "lng": 14.9881,
+      "gpx": null
     }
   ],
   "macro_photo": [
