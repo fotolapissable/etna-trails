@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="Wikiloc - https://www.wikiloc.com" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Wikiloc - Monti silvestri</name>
+    <author>
+      <name>Etnanatura</name>
+      <link href="https://www.wikiloc.com/wikiloc/user.do?id=571613">
+        <text>Etnanatura on Wikiloc</text>
+      </link>
+    </author>
+    <link href="https://www.wikiloc.com/hiking-trails/monti-silvestri-110472370">
+      <text>Monti silvestri on Wikiloc</text>
+    </link>
+    <time>2022-08-13T07:44:54Z</time>
+  </metadata>
+  <trk>
+    <name>Monti silvestri</name>
+    <cmt>https://www.etnanatura.it/paginasentiero.php?nome=Monti_Silvestri</cmt>
+    
+    <trkseg>
+      <trkpt lat="37.698219" lon="15.005088">
+        <ele>1903.569</ele>
+        <time>2022-08-13T07:48:18Z</time>
+      </trkpt>
+      <trkpt lat="37.698151" lon="15.004814">
+        <ele>1901.104</ele>
+        <time>2022-08-13T07:48:58Z</time>
+      </trkpt>
+      <trkpt lat="37.698032" lon="15.004663">
+        <ele>1899.124</ele>
+        <time>2022-08-13T07:49:38Z</time>
+      </trkpt>
+      <trkpt lat="37.697880" lon="15.004535">
+        <ele>1896.709</ele>
+        <time>2022-08-13T07:50:18Z</time>
+      </trkpt>
+      <trkpt lat="37.697392" lon="15.004396">
+        <ele>1890.847</ele>
+        <time>2022-08-13T07:50:58Z</time>
+      </trkpt>
+      <trkpt lat="37.697201" lon="15.004492">
+        <ele>1889.067</ele>
+        <time>2022-08-13T07:51:38Z</time>
+      </trkpt>
+      <trkpt lat="37.696895" lon="15.005071">
+        <ele>1887.596</ele>
+        <time>2022-08-13T07:52:18Z</time>
+      </trkpt>
+      <trkpt lat="37.696861" lon="15.005543">
+        <ele>1890.580</ele>
+        <time>2022-08-13T07:52:58Z</time>
+      </trkpt>
+      <trkpt lat="37.697258" lon="15.005778">
+        <ele>1897.873</ele>
+        <time>2022-08-13T07:53:38Z</time>
+      </trkpt>
+      <trkpt lat="37.697502" lon="15.005767">
+        <ele>1900.338</ele>
+        <time>2022-08-13T07:54:18Z</time>
+      </trkpt>
+      <trkpt lat="37.697939" lon="15.005626">
+        <ele>1902.659</ele>
+        <time>2022-08-13T07:54:58Z</time>
+      </trkpt>
+      <trkpt lat="37.698236" lon="15.005157">
+        <ele>1903.953</ele>
+        <time>2022-08-13T07:55:38Z</time>
+      </trkpt>
+      <trkpt lat="37.698474" lon="15.005007">
+        <ele>1904.076</ele>
+        <time>2022-08-13T07:56:18Z</time>
+      </trkpt>
+      <trkpt lat="37.698932" lon="15.004959">
+        <ele>1904.832</ele>
+        <time>2022-08-13T07:56:58Z</time>
+      </trkpt>
+      <trkpt lat="37.699047" lon="15.003974">
+        <ele>1898.592</ele>
+        <time>2022-08-13T07:57:38Z</time>
+      </trkpt>
+      <trkpt lat="37.699408" lon="15.003934">
+        <ele>1908.611</ele>
+        <time>2022-08-13T07:58:18Z</time>
+      </trkpt>
+      <trkpt lat="37.699578" lon="15.003934">
+        <ele>1913.709</ele>
+        <time>2022-08-13T07:58:58Z</time>
+      </trkpt>
+      <trkpt lat="37.699764" lon="15.003912">
+        <ele>1919.224</ele>
+        <time>2022-08-13T07:59:38Z</time>
+      </trkpt>
+      <trkpt lat="37.700019" lon="15.003891">
+        <ele>1928.194</ele>
+        <time>2022-08-13T08:00:18Z</time>
+      </trkpt>
+      <trkpt lat="37.700223" lon="15.003891">
+        <ele>1938.323</ele>
+        <time>2022-08-13T08:00:58Z</time>
+      </trkpt>
+      <trkpt lat="37.700409" lon="15.003955">
+        <ele>1948.847</ele>
+        <time>2022-08-13T08:01:38Z</time>
+      </trkpt>
+      <trkpt lat="37.700596" lon="15.003998">
+        <ele>1957.070</ele>
+        <time>2022-08-13T08:02:18Z</time>
+      </trkpt>
+      <trkpt lat="37.700800" lon="15.003998">
+        <ele>1962.465</ele>
+        <time>2022-08-13T08:02:58Z</time>
+      </trkpt>
+      <trkpt lat="37.700919" lon="15.004084">
+        <ele>1966.836</ele>
+        <time>2022-08-13T08:03:38Z</time>
+      </trkpt>
+      <trkpt lat="37.701021" lon="15.004213">
+        <ele>1970.030</ele>
+        <time>2022-08-13T08:04:18Z</time>
+      </trkpt>
+      <trkpt lat="37.701004" lon="15.004256">
+        <ele>1970.743</ele>
+        <time>2022-08-13T08:04:58Z</time>
+      </trkpt>
+      <trkpt lat="37.700749" lon="15.004385">
+        <ele>1973.018</ele>
+        <time>2022-08-13T08:05:38Z</time>
+      </trkpt>
+      <trkpt lat="37.700630" lon="15.004556">
+        <ele>1974.498</ele>
+        <time>2022-08-13T08:06:18Z</time>
+      </trkpt>
+      <trkpt lat="37.700562" lon="15.004942">
+        <ele>1981.017</ele>
+        <time>2022-08-13T08:06:58Z</time>
+      </trkpt>
+      <trkpt lat="37.700562" lon="15.005178">
+        <ele>1982.709</ele>
+        <time>2022-08-13T08:07:38Z</time>
+      </trkpt>
+      <trkpt lat="37.700596" lon="15.005372">
+        <ele>1981.972</ele>
+        <time>2022-08-13T08:08:18Z</time>
+      </trkpt>
+      <trkpt lat="37.700698" lon="15.005500">
+        <ele>1981.842</ele>
+        <time>2022-08-13T08:08:58Z</time>
+      </trkpt>
+      <trkpt lat="37.700817" lon="15.005565">
+        <ele>1983.451</ele>
+        <time>2022-08-13T08:09:38Z</time>
+      </trkpt>
+      <trkpt lat="37.700953" lon="15.005629">
+        <ele>1980.945</ele>
+        <time>2022-08-13T08:10:18Z</time>
+      </trkpt>
+      <trkpt lat="37.701055" lon="15.005629">
+        <ele>1980.188</ele>
+        <time>2022-08-13T08:10:58Z</time>
+      </trkpt>
+      <trkpt lat="37.701105" lon="15.005651">
+        <ele>1979.333</ele>
+        <time>2022-08-13T08:11:38Z</time>
+      </trkpt>
+      <trkpt lat="37.701190" lon="15.005629">
+        <ele>1980.044</ele>
+        <time>2022-08-13T08:12:18Z</time>
+      </trkpt>
+      <trkpt lat="37.701275" lon="15.005565">
+        <ele>1982.058</ele>
+        <time>2022-08-13T08:12:58Z</time>
+      </trkpt>
+      <trkpt lat="37.701309" lon="15.005479">
+        <ele>1981.681</ele>
+        <time>2022-08-13T08:13:38Z</time>
+      </trkpt>
+      <trkpt lat="37.701360" lon="15.005393">
+        <ele>1980.685</ele>
+        <time>2022-08-13T08:14:18Z</time>
+      </trkpt>
+      <trkpt lat="37.701411" lon="15.005307">
+        <ele>1979.389</ele>
+        <time>2022-08-13T08:14:58Z</time>
+      </trkpt>
+      <trkpt lat="37.701411" lon="15.005093">
+        <ele>1974.417</ele>
+        <time>2022-08-13T08:15:38Z</time>
+      </trkpt>
+      <trkpt lat="37.701445" lon="15.004921">
+        <ele>1971.409</ele>
+        <time>2022-08-13T08:16:18Z</time>
+      </trkpt>
+      <trkpt lat="37.701445" lon="15.004685">
+        <ele>1968.999</ele>
+        <time>2022-08-13T08:16:58Z</time>
+      </trkpt>
+      <trkpt lat="37.701445" lon="15.004535">
+        <ele>1968.579</ele>
+        <time>2022-08-13T08:17:38Z</time>
+      </trkpt>
+      <trkpt lat="37.701377" lon="15.004256">
+        <ele>1966.458</ele>
+        <time>2022-08-13T08:18:18Z</time>
+      </trkpt>
+      <trkpt lat="37.701292" lon="15.004170">
+        <ele>1966.472</ele>
+        <time>2022-08-13T08:18:58Z</time>
+      </trkpt>
+      <trkpt lat="37.701139" lon="15.004170">
+        <ele>1968.615</ele>
+        <time>2022-08-13T08:19:38Z</time>
+      </trkpt>
+    </trkseg>
+  </trk></gpx>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="Wikiloc - https://www.wikiloc.com" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Wikiloc - Schiena dell'Asino</name>
+    <link href="https://www.wikiloc.com/hiking-trails/schiena-dellasino-63523866">
+      <text>Schiena dell'Asino on Wikiloc</text>
+    </link>
+    <time>2010-09-12T09:09:58Z</time>
+  </metadata>
+  <trk>
+    <name>Schiena dell'Asino</name>
+    <cmt>Schiena dell'Asino 
+www,etnanatura.it</cmt>
+    
+    <trkseg>
+      <trkpt lat="37.701255" lon="15.015147">
+        <ele>1834.855</ele>
+        <time>2010-09-12T09:54:18Z</time>
+      </trkpt>
+      <trkpt lat="37.701395" lon="15.016700">
+        <ele>1855.007</ele>
+        <time>2010-09-12T09:51:29Z</time>
+      </trkpt>
+      <trkpt lat="37.701670" lon="15.017903">
+        <ele>1864.117</ele>
+        <time>2010-09-12T09:49:45Z</time>
+      </trkpt>
+      <trkpt lat="37.701760" lon="15.017155">
+        <ele>1878.008</ele>
+        <time>2010-09-12T09:48:42Z</time>
+      </trkpt>
+      <trkpt lat="37.702005" lon="15.016773">
+        <ele>1882.811</ele>
+        <time>2010-09-12T09:47:55Z</time>
+      </trkpt>
+      <trkpt lat="37.702947" lon="15.016185">
+        <ele>1909.898</ele>
+        <time>2010-09-12T09:45:23Z</time>
+      </trkpt>
+      <trkpt lat="37.703342" lon="15.015652">
+        <ele>1913.190</ele>
+        <time>2010-09-12T09:44:00Z</time>
+      </trkpt>
+      <trkpt lat="37.703848" lon="15.016670">
+        <ele>1929.917</ele>
+        <time>2010-09-12T09:41:12Z</time>
+      </trkpt>
+      <trkpt lat="37.704248" lon="15.018188">
+        <ele>1950.128</ele>
+        <time>2010-09-12T09:38:34Z</time>
+      </trkpt>
+      <trkpt lat="37.704177" lon="15.018665">
+        <ele>1952.073</ele>
+        <time>2010-09-12T09:37:15Z</time>
+      </trkpt>
+      <trkpt lat="37.704632" lon="15.019270">
+        <ele>1955.951</ele>
+        <time>2010-09-12T09:36:14Z</time>
+      </trkpt>
+      <trkpt lat="37.704953" lon="15.019442">
+        <ele>1953.071</ele>
+        <time>2010-09-12T09:35:38Z</time>
+      </trkpt>
+      <trkpt lat="37.704590" lon="15.019790">
+        <ele>1949.233</ele>
+        <time>2010-09-12T09:34:47Z</time>
+      </trkpt>
+      <trkpt lat="37.704410" lon="15.020528">
+        <ele>1942.023</ele>
+        <time>2010-09-12T09:33:50Z</time>
+      </trkpt>
+      <trkpt lat="37.704477" lon="15.021603">
+        <ele>1937.115</ele>
+        <time>2010-09-12T09:32:29Z</time>
+      </trkpt>
+      <trkpt lat="37.704322" lon="15.022338">
+        <ele>1929.908</ele>
+        <time>2010-09-12T09:31:33Z</time>
+      </trkpt>
+      <trkpt lat="37.704767" lon="15.023352">
+        <ele>1924.289</ele>
+        <time>2010-09-12T09:30:08Z</time>
+      </trkpt>
+      <trkpt lat="37.704948" lon="15.024340">
+        <ele>1920.876</ele>
+        <time>2010-09-12T09:28:47Z</time>
+      </trkpt>
+      <trkpt lat="37.705328" lon="15.024750">
+        <ele>1929.098</ele>
+        <time>2010-09-12T09:27:59Z</time>
+      </trkpt>
+      <trkpt lat="37.705360" lon="15.025118">
+        <ele>1934.725</ele>
+        <time>2010-09-12T09:27:30Z</time>
+      </trkpt>
+      <trkpt lat="37.705565" lon="15.025065">
+        <ele>1938.166</ele>
+        <time>2010-09-12T09:27:08Z</time>
+      </trkpt>
+      <trkpt lat="37.705792" lon="15.024758">
+        <ele>1946.871</ele>
+        <time>2010-09-12T09:26:25Z</time>
+      </trkpt>
+      <trkpt lat="37.705910" lon="15.025687">
+        <ele>1962.149</ele>
+        <time>2010-09-12T09:24:49Z</time>
+      </trkpt>
+      <trkpt lat="37.706142" lon="15.025495">
+        <ele>1968.989</ele>
+        <time>2010-09-12T09:24:08Z</time>
+      </trkpt>
+      <trkpt lat="37.706205" lon="15.026055">
+        <ele>1968.915</ele>
+        <time>2010-09-12T09:23:28Z</time>
+      </trkpt>
+      <trkpt lat="37.705815" lon="15.026918">
+        <ele>1968.965</ele>
+        <time>2010-09-12T09:22:18Z</time>
+      </trkpt>
+      <trkpt lat="37.705925" lon="15.027418">
+        <ele>1972.711</ele>
+        <time>2010-09-12T09:21:38Z</time>
+      </trkpt>
+      <trkpt lat="37.706257" lon="15.027607">
+        <ele>1976.108</ele>
+        <time>2010-09-12T09:21:07Z</time>
+      </trkpt>
+      <trkpt lat="37.706740" lon="15.027630">
+        <ele>1981.957</ele>
+        <time>2010-09-12T09:20:24Z</time>
+      </trkpt>
+      <trkpt lat="37.707452" lon="15.029173">
+        <ele>1991.064</ele>
+        <time>2010-09-12T09:18:19Z</time>
+      </trkpt>
+      <trkpt lat="37.707875" lon="15.029133">
+        <ele>1998.246</ele>
+        <time>2010-09-12T09:17:39Z</time>
+      </trkpt>
+      <trkpt lat="37.708105" lon="15.028805">
+        <ele>2001.183</ele>
+        <time>2010-09-12T09:17:09Z</time>
+      </trkpt>
+      <trkpt lat="37.708292" lon="15.028760">
+        <ele>2005.954</ele>
+        <time>2010-09-12T09:16:51Z</time>
+      </trkpt>
+      <trkpt lat="37.708582" lon="15.029225">
+        <ele>2007.899</ele>
+        <time>2010-09-12T09:16:10Z</time>
+      </trkpt>
+      <trkpt lat="37.709123" lon="15.029452">
+        <ele>2009.787</ele>
+        <time>2010-09-12T09:15:19Z</time>
+      </trkpt>
+      <trkpt lat="37.709273" lon="15.029365">
+        <ele>2016.027</ele>
+        <time>2010-09-12T09:15:18Z</time>
+      </trkpt>
+      <trkpt lat="37.709205" lon="15.028713">
+        <ele>2020.858</ele>
+        <time>2010-09-12T09:14:22Z</time>
+      </trkpt>
+      <trkpt lat="37.709517" lon="15.027857">
+        <ele>2029.952</ele>
+        <time>2010-09-12T09:12:31Z</time>
+      </trkpt>
+      <trkpt lat="37.709478" lon="15.026500">
+        <ele>2039.017</ele>
+        <time>2010-09-12T09:09:58Z</time>
+      </trkpt>
+    </trkseg>
+  </trk></gpx>
