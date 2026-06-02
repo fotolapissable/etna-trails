@@ -367,7 +367,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 #elev-close{background:none;border:1px solid var(--border);color:var(--ash);
   font-family:var(--font-m);font-size:9px;padding:3px 6px;cursor:pointer;border-radius:2px}
 #elev-close:hover{border-color:var(--ember);color:var(--ember)}
-#elev-canvas{flex:1;width:100%;height:90px;cursor:crosshair}
+#elev-canvas{width:100%;height:110px;cursor:crosshair;display:block}
 #elev-tip{position:fixed;pointer-events:none;background:rgba(10,4,0,.92);
   border:1px solid var(--border);border-radius:2px;padding:4px 7px;
   font-family:var(--font-m);font-size:8.5px;color:var(--snow);
@@ -1928,12 +1928,18 @@ function openElev(pts,name){
     <div class="elev-stat">⬆<span>+${Math.round(gain)}m</span></div>
     <div class="elev-stat">⬇<span>-${Math.round(loss)}m</span></div>
     <div class="elev-stat">▲<span>${Math.round(Math.max(...eles))}m</span></div>`;
-  requestAnimationFrame(()=>drawElev(pts));
+  // Delay per attendere che il pannello detail e il canvas siano completamente visibili
+  setTimeout(()=>drawElev(pts), 400);
 }
 function closeElev(){document.getElementById('elev-bar').classList.remove('open');}
 function drawElev(pts){
   const cv=document.getElementById('elev-canvas'),ctx=cv.getContext('2d');
-  const W=cv.offsetWidth,H=cv.offsetHeight; cv.width=W; cv.height=H;
+  // Forza dimensioni corrette dal contenitore
+  const container = cv.parentElement;
+  const W = container ? container.offsetWidth : cv.offsetWidth;
+  const H = 110; // altezza fissa per profilo dentro detail panel
+  cv.width=W; cv.height=H;
+  cv.style.height = H + 'px';
   const p={t:6,r:10,b:18,l:38},cW=W-p.l-p.r,cH=H-p.t-p.b;
   const eles=pts.map(p=>p.ele),dists=pts.map(p=>p.dist);
   const eMin=Math.min(...eles)-30,eMax=Math.max(...eles)+30,dMax=dists[dists.length-1];
