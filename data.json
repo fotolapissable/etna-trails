@@ -188,8 +188,8 @@
       "foto": "foto/s06.jpg",
       "gpx": "gpx/s06.gpx",
       "punti_interesse": [],
-      "lat": 37.7634,
-      "lng": 15.0581
+      "lat": 37.756,
+      "lng": 15.058
     },
     {
       "id": 7,
@@ -329,9 +329,9 @@
       "camino": true,
       "note": "Prenotazione consigliata. Camino disponibile. Ottima base per escursioni sull'Altomontana nord.",
       "foto": "foto/r3.jpg",
+      "gpx": "gpx/r3.gpx",
       "lat": 37.822,
-      "lng": 14.985,
-      "gpx": "gpx/r3.gpx"
+      "lng": 14.985
     },
     {
       "id": "r5",
@@ -349,9 +349,9 @@
       "camino": false,
       "note": "Libero accesso. Zona tranquilla e riparata, ideale per soste durante la Pista Altomontana.",
       "foto": "foto/r5.jpg",
+      "gpx": null,
       "lat": 37.816,
-      "lng": 14.972,
-      "gpx": null
+      "lng": 14.972
     },
     {
       "id": "r6",
@@ -369,9 +369,9 @@
       "camino": false,
       "note": "Libero accesso. Bosco misto di roverella e pino. Facile da raggiungere dall'Altomontana.",
       "foto": "foto/r6.jpg",
+      "gpx": "gpx/r6.gpx",
       "lat": 37.812,
-      "lng": 14.97,
-      "gpx": null
+      "lng": 14.97
     },
     {
       "id": "r9",
@@ -389,9 +389,9 @@
       "camino": true,
       "note": "Prenotazione obbligatoria. Pranzo completo disponibile. Area attrezzata con camino interno.",
       "foto": "foto/r9.jpg",
+      "gpx": "gpx/r9.gpx",
       "lat": 37.96,
-      "lng": 15.03,
-      "gpx": null
+      "lng": 15.03
     },
     {
       "id": "r10",
@@ -409,9 +409,9 @@
       "camino": false,
       "note": "Chiavi tramite CAI Linguaglossa (095 643264). Grotte vulcaniche accessibili nelle vicinanze.",
       "foto": "foto/r10.jpg",
+      "gpx": "gpx/r10.gpx",
       "lat": 37.86,
-      "lng": 15.02,
-      "gpx": null
+      "lng": 15.02
     },
     {
       "id": "r11",
@@ -429,9 +429,9 @@
       "camino": false,
       "note": "Libero accesso. Area pic-nic coperta con tettoia. Adatta per famiglie e gruppi.",
       "foto": "foto/r11.jpg",
+      "gpx": "gpx/r11.gpx",
       "lat": 37.98,
-      "lng": 15.12,
-      "gpx": null
+      "lng": 15.12
     },
     {
       "id": "r12",
@@ -449,9 +449,9 @@
       "camino": false,
       "note": "Libero accesso. Pranzo disponibile a consumo. Panorama sulla costa di Milazzo.",
       "foto": "foto/r12.jpg",
+      "gpx": "gpx/r12.gpx",
       "lat": 37.975,
-      "lng": 15.115,
-      "gpx": null
+      "lng": 15.115
     },
     {
       "id": "r13",
@@ -469,9 +469,9 @@
       "camino": false,
       "note": "Accesso consigliato con prenotazione. Bivacco naturale tra le rocce. Zona Riserva Malabotta.",
       "foto": "foto/r13.jpg",
+      "gpx": "gpx/r13.gpx",
       "lat": 37.93,
-      "lng": 15.06,
-      "gpx": null
+      "lng": 15.06
     },
     {
       "id": "r14",
@@ -489,9 +489,9 @@
       "camino": false,
       "note": "Prenotazione consigliata. Pranzo a consumo. Punto di partenza per i sentieri dei Nebrodi est.",
       "foto": "foto/r14.jpg",
+      "gpx": "gpx/r14.gpx",
       "lat": 37.995,
-      "lng": 15.13,
-      "gpx": null
+      "lng": 15.13
     },
     {
       "id": "r15",
@@ -509,9 +509,9 @@
       "camino": false,
       "note": "Libero accesso. Pranzo disponibile a consumo lungo il torrente Vacco.",
       "foto": "foto/r15.jpg",
+      "gpx": "gpx/r15.gpx",
       "lat": 38.01,
-      "lng": 15.37,
-      "gpx": null
+      "lng": 15.37
     },
     {
       "id": "r23",
@@ -529,9 +529,9 @@
       "camino": false,
       "note": "Prenotazione consigliata. Albergo con ristorante tipico. Immerso nella Pineta Ragabo.",
       "foto": "foto/r23.jpg",
+      "gpx": "gpx/r23.gpx",
       "lat": 37.8083,
-      "lng": 15.0664,
-      "gpx": null
+      "lng": 15.0664
     },
     {
       "id": "r17",
@@ -549,9 +549,9 @@
       "camino": false,
       "note": "Prenotazione consigliata. Struttura moderna con comfort. Base per Piano Provenzana.",
       "foto": "foto/r17.jpg",
+      "gpx": "gpx/r17.gpx",
       "lat": 37.828,
-      "lng": 15.043,
-      "gpx": null
+      "lng": 15.043
     },
     {
       "id": "r21",
@@ -569,9 +569,9 @@
       "camino": false,
       "note": "Prenotazione obbligatoria. Ristorante e Wi-Fi. Base strategica per Monti Sartorius e Valle del Bove.",
       "foto": "foto/r21.jpg",
+      "gpx": "gpx/r21.gpx",
       "lat": 37.7634,
-      "lng": 15.0581,
-      "gpx": null
+      "lng": 15.0581
     },
     {
       "id": "r19",
@@ -589,9 +589,9 @@
       "camino": false,
       "note": "Libero accesso. Bar e ristorante a consumo. Accesso rapido a Piano Provenzana.",
       "foto": "foto/r19.jpg",
+      "gpx": "gpx/r19.gpx",
       "lat": 37.826,
-      "lng": 15.041,
-      "gpx": null
+      "lng": 15.041
     },
     {
       "id": "r20",
@@ -609,9 +609,9 @@
       "camino": false,
       "note": "Prenotazione consigliata. Ristorante, bar, camere private. Hub principale Etna Sud, aperto tutto l'anno.",
       "foto": "foto/r20.jpg",
+      "gpx": "gpx/r20.gpx",
       "lat": 37.6994,
-      "lng": 15.0178,
-      "gpx": null
+      "lng": 15.0178
     },
     {
       "id": "r22",
@@ -629,9 +629,9 @@
       "camino": false,
       "note": "Prenotazione consigliata. Ristorante e noleggio attrezzatura. Vicino all'osservatorio astrofisico.",
       "foto": "foto/r22.jpg",
+      "gpx": "gpx/r22.gpx",
       "lat": 37.6841,
-      "lng": 14.9744,
-      "gpx": null
+      "lng": 14.9744
     },
     {
       "id": "r24",
@@ -649,9 +649,9 @@
       "camino": false,
       "note": "Libero accesso. Punto informativo del Parco. Noleggio MTB ed escursioni guidate disponibili.",
       "foto": "foto/r24.jpg",
+      "gpx": "gpx/r24.gpx",
       "lat": 37.7457,
-      "lng": 14.8715,
-      "gpx": null
+      "lng": 14.8715
     },
     {
       "id": "b1",
@@ -669,9 +669,9 @@
       "camino": false,
       "note": "Libero accesso. Struttura in pietra lavica con tavoli interni ed esterni. Sulla Pista Altomontana.",
       "foto": "foto/b1.jpg",
+      "gpx": "gpx/b1.gpx",
       "lat": 37.7328,
-      "lng": 14.9494,
-      "gpx": null
+      "lng": 14.9494
     },
     {
       "id": "b2",
@@ -689,9 +689,9 @@
       "camino": false,
       "note": "Libero accesso. Brande in terracotta e legnaia spesso rifornita. Versante Ovest.",
       "foto": "foto/b2.jpg",
+      "gpx": "gpx/b2.gpx",
       "lat": 37.7451,
-      "lng": 14.9082,
-      "gpx": null
+      "lng": 14.9082
     },
     {
       "id": "b3",
@@ -709,9 +709,9 @@
       "camino": true,
       "note": "Libero accesso. Struttura interamente in legno nella faggeta di Timparossa. Molto evocativo.",
       "foto": "foto/b3.jpg",
+      "gpx": "gpx/b3.gpx",
       "lat": 37.7892,
-      "lng": 15.0314,
-      "gpx": null
+      "lng": 15.0314
     },
     {
       "id": "b4",
@@ -729,9 +729,9 @@
       "camino": false,
       "note": "Libero accesso. Ampia struttura in muratura. Facile accesso, circondata da pini larici.",
       "foto": "foto/b4.jpg",
+      "gpx": "gpx/b4.gpx",
       "lat": 37.8319,
-      "lng": 14.9811,
-      "gpx": null
+      "lng": 14.9811
     },
     {
       "id": "b5",
@@ -749,9 +749,9 @@
       "camino": true,
       "note": "Libero accesso. Nel cuore della faggeta nord. Ottimo riparo d'emergenza.",
       "foto": "foto/b5.jpg",
+      "gpx": "gpx/b5.gpx",
       "lat": 37.8233,
-      "lng": 14.9617,
-      "gpx": null
+      "lng": 14.9617
     },
     {
       "id": "b6",
@@ -769,9 +769,9 @@
       "camino": false,
       "note": "Libero accesso. Piccolo ricovero in pietra lavica. Spazio interno limitato, 4 posti.",
       "foto": "foto/b6.jpg",
+      "gpx": "gpx/b6.gpx",
       "lat": 37.7864,
-      "lng": 15.0228,
-      "gpx": null
+      "lng": 15.0228
     },
     {
       "id": "b7",
@@ -789,9 +789,9 @@
       "camino": false,
       "note": "Libero accesso. Capanna pastorale tradizionale etnea. Utile per ripararsi da vento e pioggia improvvisa.",
       "foto": "foto/b7.jpg",
+      "gpx": "gpx/b7.gpx",
       "lat": 37.6922,
-      "lng": 14.9855,
-      "gpx": null
+      "lng": 14.9855
     },
     {
       "id": "b8",
@@ -809,9 +809,9 @@
       "camino": true,
       "note": "Accesso regolato dal Servizio Forestale Regionale a pagamento. Fontana esterna attiva. Ideale per gruppi.",
       "foto": "foto/b8.jpg",
+      "gpx": "gpx/b8.gpx",
       "lat": 37.8531,
-      "lng": 14.9881,
-      "gpx": null
+      "lng": 14.9881
     }
   ],
   "macro_photo": [
