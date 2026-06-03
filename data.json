@@ -373,7 +373,7 @@
       "camino": false,
       "note": "Libero accesso. Bosco misto di roverella e pino. Facile da raggiungere dall'Altomontana.",
       "foto": "foto/r6.jpg",
-      "gpx": null,
+      "gpx": "gpx/r6.gpx",
       "lat": 37.812,
       "lng": 14.97
     },
@@ -393,7 +393,7 @@
       "camino": true,
       "note": "Prenotazione obbligatoria. Pranzo completo disponibile. Area attrezzata con camino interno.",
       "foto": "foto/r9.jpg",
-      "gpx": null,
+      "gpx": "gpx/r9.gpx",
       "lat": 37.96,
       "lng": 15.03
     },
@@ -533,7 +533,7 @@
       "camino": false,
       "note": "Prenotazione consigliata. Albergo con ristorante tipico. Immerso nella Pineta Ragabo.",
       "foto": "foto/r23.jpg",
-      "gpx": null,
+      "gpx": "gpx/r23.gpx",
       "lat": 37.8083,
       "lng": 15.0664
     },
