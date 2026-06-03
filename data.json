@@ -346,6 +346,39 @@
       "punti_interesse": [],
       "lat": 37.956,
       "lng": 14.986
+    },
+    {
+      "id": 12,
+      "nome": {
+        "it": "Vulcanetto di Moio Alcantara",
+        "en": "Moio Alcantara Volcanic Cone"
+      },
+      "zona": "nord-est",
+      "difficolta": "T",
+      "distanza_km": 1.8,
+      "durata_ore": 1.0,
+      "dislivello": 99,
+      "quota_min": 603,
+      "quota_max": 694,
+      "stagione": [
+        "feb",
+        "mar",
+        "apr",
+        "mag",
+        "giu",
+        "set",
+        "ott",
+        "nov"
+      ],
+      "descrizione": {
+        "it": "Breve anello attorno al vulcanetto di Moio Alcantara, cono vulcanico secondario nei pressi della Valle dell'Alcantara. Panorama sulla valle e sul versante nord-est dell'Etna. Sentiero facile, adatto a famiglie. Ottimo per la macro fotografica in primavera.",
+        "en": "Short loop around the Moio Alcantara volcanic cone, a secondary volcanic vent near the Alcantara Valley. Panoramic views of the valley and Etna's northeast slope. Easy trail, suitable for families. Excellent for macro photography in spring."
+      },
+      "foto": "foto/s12.jpg",
+      "gpx": "gpx/s12.gpx",
+      "punti_interesse": [],
+      "lat": 37.9114,
+      "lng": 15.0528
     }
   ],
   "rifugi": [
