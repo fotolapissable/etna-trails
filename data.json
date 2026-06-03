@@ -314,6 +314,38 @@
       "punti_interesse": [],
       "lat": 37.8073,
       "lng": 14.9899
+    },
+    {
+      "id": 11,
+      "nome": {
+        "it": "Cascata Palazzolo Angara",
+        "en": "Palazzolo Angara Waterfall"
+      },
+      "zona": "nord",
+      "difficolta": "T",
+      "distanza_km": 3.0,
+      "durata_ore": 1.5,
+      "dislivello": 240,
+      "quota_min": 705,
+      "quota_max": 945,
+      "stagione": [
+        "mar",
+        "apr",
+        "mag",
+        "giu",
+        "set",
+        "ott",
+        "nov"
+      ],
+      "descrizione": {
+        "it": "Breve escursione nel versante nord dell'Etna verso la Cascata Palazzolo Angara, una delle poche cascate permanenti dell'area etnea. Il sentiero scende attraverso boschi di castagno e quercia fino alla cascata. Spettacolare in primavera con il disgelo.",
+        "en": "Short hike on the northern slopes of Etna to the Palazzolo Angara Waterfall, one of the few permanent waterfalls in the Etna area. The trail descends through chestnut and oak woods to the waterfall. Spectacular in spring during snowmelt."
+      },
+      "foto": "foto/s11.jpg",
+      "gpx": "gpx/s11.gpx",
+      "punti_interesse": [],
+      "lat": 37.956,
+      "lng": 14.986
     }
   ],
   "rifugi": [
