@@ -3,28 +3,32 @@
     {
       "id": 1,
       "nome": {
-        "it": "Rifugio Sapienza – Crateri Sommitali",
-        "en": "Sapienza Refuge – Summit Craters"
+        "it": "Rifugio Sapienza – Crateri Silvestri",
+        "en": "Sapienza Refuge – Silvestri Craters"
       },
       "zona": "sud",
       "difficolta": "EE",
-      "distanza_km": 9.5,
-      "durata_ore": 7.0,
-      "dislivello": 1430,
-      "quota_min": 1910,
-      "quota_max": 3340,
+      "distanza_km": 1.18,
+      "durata_ore": 1.0,
+      "dislivello": 115,
+      "quota_min": 1883,
+      "quota_max": 1983,
       "stagione": [
+        "mar",
+        "apr",
+        "mag",
         "giu",
         "lug",
         "ago",
-        "set"
+        "set",
+        "ott"
       ],
       "descrizione": {
-        "it": "Il percorso più classico sull'Etna, dai piedi del vulcano fino ai crateri sommitali. Si parte dal Rifugio Sapienza (1910 m) e si risale lungo i fianchi lavici fino alla Bocca Nuova e al Cratere di Sud-Est. Panorama mozzafiato sullo Ionio e sulla Sicilia. Necessaria guida alpina oltre i 2900 m.",
-        "en": "The most classic route on Etna, from the base to the summit craters. Starting at Rifugio Sapienza (1910m), ascending lava fields to Bocca Nuova and the Southeast Crater. Breathtaking views. Alpine guide required above 2900m."
+        "it": "L'ingresso è direttamente dalla strada provinciale. Il sentiero è agevole, con panchine di sosta lungo il percorso. Cammini lungo il bordo del Silvestri inferiore e vedi il panorama verso la Dagala e i numerosi crateri spenti che arrivano fino a Nicolosi.",
+        "en": "The entrance is directly from the provincial road. The trail is easy, with benches along the way. You walk along the edge of the lower Silvestri and enjoy the view of the Dagala and the numerous extinct craters that extend all the way to Nicolosi."
       },
       "foto": "foto/s01.jpg",
-      "gpx": "gpx/s01.gpx",
+      "gpx": null,
       "punti_interesse": [],
       "lat": 37.6994,
       "lng": 15.0178
@@ -55,7 +59,7 @@
         "en": "Beautiful loop on the northern slope crossing lava flows and birch forests. Reaches the rim of Valle del Bove with extraordinary views. Excellent for sunset photography."
       },
       "foto": "foto/s02.jpg",
-      "gpx": "gpx/s02.gpx",
+      "gpx": null,
       "punti_interesse": [],
       "lat": 37.8073,
       "lng": 14.9899
@@ -68,11 +72,11 @@
       },
       "zona": "nord-est",
       "difficolta": "E",
-      "distanza_km": 5.5,
+      "distanza_km": 3.1,
       "durata_ore": 2.5,
-      "dislivello": 229,
-      "quota_min": 950,
-      "quota_max": 1179,
+      "dislivello": 314,
+      "quota_min": 846,
+      "quota_max": 1180,
       "stagione": [
         "apr",
         "mag",
@@ -84,11 +88,11 @@
         "nov"
       ],
       "descrizione": {
-        "it": "Percorso nel bosco di castagni e querce fino al bivacco Zucco Nero (1179 m). Ideale per famiglie. In primavera la fioritura è spettacolare per la macrofotografia. Vista su Riposto e lo Ionio.",
-        "en": "Path through chestnut and oak forest to Zucco Nero bivouac (1179m). Ideal for families. Spring flowering is spectacular for macro photography. Views of Riposto and the Ionian Sea."
+        "it": "Dal parcheggio lungo la strada Quota Mille in località Solicchiata imbocchi una pista forestale che sale dolcemente nel bosco. Dopo il primo tratto su carrareccia il tracciato diventa sentiero più stretto ma sempre evidente, con pendenza moderata e fondo di terra e pietre. In circa 1 h 20’–2 h di cammino raggiungi il bivacco, posto in posizione panoramica nel demanio Zucconero; il ritorno avviene sullo stesso percorso",
+        "en": "From the parking lot along the Quota Mille road in the Solicchiata area, take a forest trail that gently climbs through the woods. After the initial stretch on a dirt road, the trail becomes a narrower but still clearly visible path, with a moderate gradient and a surface of dirt and stones. In about 1 hour 20 minutes to 2 hours of walking, you'll reach the bivouac, located in a panoramic position in the Zucconero estate; the return journey follows the same route."
       },
       "foto": "foto/s03.jpg",
-      "gpx": "gpx/s03.gpx",
+      "gpx": null,
       "punti_interesse": [],
       "lat": 37.77,
       "lng": 15.087
@@ -120,7 +124,7 @@
         "en": "Loop through Malabotta Forest, one of Sicily's most beautiful beech woods. Centuries-old chestnuts, excellent for macro photography of insects and fungi. Extraordinary autumn colours."
       },
       "foto": "foto/s04.jpg",
-      "gpx": "gpx/s04.gpx",
+      "gpx": null,
       "punti_interesse": [],
       "lat": 37.93,
       "lng": 15.06
@@ -152,7 +156,7 @@
         "en": "Breathtaking panoramic view over Valle del Bove, ideal for safely observing eruptions. CAI trail 786, starting from SP92 near Rifugio Sapienza."
       },
       "foto": "foto/s05.jpg",
-      "gpx": "gpx/s05.gpx",
+      "gpx": null,
       "punti_interesse": [],
       "lat": 37.71,
       "lng": 15.02
@@ -217,7 +221,7 @@
         "en": "Crosses a beautiful pine forest, reaches the Serracozzo lava tube cave and climbs to the Valle del Bove ridge. CAI trail 723."
       },
       "foto": "foto/s07.jpg",
-      "gpx": "gpx/s07.gpx",
+      "gpx": null,
       "punti_interesse": [],
       "lat": 37.756,
       "lng": 15.058
@@ -249,7 +253,7 @@
         "en": "The first nature trail of Etna Park. Features ancient lava fields, hornitos, larch pines and dense vegetation. Starts from Piano Vetore."
       },
       "foto": "foto/s08.jpg",
-      "gpx": "gpx/s08.gpx",
+      "gpx": null,
       "punti_interesse": [],
       "lat": 37.7,
       "lng": 15.005
@@ -278,7 +282,7 @@
         "en": "Major dirt road circuit circumnavigating the volcano at mid-elevation, crossing nearly all free bivouacs. Can be done over multiple days or by mountain bike."
       },
       "foto": "foto/s09.jpg",
-      "gpx": "gpx/s09.gpx",
+      "gpx": null,
       "punti_interesse": [],
       "lat": 37.8073,
       "lng": 14.9899
@@ -306,7 +310,7 @@
         "en": "Long and demanding lava-field route to reach the southernmost permanent glacier in Europe, inside a volcanic tunnel. Starts from Piano Provenzana. Experts only."
       },
       "foto": "foto/s10.jpg",
-      "gpx": "gpx/s10.gpx",
+      "gpx": null,
       "punti_interesse": [],
       "lat": 37.8073,
       "lng": 14.9899
@@ -369,7 +373,7 @@
       "camino": false,
       "note": "Libero accesso. Bosco misto di roverella e pino. Facile da raggiungere dall'Altomontana.",
       "foto": "foto/r6.jpg",
-      "gpx": "gpx/r6.gpx",
+      "gpx": null,
       "lat": 37.812,
       "lng": 14.97
     },
@@ -389,7 +393,7 @@
       "camino": true,
       "note": "Prenotazione obbligatoria. Pranzo completo disponibile. Area attrezzata con camino interno.",
       "foto": "foto/r9.jpg",
-      "gpx": "gpx/r9.gpx",
+      "gpx": null,
       "lat": 37.96,
       "lng": 15.03
     },
@@ -409,7 +413,7 @@
       "camino": false,
       "note": "Chiavi tramite CAI Linguaglossa (095 643264). Grotte vulcaniche accessibili nelle vicinanze.",
       "foto": "foto/r10.jpg",
-      "gpx": "gpx/r10.gpx",
+      "gpx": null,
       "lat": 37.86,
       "lng": 15.02
     },
@@ -429,7 +433,7 @@
       "camino": false,
       "note": "Libero accesso. Area pic-nic coperta con tettoia. Adatta per famiglie e gruppi.",
       "foto": "foto/r11.jpg",
-      "gpx": "gpx/r11.gpx",
+      "gpx": null,
       "lat": 37.98,
       "lng": 15.12
     },
@@ -449,7 +453,7 @@
       "camino": false,
       "note": "Libero accesso. Pranzo disponibile a consumo. Panorama sulla costa di Milazzo.",
       "foto": "foto/r12.jpg",
-      "gpx": "gpx/r12.gpx",
+      "gpx": null,
       "lat": 37.975,
       "lng": 15.115
     },
@@ -469,7 +473,7 @@
       "camino": false,
       "note": "Accesso consigliato con prenotazione. Bivacco naturale tra le rocce. Zona Riserva Malabotta.",
       "foto": "foto/r13.jpg",
-      "gpx": "gpx/r13.gpx",
+      "gpx": null,
       "lat": 37.93,
       "lng": 15.06
     },
@@ -489,7 +493,7 @@
       "camino": false,
       "note": "Prenotazione consigliata. Pranzo a consumo. Punto di partenza per i sentieri dei Nebrodi est.",
       "foto": "foto/r14.jpg",
-      "gpx": "gpx/r14.gpx",
+      "gpx": null,
       "lat": 37.995,
       "lng": 15.13
     },
@@ -509,7 +513,7 @@
       "camino": false,
       "note": "Libero accesso. Pranzo disponibile a consumo lungo il torrente Vacco.",
       "foto": "foto/r15.jpg",
-      "gpx": "gpx/r15.gpx",
+      "gpx": null,
       "lat": 38.01,
       "lng": 15.37
     },
@@ -529,7 +533,7 @@
       "camino": false,
       "note": "Prenotazione consigliata. Albergo con ristorante tipico. Immerso nella Pineta Ragabo.",
       "foto": "foto/r23.jpg",
-      "gpx": "gpx/r23.gpx",
+      "gpx": null,
       "lat": 37.8083,
       "lng": 15.0664
     },
@@ -549,7 +553,7 @@
       "camino": false,
       "note": "Prenotazione consigliata. Struttura moderna con comfort. Base per Piano Provenzana.",
       "foto": "foto/r17.jpg",
-      "gpx": "gpx/r17.gpx",
+      "gpx": null,
       "lat": 37.828,
       "lng": 15.043
     },
@@ -569,7 +573,7 @@
       "camino": false,
       "note": "Prenotazione obbligatoria. Ristorante e Wi-Fi. Base strategica per Monti Sartorius e Valle del Bove.",
       "foto": "foto/r21.jpg",
-      "gpx": "gpx/r21.gpx",
+      "gpx": null,
       "lat": 37.7634,
       "lng": 15.0581
     },
@@ -589,7 +593,7 @@
       "camino": false,
       "note": "Libero accesso. Bar e ristorante a consumo. Accesso rapido a Piano Provenzana.",
       "foto": "foto/r19.jpg",
-      "gpx": "gpx/r19.gpx",
+      "gpx": null,
       "lat": 37.826,
       "lng": 15.041
     },
@@ -609,7 +613,7 @@
       "camino": false,
       "note": "Prenotazione consigliata. Ristorante, bar, camere private. Hub principale Etna Sud, aperto tutto l'anno.",
       "foto": "foto/r20.jpg",
-      "gpx": "gpx/r20.gpx",
+      "gpx": null,
       "lat": 37.6994,
       "lng": 15.0178
     },
@@ -629,7 +633,7 @@
       "camino": false,
       "note": "Prenotazione consigliata. Ristorante e noleggio attrezzatura. Vicino all'osservatorio astrofisico.",
       "foto": "foto/r22.jpg",
-      "gpx": "gpx/r22.gpx",
+      "gpx": null,
       "lat": 37.6841,
       "lng": 14.9744
     },
@@ -649,7 +653,7 @@
       "camino": false,
       "note": "Libero accesso. Punto informativo del Parco. Noleggio MTB ed escursioni guidate disponibili.",
       "foto": "foto/r24.jpg",
-      "gpx": "gpx/r24.gpx",
+      "gpx": null,
       "lat": 37.7457,
       "lng": 14.8715
     },
@@ -669,7 +673,7 @@
       "camino": false,
       "note": "Libero accesso. Struttura in pietra lavica con tavoli interni ed esterni. Sulla Pista Altomontana.",
       "foto": "foto/b1.jpg",
-      "gpx": "gpx/b1.gpx",
+      "gpx": null,
       "lat": 37.7328,
       "lng": 14.9494
     },
@@ -689,7 +693,7 @@
       "camino": false,
       "note": "Libero accesso. Brande in terracotta e legnaia spesso rifornita. Versante Ovest.",
       "foto": "foto/b2.jpg",
-      "gpx": "gpx/b2.gpx",
+      "gpx": null,
       "lat": 37.7451,
       "lng": 14.9082
     },
@@ -709,7 +713,7 @@
       "camino": true,
       "note": "Libero accesso. Struttura interamente in legno nella faggeta di Timparossa. Molto evocativo.",
       "foto": "foto/b3.jpg",
-      "gpx": "gpx/b3.gpx",
+      "gpx": null,
       "lat": 37.7892,
       "lng": 15.0314
     },
@@ -749,7 +753,7 @@
       "camino": true,
       "note": "Libero accesso. Nel cuore della faggeta nord. Ottimo riparo d'emergenza.",
       "foto": "foto/b5.jpg",
-      "gpx": "gpx/b5.gpx",
+      "gpx": null,
       "lat": 37.8233,
       "lng": 14.9617
     },
@@ -769,7 +773,7 @@
       "camino": false,
       "note": "Libero accesso. Piccolo ricovero in pietra lavica. Spazio interno limitato, 4 posti.",
       "foto": "foto/b6.jpg",
-      "gpx": "gpx/b6.gpx",
+      "gpx": null,
       "lat": 37.7864,
       "lng": 15.0228
     },
@@ -789,7 +793,7 @@
       "camino": false,
       "note": "Libero accesso. Capanna pastorale tradizionale etnea. Utile per ripararsi da vento e pioggia improvvisa.",
       "foto": "foto/b7.jpg",
-      "gpx": "gpx/b7.gpx",
+      "gpx": null,
       "lat": 37.6922,
       "lng": 14.9855
     },
@@ -809,7 +813,7 @@
       "camino": true,
       "note": "Accesso regolato dal Servizio Forestale Regionale a pagamento. Fontana esterna attiva. Ideale per gruppi.",
       "foto": "foto/b8.jpg",
-      "gpx": "gpx/b8.gpx",
+      "gpx": null,
       "lat": 37.8531,
       "lng": 14.9881
     }
