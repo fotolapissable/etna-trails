@@ -28,7 +28,7 @@
         "en": "The entrance is directly from the provincial road. The trail is easy, with benches along the way. You walk along the edge of the lower Silvestri and enjoy the view of the Dagala and the numerous extinct craters that extend all the way to Nicolosi."
       },
       "foto": "foto/s01.jpg",
-      "gpx": null,
+      "gpx": "gpx/s01.gpx",
       "punti_interesse": [],
       "lat": 37.6994,
       "lng": 15.0178
@@ -59,7 +59,7 @@
         "en": "Beautiful loop on the northern slope crossing lava flows and birch forests. Reaches the rim of Valle del Bove with extraordinary views. Excellent for sunset photography."
       },
       "foto": "foto/s02.jpg",
-      "gpx": null,
+      "gpx": "gpx/s02.gpx",
       "punti_interesse": [],
       "lat": 37.8073,
       "lng": 14.9899
@@ -100,16 +100,16 @@
     {
       "id": 4,
       "nome": {
-        "it": "Bosco di Malabotta – Anello dei Castagni",
-        "en": "Malabotta Forest – Chestnut Loop"
+        "it": "Bosco di Malabotta – Sentiero dei Patriarchi",
+        "en": "Malabotta Woods – Path of the Patriarchs"
       },
       "zona": "nord-est",
       "difficolta": "T",
-      "distanza_km": 7.0,
-      "durata_ore": 3.0,
-      "dislivello": 300,
-      "quota_min": 900,
-      "quota_max": 1200,
+      "distanza_km": 2.2,
+      "durata_ore": 2.0,
+      "dislivello": 123,
+      "quota_min": 1239,
+      "quota_max": 1340,
       "stagione": [
         "mar",
         "apr",
@@ -120,11 +120,11 @@
         "nov"
       ],
       "descrizione": {
-        "it": "Anello nel Bosco di Malabotta, una delle faggete più belle della Sicilia. Castagni centenari, ottimo per la macro di insetti e funghi. In autunno i colori sono straordinari.",
-        "en": "Loop through Malabotta Forest, one of Sicily's most beautiful beech woods. Centuries-old chestnuts, excellent for macro photography of insects and fungi. Extraordinary autumn colours."
+        "it": "Bosco di Malabotta, una delle faggete più belle della Sicilia. Castagni centenari, ottimo per la macro di insetti e funghi. In autunno i colori sono straordinari.",
+        "en": "Malabotta Forest, one of Sicily's most beautiful beech woods. Centuries-old chestnuts, excellent for macro photography of insects and fungi. Extraordinary autumn colours."
       },
       "foto": "foto/s04.jpg",
-      "gpx": null,
+      "gpx": "gpx/s04.gpx",
       "punti_interesse": [],
       "lat": 37.93,
       "lng": 15.06
@@ -156,7 +156,7 @@
         "en": "Breathtaking panoramic view over Valle del Bove, ideal for safely observing eruptions. CAI trail 786, starting from SP92 near Rifugio Sapienza."
       },
       "foto": "foto/s05.jpg",
-      "gpx": null,
+      "gpx": "gpx/s05.gpx",
       "punti_interesse": [],
       "lat": 37.71,
       "lng": 15.02
@@ -221,7 +221,7 @@
         "en": "Crosses a beautiful pine forest, reaches the Serracozzo lava tube cave and climbs to the Valle del Bove ridge. CAI trail 723."
       },
       "foto": "foto/s07.jpg",
-      "gpx": null,
+      "gpx": "gpx/s07.gpx",
       "punti_interesse": [],
       "lat": 37.756,
       "lng": 15.058
@@ -253,7 +253,7 @@
         "en": "The first nature trail of Etna Park. Features ancient lava fields, hornitos, larch pines and dense vegetation. Starts from Piano Vetore."
       },
       "foto": "foto/s08.jpg",
-      "gpx": null,
+      "gpx": "gpx/s08.gpx",
       "punti_interesse": [],
       "lat": 37.7,
       "lng": 15.005
@@ -261,121 +261,63 @@
     {
       "id": 9,
       "nome": {
-        "it": "Pista Altomontana – Giro dell'Etna",
-        "en": "Altomontana Track – Etna Circuit"
+        "it": "Sentiero Cascata Palazzolo Angara",
+        "en": "Palazzolo Angara Waterfall Trail"
       },
-      "zona": "nord",
+      "zona": "nord-est",
       "difficolta": "E",
-      "distanza_km": 42.0,
-      "durata_ore": 14.0,
-      "dislivello": 800,
-      "quota_min": 1400,
-      "quota_max": 2040,
+      "distanza_km": 4.18,
+      "durata_ore": 3.0,
+      "dislivello": 256,
+      "quota_min": 800,
+      "quota_max": 958,
       "stagione": [
+        "mar",
+        "apr",
+        "mag",
         "giu",
-        "lug",
-        "ago",
-        "set"
+        "ott"
       ],
       "descrizione": {
-        "it": "Grande anello sterrato demaniale che circumnaviga il vulcano a quote medie intersecando quasi tutti i bivacchi gratuiti. Percorribile in più giorni o in mountain bike.",
-        "en": "Major dirt road circuit circumnavigating the volcano at mid-elevation, crossing nearly all free bivouacs. Can be done over multiple days or by mountain bike."
+        "it": "Il sentiero per la Cascata Palazzolo Angara è un percorso escursionistico di media difficoltà che scende dalle pendici dei Peloritani verso una delle cascate più alte e spettacolari dell’area Alcantara.",
+        "en": "The trail to the Palazzolo Angara Waterfall is a medium-difficulty hiking trail that descends from the slopes of the Peloritani mountains to one of the highest and most spectacular waterfalls in the Alcantara area."
       },
       "foto": "foto/s09.jpg",
-      "gpx": null,
+      "gpx": "gpx/s09.gpx",
       "punti_interesse": [],
-      "lat": 37.8073,
-      "lng": 14.9899
+      "lat": 37.956,
+      "lng": 14.9864
     },
     {
       "id": 10,
       "nome": {
-        "it": "Grotta del Gelo – Ghiacciaio Vulcanico",
-        "en": "Grotta del Gelo – Volcanic Glacier"
-      },
-      "zona": "nord",
-      "difficolta": "EE",
-      "distanza_km": 18.0,
-      "durata_ore": 8.0,
-      "dislivello": 600,
-      "quota_min": 1800,
-      "quota_max": 2040,
-      "stagione": [
-        "lug",
-        "ago",
-        "set"
-      ],
-      "descrizione": {
-        "it": "Lungo e faticoso percorso lavico per raggiungere il ghiacciaio perenne più a sud d'Europa, dentro un tunnel vulcanico. Parte da Piano Provenzana. Solo per escursionisti esperti.",
-        "en": "Long and demanding lava-field route to reach the southernmost permanent glacier in Europe, inside a volcanic tunnel. Starts from Piano Provenzana. Experts only."
-      },
-      "foto": "foto/s10.jpg",
-      "gpx": null,
-      "punti_interesse": [],
-      "lat": 37.8073,
-      "lng": 14.9899
-    },
-    {
-      "id": 11,
-      "nome": {
-        "it": "Cascata Palazzolo Angara",
-        "en": "Palazzolo Angara Waterfall"
-      },
-      "zona": "nord",
-      "difficolta": "T",
-      "distanza_km": 3.0,
-      "durata_ore": 1.5,
-      "dislivello": 240,
-      "quota_min": 705,
-      "quota_max": 945,
-      "stagione": [
-        "mar",
-        "apr",
-        "mag",
-        "giu",
-        "set",
-        "ott",
-        "nov"
-      ],
-      "descrizione": {
-        "it": "Breve escursione nel versante nord dell'Etna verso la Cascata Palazzolo Angara, una delle poche cascate permanenti dell'area etnea. Il sentiero scende attraverso boschi di castagno e quercia fino alla cascata. Spettacolare in primavera con il disgelo.",
-        "en": "Short hike on the northern slopes of Etna to the Palazzolo Angara Waterfall, one of the few permanent waterfalls in the Etna area. The trail descends through chestnut and oak woods to the waterfall. Spectacular in spring during snowmelt."
-      },
-      "foto": "foto/s11.jpg",
-      "gpx": "gpx/s11.gpx",
-      "punti_interesse": [],
-      "lat": 37.956,
-      "lng": 14.986
-    },
-    {
-      "id": 12,
-      "nome": {
-        "it": "Vulcanetto di Moio Alcantara",
-        "en": "Moio Alcantara Volcanic Cone"
+        "it": "Sentiero del Vulcanetto di Mojo Alcantara",
+        "en": "Mojo Alcantara Volcano Trail"
       },
       "zona": "nord-est",
       "difficolta": "T",
-      "distanza_km": 1.8,
+      "distanza_km": 1.5,
       "durata_ore": 1.0,
-      "dislivello": 99,
-      "quota_min": 603,
-      "quota_max": 694,
+      "dislivello": 140,
+      "quota_min": 520,
+      "quota_max": 700,
       "stagione": [
+        "gen",
         "feb",
         "mar",
-        "apr",
-        "mag",
-        "giu",
+        "lug",
+        "ago",
         "set",
         "ott",
-        "nov"
+        "nov",
+        "dic"
       ],
       "descrizione": {
-        "it": "Breve anello attorno al vulcanetto di Moio Alcantara, cono vulcanico secondario nei pressi della Valle dell'Alcantara. Panorama sulla valle e sul versante nord-est dell'Etna. Sentiero facile, adatto a famiglie. Ottimo per la macro fotografica in primavera.",
-        "en": "Short loop around the Moio Alcantara volcanic cone, a secondary volcanic vent near the Alcantara Valley. Panoramic views of the valley and Etna's northeast slope. Easy trail, suitable for families. Excellent for macro photography in spring."
+        "it": "Sentiero lastricato in pietra lavica e poi sterrato sale sul fianco del cono: è ripido ma molto breve (400 m circa), richiede 10–15 minuti, e conduce rapidamente all’orlo del cratere, che si può percorrere ad anello con ampi panorami su Etna, Valle dell’Alcantara e i paesi vicini.",
+        "en": "A path paved with lava stone and then a dirt road climbs up the side of the cone: it is steep but very short (about 400 m), takes 10–15 minutes, and quickly leads to the edge of the crater, which can be walked in a circular route with wide views of Etna, the Alcantara Valley and the nearby villages."
       },
-      "foto": "foto/s12.jpg",
-      "gpx": "gpx/s12.gpx",
+      "foto": "foto/s10.jpg",
+      "gpx": "gpx/s10.gpx",
       "punti_interesse": [],
       "lat": 37.9114,
       "lng": 15.0528
