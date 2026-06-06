@@ -75,8 +75,8 @@
       "distanza_km": 3.1,
       "durata_ore": 2.5,
       "dislivello": 314,
-      "quota_min": 846,
-      "quota_max": 1180,
+      "quota_min": 847,
+      "quota_max": 1202,
       "stagione": [
         "apr",
         "mag",
@@ -94,8 +94,8 @@
       "foto": "foto/s03.jpg",
       "gpx": "gpx/s03.gpx",
       "punti_interesse": [],
-      "lat": 37.77,
-      "lng": 15.087
+      "lat": 37.850853,
+      "lng": 15.069876
     },
     {
       "id": 4,
@@ -171,9 +171,9 @@
       "difficolta": "T",
       "distanza_km": 4.0,
       "durata_ore": 2.0,
-      "dislivello": 100,
-      "quota_min": 1660,
-      "quota_max": 1760,
+      "dislivello": 68,
+      "quota_min": 1655,
+      "quota_max": 1723,
       "stagione": [
         "mar",
         "apr",
@@ -192,8 +192,8 @@
       "foto": "foto/s06.jpg",
       "gpx": "gpx/s06.gpx",
       "punti_interesse": [],
-      "lat": 37.756,
-      "lng": 15.058
+      "lat": 37.771255,
+      "lng": 15.060258
     },
     {
       "id": 7,
@@ -268,9 +268,9 @@
       "difficolta": "E",
       "distanza_km": 4.18,
       "durata_ore": 3.0,
-      "dislivello": 256,
-      "quota_min": 800,
-      "quota_max": 958,
+      "dislivello": 240,
+      "quota_min": 705,
+      "quota_max": 945,
       "stagione": [
         "mar",
         "apr",
@@ -286,7 +286,7 @@
       "gpx": "gpx/s09.gpx",
       "punti_interesse": [],
       "lat": 37.956,
-      "lng": 14.9864
+      "lng": 14.98635
     },
     {
       "id": 10,
@@ -328,7 +328,7 @@
       "id": "r3",
       "nome": "Rifugio Monte Crisimo",
       "stelle": 2,
-      "quota": 1450,
+      "quota": 942,
       "zona": "Etna Nord Altomontana",
       "tipo": "Bivacco forestale aperto",
       "accesso": "LIBERO",
@@ -341,8 +341,8 @@
       "note": "Prenotazione consigliata. Camino disponibile. Ottima base per escursioni sull'Altomontana nord.",
       "foto": "foto/r3.jpg",
       "gpx": "gpx/r3.gpx",
-      "lat": 37.822,
-      "lng": 14.985
+      "lat": 37.81818,
+      "lng": 15.10616
     },
     {
       "id": "r5",
@@ -528,7 +528,7 @@
       "id": "r23",
       "nome": "Rifugio Ragabo",
       "stelle": 4,
-      "quota": 1415,
+      "quota": 1260,
       "zona": "Linguaglossa – Etna Nord",
       "tipo": "Rifugio privato",
       "accesso": "PRENOTAZIONE CONSIGLIATA",
@@ -541,8 +541,8 @@
       "note": "Prenotazione consigliata. Albergo con ristorante tipico. Immerso nella Pineta Ragabo.",
       "foto": "foto/r23.jpg",
       "gpx": "gpx/r23.gpx",
-      "lat": 37.8083,
-      "lng": 15.0664
+      "lat": 37.928389,
+      "lng": 14.842048
     },
     {
       "id": "r17",
