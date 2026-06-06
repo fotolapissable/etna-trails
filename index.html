@@ -271,6 +271,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   border:1px solid var(--border);color:var(--ash);font-family:var(--font-m);
   font-size:9px;padding:3px 7px;cursor:pointer;border-radius:2px}
 #detail-close:hover{border-color:var(--ember);color:var(--ember)}
+#detail-back-mobile{position:absolute;top:10px;left:12px;background:none;
+  border:1px solid var(--border-bright);color:var(--gold);font-family:var(--font-m);
+  font-size:9px;letter-spacing:1px;padding:3px 9px;cursor:pointer;border-radius:2px}
+#detail-back-mobile:hover{border-color:var(--ember);color:var(--ember)}
 #detail-photo{width:100%;height:90px;background:linear-gradient(135deg,var(--lava3),var(--lava2));
   position:relative;overflow:hidden;margin-bottom:12px;border-radius:3px}
 #detail-photo img{width:100%;height:100%;object-fit:cover;opacity:.75}
@@ -1465,6 +1469,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
     <div id="detail-panel">
       <div id="detail-inner">
         <button id="detail-close" onclick="closeDetail()">✕ <span data-it="chiudi" data-en="close">chiudi</span></button>
+        <button id="detail-back-mobile" onclick="closeDetail();hideMap()" style="display:none">◀ <span data-it="Sentieri" data-en="Trails">Sentieri</span></button>
         <div id="detail-photo">
           <div id="detail-photo-ph">🌋</div>
           <div id="detail-photo-overlay"></div>
@@ -2679,9 +2684,16 @@ const isMobileTog = () => window.innerWidth <= 768;
 function initMobileButtons() {
   const btnMap = document.getElementById('btn-show-map');
   const btnBack = document.getElementById('btn-back-list');
-  if(!isMobileTog()) { btnMap.style.display='none'; btnBack.style.display='none'; return; }
+  const btnBackDetail = document.getElementById('detail-back-mobile');
+  if(!isMobileTog()) {
+    btnMap.style.display='none';
+    btnBack.style.display='none';
+    if(btnBackDetail) btnBackDetail.style.display='none';
+    return;
+  }
   btnMap.style.display = 'flex';
   btnBack.style.display = 'none';
+  if(btnBackDetail) btnBackDetail.style.display = 'block';
   // aggiorna etichette in base alla lingua
   updateMapBtnLabels();
 }
