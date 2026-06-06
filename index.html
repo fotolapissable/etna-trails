@@ -271,24 +271,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   border:1px solid var(--border);color:var(--ash);font-family:var(--font-m);
   font-size:9px;padding:3px 7px;cursor:pointer;border-radius:2px}
 #detail-close:hover{border-color:var(--ember);color:var(--ember)}
-#detail-photo{width:100%;background:linear-gradient(135deg,var(--lava3),var(--lava2));
-  position:relative;overflow:hidden;margin-bottom:12px;border-radius:3px;
-  /* Proporzionale 3:2 — formato nativo Canon R5 */
-  aspect-ratio:3/2;
-  /* Fallback per browser vecchi */
-  min-height:120px;}
-#detail-photo img{
-  width:100%;height:100%;
-  object-fit:contain;   /* mostra tutta la foto senza taglio */
-  object-position:center;
-  opacity:.85;
-  background:var(--lava2);}
+#detail-photo{width:100%;height:90px;background:linear-gradient(135deg,var(--lava3),var(--lava2));
+  position:relative;overflow:hidden;margin-bottom:12px;border-radius:3px}
+#detail-photo img{width:100%;height:100%;object-fit:cover;opacity:.75}
 #detail-photo-overlay{position:absolute;inset:0;
   background:linear-gradient(to top,rgba(10,4,0,.85) 0%,transparent 60%)}
 #detail-photo-credit{position:absolute;bottom:5px;right:7px;
   font-family:var(--font-m);font-size:7px;color:rgba(201,168,76,.7)}
 #detail-photo-ph{position:absolute;inset:0;display:flex;
-  align-items:center;justify-content:center;font-size:36px;opacity:.15}
+  align-items:center;justify-content:center;font-size:28px;opacity:.2}
 #detail-name{font-family:var(--font-t);font-size:15px;font-weight:900;
   color:var(--gold);letter-spacing:.8px;margin-bottom:4px;padding-right:50px;line-height:1.3}
 #detail-zone{font-family:var(--font-m);font-size:8px;letter-spacing:2px;
@@ -350,13 +341,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 #gpx-url-load:hover{border-color:var(--gold);color:var(--gold)}
 
 /* Elevation bar */
-#elev-bar{
+#elev-bar{position:absolute;bottom:0;left:0;right:0;z-index:550;
   background:rgba(10,4,0,.96);border-top:1px solid var(--border-bright);
-  transition:max-height .35s;max-height:0;overflow:hidden;
-  border-radius:0 0 3px 3px;
-  margin:0 -16px;  /* compensa il padding del detail-inner */
-}
-#elev-bar.open{max-height:160px}
+  transition:height .35s;height:0;overflow:hidden}
+#elev-bar.open{height:145px}
 #elev-inner{padding:7px 14px 5px;display:flex;flex-direction:column;height:100%}
 #elev-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
 #elev-title{font-family:var(--font-m);font-size:8px;letter-spacing:2px;color:var(--gold);
@@ -367,11 +355,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 #elev-close{background:none;border:1px solid var(--border);color:var(--ash);
   font-family:var(--font-m);font-size:9px;padding:3px 6px;cursor:pointer;border-radius:2px}
 #elev-close:hover{border-color:var(--ember);color:var(--ember)}
-#elev-canvas{width:100%;height:110px;cursor:crosshair;display:block}
-#elev-tip{position:fixed;pointer-events:none;background:rgba(10,4,0,.92);
+#elev-canvas{flex:1;width:100%;cursor:crosshair}
+#elev-tip{position:absolute;pointer-events:none;background:rgba(10,4,0,.92);
   border:1px solid var(--border);border-radius:2px;padding:4px 7px;
   font-family:var(--font-m);font-size:8.5px;color:var(--snow);
-  white-space:nowrap;display:none;z-index:9999}
+  white-space:nowrap;display:none;z-index:600}
 
 /* Modal */
 #modal-overlay{display:none;position:fixed;inset:0;z-index:2000;
@@ -434,22 +422,82 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   font-family:var(--font-m);font-size:9px;letter-spacing:2px;
   box-shadow:0 -2px 12px rgba(232,96,10,0.08)}
 
-/* Rotate overlay */
-#rotate-msg{display:none;position:fixed;inset:0;z-index:99999;
-  background:#1a0a00;flex-direction:column;align-items:center;justify-content:center;gap:14px}
-@media screen and (orientation:portrait) and (max-width:900px){#rotate-msg{display:flex!important}}
+/* Rotate overlay — disabilitato: portrait ora supportato */
+#rotate-msg{display:none!important}
 @keyframes spin-phone{from{transform:rotate(0deg)}to{transform:rotate(90deg)}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-/* Mobile */
+/* ═══════════════════════════════════════
+   MOBILE PORTRAIT — toggle mappa
+═══════════════════════════════════════ */
 @media(max-width:768px){
   :root{--lava:#2a1500;--lava2:#3a1e00;--ash:#a08878;--ash-light:#d4c0a8;--snow:#ffffff}
-  #main{flex-direction:column}
-  #sidebar{width:100%;min-width:100%;max-height:42%;border-right:none;border-bottom:1px solid var(--border-bright)}
-  #map-wrap{flex:1;min-height:0}
+
+  /* Layout: sidebar occupa tutto, mappa nascosta di default */
+  #main{display:block;height:calc(100vh - 70px);position:relative}
+  #sidebar{
+    width:100%;height:100%;
+    border-right:none;border-bottom:none;
+    overflow:hidden;
+  }
+  /* Mappa: nascosta di default, fullscreen quando attiva */
+  #map-wrap{
+    position:fixed;inset:0;top:52px;bottom:22px;
+    z-index:800;
+    transform:translateX(100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  #map-wrap.map-open{
+    transform:translateX(0);
+  }
+
+  /* Bottone "Vedi Tracciato" fisso in basso nella sidebar */
+  #btn-show-map{
+    display:flex;
+    position:fixed;bottom:30px;left:0;right:0;
+    z-index:900;
+    margin:0 16px;
+    background:var(--ember);
+    border:none;color:white;
+    font-family:var(--font-m);font-size:10px;letter-spacing:2px;
+    padding:13px 20px;border-radius:3px;cursor:pointer;
+    align-items:center;justify-content:center;gap:8px;
+    box-shadow:0 4px 20px rgba(232,96,10,0.5);
+    text-transform:uppercase;
+    transition:background .2s;
+  }
+  #btn-show-map:active{background:#ff7a20}
+
+  /* Bottone "◀ Lista" sovrapposto alla mappa */
+  #btn-back-list{
+    display:flex;
+    position:fixed;top:60px;left:12px;
+    z-index:850;
+    background:rgba(10,4,0,0.92);
+    border:1px solid var(--border-bright);
+    color:var(--gold);font-family:var(--font-m);
+    font-size:9px;letter-spacing:1.5px;
+    padding:7px 13px;border-radius:2px;cursor:pointer;
+    align-items:center;gap:6px;
+    backdrop-filter:blur(6px);
+    text-transform:uppercase;
+    transition:all .2s;
+    pointer-events:auto;
+  }
+  #btn-back-list:active{border-color:var(--ember);color:var(--ember)}
+
+  /* Testi più grandi su mobile */
   .tc-name{font-size:13px}.tc-stat{font-size:9.5px}.tc-desc{font-size:12px}
   .rc-name{font-size:13px}.action-btn{font-size:10px;padding:9px 14px}
   #meteo-frame{height:180px}
+
+  /* Padding inferiore liste per non finire sotto il bottone fisso */
+  .item-list{padding-bottom:70px}
+  #sos-list{padding-bottom:70px}
+  #panel-meteo{padding-bottom:70px}
+
+  /* Detail panel su mobile — più alta */
+  #detail-panel{max-height:65%}
 
   /* Splash mobile — scala tutto per stare nello schermo */
   #splash-volcano{font-size:36px;margin-bottom:4px}
@@ -475,6 +523,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   #splash-brand{font-size:7px;padding:3px 8px}
   #splash-city{margin-bottom:4px}
   #splash-langs{margin-bottom:8px}
+  /* Bottone mappa più compatto */
+  #btn-show-map{font-size:9px;padding:11px 16px;margin:0 12px}
 }
 
 /* Mobile molto piccolo o landscape mobile */
@@ -1440,23 +1490,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
             <button id="gpx-url-load" onclick="loadGpxUrl()">↓ <span data-it="Carica" data-en="Load">Carica</span></button>
           </div>
         </div>
-
-        <!-- Profilo altimetrico dentro il pannello detail -->
-        <div id="elev-bar">
-          <div id="elev-inner">
-            <div id="elev-head">
-              <div id="elev-title">📈 <span data-it="PROFILO ALTIMETRICO" data-en="ELEVATION PROFILE">PROFILO ALTIMETRICO</span>
-                <div id="elev-stats"></div>
-              </div>
-              <button id="elev-close" onclick="closeElev()">✕</button>
-            </div>
-            <canvas id="elev-canvas"></canvas>
-          </div>
-        </div>
-
       </div>
     </div>
 
+    <div id="elev-bar">
       <div id="elev-inner">
         <div id="elev-head">
           <div id="elev-title">📈 <span data-it="PROFILO ALTIMETRICO" data-en="ELEVATION PROFILE">PROFILO ALTIMETRICO</span>
@@ -1512,6 +1549,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
     📸 <strong style="color:inherit;font-weight:normal">FOTOLAPISSABLE.IT</strong> &nbsp;·&nbsp; FINE ART & NATURE PHOTOGRAPHY &nbsp;·&nbsp; RIPOSTO, SICILIA
   </a>
 </div>
+
+<!-- Bottone mobile: mostra mappa (visibile solo su mobile) -->
+<button id="btn-show-map" onclick="showMap()" style="display:none">
+  🗺 <span id="btn-show-map-label">Vedi sulla Mappa</span>
+</button>
+
+<!-- Bottone mobile: torna alla lista (visibile solo quando mappa aperta) -->
+<button id="btn-back-list" onclick="hideMap()" style="display:none">
+  ◀ <span id="btn-back-list-label">Lista</span>
+</button>
 
 <!-- Rotate -->
 <div id="rotate-msg">
@@ -1763,7 +1810,6 @@ function showDetail(type, id) {
     title = item.nome;
     zone = item.zona.toUpperCase();
     lat=item.lat; lng=item.lng; phone=item.telefono; foto=item.foto;
-    gpxFile=item.gpx; showGpx=true;
     desc = item.note || '';
     const rl = lang==='it'?['QUOTA','KM DA RIPOSTO','COSTO','ACCESSO']:['ELEVATION','KM FROM RIPOSTO','COST','ACCESS'];
     const rv = [[item.quota,'m'],[item.km_da_riposto,'km'],[item.costo,''],[item.accesso,'']];
@@ -1828,6 +1874,9 @@ function showDetail(type, id) {
 
   document.getElementById('detail-panel').classList.add('open');
   if(lat && lng) map.setView([lat, lng], 13);
+
+  // Su mobile: apri mappa automaticamente quando si seleziona un sentiero/rifugio
+  if(isMobileTog && isMobileTog()) showMap();
 
   if(gpxFile && showGpx) {
     if(gpxCache[id]) processGpx(gpxCache[id], title);
@@ -1928,18 +1977,12 @@ function openElev(pts,name){
     <div class="elev-stat">⬆<span>+${Math.round(gain)}m</span></div>
     <div class="elev-stat">⬇<span>-${Math.round(loss)}m</span></div>
     <div class="elev-stat">▲<span>${Math.round(Math.max(...eles))}m</span></div>`;
-  // Delay per attendere che il pannello detail e il canvas siano completamente visibili
-  setTimeout(()=>drawElev(pts), 400);
+  requestAnimationFrame(()=>drawElev(pts));
 }
 function closeElev(){document.getElementById('elev-bar').classList.remove('open');}
 function drawElev(pts){
   const cv=document.getElementById('elev-canvas'),ctx=cv.getContext('2d');
-  // Forza dimensioni corrette dal contenitore
-  const container = cv.parentElement;
-  const W = container ? container.offsetWidth : cv.offsetWidth;
-  const H = 110; // altezza fissa per profilo dentro detail panel
-  cv.width=W; cv.height=H;
-  cv.style.height = H + 'px';
+  const W=cv.offsetWidth,H=cv.offsetHeight; cv.width=W; cv.height=H;
   const p={t:6,r:10,b:18,l:38},cW=W-p.l-p.r,cH=H-p.t-p.b;
   const eles=pts.map(p=>p.ele),dists=pts.map(p=>p.dist);
   const eMin=Math.min(...eles)-30,eMax=Math.max(...eles)+30,dMax=dists[dists.length-1];
@@ -2630,9 +2673,65 @@ function toggleScopri(id) {
   sec.classList.toggle('open');
 }
 
+// ── MOBILE MAP TOGGLE ────────────────────────────────────
+const isMobileTog = () => window.innerWidth <= 768;
+
+function initMobileButtons() {
+  const btnMap = document.getElementById('btn-show-map');
+  const btnBack = document.getElementById('btn-back-list');
+  if(!isMobileTog()) { btnMap.style.display='none'; btnBack.style.display='none'; return; }
+  btnMap.style.display = 'flex';
+  btnBack.style.display = 'none';
+  // aggiorna etichette in base alla lingua
+  updateMapBtnLabels();
+}
+
+function updateMapBtnLabels() {
+  const lbl = document.getElementById('btn-show-map-label');
+  const lbl2 = document.getElementById('btn-back-list-label');
+  if(lbl) lbl.textContent = lang==='it' ? 'Vedi sulla Mappa' : 'View Map';
+  if(lbl2) lbl2.textContent = lang==='it' ? 'Lista' : 'List';
+}
+
+function showMap() {
+  if(!isMobileTog()) return;
+  document.getElementById('map-wrap').classList.add('map-open');
+  document.getElementById('btn-show-map').style.display = 'none';
+  document.getElementById('btn-back-list').style.display = 'flex';
+  // Forza ridimensionamento Leaflet dopo l'animazione
+  setTimeout(() => map.invalidateSize(), 380);
+}
+
+function hideMap() {
+  if(!isMobileTog()) return;
+  document.getElementById('map-wrap').classList.remove('map-open');
+  document.getElementById('btn-show-map').style.display = 'flex';
+  document.getElementById('btn-back-list').style.display = 'none';
+}
+
+window.addEventListener('resize', () => {
+  initMobileButtons();
+  if(!isMobileTog()) {
+    // Desktop: rimuovi classi mobile e ripristina layout normale
+    document.getElementById('map-wrap').classList.remove('map-open');
+  }
+});
+
+// Patch setLang per aggiornare le etichette dei bottoni mobile
+const _origSetLang = setLang;
+// override applicato dopo init (vedi fondo script)
+
 // ── INIT ─────────────────────────────────────────────────
 initSplash();
 loadData();
+initMobileButtons();
+
+// Patch setLang post-init per aggiornare bottoni
+const _setLangOrig = window.setLang;
+window.setLang = function(l) {
+  _setLangOrig ? _setLangOrig(l) : setLang(l);
+  updateMapBtnLabels();
+};
 </script>
 </body>
 </html>
