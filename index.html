@@ -1982,6 +1982,14 @@ function openElev(pts,name){
     <div class="elev-stat">⬆<span>+${Math.round(gain)}m</span></div>
     <div class="elev-stat">⬇<span>-${Math.round(loss)}m</span></div>
     <div class="elev-stat">▲<span>${Math.round(Math.max(...eles))}m</span></div>`;
+  // Su mobile: se la mappa non è ancora visibile, il canvas ha offsetWidth=0
+  // Salva i punti sul canvas e aspetta che showMap() chiami drawElev dopo l'animazione
+  const cv = document.getElementById('elev-canvas');
+  cv._pts = pts; // salva sempre per il ridisegno
+  if(isMobileTog && isMobileTog() && !document.getElementById('map-wrap').classList.contains('map-open')) {
+    // Il disegno avverrà in showMap() dopo l'animazione
+    return;
+  }
   requestAnimationFrame(()=>drawElev(pts));
 }
 function closeElev(){document.getElementById('elev-bar').classList.remove('open');}
@@ -2710,8 +2718,16 @@ function showMap() {
   document.getElementById('map-wrap').classList.add('map-open');
   document.getElementById('btn-show-map').style.display = 'none';
   document.getElementById('btn-back-list').style.display = 'flex';
-  // Forza ridimensionamento Leaflet dopo l'animazione
-  setTimeout(() => map.invalidateSize(), 380);
+  // Dopo l'animazione: ridimensiona Leaflet e ridisegna profilo altimetrico
+  setTimeout(() => {
+    map.invalidateSize();
+    // Se il profilo è aperto e ha punti salvati, ridisegna (canvas ora ha dimensioni reali)
+    const elevBar = document.getElementById('elev-bar');
+    const cv = document.getElementById('elev-canvas');
+    if(elevBar && elevBar.classList.contains('open') && cv && cv._pts && cv._pts.length) {
+      drawElev(cv._pts);
+    }
+  }, 390);
 }
 
 function hideMap() {
