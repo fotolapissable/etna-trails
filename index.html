@@ -1735,9 +1735,9 @@ function renderSentieri(list) {
       </div>
       <div class="tc-stats">
         <div class="tc-stat">📏 <span>${t.distanza_km}km</span></div>
-        <div class="tc-stat">⏱ <span>${t.durata_ore}h</span></div>
-        <div class="tc-stat">⬆ <span>${t.dislivello}m</span></div>
-        <div class="tc-stat">🏔 <span>${t.quota_max}m</span></div>
+        <div class="tc-stat">⏱ <span>${t.durata_h}h</span></div>
+        <div class="tc-stat">⬆ <span>${t.dislivello_m}m</span></div>
+        <div class="tc-stat">🏔 <span>${t.quota_max_m}m</span></div>
       </div>
       <div class="tc-desc">${t.descrizione[lang]}</div>`;
     c.appendChild(el);
@@ -1850,7 +1850,7 @@ function showDetail(type, id) {
     desc = item.descrizione[lang];
     lat=item.lat; lng=item.lng; foto=item.foto; gpxFile=item.gpx; showGpx=true;
     const sl = lang==='it'?['DISTANZA','DURATA','DISLIVELLO','QUOTA MAX','QUOTA MIN']:['DISTANCE','DURATION','ELEVATION','MAX ALT','MIN ALT'];
-    const sv = [[item.distanza_km,'km'],[item.durata_ore,'h'],[item.dislivello,'m'],[item.quota_max,'m'],[item.quota_min,'m']];
+    const sv = [[item.distanza_km,'km'],[item.durata_h,'h'],[item.dislivello_m,'m'],[item.quota_max_m,'m'],[item.quota_min_m,'m']];
     stats = sv.map((v,i) => `<div class="dstat"><div class="dstat-lbl">${sl[i]}</div><div class="dstat-val">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
     if(item.punti_interesse&&item.punti_interesse.length)
       poi = `<h4>${lang==='it'?'PUNTI DI INTERESSE':'POINTS OF INTEREST'}</h4>` +
