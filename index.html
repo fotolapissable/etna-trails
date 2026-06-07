@@ -302,6 +302,55 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   letter-spacing:1px;text-transform:uppercase;transition:all .2s;border:1px solid;text-decoration:none}
 .action-btn.maps{background:rgba(66,133,244,.15);border-color:rgba(66,133,244,.4);color:#6ba3f5}
 .action-btn.maps:hover{background:rgba(66,133,244,.28)}
+
+/* ── TOAST ── */
+#pwa-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:rgba(26,10,0,0.96);border:1px solid var(--gold);color:var(--snow);
+  font-family:var(--font-m);font-size:11px;letter-spacing:.5px;padding:10px 18px;
+  border-radius:3px;z-index:9999;opacity:0;transition:all .3s;pointer-events:none;
+  max-width:90vw;text-align:center;box-shadow:0 4px 20px rgba(232,96,10,0.3)}
+#pwa-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── INSTALL BANNER ── */
+#install-banner{position:fixed;bottom:0;left:0;right:0;
+  background:rgba(20,8,0,0.97);border-top:1px solid var(--ember);
+  padding:12px 16px;z-index:9998;display:flex;align-items:center;
+  gap:12px;flex-wrap:wrap;justify-content:space-between;
+  transform:translateY(100%);transition:transform .35s ease;
+  box-shadow:0 -4px 20px rgba(232,96,10,0.2)}
+#install-banner.show{transform:translateY(0)}
+#install-banner span{font-size:12px;color:var(--ash-light);flex:1;min-width:200px}
+#install-banner strong{color:var(--ember)}
+.install-btns{display:flex;gap:8px;flex-shrink:0}
+#install-btn-ok{background:var(--ember);border:none;color:white;
+  font-family:var(--font-m);font-size:10px;letter-spacing:1px;
+  padding:7px 14px;border-radius:2px;cursor:pointer}
+#install-btn-no{background:none;border:1px solid var(--border);color:var(--ash);
+  font-family:var(--font-m);font-size:10px;letter-spacing:1px;
+  padding:7px 14px;border-radius:2px;cursor:pointer}
+
+/* ── iOS GUIDE MODAL ── */
+#ios-guide{position:fixed;inset:0;background:rgba(0,0,0,0.75);
+  z-index:10000;display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .3s;pointer-events:none}
+#ios-guide.show{opacity:1;pointer-events:all}
+#ios-guide-box{background:rgba(26,10,0,0.98);border:1px solid var(--gold);
+  border-radius:4px;padding:24px;max-width:320px;width:90%}
+#ios-guide-title{font-family:var(--font-t);font-size:13px;color:var(--gold);
+  letter-spacing:2px;margin-bottom:16px;text-align:center}
+#ios-guide-box ol{padding-left:18px;color:var(--ash-light);font-size:13px;line-height:1.9}
+#ios-guide-box strong{color:var(--snow)}
+#ios-guide-close{display:block;margin:20px auto 0;background:var(--ember);border:none;
+  color:white;font-family:var(--font-m);font-size:10px;letter-spacing:1px;
+  padding:8px 20px;border-radius:2px;cursor:pointer}
+
+/* ── OFFLINE MAP BUTTON ── */
+#offline-map-btn{display:block;width:calc(100% - 20px);margin:8px 10px 0;
+  background:rgba(74,158,92,0.12);border:1px solid rgba(74,158,92,0.4);
+  color:#6dbf80;font-family:var(--font-m);font-size:10px;letter-spacing:1px;
+  padding:8px;border-radius:2px;cursor:pointer;transition:all .2s;text-align:center}
+#offline-map-btn:hover:not(:disabled){background:rgba(74,158,92,0.22)}
+#offline-map-btn:disabled{opacity:.6;cursor:default}
 .action-btn.gpx-dl{background:var(--ember-dim);border-color:rgba(232,96,10,.4);color:var(--ember)}
 .action-btn.gpx-dl:hover{background:rgba(232,96,10,.28)}
 .action-btn.gpx-dl.off{opacity:.35;cursor:not-allowed;pointer-events:none}
@@ -1860,6 +1909,14 @@ function showDetail(type, id) {
     a.href = isMob ? `geo:${lat},${lng}?q=${lat},${lng}(${encodeURIComponent(title)})` : `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
     a.target = '_blank'; a.rel = 'noopener';
     a.innerHTML = `🗺 ${lang==='it'?'Apri nella mappa':'Open in maps'}`;
+    if(!navigator.onLine){
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        showToast(lang==='it'
+          ? '📶 Google Maps richiede connessione. Usa la mappa interna.'
+          : '📶 Google Maps requires connection. Use the internal map.');
+      });
+    }
     act.appendChild(a);
   }
   if(gpxFile) {
@@ -2748,6 +2805,149 @@ window.addEventListener('resize', () => {
 // Patch setLang per aggiornare le etichette dei bottoni mobile
 const _origSetLang = setLang;
 // override applicato dopo init (vedi fondo script)
+
+// ── TOAST ────────────────────────────────────────────────
+function showToast(msg, duration=3500){
+  let t = document.getElementById('pwa-toast');
+  if(!t){ t=document.createElement('div'); t.id='pwa-toast'; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._to);
+  t._to = setTimeout(()=>t.classList.remove('show'), duration);
+}
+
+// ── PWA INSTALL BANNER ───────────────────────────────────
+let _deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  _deferredPrompt = e;
+  showInstallBanner();
+});
+
+function showInstallBanner(){
+  if(document.getElementById('install-banner')) return;
+  const b = document.createElement('div');
+  b.id = 'install-banner';
+  const isIT = (lang||'it')==='it';
+  b.innerHTML = `
+    <span>⛰ ${isIT
+      ? 'Installa l\'app per usarla <strong>offline in montagna</strong>, anche senza segnale.'
+      : 'Install the app to use it <strong>offline on the mountain</strong>, even without signal.'
+    }</span>
+    <div class="install-btns">
+      <button id="install-btn-ok">${isIT?'Installa':'Install'}</button>
+      <button id="install-btn-no">${isIT?'Dopo':'Later'}</button>
+    </div>`;
+  document.body.appendChild(b);
+  setTimeout(()=>b.classList.add('show'), 300);
+
+  document.getElementById('install-btn-ok').onclick = async () => {
+    b.classList.remove('show');
+    if(_deferredPrompt){ await _deferredPrompt.prompt(); _deferredPrompt=null; }
+    else showIOSGuide();
+    setTimeout(()=>b.remove(), 400);
+  };
+  document.getElementById('install-btn-no').onclick = () => {
+    b.classList.remove('show');
+    setTimeout(()=>b.remove(), 400);
+    sessionStorage.setItem('install-dismissed','1');
+  };
+}
+
+function showIOSGuide(){
+  const isIT = (lang||'it')==='it';
+  const m = document.createElement('div');
+  m.id = 'ios-guide';
+  m.innerHTML = `
+    <div id="ios-guide-box">
+      <div id="ios-guide-title">📲 ${isIT?'Installa su iPhone / iPad':'Install on iPhone / iPad'}</div>
+      <ol>
+        <li>${isIT?'Apri questa pagina in <strong>Safari</strong>':'Open this page in <strong>Safari</strong>'}</li>
+        <li>${isIT?'Tocca l\'icona <strong>Condividi</strong> ↑ in basso':'Tap the <strong>Share</strong> icon ↑ at the bottom'}</li>
+        <li>${isIT?'Seleziona <strong>"Aggiungi a schermata Home"</strong>':'Select <strong>"Add to Home Screen"</strong>'}</li>
+        <li>${isIT?'Tocca <strong>Aggiungi</strong>':'Tap <strong>Add</strong>'}</li>
+      </ol>
+      <button id="ios-guide-close">${isIT?'Chiudi':'Close'}</button>
+    </div>`;
+  document.body.appendChild(m);
+  setTimeout(()=>m.classList.add('show'),50);
+  document.getElementById('ios-guide-close').onclick = ()=>{ m.classList.remove('show'); setTimeout(()=>m.remove(),300); };
+}
+
+// Mostra banner all'avvio se non già dismissato e non già installata
+window.addEventListener('load', ()=>{
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  if(!isStandalone && !sessionStorage.getItem('install-dismissed')){
+    // Su iOS (nessun beforeinstallprompt) mostra banner dopo 4s
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.MSStream;
+    if(isIOS) setTimeout(showInstallBanner, 4000);
+    // Android: gestito da beforeinstallprompt
+  }
+});
+
+// ── OFFLINE TILE CACHE (Leaflet.offline stub) ─────────────
+// Pulsante "Scarica mappe offline" nella tab Meteo/Mappa
+function addOfflineMapButton(){
+  const mapDiv = document.getElementById('map');
+  if(!mapDiv || document.getElementById('offline-map-btn')) return;
+  const isIT = (lang||'it')==='it';
+  const btn = document.createElement('button');
+  btn.id = 'offline-map-btn';
+  btn.innerHTML = `💾 ${isIT?'Scarica mappe offline':'Download offline maps'}`;
+  btn.onclick = () => cacheEtnaTiles(btn);
+  mapDiv.parentElement.insertBefore(btn, mapDiv);
+}
+
+async function cacheEtnaTiles(btn){
+  if(!('caches' in window)){ showToast('Cache API non disponibile'); return; }
+  const isIT = (lang||'it')==='it';
+  btn.disabled = true;
+  btn.innerHTML = `⏳ ${isIT?'Download in corso…':'Downloading…'}`;
+
+  // Bounding box Etna + Nebrodi: lat 37.55–38.15, lng 14.70–15.45
+  // Zoom 10–14
+  const urls = [];
+  const tileUrl = (z,x,y) => `https://a.tile.openstreetmap.org/${z}/${x}/${y}.png`;
+
+  function lon2tile(lon,z){ return Math.floor((lon+180)/360 * Math.pow(2,z)); }
+  function lat2tile(lat,z){ return Math.floor((1-Math.log(Math.tan(lat*Math.PI/180)+1/Math.cos(lat*Math.PI/180))/Math.PI)/2 * Math.pow(2,z)); }
+
+  const bounds = { minLat:37.55, maxLat:38.15, minLng:14.70, maxLng:15.45 };
+
+  for(let z=10; z<=14; z++){
+    const x0=lon2tile(bounds.minLng,z), x1=lon2tile(bounds.maxLng,z);
+    const y0=lat2tile(bounds.maxLat,z), y1=lat2tile(bounds.minLat,z);
+    for(let x=x0;x<=x1;x++) for(let y=y0;y<=y1;y++) urls.push(tileUrl(z,x,y));
+  }
+
+  try {
+    const cache = await caches.open('etna-tiles-v1');
+    let done=0;
+    const total=urls.length;
+    // scarica a batch di 10 per non saturare
+    for(let i=0;i<total;i+=10){
+      const batch=urls.slice(i,i+10);
+      await Promise.allSettled(batch.map(u=>cache.add(u).catch(()=>{})));
+      done=Math.min(i+10,total);
+      btn.innerHTML = `⏳ ${done}/${total} tile`;
+    }
+    btn.innerHTML = `✅ ${isIT?'Mappe offline pronte':'Offline maps ready'}`;
+    showToast(isIT?'✅ Mappe offline scaricate! Funzionano senza segnale.':'✅ Offline maps downloaded!', 4000);
+    setTimeout(()=>{ btn.innerHTML=`💾 ${isIT?'Scarica mappe offline':'Download offline maps'}`; btn.disabled=false; },5000);
+  } catch(err) {
+    btn.innerHTML = `❌ ${isIT?'Errore download':'Download error'}`;
+    btn.disabled=false;
+    showToast(isIT?'Errore durante il download delle mappe.':'Error downloading maps.');
+  }
+}
+
+// Aggiunge il pulsante quando la mappa è visibile
+document.addEventListener('DOMContentLoaded', ()=>{
+  // Observer per quando il tab mappa diventa visibile
+  const mapPanel = document.getElementById('tab-meteo') || document.querySelector('[data-tab="meteo"]');
+  setTimeout(addOfflineMapButton, 2000);
+});
 
 // ── INIT ─────────────────────────────────────────────────
 initSplash();
