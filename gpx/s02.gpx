@@ -1,0 +1,966 @@
+<?xml version="1.0"?>
+<gpx xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="http://www.delorme.com" xmlns="http://www.topografix.com/GPX/1/1">
+  <wpt lat="37.731637" lon="15.211354">
+    <ele>2.000</ele>
+    <time>2024-01-16T10:46:15.23Z</time>
+    <name>Porto di Riposto panorama Etna</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.733020" lon="15.203030">
+    <ele>0</ele>
+    <time>2024-01-16T13:11:37.3811189Z</time>
+    <name>casa</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.732703" lon="15.208956">
+    <ele>0.000</ele>
+    <time>2024-01-16T13:40:22.522Z</time>
+    <name>braccio porticciolo</name>
+    <cmt>Panorama Etna </cmt>
+    <desc />
+  </wpt>
+  <wpt lat="37.662705" lon="15.192230">
+    <ele>31.000</ele>
+    <time>2024-01-16T14:50:00.029Z</time>
+    <name>orazio casabella pozzillo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.519724" lon="15.109325">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.652Z</time>
+    <name>Spiaggia San Giovanni li Cuti</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.515749" lon="15.083997">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.652Z</time>
+    <name>Orto Botanico di Catania</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502487" lon="15.088190">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.652Z</time>
+    <name>Cattedrale di Sant'Agata</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.505869" lon="15.089679">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>San Berillo Quartier</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.506532" lon="15.088614">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa Parrocchiale </name>
+    <desc />
+  </wpt>
+  <wpt lat="37.507514" lon="15.086561">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Piazza Stesicoro</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.510294" lon="15.089211">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Seltz Al Limone</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.510048" lon="15.088569">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Basilica Santuario d</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.510234" lon="15.084938">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Ufficio Postale Post</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.512314" lon="15.083421">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Bagno Pubblico</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.509946" lon="15.085758">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Villa Bellini</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.510466" lon="15.064614">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa Parrocchiale </name>
+    <desc />
+  </wpt>
+  <wpt lat="37.510837" lon="15.069260">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Piazza Due Giugno Ca</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.511179" lon="15.070715">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Villa delle Ninfe</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.512920" lon="15.075348">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Accademia di Belle A</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.512568" lon="15.077001">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Salesiani Catania</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.513030" lon="15.079097">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa Parrocchiale </name>
+    <desc />
+  </wpt>
+  <wpt lat="37.513482" lon="15.080172">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Ipogeo Romano</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.515495" lon="15.088388">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Liceo Ginnasio Stata</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503687" lon="15.081146">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Università Le Vergin</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503374" lon="15.093767">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Palazzo Pedagaggi</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503460" lon="15.094241">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Suore Francescane De</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502648" lon="15.094226">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Islamic Center Catan</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.501844" lon="15.094111">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Teatro San Francesco</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.500673" lon="15.093336">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Vecchia Dogana</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.501420" lon="15.090779">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Archi della Marina</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502366" lon="15.090648">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Palazzo Biscari</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.501995" lon="15.090960">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Museo Biscari</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502972" lon="15.089874">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa di San Placid</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503056" lon="15.090516">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Palazzo Platamone</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503182" lon="15.090642">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Palazzo Valle</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504964" lon="15.088757">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa di Santa Tere</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.505287" lon="15.087930">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Palazzo Manganelli</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.506523" lon="15.086176">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa di san Michel</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.507659" lon="15.085695">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Palazzo Tezzano</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.507394" lon="15.085437">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Anfiteatro Romano di</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.507295" lon="15.084796">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa San Biagio in</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.509063" lon="15.083496">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Veduta di via Pacini</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.508659" lon="15.079941">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa Di Cristo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.506781" lon="15.079434">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Bastione degli Infet</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.506897" lon="15.081312">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa Cattolica Del</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.505100" lon="15.080143">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Museo di Archeologia</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504836" lon="15.079589">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Officine Culturali -</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504699" lon="15.080049">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Giardino di via Bibl</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504194" lon="15.080613">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa di San Nicolò</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503973" lon="15.079834">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>University of Catani</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503033" lon="15.080149">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Sant'Agata alle verg</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504087" lon="15.074803">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa Parrocchiale </name>
+    <desc />
+  </wpt>
+  <wpt lat="37.501279" lon="15.077899">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa dei Santi Cos</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.501663" lon="15.079871">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa di Santa Barb</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503481" lon="15.080730">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Balneum Romano</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504074" lon="15.082761">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Complesso Archeologi</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504541" lon="15.085188">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Ex chiostro del conv</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504883" lon="15.085716">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Biblioteca Comunale </name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504218" lon="15.084934">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa di San Giulia</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504217" lon="15.084723">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Collegio dei Gesuiti</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503702" lon="15.084136">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Monastero di San Ben</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503333" lon="15.084686">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa di San Benede</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502568" lon="15.084456">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Casa Natale di Vince</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502782" lon="15.084948">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa di San France</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503720" lon="15.087772">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Palazzo San Giuliano</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503269" lon="15.087894">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Suore Pie Discepole</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502980" lon="15.088616">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Informazioni Turisti</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502817" lon="15.088620">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Curia Arcivescovile</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502377" lon="15.087985">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Tomba di Vincenzo Be</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502370" lon="15.088632">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Salone Bonadies</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.501172" lon="15.087701">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Parco</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502037" lon="15.087014">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Fontana dell’Amenano</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503564" lon="15.086498">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Università degli Stu</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504206" lon="15.090006">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Teatro Massimo Belli</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502985" lon="15.088141">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa della Badia d</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503059" lon="15.094541">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Casa Vaccarini</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.502366" lon="15.090648">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Palazzo Biscari</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.503056" lon="15.090516">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Palazzo Platamone</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.501748" lon="15.087123">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Pescheria di Catania</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.504206" lon="15.090006">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Teatro Massimo Belli</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.506310" lon="15.096111">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Consolato Della Roma</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.506787" lon="15.099913">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Catania Centrale</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.508336" lon="15.098176">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Stazione Autobus Int</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.508755" lon="15.101016">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Museo Dello Sbarco I</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.509505" lon="15.101826">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Le Ciminiere</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.509049" lon="15.102998">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Museo del Cinema di </name>
+    <desc />
+  </wpt>
+  <wpt lat="37.514686" lon="15.106584">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Porto Rossi</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.519089" lon="15.105478">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Chiesa Parrocchiale </name>
+    <desc />
+  </wpt>
+  <wpt lat="37.515091" lon="15.092774">
+    <ele>0</ele>
+    <time>2024-01-16T20:37:00.6524818Z</time>
+    <name>Tribunale di Catania</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.714619" lon="15.213286">
+    <ele>0.000</ele>
+    <time>2024-01-16T21:45:47.9443844Z</time>
+    <name>Torre Modò</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.736368" lon="15.204877">
+    <ele>0</ele>
+    <time>2024-01-16T22:03:53.8188742Z</time>
+    <name>tre massi</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.731553" lon="15.209514">
+    <ele>0</ele>
+    <time>2024-01-16T22:04:21.4896896Z</time>
+    <name>marina di Riposto</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.735019" lon="15.205212">
+    <ele>0</ele>
+    <time>2024-01-16T22:06:07.3867454Z</time>
+    <name>cesare</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.733873" lon="15.205647">
+    <ele>0</ele>
+    <time>2024-01-16T22:06:44.1398314Z</time>
+    <name>spiagetta tre massi</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.687047" lon="15.196366">
+    <ele>0</ele>
+    <time>2024-01-16T22:09:33.6262892Z</time>
+    <name>strada 9 praiola</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.727425" lon="15.210121">
+    <ele>0</ele>
+    <time>2024-01-16T22:10:19.7253037Z</time>
+    <name>porticciolo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.732456" lon="15.206323">
+    <ele>0</ele>
+    <time>2024-01-16T22:11:25.1628035Z</time>
+    <name>molo dismesso</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.648380" lon="15.193298">
+    <ele>0</ele>
+    <time>2024-01-16T22:13:19.411347Z</time>
+    <name>porto stazzo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.648286" lon="15.192053">
+    <ele>0</ele>
+    <time>2024-01-16T22:17:10.9116244Z</time>
+    <name>stazzo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.661574" lon="15.196534">
+    <ele>0</ele>
+    <time>2024-01-16T22:17:54.5986833Z</time>
+    <name>pozzillo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.661049" lon="15.196382">
+    <ele>0</ele>
+    <time>2024-01-16T22:18:26.7471946Z</time>
+    <name>pozzillo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.640152" lon="15.183022">
+    <ele>0</ele>
+    <time>2024-01-16T22:19:34.3230377Z</time>
+    <name>santa tecla torre</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.618544" lon="15.174179">
+    <ele>0</ele>
+    <time>2024-01-16T22:21:35.9299447Z</time>
+    <name>santa maria la scala</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.619532" lon="15.169363">
+    <ele>0</ele>
+    <time>2024-01-16T22:23:48.845258Z</time>
+    <name>belvedere</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.796919" lon="15.101663">
+    <ele>1237.400</ele>
+    <time>2024-01-19T12:54:47.078Z</time>
+    <name>monte Crisimo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.849544" lon="14.967143">
+    <ele>983.602</ele>
+    <time>2024-01-25T22:32:15.133Z</time>
+    <name>25 Gen 2024, 23:32</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.951587" lon="14.841043">
+    <ele>1432.376</ele>
+    <time>2024-01-25T22:35:53.925Z</time>
+    <name>25 Gen 2024, tre aeree</name>
+    <cmt>Lago Tre aere</cmt>
+    <desc />
+  </wpt>
+  <wpt lat="37.913039" lon="14.872452">
+    <ele>1158.313</ele>
+    <time>2024-01-25T22:45:29.036Z</time>
+    <name>25 Gen 2024, 23:45</name>
+    <cmt>Camisa </cmt>
+    <desc />
+  </wpt>
+  <wpt lat="37.832129" lon="14.981080">
+    <ele>1384.006</ele>
+    <time>2024-01-26T10:05:44.319Z</time>
+    <name>26 Gen 2024, 11:05</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.712880" lon="15.180746">
+    <ele>131.617</ele>
+    <time>2024-02-02T07:12:39.795Z</time>
+    <name>2 Feb 2024, 08:12</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.894781" lon="14.875158">
+    <ele>0</ele>
+    <time>2024-02-02T07:15:06.385Z</time>
+    <name>camisa</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.925611" lon="14.971848">
+    <ele>1013.879</ele>
+    <time>2024-02-07T15:05:52.68Z</time>
+    <name>santa Maria del Bosco</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.918781" lon="14.954729">
+    <ele>0</ele>
+    <time>2024-02-07T23:25:18.4425882Z</time>
+    <name>cancello santa maria </name>
+    <desc />
+  </wpt>
+  <wpt lat="37.902998" lon="14.942662">
+    <ele>0</ele>
+    <time>2024-02-07T23:27:06.6901064Z</time>
+    <name>santa maria del bosco</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.929776" lon="14.938216">
+    <ele>1103.599</ele>
+    <time>2024-02-09T09:21:22Z</time>
+    <name>9 Feb 10:21</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.929764" lon="14.938215">
+    <ele>1100.400</ele>
+    <time>2024-02-09T09:21:49Z</time>
+    <name>9 Feb 10:21</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.790807" lon="15.100105">
+    <ele>1274.269</ele>
+    <time>2024-02-16T13:01:25.833Z</time>
+    <name>16 Feb 2024, 14:01</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.790806" lon="15.100105">
+    <ele>1275.006</ele>
+    <time>2024-02-16T13:01:53.201Z</time>
+    <name>16 Feb 2024, 14:01</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.819022" lon="15.104364">
+    <ele>951.896</ele>
+    <time>2024-02-16T13:04:43.907Z</time>
+    <name>16 Feb 2024, 14:04</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.908956" lon="14.886955">
+    <ele>1041.528</ele>
+    <time>2024-05-31T08:50:00.498Z</time>
+    <name>31 Mag 2024, 10:50</name>
+    <desc />
+  </wpt>
+  <wpt lat="40.913360" lon="-74.082796">
+    <ele>14.724</ele>
+    <time>2024-06-09T12:49:57.332Z</time>
+    <name>Sara Riani</name>
+    <desc />
+  </wpt>
+  <wpt lat="40.910853" lon="-74.088598">
+    <ele>15.520</ele>
+    <time>2024-06-09T12:51:18.435Z</time>
+    <name>entrata Parco</name>
+    <desc />
+  </wpt>
+  <wpt lat="40.916450" lon="-74.089803">
+    <ele>14.839</ele>
+    <time>2024-06-11T16:31:45.013Z</time>
+    <name>rocchelle Park parco uscita</name>
+    <desc />
+  </wpt>
+  <wpt lat="40.912847" lon="-74.093929">
+    <ele>16.757</ele>
+    <time>2024-06-11T16:45:31.229Z</time>
+    <name>rocchelle park uscita parco</name>
+    <desc />
+  </wpt>
+  <wpt lat="40.910290" lon="-74.086283">
+    <ele>17.125</ele>
+    <time>2024-06-11T17:09:25.282Z</time>
+    <name>Rochelle park uscita parco Howard ave</name>
+    <desc />
+  </wpt>
+  <wpt lat="40.913217" lon="-74.083100">
+    <ele>14.167</ele>
+    <time>2024-06-11T17:11:07.559Z</time>
+    <name>casa krm rocchelle Park</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.661281" lon="15.196791">
+    <ele>7.350</ele>
+    <time>2024-09-15T16:01:05.034Z</time>
+    <name>Pozzillo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.647324" lon="15.193503">
+    <ele>0.971</ele>
+    <time>2024-09-15T16:02:33.328Z</time>
+    <name>porto di Stazzo</name>
+    <desc />
+  </wpt>
+  <wpt lat="37.879850" lon="14.953220">
+    <ele>0</ele>
+    <time>2024-09-27T05:36:04.568Z</time>
+    <name>lago trearie, Sicilia, Italia</name>
+    <desc />
+  </wpt>
+  <trk>
+    <name>chiesetta magazzeni fosse Santoro</name>
+    <desc>chiesetta magazzeni fosse Santoro</desc>
+    <trkseg>
+      <trkpt lat="37.760164" lon="15.104892">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.395Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.761216" lon="15.104699">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.396Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.762132" lon="15.104055">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.397Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.763387" lon="15.101824">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.398Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.764676" lon="15.099678">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.399Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.765490" lon="15.098820">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.4Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.766457" lon="15.098004">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.401Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.767221" lon="15.098476">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.402Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.766830" lon="15.098176">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.403Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.766559" lon="15.097897">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.404Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.766593" lon="15.097725">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.405Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.766881" lon="15.097511">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.406Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.767458" lon="15.097296">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.407Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.767950" lon="15.097446">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.408Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.768391" lon="15.097296">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.409Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.769036" lon="15.097103">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.41Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.768934" lon="15.096631">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.411Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.769222" lon="15.096996">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.412Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.769366" lon="15.097382">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.413Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.769799" lon="15.098133">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.414Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.770969" lon="15.099013">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.415Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.771291" lon="15.099378">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.416Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.771868" lon="15.099421">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.417Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.773123" lon="15.100815">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.418Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.774463" lon="15.101008">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.419Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.774785" lon="15.101652">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.42Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.774735" lon="15.102510">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.421Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.773361" lon="15.102725">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.422Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.774463" lon="15.102510">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.423Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.774785" lon="15.102639">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.424Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.774853" lon="15.103261">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.425Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.774735" lon="15.104506">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.426Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.774904" lon="15.103176">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.427Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.774972" lon="15.101802">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.428Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.775125" lon="15.101931">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.429Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+      <trkpt lat="37.775532" lon="15.101995">
+        <ele>0</ele>
+        <time>2026-06-07T17:20:25.43Z</time>
+        <desc>chiesetta magazzeni fosse Santoro</desc>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
