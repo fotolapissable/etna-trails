@@ -20,7 +20,7 @@
       "categoria": "",
       "gpx_ufficiale": false,
       "foto": "foto/s01.jpg",
-      "gpx": "gpx/s01.gpx"
+      "gpx": "gpx": null
     },
     {
       "id": "s02",
@@ -42,7 +42,7 @@
       "categoria": "Escursionismo",
       "gpx_ufficiale": false,
       "foto": "foto/s02.jpg",
-      "gpx": "gpx/s02.gpx"
+      "gpx": "gpx": null
     },
     {
       "id": "s04",
@@ -86,7 +86,7 @@
       "categoria": "CAI 786",
       "gpx_ufficiale": true,
       "foto": "foto/s05.jpg",
-      "gpx": "gpx/s05.gpx"
+      "gpx": "gpx": null
     },
     {
       "id": "s06",
@@ -152,7 +152,7 @@
       "categoria": "Escursionismo",
       "gpx_ufficiale": false,
       "foto": "foto/s08.jpg",
-      "gpx": "gpx/s08.gpx"
+      "gpx": "gpx": null
     },
     {
       "id": "s09",
