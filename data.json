@@ -10,6 +10,8 @@
       "dislivello_m": 115,
       "quota_min_m": 1883,
       "quota_max_m": 1983,
+      "lat": 37.6960,
+"lng": 14.9996,
       "stagioni": ["mar","apr","mag","giu","lug","ago","set","ott"],
       "descrizione": {
         "it": "L'ingresso è direttamente dalla strada provinciale. Il sentiero è agevole, con panchine di sosta lungo il percorso. Cammini lungo il bordo del Silvestri inferiore e vedi il panorama verso la Dagala e i numerosi crateri spenti che arrivano fino a Nicolosi.",
@@ -30,6 +32,8 @@
       "dislivello_m": 130,
       "quota_min_m": 1090,
       "quota_max_m": 1200,
+      "lat": 37.7680,
+"lng": 15.1220,
       "stagioni": ["mar","apr","mag","giu","set","ott","nov"],
       "descrizione": {
         "it": "Un itinerario alla scoperta dei giganti verdi dell'Etna e dei resti vulcanici del 1928. Si parte dalla Chiesetta di Magazzeni (Sant'Alfio/Milo) a ~1090 m e si percorre una pista forestale sterrata, ben tracciata e agevole, fino alle Fosse e alle Bocche di Santoro a ~1200 m. Dislivello dolce, ideale per famiglie e appassionati di fotografia botanica in primavera e foliage autunnale.",
@@ -50,6 +54,8 @@
       "dislivello_m": 123,
       "quota_min_m": 1239,
       "quota_max_m": 1340,
+      "lat": 37.972834,
+"lng": 15.051733,
       "stagioni": ["mar","apr","mag","giu","set","ott","nov"],
       "descrizione": {
         "it": "Bosco di Malabotta, una delle faggete più belle della Sicilia. Castagni centenari, ottimo per la macro di insetti e funghi. In autunno i colori sono straordinari.",
@@ -70,6 +76,8 @@
       "dislivello_m": 200,
       "quota_min_m": 1850,
       "quota_max_m": 2050,
+      "lat": 37.7100,
+"lng": 15.0350,
       "stagioni": ["apr","mag","giu","lug","ago","set","ott"],
       "descrizione": {
         "it": "Affaccio panoramico mozzafiato sulla Valle del Bove, ideale per osservare le eruzioni in sicurezza. Percorso CAI 786, parte dalla SP92 presso il Rifugio Sapienza.",
@@ -90,6 +98,8 @@
       "dislivello_m": 68,
       "quota_min_m": 1655,
       "quota_max_m": 1723,
+      "lat": 37.7713,
+"lng": 15.0603,
       "stagioni": ["mar","apr","mag","giu","lug","ago","set","ott","nov"],
       "descrizione": {
         "it": "Anello geologico tra i famosi crateri a bottoniera formatisi nell'eruzione del 1865. Ideale per famiglie. Parte dal bivio del Rifugio Citelli.",
@@ -110,6 +120,8 @@
       "dislivello_m": 460,
       "quota_min_m": 1740,
       "quota_max_m": 2200,
+      "lat": 37.77418,
+"lng": 15.09215,
       "stagioni": ["mag","giu","lug","ago","set","ott"],
       "descrizione": {
         "it": "Attraversa una splendida pineta, tocca la grotta di scorrimento lavico Serracozzo e giunge sulla cresta della Valle del Bove. Percorso CAI 723.",
@@ -130,6 +142,8 @@
       "dislivello_m": 80,
       "quota_min_m": 1304,
       "quota_max_m": 1376,
+      "lat": 37.8680,
+"lng": 15.0300,
       "stagioni": ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"],
       "descrizione": {
         "it": "Si parte dalla Mareneve nei pressi del Demanio Giarrita / Spiazzo Cerrita. Superato il cancello forestale, si scende agevolmente fino a raggiungere l'area attrezzata e il Rifugio di Serra Buffa (noto anche come Antico Ovile).",
@@ -150,6 +164,8 @@
       "dislivello_m": 240,
       "quota_min_m": 705,
       "quota_max_m": 945,
+      "lat": 37.9560,
+"lng": 14.9864,
       "stagioni": ["mar","apr","mag","giu","ott"],
       "descrizione": {
         "it": "Il sentiero per la Cascata Palazzolo Angara è un percorso escursionistico di media difficoltà che scende dalle pendici dei Peloritani verso una delle cascate più alte e spettacolari dell'area Alcantara.",
@@ -170,6 +186,8 @@
       "dislivello_m": 140,
       "quota_min_m": 520,
       "quota_max_m": 700,
+      "lat": 37.91138,
+"lng": 15.05281,
       "stagioni": ["gen","feb","mar","lug","ago","set","ott","nov","dic"],
       "descrizione": {
         "it": "Sentiero lastricato in pietra lavica e poi sterrato sale sul fianco del cono: è ripido ma molto breve (400 m circa), richiede 10–15 minuti, e conduce rapidamente all'orlo del cratere, che si può percorrere ad anello con ampi panorami su Etna, Valle dell'Alcantara e i paesi vicini.",
