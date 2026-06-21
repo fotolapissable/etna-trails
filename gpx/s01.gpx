@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="https://dynamic.watch" version="1.1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name><![CDATA[Monti Silvestri]]></name>
+  </metadata>
+  <trk>
+    <name><![CDATA[Monti Silvestri]]></name>
+    <trkseg>
+        <trkpt lat="37.69918" lon="15.00398"><ele>1910</ele></trkpt>
+        <trkpt lat="37.69918" lon="15.00398"><ele>1910</ele></trkpt>
+        <trkpt lat="37.69946" lon="15.00395"><ele>1910</ele></trkpt>
+        <trkpt lat="37.69972" lon="15.0039"><ele>1919</ele></trkpt>
+        <trkpt lat="37.69991" lon="15.00388"><ele>1928</ele></trkpt>
+        <trkpt lat="37.70011" lon="15.00388"><ele>1937</ele></trkpt>
+        <trkpt lat="37.70057" lon="15.00392"><ele>1953</ele></trkpt>
+        <trkpt lat="37.70088" lon="15.00403"><ele>1961</ele></trkpt>
+        <trkpt lat="37.70114" lon="15.00418"><ele>1968</ele></trkpt>
+        <trkpt lat="37.70128" lon="15.00419"><ele>1973</ele></trkpt>
+        <trkpt lat="37.70142" lon="15.00414"><ele>1971</ele></trkpt>
+        <trkpt lat="37.70164" lon="15.00408"><ele>1969</ele></trkpt>
+        <trkpt lat="37.70167" lon="15.00407"><ele>1967</ele></trkpt>
+        <trkpt lat="37.70157" lon="15.00384"><ele>1967</ele></trkpt>
+        <trkpt lat="37.70148" lon="15.00361"><ele>1964</ele></trkpt>
+        <trkpt lat="37.70124" lon="15.00345"><ele>1959</ele></trkpt>
+        <trkpt lat="37.70097" lon="15.00335"><ele>1953</ele></trkpt>
+        <trkpt lat="37.70072" lon="15.00331"><ele>1948</ele></trkpt>
+        <trkpt lat="37.70048" lon="15.0033"><ele>1945</ele></trkpt>
+        <trkpt lat="37.70018" lon="15.00333"><ele>1940</ele></trkpt>
+        <trkpt lat="37.69993" lon="15.00346"><ele>1935</ele></trkpt>
+        <trkpt lat="37.69981" lon="15.00358"><ele>1930</ele></trkpt>
+        <trkpt lat="37.69968" lon="15.00363"><ele>1925</ele></trkpt>
+        <trkpt lat="37.69957" lon="15.00371"><ele>1920</ele></trkpt>
+        <trkpt lat="37.69937" lon="15.00383"><ele>1917</ele></trkpt>
+        <trkpt lat="37.69918" lon="15.00398"><ele>1913</ele></trkpt>
+        <trkpt lat="37.69946" lon="15.00395"><ele>1909</ele></trkpt>
+        <trkpt lat="37.69972" lon="15.0039"><ele>1919</ele></trkpt>
+        <trkpt lat="37.69991" lon="15.00388"><ele>1928</ele></trkpt>
+        <trkpt lat="37.70011" lon="15.00388"><ele>1937</ele></trkpt>
+        <trkpt lat="37.70057" lon="15.00392"><ele>1953</ele></trkpt>
+        <trkpt lat="37.70088" lon="15.00403"><ele>1961</ele></trkpt>
+        <trkpt lat="37.70114" lon="15.00418"><ele>1968</ele></trkpt>
+        <trkpt lat="37.70104" lon="15.00422"><ele>1975</ele></trkpt>
+        <trkpt lat="37.70078" lon="15.00435"><ele>1975</ele></trkpt>
+        <trkpt lat="37.70073" lon="15.00438"><ele>1975</ele></trkpt>
+        <trkpt lat="37.70063" lon="15.00453"><ele>1975</ele></trkpt>
+        <trkpt lat="37.7006" lon="15.00465"><ele>1979</ele></trkpt>
+        <trkpt lat="37.70058" lon="15.00473"><ele>1983</ele></trkpt>
+        <trkpt lat="37.70056" lon="15.00491"><ele>1986</ele></trkpt>
+        <trkpt lat="37.70056" lon="15.00511"><ele>1990</ele></trkpt>
+        <trkpt lat="37.70059" lon="15.00523"><ele>1990</ele></trkpt>
+        <trkpt lat="37.70064" lon="15.00531"><ele>1990</ele></trkpt>
+        <trkpt lat="37.70072" lon="15.00536"><ele>1990</ele></trkpt>
+        <trkpt lat="37.70088" lon="15.00543"><ele>1990</ele></trkpt>
+        <trkpt lat="37.70107" lon="15.00549"><ele>1989</ele></trkpt>
+        <trkpt lat="37.7012" lon="15.00549"><ele>1989</ele></trkpt>
+        <trkpt lat="37.70134" lon="15.00545"><ele>1986</ele></trkpt>
+        <trkpt lat="37.70146" lon="15.00544"><ele>1984</ele></trkpt>
+        <trkpt lat="37.70153" lon="15.00543"><ele>1981</ele></trkpt>
+        <trkpt lat="37.70173" lon="15.00537"><ele>1978</ele></trkpt>
+        <trkpt lat="37.70206" lon="15.00517"><ele>1977</ele></trkpt>
+        <trkpt lat="37.70226" lon="15.00507"><ele>1977</ele></trkpt>
+        <trkpt lat="37.70238" lon="15.00495"><ele>1976</ele></trkpt>
+        <trkpt lat="37.70246" lon="15.00488"><ele>1977</ele></trkpt>
+        <trkpt lat="37.70251" lon="15.0048"><ele>1977</ele></trkpt>
+        <trkpt lat="37.70259" lon="15.00471"><ele>1977</ele></trkpt>
+        <trkpt lat="37.70264" lon="15.00448"><ele>1975</ele></trkpt>
+        <trkpt lat="37.7026" lon="15.00426"><ele>1973</ele></trkpt>
+        <trkpt lat="37.70258" lon="15.00423"><ele>1970</ele></trkpt>
+        <trkpt lat="37.7025" lon="15.00414"><ele>1968</ele></trkpt>
+        <trkpt lat="37.70241" lon="15.00404"><ele>1968</ele></trkpt>
+        <trkpt lat="37.70215" lon="15.00397"><ele>1968</ele></trkpt>
+        <trkpt lat="37.70192" lon="15.00401"><ele>1968</ele></trkpt>
+        <trkpt lat="37.70167" lon="15.00407"><ele>1968</ele></trkpt>
+        <trkpt lat="37.70157" lon="15.00384"><ele>1967</ele></trkpt>
+        <trkpt lat="37.70148" lon="15.00361"><ele>1964</ele></trkpt>
+        <trkpt lat="37.70124" lon="15.00345"><ele>1959</ele></trkpt>
+        <trkpt lat="37.70097" lon="15.00335"><ele>1953</ele></trkpt>
+        <trkpt lat="37.70072" lon="15.00331"><ele>1948</ele></trkpt>
+        <trkpt lat="37.70048" lon="15.0033"><ele>1945</ele></trkpt>
+        <trkpt lat="37.70018" lon="15.00333"><ele>1940</ele></trkpt>
+        <trkpt lat="37.69993" lon="15.00346"><ele>1935</ele></trkpt>
+        <trkpt lat="37.69981" lon="15.00358"><ele>1930</ele></trkpt>
+        <trkpt lat="37.69968" lon="15.00363"><ele>1925</ele></trkpt>
+        <trkpt lat="37.69957" lon="15.00371"><ele>1920</ele></trkpt>
+        <trkpt lat="37.69937" lon="15.00383"><ele>1917</ele></trkpt>
+        <trkpt lat="37.69918" lon="15.00398"><ele>1913</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>
