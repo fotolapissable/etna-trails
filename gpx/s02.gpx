@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="https://dynamic.watch" version="1.1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name><![CDATA[chiesetta magazzeni fosse Santoro]]></name>
+  </metadata>
+  <trk>
+    <name><![CDATA[chiesetta magazzeni fosse Santoro]]></name>
+    <trkseg>
+        <trkpt lat="37.760164" lon="15.104892"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.761216" lon="15.104699"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.762132" lon="15.104055"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.763387" lon="15.101824"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.764676" lon="15.099678"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.76549" lon="15.09882"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.766457" lon="15.098004"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.767221" lon="15.098476"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.76683" lon="15.098176"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.766559" lon="15.097897"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.766593" lon="15.097725"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.766881" lon="15.097511"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.767458" lon="15.097296"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.76795" lon="15.097446"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.768391" lon="15.097296"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.769036" lon="15.097103"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.768934" lon="15.096631"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.769222" lon="15.096996"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.769366" lon="15.097382"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.769799" lon="15.098133"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.770969" lon="15.099013"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.771291" lon="15.099378"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.771868" lon="15.099421"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.773123" lon="15.100815"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.774463" lon="15.101008"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.774785" lon="15.101652"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.774735" lon="15.10251"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.773361" lon="15.102725"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.774463" lon="15.10251"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.774785" lon="15.102639"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.774853" lon="15.103261"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.774735" lon="15.104506"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.774904" lon="15.103176"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.774972" lon="15.101802"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.775125" lon="15.101931"><ele>0.0</ele></trkpt>
+        <trkpt lat="37.775532" lon="15.101995"><ele>0.0</ele></trkpt>
+    </trkseg>
+  </trk>
+  <wpt lat="37.731637" lon="15.211354">
+    <name>Porto di R</name>
+  </wpt>
+  <wpt lat="37.73302" lon="15.20303">
+    <name>casa</name>
+  </wpt>
+  <wpt lat="37.732703" lon="15.208956">
+    <name>braccio po</name>
+  </wpt>
+  <wpt lat="37.662705" lon="15.19223">
+    <name>orazio cas</name>
+  </wpt>
+  <wpt lat="37.519724" lon="15.109325">
+    <name>Spiaggia S</name>
+  </wpt>
+  <wpt lat="37.515749" lon="15.083997">
+    <name>Orto Botan</name>
+  </wpt>
+  <wpt lat="37.502487" lon="15.08819">
+    <name>Cattedrale</name>
+  </wpt>
+  <wpt lat="37.505869" lon="15.089679">
+    <name>San Berill</name>
+  </wpt>
+  <wpt lat="37.506532" lon="15.088614">
+    <name>Chiesa Par</name>
+  </wpt>
+  <wpt lat="37.507514" lon="15.086561">
+    <name>Piazza Ste</name>
+  </wpt>
+  <wpt lat="37.510294" lon="15.089211">
+    <name>Seltz Al L</name>
+  </wpt>
+  <wpt lat="37.510048" lon="15.088569">
+    <name>Basilica S</name>
+  </wpt>
+  <wpt lat="37.510234" lon="15.084938">
+    <name>Ufficio Po</name>
+  </wpt>
+  <wpt lat="37.512314" lon="15.083421">
+    <name>Bagno Pubb</name>
+  </wpt>
+  <wpt lat="37.509946" lon="15.085758">
+    <name>Villa Bell</name>
+  </wpt>
+  <wpt lat="37.510466" lon="15.064614">
+    <name>Chiesa Par</name>
+  </wpt>
+  <wpt lat="37.510837" lon="15.06926">
+    <name>Piazza Due</name>
+  </wpt>
+  <wpt lat="37.511179" lon="15.070715">
+    <name>Villa dell</name>
+  </wpt>
+  <wpt lat="37.51292" lon="15.075348">
+    <name>Accademia </name>
+  </wpt>
+  <wpt lat="37.512568" lon="15.077001">
+    <name>Salesiani </name>
+  </wpt>
+  <wpt lat="37.51303" lon="15.079097">
+    <name>Chiesa Par</name>
+  </wpt>
+  <wpt lat="37.513482" lon="15.080172">
+    <name>Ipogeo Rom</name>
+  </wpt>
+  <wpt lat="37.515495" lon="15.088388">
+    <name>Liceo Ginn</name>
+  </wpt>
+  <wpt lat="37.503687" lon="15.081146">
+    <name>Università</name>
+  </wpt>
+  <wpt lat="37.503374" lon="15.093767">
+    <name>Palazzo Pe</name>
+  </wpt>
+  <wpt lat="37.50346" lon="15.094241">
+    <name>Suore Fran</name>
+  </wpt>
+  <wpt lat="37.502648" lon="15.094226">
+    <name>Islamic Ce</name>
+  </wpt>
+  <wpt lat="37.501844" lon="15.094111">
+    <name>Teatro San</name>
+  </wpt>
+  <wpt lat="37.500673" lon="15.093336">
+    <name>Vecchia Do</name>
+  </wpt>
+  <wpt lat="37.50142" lon="15.090779">
+    <name>Archi dell</name>
+  </wpt>
+  <wpt lat="37.502366" lon="15.090648">
+    <name>Palazzo Bi</name>
+  </wpt>
+  <wpt lat="37.501995" lon="15.09096">
+    <name>Museo Bisc</name>
+  </wpt>
+  <wpt lat="37.502972" lon="15.089874">
+    <name>Chiesa di </name>
+  </wpt>
+  <wpt lat="37.503056" lon="15.090516">
+    <name>Palazzo Pl</name>
+  </wpt>
+  <wpt lat="37.503182" lon="15.090642">
+    <name>Palazzo Va</name>
+  </wpt>
+  <wpt lat="37.504964" lon="15.088757">
+    <name>Chiesa di </name>
+  </wpt>
+  <wpt lat="37.505287" lon="15.08793">
+    <name>Palazzo Ma</name>
+  </wpt>
+  <wpt lat="37.506523" lon="15.086176">
+    <name>Chiesa di </name>
+  </wpt>
+  <wpt lat="37.507659" lon="15.085695">
+    <name>Palazzo Te</name>
+  </wpt>
+  <wpt lat="37.507394" lon="15.085437">
+    <name>Anfiteatro</name>
+  </wpt>
+  <wpt lat="37.507295" lon="15.084796">
+    <name>Chiesa San</name>
+  </wpt>
+  <wpt lat="37.509063" lon="15.083496">
+    <name>Veduta di </name>
+  </wpt>
+  <wpt lat="37.508659" lon="15.079941">
+    <name>Chiesa Di </name>
+  </wpt>
+  <wpt lat="37.506781" lon="15.079434">
+    <name>Bastione d</name>
+  </wpt>
+  <wpt lat="37.506897" lon="15.081312">
+    <name>Chiesa Cat</name>
+  </wpt>
+  <wpt lat="37.5051" lon="15.080143">
+    <name>Museo di A</name>
+  </wpt>
+  <wpt lat="37.504836" lon="15.079589">
+    <name>Officine C</name>
+  </wpt>
+  <wpt lat="37.504699" lon="15.080049">
+    <name>Giardino d</name>
+  </wpt>
+  <wpt lat="37.504194" lon="15.080613">
+    <name>Chiesa di </name>
+  </wpt>
+  <wpt lat="37.503973" lon="15.079834">
+    <name>University</name>
+  </wpt>
+  <wpt lat="37.503033" lon="15.080149">
+    <name>Sant&#x27;Agata</name>
+  </wpt>
+  <wpt lat="37.504087" lon="15.074803">
+    <name>Chiesa Par</name>
+  </wpt>
+  <wpt lat="37.501279" lon="15.077899">
+    <name>Chiesa dei</name>
+  </wpt>
+  <wpt lat="37.501663" lon="15.079871">
+    <name>Chiesa di </name>
+  </wpt>
+  <wpt lat="37.503481" lon="15.08073">
+    <name>Balneum Ro</name>
+  </wpt>
+  <wpt lat="37.504074" lon="15.082761">
+    <name>Complesso </name>
+  </wpt>
+  <wpt lat="37.504541" lon="15.085188">
+    <name>Ex chiostr</name>
+  </wpt>
+  <wpt lat="37.504883" lon="15.085716">
+    <name>Biblioteca</name>
+  </wpt>
+  <wpt lat="37.504218" lon="15.084934">
+    <name>Chiesa di </name>
+  </wpt>
+  <wpt lat="37.504217" lon="15.084723">
+    <name>Collegio d</name>
+  </wpt>
+  <wpt lat="37.503702" lon="15.084136">
+    <name>Monastero </name>
+  </wpt>
+  <wpt lat="37.503333" lon="15.084686">
+    <name>Chiesa di </name>
+  </wpt>
+  <wpt lat="37.502568" lon="15.084456">
+    <name>Casa Natal</name>
+  </wpt>
+  <wpt lat="37.502782" lon="15.084948">
+    <name>Chiesa di </name>
+  </wpt>
+  <wpt lat="37.50372" lon="15.087772">
+    <name>Palazzo Sa</name>
+  </wpt>
+  <wpt lat="37.503269" lon="15.087894">
+    <name>Suore Pie </name>
+  </wpt>
+  <wpt lat="37.50298" lon="15.088616">
+    <name>Informazio</name>
+  </wpt>
+  <wpt lat="37.502817" lon="15.08862">
+    <name>Curia Arci</name>
+  </wpt>
+  <wpt lat="37.502377" lon="15.087985">
+    <name>Tomba di V</name>
+  </wpt>
+  <wpt lat="37.50237" lon="15.088632">
+    <name>Salone Bon</name>
+  </wpt>
+  <wpt lat="37.501172" lon="15.087701">
+    <name>Parco</name>
+  </wpt>
+  <wpt lat="37.502037" lon="15.087014">
+    <name>Fontana de</name>
+  </wpt>
+  <wpt lat="37.503564" lon="15.086498">
+    <name>Università</name>
+  </wpt>
+  <wpt lat="37.504206" lon="15.090006">
+    <name>Teatro Mas</name>
+  </wpt>
+  <wpt lat="37.502985" lon="15.088141">
+    <name>Chiesa del</name>
+  </wpt>
+  <wpt lat="37.503059" lon="15.094541">
+    <name>Casa Vacca</name>
+  </wpt>
+  <wpt lat="37.502366" lon="15.090648">
+    <name>Palazzo Bi</name>
+  </wpt>
+  <wpt lat="37.503056" lon="15.090516">
+    <name>Palazzo Pl</name>
+  </wpt>
+  <wpt lat="37.501748" lon="15.087123">
+    <name>Pescheria </name>
+  </wpt>
+  <wpt lat="37.504206" lon="15.090006">
+    <name>Teatro Mas</name>
+  </wpt>
+  <wpt lat="37.50631" lon="15.096111">
+    <name>Consolato </name>
+  </wpt>
+  <wpt lat="37.506787" lon="15.099913">
+    <name>Catania Ce</name>
+  </wpt>
+  <wpt lat="37.508336" lon="15.098176">
+    <name>Stazione A</name>
+  </wpt>
+  <wpt lat="37.508755" lon="15.101016">
+    <name>Museo Dell</name>
+  </wpt>
+  <wpt lat="37.509505" lon="15.101826">
+    <name>Le Ciminie</name>
+  </wpt>
+  <wpt lat="37.509049" lon="15.102998">
+    <name>Museo del </name>
+  </wpt>
+  <wpt lat="37.514686" lon="15.106584">
+    <name>Porto Ross</name>
+  </wpt>
+  <wpt lat="37.519089" lon="15.105478">
+    <name>Chiesa Par</name>
+  </wpt>
+  <wpt lat="37.515091" lon="15.092774">
+    <name>Tribunale </name>
+  </wpt>
+  <wpt lat="37.714619" lon="15.213286">
+    <name>Torre Modò</name>
+  </wpt>
+  <wpt lat="37.736368" lon="15.204877">
+    <name>tre massi</name>
+  </wpt>
+  <wpt lat="37.731553" lon="15.209514">
+    <name>marina di </name>
+  </wpt>
+  <wpt lat="37.735019" lon="15.205212">
+    <name>cesare</name>
+  </wpt>
+  <wpt lat="37.733873" lon="15.205647">
+    <name>spiagetta </name>
+  </wpt>
+  <wpt lat="37.687047" lon="15.196366">
+    <name>strada 9 p</name>
+  </wpt>
+  <wpt lat="37.727425" lon="15.210121">
+    <name>porticciol</name>
+  </wpt>
+  <wpt lat="37.732456" lon="15.206323">
+    <name>molo disme</name>
+  </wpt>
+  <wpt lat="37.64838" lon="15.193298">
+    <name>porto staz</name>
+  </wpt>
+  <wpt lat="37.648286" lon="15.192053">
+    <name>stazzo</name>
+  </wpt>
+  <wpt lat="37.661574" lon="15.196534">
+    <name>pozzillo</name>
+  </wpt>
+  <wpt lat="37.661049" lon="15.196382">
+    <name>pozzillo</name>
+  </wpt>
+  <wpt lat="37.640152" lon="15.183022">
+    <name>santa tecl</name>
+  </wpt>
+  <wpt lat="37.618544" lon="15.174179">
+    <name>santa mari</name>
+  </wpt>
+  <wpt lat="37.619532" lon="15.169363">
+    <name>belvedere</name>
+  </wpt>
+  <wpt lat="37.796919" lon="15.101663">
+    <name>monte Cris</name>
+  </wpt>
+  <wpt lat="37.849544" lon="14.967143">
+    <name>25 Gen 202</name>
+  </wpt>
+  <wpt lat="37.951587" lon="14.841043">
+    <name>25 Gen 202</name>
+  </wpt>
+  <wpt lat="37.913039" lon="14.872452">
+    <name>25 Gen 202</name>
+  </wpt>
+  <wpt lat="37.832129" lon="14.98108">
+    <name>26 Gen 202</name>
+  </wpt>
+  <wpt lat="37.71288" lon="15.180746">
+    <name>2 Feb 2024</name>
+  </wpt>
+  <wpt lat="37.894781" lon="14.875158">
+    <name>camisa</name>
+  </wpt>
+  <wpt lat="37.925611" lon="14.971848">
+    <name>santa Mari</name>
+  </wpt>
+  <wpt lat="37.918781" lon="14.954729">
+    <name>cancello s</name>
+  </wpt>
+  <wpt lat="37.902998" lon="14.942662">
+    <name>santa mari</name>
+  </wpt>
+  <wpt lat="37.929776" lon="14.938216">
+    <name>9 Feb 10:2</name>
+  </wpt>
+  <wpt lat="37.929764" lon="14.938215">
+    <name>9 Feb 10:2</name>
+  </wpt>
+  <wpt lat="37.790807" lon="15.100105">
+    <name>16 Feb 202</name>
+  </wpt>
+  <wpt lat="37.790806" lon="15.100105">
+    <name>16 Feb 202</name>
+  </wpt>
+  <wpt lat="37.819022" lon="15.104364">
+    <name>16 Feb 202</name>
+  </wpt>
+  <wpt lat="37.908956" lon="14.886955">
+    <name>31 Mag 202</name>
+  </wpt>
+  <wpt lat="40.91336" lon="-74.082796">
+    <name>Sara Riani</name>
+  </wpt>
+  <wpt lat="40.910853" lon="-74.088598">
+    <name>entrata Pa</name>
+  </wpt>
+  <wpt lat="40.91645" lon="-74.089803">
+    <name>rocchelle </name>
+  </wpt>
+  <wpt lat="40.912847" lon="-74.093929">
+    <name>rocchelle </name>
+  </wpt>
+  <wpt lat="40.91029" lon="-74.086283">
+    <name>Rochelle p</name>
+  </wpt>
+  <wpt lat="40.913217" lon="-74.0831">
+    <name>casa krm r</name>
+  </wpt>
+  <wpt lat="37.661281" lon="15.196791">
+    <name>Pozzillo</name>
+  </wpt>
+  <wpt lat="37.647324" lon="15.193503">
+    <name>porto di S</name>
+  </wpt>
+  <wpt lat="37.87985" lon="14.95322">
+    <name>lago trear</name>
+  </wpt>
+</gpx>
