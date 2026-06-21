@@ -373,6 +373,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   min-width:70px;text-transform:uppercase;padding-top:2px}
 .extra-val{color:var(--ash-light);line-height:1.4;flex:1}
 
+/* Disclaimer */
+#detail-disclaimer{margin-top:14px;padding:8px 10px;border-top:1px solid rgba(201,168,76,.1);
+  font-size:9px;line-height:1.5;color:rgba(138,122,106,.7);font-family:var(--font-m);letter-spacing:.3px}
+
 /* GPX controls */
 #gpx-ctrl{margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,168,76,.1)}
 .gpx-btn-row{display:flex;gap:6px;flex-wrap:wrap}
@@ -1544,6 +1548,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
             <button id="gpx-url-load" onclick="loadGpxUrl()">↓ <span data-it="Carica" data-en="Load">Carica</span></button>
           </div>
         </div>
+        <div id="detail-disclaimer" data-it="⚠ Le informazioni su sentieri, rifugi e bivacchi sono fornite a titolo indicativo. Condizioni, accessi, servizi e disponibilità possono variare senza preavviso. L'autore declina ogni responsabilità per eventuali errori, omissioni o modifiche intervenute. Verificare sempre le condizioni aggiornate prima di partire." data-en="⚠ Trail, refuge and bivouac information is provided for reference only. Conditions, access, services and availability may change without notice. The author accepts no liability for errors, omissions or subsequent changes. Always verify current conditions before setting out.">⚠ Le informazioni su sentieri, rifugi e bivacchi sono fornite a titolo indicativo. Condizioni, accessi, servizi e disponibilità possono variare senza preavviso. L'autore declina ogni responsabilità per eventuali errori, omissioni o modifiche intervenute. Verificare sempre le condizioni aggiornate prima di partire.</div>
       </div>
     </div>
 
@@ -1780,7 +1785,7 @@ function renderRifugi(list) {
       <div class="rc-row">
         <span class="stars">${'★'.repeat(r.stelle||1)}</span>
         <span class="rc-badge ${ac}">${acl}</span>
-        <span class="rc-stat">🏔 <span>${r.quota}m</span></span>
+        <span class="rc-stat">🏔 <span>${r.quota_m}m</span></span>
         <span class="rc-stat">📍 <span>${r.km_da_riposto}km</span></span>
         ${r.camino?'<span class="rc-stat">🔥 <span>Camino</span></span>':''}
       </div>
@@ -1829,7 +1834,7 @@ function renderMarkers() {
     const m = L.marker([r.lat, r.lng], {
       icon: L.divIcon({ className:'', html:`<div class="rm" id="mk-r-${r.id}">🏠</div>`, iconSize:[16,16], iconAnchor:[8,8] })
     }).addTo(map);
-    m.bindPopup(`<b style="color:var(--gold)">${r.nome}</b><br>${r.quota}m`);
+    m.bindPopup(`<b style="color:var(--gold)">${r.nome}</b><br>${r.quota_m}m`);
     m.on('click', () => { setTab('rifugi'); selectItem('r', r.id); showDetail('r', r.id); });
     mkrs.r[r.id] = m;
   });
@@ -1871,7 +1876,7 @@ function showDetail(type, id) {
     lat=item.lat; lng=item.lng; phone=item.telefono; foto=item.foto;
     desc = item.note || '';
     const rl = lang==='it'?['QUOTA','KM DA RIPOSTO','COSTO','ACCESSO']:['ELEVATION','KM FROM RIPOSTO','COST','ACCESS'];
-    const rv = [[item.quota,'m'],[item.km_da_riposto,'km'],[item.costo,''],[item.accesso,'']];
+    const rv = [[item.quota_m,'m'],[item.km_da_riposto,'km'],[item.costo,''],[item.accesso,'']];
     stats = rv.map((v,i) => `<div class="dstat"><div class="dstat-lbl">${rl[i]}</div><div class="dstat-val" style="font-size:${i>=2?'10':'15'}px">${v[0]||''}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
     extra = `<h4>${lang==='it'?'DETTAGLI':'DETAILS'}</h4>
       <div class="extra-row"><span class="extra-lbl">Tipo</span><span class="extra-val">${item.tipo||''}</span></div>
@@ -1903,6 +1908,8 @@ function showDetail(type, id) {
   document.getElementById('detail-stagioni').innerHTML = stagioni;
   document.getElementById('detail-extra').innerHTML = extra;
   document.getElementById('gpx-ctrl').style.display = showGpx ? 'block' : 'none';
+  const disc = document.getElementById('detail-disclaimer');
+  disc.textContent = disc.dataset[lang==='it'?'it':'en'];
 
   // Actions
   const act = document.getElementById('detail-actions');
