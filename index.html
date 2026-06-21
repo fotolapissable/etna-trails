@@ -1152,7 +1152,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
             </div>
           </div>
           <div id="ingv-desc" style="display:none"></div>
-          <div id="ingv-unverified" style="display:none;margin:4px 0 2px;padding:3px 8px;border-radius:4px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:10px;letter-spacing:.04em"></div>
           <div id="ingv-footer" style="display:none">
             <span id="ingv-updated"></span>
             <a id="ingv-link" href="https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/" target="_blank" rel="noopener" data-it="Protezione Civile →" data-en="Civil Protection →">Protezione Civile →</a>
@@ -1637,7 +1636,7 @@ const MESI_EN = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','no
 let lang = 'it';
 let DB = {};
 let activeTab = 'sentieri';
-let activeDiffs = new Set(['T','T/E','E','EE']);
+let activeDiffs = new Set(['T','E','EE']);
 let mkrs = { s:{}, r:{} };
 let lyrVis = { s:true, r:true };
 let activeItem = null;
@@ -1781,7 +1780,7 @@ function renderRifugi(list) {
       <div class="rc-row">
         <span class="stars">${'★'.repeat(r.stelle||1)}</span>
         <span class="rc-badge ${ac}">${acl}</span>
-        <span class="rc-stat">🏔 <span>${r.quota_m}m</span></span>
+        <span class="rc-stat">🏔 <span>${r.quota}m</span></span>
         <span class="rc-stat">📍 <span>${r.km_da_riposto}km</span></span>
         ${r.camino?'<span class="rc-stat">🔥 <span>Camino</span></span>':''}
       </div>
@@ -1830,7 +1829,7 @@ function renderMarkers() {
     const m = L.marker([r.lat, r.lng], {
       icon: L.divIcon({ className:'', html:`<div class="rm" id="mk-r-${r.id}">🏠</div>`, iconSize:[16,16], iconAnchor:[8,8] })
     }).addTo(map);
-    m.bindPopup(`<b style="color:var(--gold)">${r.nome}</b><br>${r.quota_m}m`);
+    m.bindPopup(`<b style="color:var(--gold)">${r.nome}</b><br>${r.quota}m`);
     m.on('click', () => { setTab('rifugi'); selectItem('r', r.id); showDetail('r', r.id); });
     mkrs.r[r.id] = m;
   });
@@ -1863,7 +1862,7 @@ function showDetail(type, id) {
         item.punti_interesse.map(p => `<div class="poi-item"><span class="poi-quota">▲${p.quota}m</span><span>${p.nome[lang]}</span></div>`).join('');
     const mesi = lang==='it'?MESI_IT:MESI_EN;
     stagioni = `<h4>${lang==='it'?'PERIODO CONSIGLIATO':'BEST SEASON'}</h4><div class="mesi-grid">` +
-      mesi.map((m,i) => `<div class="mese ${item.stagioni&&item.stagioni.includes(MESI_IT[i])?'ok':''}">${m.toUpperCase()}</div>`).join('') + '</div>';
+      mesi.map((m,i) => `<div class="mese ${item.stagione&&item.stagione.includes(MESI_IT[i])?'ok':''}">${m.toUpperCase()}</div>`).join('') + '</div>';
   } else if(type==='r') {
     item = (DB.rifugi||[]).find(x => x.id===id);
     if(!item) return;
@@ -1970,7 +1969,7 @@ function closeDetail() {
 function parseGpx(xml) {
   const doc = new DOMParser().parseFromString(xml, 'application/xml');
   if(doc.querySelector('parsererror')) throw new Error('GPX non valido');
-  const pts = doc.querySelectorAll('trkpt,rtept,wpt');
+  const pts = doc.querySelectorAll('trkpt,rtept');
   if(!pts.length) throw new Error('Nessun punto');
   let dist=0, prev=null, points=[];
   pts.forEach(pt => {
@@ -2661,12 +2660,8 @@ function renderIngvAlert(levelKey, unverified = false) {
 
   document.getElementById('ingv-level-name').textContent = lang === 'it' ? level.it : level.en;
   document.getElementById('ingv-level-it').textContent = lang === 'it' ? 'Livello di allerta' : 'Alert level';
-  document.getElementById('ingv-desc').textContent = lang === 'it' ? level.descIt : level.descEn;
-  const unverifiedEl = document.getElementById('ingv-unverified');
-  if(unverifiedEl) {
-    unverifiedEl.style.display = unverified ? 'block' : 'none';
-    unverifiedEl.textContent = lang === 'it' ? '⚠ Dato non verificato — proxy non raggiungibile' : '⚠ Unverified data — proxy unreachable';
-  }
+  document.getElementById('ingv-desc').textContent = (lang === 'it' ? level.descIt : level.descEn)
+    + (unverified ? (lang === 'it' ? ' (Dato non verificato — connessione assente)' : ' (Unverified — no connection)') : '');
 
   const now = new Date();
   const timeStr = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'});
