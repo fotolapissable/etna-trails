@@ -207,7 +207,7 @@
       },
       "zona": "nord-est",
       "difficolta": "T",
-      "distanza_km": null,
+      "distanza_km": 1.0,
       "durata_h": 0.3,
       "dislivello_m": 72,
       "quota_min_m": 1304,
