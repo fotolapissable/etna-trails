@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="https://dynamic.watch" version="1.1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name><![CDATA[Rifugio Buffa]]></name>
+  </metadata>
+  <trk>
+    <name><![CDATA[Rifugio Buffa]]></name>
+    <trkseg>
+        <trkpt lat="37.77418" lon="15.09215"><ele>1376</ele></trkpt>
+        <trkpt lat="37.77424" lon="15.09234"><ele>1376</ele></trkpt>
+        <trkpt lat="37.77428" lon="15.0927"><ele>1376</ele></trkpt>
+        <trkpt lat="37.77427" lon="15.0929"><ele>1376</ele></trkpt>
+        <trkpt lat="37.77429" lon="15.09308"><ele>1374</ele></trkpt>
+        <trkpt lat="37.77425" lon="15.09326"><ele>1373</ele></trkpt>
+        <trkpt lat="37.77421" lon="15.09345"><ele>1371</ele></trkpt>
+        <trkpt lat="37.77418" lon="15.09361"><ele>1369</ele></trkpt>
+        <trkpt lat="37.77421" lon="15.09371"><ele>1369</ele></trkpt>
+        <trkpt lat="37.77427" lon="15.09377"><ele>1367</ele></trkpt>
+        <trkpt lat="37.77439" lon="15.09382"><ele>1365</ele></trkpt>
+        <trkpt lat="37.77448" lon="15.09384"><ele>1362</ele></trkpt>
+        <trkpt lat="37.77458" lon="15.09381"><ele>1360</ele></trkpt>
+        <trkpt lat="37.77487" lon="15.09367"><ele>1361</ele></trkpt>
+        <trkpt lat="37.77503" lon="15.09358"><ele>1363</ele></trkpt>
+        <trkpt lat="37.77513" lon="15.09354"><ele>1364</ele></trkpt>
+        <trkpt lat="37.77522" lon="15.09355"><ele>1365</ele></trkpt>
+        <trkpt lat="37.77535" lon="15.09359"><ele>1365</ele></trkpt>
+        <trkpt lat="37.77543" lon="15.09362"><ele>1367</ele></trkpt>
+        <trkpt lat="37.77563" lon="15.09377"><ele>1367</ele></trkpt>
+        <trkpt lat="37.77581" lon="15.09385"><ele>1367</ele></trkpt>
+        <trkpt lat="37.77598" lon="15.09395"><ele>1367</ele></trkpt>
+        <trkpt lat="37.77605" lon="15.0941"><ele>1365</ele></trkpt>
+        <trkpt lat="37.77605" lon="15.09421"><ele>1365</ele></trkpt>
+        <trkpt lat="37.77601" lon="15.09435"><ele>1365</ele></trkpt>
+        <trkpt lat="37.77601" lon="15.09447"><ele>1365</ele></trkpt>
+        <trkpt lat="37.77602" lon="15.09476"><ele>1363</ele></trkpt>
+        <trkpt lat="37.77599" lon="15.09495"><ele>1362</ele></trkpt>
+        <trkpt lat="37.77597" lon="15.09526"><ele>1360</ele></trkpt>
+        <trkpt lat="37.77597" lon="15.09539"><ele>1358</ele></trkpt>
+        <trkpt lat="37.77604" lon="15.09564"><ele>1356</ele></trkpt>
+        <trkpt lat="37.77616" lon="15.09583"><ele>1354</ele></trkpt>
+        <trkpt lat="37.77628" lon="15.09589"><ele>1351</ele></trkpt>
+        <trkpt lat="37.77662" lon="15.09592"><ele>1348</ele></trkpt>
+        <trkpt lat="37.77684" lon="15.09602"><ele>1346</ele></trkpt>
+        <trkpt lat="37.77703" lon="15.096"><ele>1345</ele></trkpt>
+        <trkpt lat="37.7773" lon="15.09601"><ele>1343</ele></trkpt>
+        <trkpt lat="37.77749" lon="15.09613"><ele>1342</ele></trkpt>
+        <trkpt lat="37.77753" lon="15.09626"><ele>1337</ele></trkpt>
+        <trkpt lat="37.77753" lon="15.09638"><ele>1333</ele></trkpt>
+        <trkpt lat="37.77758" lon="15.0965"><ele>1331</ele></trkpt>
+        <trkpt lat="37.77766" lon="15.09661"><ele>1328</ele></trkpt>
+        <trkpt lat="37.77773" lon="15.09667"><ele>1328</ele></trkpt>
+        <trkpt lat="37.77781" lon="15.09685"><ele>1328</ele></trkpt>
+        <trkpt lat="37.7779" lon="15.09694"><ele>1328</ele></trkpt>
+        <trkpt lat="37.77803" lon="15.09698"><ele>1327</ele></trkpt>
+        <trkpt lat="37.77821" lon="15.09709"><ele>1325</ele></trkpt>
+        <trkpt lat="37.77827" lon="15.09719"><ele>1322</ele></trkpt>
+        <trkpt lat="37.77828" lon="15.09725"><ele>1320</ele></trkpt>
+        <trkpt lat="37.77827" lon="15.09738"><ele>1318</ele></trkpt>
+        <trkpt lat="37.77839" lon="15.09783"><ele>1318</ele></trkpt>
+        <trkpt lat="37.77845" lon="15.0979"><ele>1318</ele></trkpt>
+        <trkpt lat="37.77852" lon="15.09805"><ele>1317</ele></trkpt>
+        <trkpt lat="37.77859" lon="15.09826"><ele>1316</ele></trkpt>
+        <trkpt lat="37.77866" lon="15.09837"><ele>1315</ele></trkpt>
+        <trkpt lat="37.77877" lon="15.09867"><ele>1313</ele></trkpt>
+        <trkpt lat="37.77892" lon="15.09902"><ele>1310</ele></trkpt>
+        <trkpt lat="37.77898" lon="15.09916"><ele>1308</ele></trkpt>
+        <trkpt lat="37.77897" lon="15.09923"><ele>1305</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>
