@@ -374,8 +374,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 .extra-val{color:var(--ash-light);line-height:1.4;flex:1}
 
 /* Disclaimer */
-#detail-disclaimer{margin-top:14px;padding:8px 10px;border-top:1px solid rgba(201,168,76,.1);
-  font-size:9px;line-height:1.5;color:rgba(138,122,106,.7);font-family:var(--font-m);letter-spacing:.3px}
+#detail-disclaimer{position:sticky;bottom:0;padding:6px 16px;
+  background:rgba(10,4,0,.97);border-top:1px solid rgba(201,168,76,.12);
+  font-size:8.5px;line-height:1.4;color:rgba(138,122,106,.65);font-family:var(--font-m);letter-spacing:.3px}
 
 /* GPX controls */
 #gpx-ctrl{margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,168,76,.1)}
@@ -1536,7 +1537,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
         <div id="detail-poi"></div>
         <div id="detail-stagioni"></div>
         <div id="detail-extra"></div>
-        <div id="detail-disclaimer" data-it="⚠ Le informazioni sono fornite a titolo indicativo. Condizioni, accessi e servizi possono variare senza preavviso. L'autore declina ogni responsabilità per errori, omissioni o modifiche intervenute." data-en="⚠ Information is provided for reference only. Conditions, access and services may change without notice. The author accepts no liability for errors, omissions or subsequent changes.">⚠ Le informazioni sono fornite a titolo indicativo. Condizioni, accessi e servizi possono variare senza preavviso. L'autore declina ogni responsabilità per errori, omissioni o modifiche intervenute.</div>
         <div id="gpx-ctrl">
           <h4 data-it="TRACCIA GPX" data-en="GPX TRACK">TRACCIA GPX</h4>
           <div class="gpx-btn-row">
@@ -1550,6 +1550,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
           </div>
         </div>
       </div>
+      <div id="detail-disclaimer" data-it="⚠ Informazioni a titolo indicativo. Condizioni e servizi possono variare. L'autore non è responsabile per errori o modifiche." data-en="⚠ For reference only. Conditions may change. The author accepts no liability for errors or changes.">⚠ Informazioni a titolo indicativo. Condizioni e servizi possono variare. L'autore non è responsabile per errori o modifiche.</div>
     </div>
 
     <div id="elev-bar">
@@ -1861,7 +1862,7 @@ function showDetail(type, id) {
     lat=item.lat; lng=item.lng; foto=item.foto; gpxFile=item.gpx; showGpx=true;
     const sl = lang==='it'?['DISTANZA','DURATA','DISLIVELLO','QUOTA MAX','QUOTA MIN']:['DISTANCE','DURATION','ELEVATION','MAX ALT','MIN ALT'];
     const sv = [[item.distanza_km,'km'],[item.durata_h,'h'],[item.dislivello_m,'m'],[item.quota_max_m,'m'],[item.quota_min_m,'m']];
-    stats = sv.map((v,i) => `<div class="dstat"><div class="dstat-lbl">${sl[i]}</div><div class="dstat-val">${v[0]}<span class="dstat-unit">${v[1]}</span></div></div>`).join('');
+    stats = sv.map((v,i) => `<div class="dstat"><div class="dstat-lbl">${sl[i]}</div><div class="dstat-val">${v[0]!=null?v[0]:'—'}<span class="dstat-unit">${v[0]!=null?v[1]:''}</span></div></div>`).join('');
     if(item.punti_interesse&&item.punti_interesse.length)
       poi = `<h4>${lang==='it'?'PUNTI DI INTERESSE':'POINTS OF INTEREST'}</h4>` +
         item.punti_interesse.map(p => `<div class="poi-item"><span class="poi-quota">▲${p.quota}m</span><span>${p.nome[lang]}</span></div>`).join('');
