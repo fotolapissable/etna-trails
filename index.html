@@ -13,6 +13,14 @@
 <meta name="apple-mobile-web-app-title" content="Etna Trails">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN6FP74TCW"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-NN6FP74TCW',{page_title:'Etna Trails',page_location:location.href});
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -1653,6 +1661,7 @@ const gpxCache = {};
 // ── LANGUAGE ─────────────────────────────────────────────
 function setLang(l) {
   lang = l;
+  gaEvent('language_change',{language:l});
   try { localStorage.setItem('etna-lang', l); } catch(e) {}
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === l.toUpperCase()));
   document.querySelectorAll('[data-' + l + ']').forEach(el => {
@@ -1922,6 +1931,7 @@ function showDetail(type, id) {
     a.href = isMob ? `geo:${lat},${lng}?q=${lat},${lng}(${encodeURIComponent(title)})` : `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
     a.target = '_blank'; a.rel = 'noopener';
     a.innerHTML = `🗺 ${lang==='it'?'Apri nella mappa':'Open in maps'}`;
+    a.addEventListener('click', ()=>gaEvent('open_maps',{item_id:id,item_name:title}));
     if(!navigator.onLine){
       a.addEventListener('click', e=>{
         e.preventDefault();
@@ -1936,7 +1946,7 @@ function showDetail(type, id) {
     const b = document.createElement('button');
     b.className = 'action-btn gpx-dl';
     b.innerHTML = `⬇ ${lang==='it'?'Scarica GPX':'Download GPX'}`;
-    b.onclick = () => downloadGpx(gpxFile, title);
+    b.onclick = () => { gaEvent('gpx_download',{item_id:id,item_name:title}); downloadGpx(gpxFile, title); };
     act.appendChild(b);
   }
   if(phone) {
@@ -1949,6 +1959,7 @@ function showDetail(type, id) {
 
   document.getElementById('detail-panel').classList.add('open');
   if(lat && lng) map.setView([lat, lng], 13);
+  gaEvent('view_item', {item_id:id, item_name:title, item_category:type==='s'?'sentiero':'rifugio'});
 
   // Su mobile: apri mappa automaticamente quando si seleziona un sentiero/rifugio
   if(isMobileTog && isMobileTog()) showMap();
@@ -2829,13 +2840,23 @@ function showToast(msg, duration=3500){
   t._to = setTimeout(()=>t.classList.remove('show'), duration);
 }
 
+// ── ANALYTICS ────────────────────────────────────────────
+function gaEvent(name, params){
+  if(typeof gtag==='function') gtag('event', name, params||{});
+}
+
 // ── PWA INSTALL BANNER ───────────────────────────────────
 let _deferredPrompt = null;
 
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   _deferredPrompt = e;
+  gaEvent('pwa_install_prompt_shown');
   showInstallBanner();
+});
+
+window.addEventListener('appinstalled', () => {
+  gaEvent('pwa_installed', {method:'browser'});
 });
 
 function showInstallBanner(){
@@ -2857,8 +2878,12 @@ function showInstallBanner(){
 
   document.getElementById('install-btn-ok').onclick = async () => {
     b.classList.remove('show');
-    if(_deferredPrompt){ await _deferredPrompt.prompt(); _deferredPrompt=null; }
-    else showIOSGuide();
+    gaEvent('pwa_install_accepted');
+    if(_deferredPrompt){
+      const r = await _deferredPrompt.prompt();
+      gaEvent('pwa_install_outcome', {outcome: r?.outcome||'unknown'});
+      _deferredPrompt=null;
+    } else { showIOSGuide(); gaEvent('pwa_install_ios_guide_shown'); }
     setTimeout(()=>b.remove(), 400);
   };
   document.getElementById('install-btn-no').onclick = () => {
