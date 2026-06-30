@@ -727,5 +727,9 @@
       "whatsapp": false,
       "note": "Info Nebrodi, aree attrezzate, sentieri"
     }
-  ]
+  ],
+  "ingv_override": {
+    "livello": "giallo",
+    "note": "Aggiornato manualmente - 30 giu 2026"
+  }
 }
