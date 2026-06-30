@@ -1691,6 +1691,7 @@ function setTab(tab) {
     updateWindyFrame(activeMeteoQuota);
     loadMeteo(activeMeteoQuota);
     fetchIngvAlert();
+    setInterval(fetchIngvAlert, 15*60*1000);
     initWebcam();
   }
 }
