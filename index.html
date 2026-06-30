@@ -2606,6 +2606,16 @@ async function fetchIngvAlert() {
   footerEl.style.display = 'none';
 
   try {
+    // Override manuale da data.json (aggiorna ingv_override.livello in data.json)
+    if(DB.ingv_override && DB.ingv_override.livello) {
+      const ov = DB.ingv_override;
+      console.log('[INGV] override manuale:', ov.livello);
+      renderIngvAlert(ov.livello);
+      ingvLastFetch = new Date();
+      btn.classList.remove('spinning');
+      loading.style.display = 'none';
+      return;
+    }
     const TARGET = 'https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/';
     const proxies = [
       { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(TARGET)}`, json: false },
