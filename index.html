@@ -891,94 +891,27 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
    WIDGET ALLERTA INGV
 ═══════════════════════════════════════ */
 #ingv-widget{
-  margin:8px 10px 0;
-  border-radius:3px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  flex-shrink:0;
+  margin:8px 10px 0;padding:10px;
+  border-radius:3px;border:1px solid rgba(191,58,58,0.35);
+  background:rgba(26,10,0,0.5);flex-shrink:0;
 }
-#ingv-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:7px 10px;
-  background:rgba(26,10,0,0.6);
-  cursor:pointer;
-  user-select:none;
-}
-#ingv-header-l{display:flex;align-items:center;gap:8px}
 #ingv-logo-txt{
   font-family:var(--font-m);font-size:9px;letter-spacing:2px;
-  color:var(--ash-light);text-transform:uppercase;
+  color:var(--ash-light);text-transform:uppercase;margin-bottom:6px;
 }
-#ingv-logo-sub{
-  font-family:var(--font-m);font-size:7px;letter-spacing:1px;
-  color:var(--ash);text-transform:uppercase;
+#ingv-alert-warning{
+  font-size:10.5px;color:var(--ash);line-height:1.5;
+  margin-bottom:9px;font-style:italic;
 }
-#ingv-refresh-btn{
-  background:none;border:none;color:var(--ash);
-  font-size:12px;cursor:pointer;padding:2px 4px;
-  transition:transform .4s;
+#ingv-alert-link{
+  display:block;text-align:center;
+  font-family:var(--font-m);font-size:9px;letter-spacing:1.5px;
+  color:#fff;background:rgba(191,58,58,0.75);
+  border:1px solid rgba(191,58,58,0.6);border-radius:2px;
+  padding:7px 10px;text-decoration:none;
+  transition:background .2s;
 }
-#ingv-refresh-btn:hover{color:var(--gold)}
-#ingv-refresh-btn.spinning{animation:spin .7s linear infinite}
-
-#ingv-body{padding:8px 10px 10px;background:rgba(15,6,0,0.5)}
-
-/* Level bar */
-#ingv-level-bar{
-  display:flex;align-items:center;gap:10px;margin-bottom:8px;
-}
-#ingv-level-dot{
-  width:18px;height:18px;border-radius:50%;flex-shrink:0;
-  box-shadow:0 0 10px currentColor;
-  transition:background .5s,box-shadow .5s;
-}
-#ingv-level-name{
-  font-family:var(--font-t);font-size:16px;font-weight:900;
-  letter-spacing:1px;
-  transition:color .5s;
-}
-#ingv-level-it{
-  font-family:var(--font-m);font-size:8px;letter-spacing:1px;
-  color:var(--ash);text-transform:uppercase;margin-top:1px;
-}
-
-/* Level colors */
-.ingv-verde   #ingv-level-dot{background:#4a9e5c;box-shadow:0 0 10px rgba(74,158,92,0.7)}
-.ingv-giallo  #ingv-level-dot{background:#c9a84c;box-shadow:0 0 10px rgba(201,168,76,0.7)}
-.ingv-arancione #ingv-level-dot{background:#e8600a;box-shadow:0 0 10px rgba(232,96,10,0.7)}
-.ingv-rosso   #ingv-level-dot{background:#bf3a3a;box-shadow:0 0 14px rgba(191,58,58,0.9)}
-.ingv-verde   #ingv-level-name{color:#4a9e5c}
-.ingv-giallo  #ingv-level-name{color:#c9a84c}
-.ingv-arancione #ingv-level-name{color:#e8600a}
-.ingv-rosso   #ingv-level-name{color:#bf3a3a}
-
-#ingv-desc{
-  font-size:11px;color:var(--ash);line-height:1.5;
-  margin-bottom:7px;font-style:italic;
-}
-#ingv-footer{
-  display:flex;align-items:center;justify-content:space-between;
-}
-#ingv-updated{
-  font-family:var(--font-m);font-size:7px;color:var(--ash);letter-spacing:.5px;
-}
-#ingv-link{
-  font-family:var(--font-m);font-size:7.5px;color:var(--ember);
-  text-decoration:none;border:1px solid rgba(232,96,10,0.3);
-  padding:2px 7px;border-radius:2px;transition:all .2s;
-}
-#ingv-link:hover{background:var(--ember-dim)}
-
-/* Rosso pulsante — situazione critica */
-.ingv-rosso #ingv-widget,
-#ingv-widget.ingv-rosso{
-  border-color:rgba(191,58,58,0.6);
-  animation:ingvpulse 2s ease-in-out infinite;
-}
-@keyframes ingvpulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(191,58,58,0)}
-  50%{box-shadow:0 0 0 4px rgba(191,58,58,0.2)}
-}
+#ingv-alert-link:hover{background:rgba(191,58,58,0.95)}
 
 /* Loading */
 #ingv-loading{
@@ -1144,32 +1077,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <!-- Alert condizioni avverse -->
       <div id="meteo-alert"></div>
 
-      <!-- Widget Allerta INGV -->
+      <!-- Link Allerta INGV -->
       <div id="ingv-widget">
-        <div id="ingv-header" onclick="toggleIngv()">
-          <div id="ingv-header-l">
-            <div>
-              <div id="ingv-logo-txt">🌋 ALLERTA ETNA · INGV</div>
-              <div id="ingv-logo-sub" data-it="Livello di allerta vulcanica" data-en="Volcanic alert level">Livello di allerta vulcanica</div>
-            </div>
-          </div>
-          <button id="ingv-refresh-btn" onclick="event.stopPropagation();fetchIngvAlert()" title="Aggiorna">↻</button>
-        </div>
-        <div id="ingv-body">
-          <div id="ingv-loading"><div class="spinner"></div><span>CARICAMENTO ALLERTA…</span></div>
-          <div id="ingv-level-bar" style="display:none">
-            <div id="ingv-level-dot"></div>
-            <div>
-              <div id="ingv-level-name">—</div>
-              <div id="ingv-level-it"></div>
-            </div>
-          </div>
-          <div id="ingv-desc" style="display:none"></div>
-          <div id="ingv-footer" style="display:none">
-            <span id="ingv-updated"></span>
-            <a id="ingv-link" href="https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/" target="_blank" rel="noopener" data-it="Protezione Civile →" data-en="Civil Protection →">Protezione Civile →</a>
-          </div>
-        </div>
+        <div id="ingv-logo-txt">🌋 ALLERTA ETNA · INGV</div>
+        <div id="ingv-alert-warning" data-it="⚠ Il vulcano può essere pericoloso. Prima di partire verifica sempre il livello di allerta ufficiale." data-en="⚠ The volcano can be dangerous. Always check the official alert level before departure.">⚠ Il vulcano può essere pericoloso. Prima di partire verifica sempre il livello di allerta ufficiale.</div>
+        <a id="ingv-alert-link" href="https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/" target="_blank" rel="noopener"
+           data-it="🔴 Controlla il livello di allerta → Protezione Civile" data-en="🔴 Check the alert level → Civil Protection">🔴 Controlla il livello di allerta → Protezione Civile</a>
       </div>
 
       <!-- Selector quota -->
@@ -1672,7 +1585,6 @@ function setLang(l) {
   if(activeItem) showDetail(activeItem.type, activeItem.id);
   // Aggiorna testi meteo se il tab è attivo
   if(activeTab === 'meteo') refreshMeteoLabels();
-  refreshIngvLabels();
 }
 
 // ── TABS ─────────────────────────────────────────────────
@@ -1690,8 +1602,6 @@ function setTab(tab) {
     window._meteoLoaded = true;
     updateWindyFrame(activeMeteoQuota);
     loadMeteo(activeMeteoQuota);
-    fetchIngvAlert();
-    setInterval(fetchIngvAlert, 15*60*1000);
     initWebcam();
   }
 }
@@ -2549,213 +2459,8 @@ function initWebcam() {
 }
 
 
-// ═══════════════════════════════════════════
-//  ALLERTA INGV / PROTEZIONE CIVILE
-// ═══════════════════════════════════════════
 
-const INGV_LEVELS = {
-  verde: {
-    en: 'GREEN',
-    it: 'VERDE',
-    descIt: 'Attività vulcanica nella norma. Nessuna restrizione agli escursionisti. Sentieri aperti.',
-    descEn: 'Normal volcanic activity. No restrictions for hikers. Trails open.',
-    cls: 'ingv-verde'
-  },
-  giallo: {
-    en: 'YELLOW',
-    it: 'GIALLO',
-    descIt: 'Attività vulcanica in aumento. Possibili restrizioni in zona sommitale. Verificare con il Parco Etna.',
-    descEn: 'Increasing volcanic activity. Possible summit restrictions. Check with Etna Park.',
-    cls: 'ingv-giallo'
-  },
-  arancione: {
-    en: 'ORANGE',
-    it: 'ARANCIONE',
-    descIt: 'Attività vulcanica significativa. Zona sommitale chiusa. Escursioni solo su versanti autorizzati.',
-    descEn: 'Significant volcanic activity. Summit area closed. Hikes only on authorised slopes.',
-    cls: 'ingv-arancione'
-  },
-  rosso: {
-    en: 'RED',
-    it: 'ROSSO',
-    descIt: '⚠️ Attività eruttiva intensa. Chiusura totale dei sentieri in quota. Non avvicinarsi al vulcano.',
-    descEn: '⚠️ Intense eruptive activity. All mountain trails closed. Do not approach the volcano.',
-    cls: 'ingv-rosso'
-  }
-};
 
-let ingvExpanded = true;
-let ingvLastFetch = null;
-
-function toggleIngv() {
-  ingvExpanded = !ingvExpanded;
-  document.getElementById('ingv-body').style.display = ingvExpanded ? 'block' : 'none';
-}
-
-async function fetchIngvAlert() {
-  const btn = document.getElementById('ingv-refresh-btn');
-  const loading = document.getElementById('ingv-loading');
-  const levelBar = document.getElementById('ingv-level-bar');
-  const descEl = document.getElementById('ingv-desc');
-  const footerEl = document.getElementById('ingv-footer');
-
-  btn.classList.add('spinning');
-  loading.style.display = 'flex';
-  levelBar.style.display = 'none';
-  descEl.style.display = 'none';
-  footerEl.style.display = 'none';
-
-  try {
-    // Override manuale da data.json (aggiorna ingv_override.livello in data.json)
-    if(DB.ingv_override && DB.ingv_override.livello) {
-      const ov = DB.ingv_override;
-      console.log('[INGV] override manuale:', ov.livello);
-      renderIngvAlert(ov.livello);
-      ingvLastFetch = new Date();
-      btn.classList.remove('spinning');
-      loading.style.display = 'none';
-      return;
-    }
-    const TARGET = 'https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/';
-    const proxies = [
-      { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(TARGET)}`, json: false },
-      { url: `https://api.allorigins.win/get?url=${encodeURIComponent(TARGET)}`, json: true },
-      { url: `https://thingproxy.freeboard.io/fetch/${TARGET}`, json: false },
-      { url: `https://corsproxy.io/?${encodeURIComponent(TARGET)}`, json: false },
-    ];
-
-    let html = null;
-    for(const proxy of proxies) {
-      try {
-        const r = await fetch(proxy.url, { signal: AbortSignal.timeout(10000) });
-        if(!r.ok) continue;
-        if(proxy.json) { const j = await r.json(); html = j.contents || null; }
-        else { html = await r.text(); }
-        if(html && html.length > 500) break;
-        html = null;
-      } catch { continue; }
-    }
-
-    if(!html) throw new Error('Proxy non disponibile');
-
-    // Parse livello dalla pagina
-    let level = parseIngvLevel(html);
-    console.log('[INGV] livello rilevato:', level, '| html length:', html.length);
-    if(level) { renderIngvAlert(level); }
-    else { console.warn('[INGV] livello non rilevato, html snippet:', html.slice(0,500)); renderIngvAlert('verde', true); }
-    ingvLastFetch = new Date();
-
-  } catch(e) {
-    console.warn('[INGV]', e);
-    renderIngvAlert('verde', true);
-  }
-
-  btn.classList.remove('spinning');
-}
-
-function parseIngvLevel(html) {
-  const lower = html.toLowerCase();
-
-  // Pattern testo esplicito IT/EN
-  const textPatterns = [
-    { re: /livello.*?allerta.*?(?:per.*?etna.*?)?(?:è|e'|:)\s*(verde|giallo|arancione|rosso)/i, map: {verde:'verde',giallo:'giallo',arancione:'arancione',rosso:'rosso'} },
-    { re: /allerta\s+(verde|gialla|arancione|rossa)/i, map: {verde:'verde',gialla:'giallo',arancione:'arancione',rossa:'rosso'} },
-    { re: /alert.*?level.*?(?:for.*?etna.*?)?is\s*(green|yellow|orange|red)/i, map: {green:'verde',yellow:'giallo',orange:'arancione',red:'rosso'} },
-    { re: /level[:\s]+(green|yellow|orange|red)/i, map: {green:'verde',yellow:'giallo',orange:'arancione',red:'rosso'} },
-  ];
-  for(const {re, map} of textPatterns) {
-    const m = html.match(re);
-    if(m) { const f=m[1].toLowerCase(); if(map[f]) return map[f]; }
-  }
-
-  // Pattern CSS class / src immagine / alt / title / data-attribute
-  const classPatterns = [
-    { re: /class="[^"]*\b(verde|giallo|arancione|rosso)\b/gi },
-    { re: /class='[^']*\b(verde|giallo|arancione|rosso)\b/gi },
-    { re: /src="[^"]*\/(verde|giallo|arancione|rosso)[^"]*"/gi },
-    { re: /alt="[^"]*\b(verde|giallo|arancione|rosso)\b/gi },
-    { re: /title="[^"]*\b(verde|giallo|arancione|rosso)\b/gi },
-    { re: /data-[^=]+="[^"]*\b(verde|giallo|arancione|rosso)\b/gi },
-    { re: /color[-_]?(verde|giallo|arancione|rosso)/gi },
-    { re: /allerta[-_](verde|gialla|arancione|rossa)/gi },
-    { re: /(green|yellow|orange|red)[-_]?alert/gi },
-  ];
-  const colorMap = {verde:'verde',giallo:'giallo',gialla:'giallo',arancione:'arancione',rossa:'rosso',rosso:'rosso',green:'verde',yellow:'giallo',orange:'arancione',red:'rosso'};
-  // Priorità: rosso > arancione > giallo > verde
-  const found = new Set();
-  for(const {re} of classPatterns) {
-    let m;
-    const regex = new RegExp(re.source, re.flags);
-    while((m = regex.exec(html)) !== null) {
-      const c = colorMap[m[1].toLowerCase()];
-      if(c) found.add(c);
-    }
-  }
-  if(found.has('rosso')) return 'rosso';
-  if(found.has('arancione')) return 'arancione';
-  if(found.has('giallo')) return 'giallo';
-  if(found.has('verde')) return 'verde';
-
-  // Keyword isolate
-  if(lower.includes('allerta rossa') || lower.includes('red alert') || lower.includes('level red')) return 'rosso';
-  if(lower.includes('allerta arancione') || lower.includes('orange alert') || lower.includes('level orange')) return 'arancione';
-  if(lower.includes('allerta giall') || lower.includes('yellow alert') || lower.includes('level yellow')) return 'giallo';
-  if(lower.includes('allerta verde') || lower.includes('green alert') || lower.includes('level green')) return 'verde';
-
-  return null; // non rilevato
-}
-
-function renderIngvAlert(levelKey, unverified = false) {
-  const level = INGV_LEVELS[levelKey] || INGV_LEVELS.verde;
-  const widget = document.getElementById('ingv-widget');
-  const loading = document.getElementById('ingv-loading');
-  const levelBar = document.getElementById('ingv-level-bar');
-  const descEl = document.getElementById('ingv-desc');
-  const footerEl = document.getElementById('ingv-footer');
-
-  // Rimuovi classi livello precedenti
-  widget.classList.remove('ingv-verde','ingv-giallo','ingv-arancione','ingv-rosso');
-  widget.classList.add(level.cls);
-
-  document.getElementById('ingv-level-name').textContent = lang === 'it' ? level.it : level.en;
-  document.getElementById('ingv-level-it').textContent = lang === 'it' ? 'Livello di allerta' : 'Alert level';
-  document.getElementById('ingv-desc').textContent = (lang === 'it' ? level.descIt : level.descEn)
-    + (unverified ? (lang === 'it' ? ' (Dato non verificato — connessione assente)' : ' (Unverified — no connection)') : '');
-
-  const now = new Date();
-  const timeStr = now.toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'});
-  const dateStr = now.toLocaleDateString('it-IT', {day:'numeric', month:'short'});
-  document.getElementById('ingv-updated').textContent =
-    (lang === 'it' ? 'Agg. ' : 'Upd. ') + dateStr + ' ' + timeStr;
-
-  loading.style.display = 'none';
-  levelBar.style.display = 'flex';
-  descEl.style.display = 'block';
-  footerEl.style.display = 'flex';
-
-  // Se rosso — mostra anche alert nel tab meteo
-  const meteoAlert = document.getElementById('meteo-alert');
-  if(levelKey === 'rosso' && meteoAlert) {
-    meteoAlert.style.display = 'block';
-    meteoAlert.innerHTML = (lang === 'it'
-      ? '🌋 ALLERTA ROSSA INGV — Attività eruttiva intensa. Sentieri chiusi.'
-      : '🌋 INGV RED ALERT — Intense eruptive activity. Trails closed.');
-  }
-}
-
-// Aggiorna testi INGV al cambio lingua (chiama dopo setLang)
-function refreshIngvLabels() {
-  if(!ingvLastFetch) return;
-  // rilancia render con dati cached (non rifetch)
-  const widget = document.getElementById('ingv-widget');
-  const currentLevel = ['verde','giallo','arancione','rosso'].find(c => widget.classList.contains('ingv-' + c)) || 'verde';
-  renderIngvAlert(currentLevel);
-}
-
-// Aggiornamento automatico ogni 15 minuti se tab meteo aperto
-setInterval(() => {
-  if(activeTab === 'meteo') fetchIngvAlert();
-}, 15 * 60 * 1000);
 
 
 // ═══════════════════════════════════════════
