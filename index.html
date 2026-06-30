@@ -2624,12 +2624,13 @@ async function fetchIngvAlert() {
 
     // Parse livello dalla pagina
     let level = parseIngvLevel(html);
-    renderIngvAlert(level);
+    console.log('[INGV] livello rilevato:', level, '| html length:', html.length);
+    if(level) { renderIngvAlert(level); }
+    else { console.warn('[INGV] livello non rilevato, html snippet:', html.slice(0,500)); renderIngvAlert('verde', true); }
     ingvLastFetch = new Date();
 
   } catch(e) {
     console.warn('[INGV]', e);
-    // Fallback: mostra verde con avviso "non verificato"
     renderIngvAlert('verde', true);
   }
 
@@ -2637,33 +2638,55 @@ async function fetchIngvAlert() {
 }
 
 function parseIngvLevel(html) {
-  // La pagina Protezione Civile contiene frasi come:
-  // "il livello di allerta per l'Etna è verde/giallo/arancione/rosso"
-  // oppure in inglese "the alert level for Etna is green/yellow/orange/red"
   const lower = html.toLowerCase();
 
-  // Cerca pattern italiani e inglesi
-  const patterns = [
-    { re: /livello.*?allerta.*?(?:per.*?etna.*?)?(?:è|e')\s*(verde|giallo|arancione|rosso)/i, map: {verde:'verde',giallo:'giallo',arancione:'arancione',rosso:'rosso'} },
+  // Pattern testo esplicito IT/EN
+  const textPatterns = [
+    { re: /livello.*?allerta.*?(?:per.*?etna.*?)?(?:è|e'|:)\s*(verde|giallo|arancione|rosso)/i, map: {verde:'verde',giallo:'giallo',arancione:'arancione',rosso:'rosso'} },
+    { re: /allerta\s+(verde|gialla|arancione|rossa)/i, map: {verde:'verde',gialla:'giallo',arancione:'arancione',rossa:'rosso'} },
     { re: /alert.*?level.*?(?:for.*?etna.*?)?is\s*(green|yellow|orange|red)/i, map: {green:'verde',yellow:'giallo',orange:'arancione',red:'rosso'} },
-    { re: /currently.*?alert.*?level.*?(?:for.*?etna.*?)?is\s*(green|yellow|orange|red)/i, map: {green:'verde',yellow:'giallo',orange:'arancione',red:'rosso'} },
+    { re: /level[:\s]+(green|yellow|orange|red)/i, map: {green:'verde',yellow:'giallo',orange:'arancione',red:'rosso'} },
   ];
-
-  for(const {re, map} of patterns) {
-    const m = lower.match(re);
-    if(m) {
-      const found = m[1].toLowerCase();
-      if(map[found]) return map[found];
-    }
+  for(const {re, map} of textPatterns) {
+    const m = html.match(re);
+    if(m) { const f=m[1].toLowerCase(); if(map[f]) return map[f]; }
   }
 
-  // Cerca keyword isolate come fallback
-  if(lower.includes('allerta rossa') || lower.includes('alert level red') || lower.includes('level is red')) return 'rosso';
-  if(lower.includes('allerta arancione') || lower.includes('alert level orange') || lower.includes('level is orange')) return 'arancione';
-  if(lower.includes('allerta gialla') || lower.includes('alert level yellow') || lower.includes('level is yellow')) return 'giallo';
-  if(lower.includes('allerta verde') || lower.includes('alert level green') || lower.includes('level is green')) return 'verde';
+  // Pattern CSS class / src immagine / alt / title / data-attribute
+  const classPatterns = [
+    { re: /class="[^"]*\b(verde|giallo|arancione|rosso)\b/gi },
+    { re: /class='[^']*\b(verde|giallo|arancione|rosso)\b/gi },
+    { re: /src="[^"]*\/(verde|giallo|arancione|rosso)[^"]*"/gi },
+    { re: /alt="[^"]*\b(verde|giallo|arancione|rosso)\b/gi },
+    { re: /title="[^"]*\b(verde|giallo|arancione|rosso)\b/gi },
+    { re: /data-[^=]+="[^"]*\b(verde|giallo|arancione|rosso)\b/gi },
+    { re: /color[-_]?(verde|giallo|arancione|rosso)/gi },
+    { re: /allerta[-_](verde|gialla|arancione|rossa)/gi },
+    { re: /(green|yellow|orange|red)[-_]?alert/gi },
+  ];
+  const colorMap = {verde:'verde',giallo:'giallo',gialla:'giallo',arancione:'arancione',rossa:'rosso',rosso:'rosso',green:'verde',yellow:'giallo',orange:'arancione',red:'rosso'};
+  // Priorità: rosso > arancione > giallo > verde
+  const found = new Set();
+  for(const {re} of classPatterns) {
+    let m;
+    const regex = new RegExp(re.source, re.flags);
+    while((m = regex.exec(html)) !== null) {
+      const c = colorMap[m[1].toLowerCase()];
+      if(c) found.add(c);
+    }
+  }
+  if(found.has('rosso')) return 'rosso';
+  if(found.has('arancione')) return 'arancione';
+  if(found.has('giallo')) return 'giallo';
+  if(found.has('verde')) return 'verde';
 
-  return 'verde'; // default conservativo
+  // Keyword isolate
+  if(lower.includes('allerta rossa') || lower.includes('red alert') || lower.includes('level red')) return 'rosso';
+  if(lower.includes('allerta arancione') || lower.includes('orange alert') || lower.includes('level orange')) return 'arancione';
+  if(lower.includes('allerta giall') || lower.includes('yellow alert') || lower.includes('level yellow')) return 'giallo';
+  if(lower.includes('allerta verde') || lower.includes('green alert') || lower.includes('level green')) return 'verde';
+
+  return null; // non rilevato
 }
 
 function renderIngvAlert(levelKey, unverified = false) {
