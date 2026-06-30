@@ -2606,17 +2606,23 @@ async function fetchIngvAlert() {
   footerEl.style.display = 'none';
 
   try {
-    // Prova diversi proxy CORS — allorigins bloccato da GitHub Pages
+    const TARGET = 'https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/';
     const proxies = [
-      'https://corsproxy.io/?' + encodeURIComponent('https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/'),
-      'https://api.codetabs.com/v1/proxy?quest=https://rischi.protezionecivile.gov.it/it/vulcanico/vulcani-italia/etna/'
+      { url: `https://api.allorigins.win/raw?url=${encodeURIComponent(TARGET)}`, json: false },
+      { url: `https://api.allorigins.win/get?url=${encodeURIComponent(TARGET)}`, json: true },
+      { url: `https://thingproxy.freeboard.io/fetch/${TARGET}`, json: false },
+      { url: `https://corsproxy.io/?${encodeURIComponent(TARGET)}`, json: false },
     ];
 
     let html = null;
     for(const proxy of proxies) {
       try {
-        const r = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
-        if(r.ok) { html = await r.text(); break; }
+        const r = await fetch(proxy.url, { signal: AbortSignal.timeout(10000) });
+        if(!r.ok) continue;
+        if(proxy.json) { const j = await r.json(); html = j.contents || null; }
+        else { html = await r.text(); }
+        if(html && html.length > 500) break;
+        html = null;
       } catch { continue; }
     }
 
