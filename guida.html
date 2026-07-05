@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guida · Etna Trails</title>
+<link rel="icon" href="icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lava:#1a0a00;--lava2:#2a1200;--lava3:#3d1a00;
+  --ember:#e8600a;--ember-dim:rgba(232,96,10,0.18);
+  --gold:#c9a84c;--ash:#8a7a6a;--ash-light:#bfad9a;--snow:#f0ece4;
+  --border:rgba(201,168,76,0.22);--border-bright:rgba(201,168,76,0.5);
+  --font-t:'Cinzel',serif;--font-b:'Crimson Pro',serif;--font-m:'Share Tech Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--lava);color:var(--snow);font-family:var(--font-b);
+  font-size:15px;line-height:1.7;max-width:720px;margin:0 auto;padding:0 20px 60px}
+header{padding:24px 0 18px;border-bottom:1px solid var(--border-bright);margin-bottom:24px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+h1{font-family:var(--font-t);font-size:22px;color:var(--gold);letter-spacing:2px;font-weight:900}
+header p{font-family:var(--font-m);font-size:9px;letter-spacing:2px;color:var(--ash);margin-top:3px}
+nav a{font-family:var(--font-m);font-size:10px;letter-spacing:1px;color:var(--ash-light);
+  text-decoration:none;border:1px solid var(--border-bright);padding:6px 12px;border-radius:2px}
+nav a:hover{border-color:var(--ember);color:var(--ember)}
+h2{font-family:var(--font-t);font-size:18px;color:var(--gold);margin:34px 0 12px;
+  letter-spacing:.5px;border-bottom:1px solid var(--border);padding-bottom:8px}
+h3{font-family:var(--font-t);font-size:14px;color:var(--ash-light);margin:20px 0 8px;letter-spacing:.5px}
+p{margin-bottom:12px;color:var(--ash-light)}
+ul,ol{margin:0 0 14px 22px;color:var(--ash-light)}
+li{margin-bottom:6px}
+strong{color:var(--snow)}
+table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:13.5px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--border)}
+th{font-family:var(--font-m);font-size:9px;letter-spacing:1px;color:var(--ash);text-transform:uppercase}
+.note{background:var(--lava2);border:1px solid var(--border);border-left:3px solid var(--ember);
+  border-radius:0 3px 3px 0;padding:10px 14px;margin:14px 0;font-size:13.5px;font-style:italic;color:var(--ash-light)}
+.divider{text-align:center;color:var(--ash);font-family:var(--font-m);font-size:11px;
+  letter-spacing:3px;margin:44px 0 20px;border-top:1px solid var(--border-bright);padding-top:20px}
+footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--border);
+  font-family:var(--font-m);font-size:10px;letter-spacing:1px;color:var(--ash);text-align:center}
+footer a{color:var(--gold);text-decoration:none}
+.top-link{display:inline-block;margin-top:6px;font-family:var(--font-m);font-size:10px;
+  color:var(--ash-light);text-decoration:none}
+.top-link:hover{color:var(--ember)}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🌋 ETNA TRAILS</h1>
+    <p>GUIDA ALL'USO · USER GUIDE</p>
+  </div>
+  <nav>
+    <a href="#it">Italiano</a>
+    <a href="#en">English</a>
+    <a href="index.html">← App</a>
+  </nav>
+</header>
+
+<a id="it"></a>
+<h2>🇮🇹 Guida in italiano</h2>
+
+<p>Etna Trails è un'app gratuita per chi vuole camminare sull'Etna: sentieri, rifugi, meteo in quota aggiornato in tempo reale, e strumenti pensati per funzionare anche <strong>senza connessione</strong>, una volta scaricati i dati mentre sei ancora in zona con campo.</p>
+
+<h3>📲 Come installarla sul telefono</h3>
+<p><strong>Android (Chrome):</strong></p>
+<ol>
+  <li>Apri <a href="index.html" style="color:var(--gold)">apps.fotolapissable.it/etna-trails</a></li>
+  <li>Tocca i tre puntini in alto a destra → "Aggiungi a schermata Home"</li>
+</ol>
+<p><strong>iPhone/iPad (Safari):</strong></p>
+<ol>
+  <li>Apri il sito in Safari (non in Chrome)</li>
+  <li>Tocca l'icona Condividi ↑ in basso</li>
+  <li>Seleziona "Aggiungi a schermata Home"</li>
+</ol>
+
+<h3>🧭 Le sezioni principali</h3>
+<table>
+  <tr><th>Sezione</th><th>Cosa trovi</th></tr>
+  <tr><td>🥾 Sentieri</td><td>Percorsi con difficoltà, distanza, dislivello e traccia GPX</td></tr>
+  <tr><td>🏠 Rifugi</td><td>Quota, servizi, contatti, prenotazione</td></tr>
+  <tr><td>🌤 Meteo</td><td>Condizioni a 3 altitudini, zero termico, alba/tramonto</td></tr>
+  <tr><td>🧭 Scopri</td><td>Informazioni sul territorio</td></tr>
+  <tr><td>🆘 SOS</td><td>Numeri di emergenza e condivisione posizione</td></tr>
+</table>
+
+<h3>🌤 Il meteo in quota</h3>
+<p>La sezione Meteo mostra 3 livelli di altitudine (1000m, 2000m, vetta), lo <strong>zero termico</strong> in tempo reale, alba e tramonto, e avvisi automatici per vento forte, temporali o quote sopra lo zero termico.</p>
+
+<h3>💾 Usare la mappa offline</h3>
+<ol>
+  <li>Apri la mappa (tab Sentieri o Rifugi)</li>
+  <li>In alto a sinistra tocca "💾 Scarica mappe offline"</li>
+  <li>Aspetta il download, poi vedrai "✅ Mappa offline OK"</li>
+</ol>
+<div class="note">Fallo prima di partire, con Wi-Fi o dati ancora attivi: in quota il segnale sparisce quasi sempre.</div>
+
+<h3>📍 Traccia GPS live</h3>
+<p>Il bottone "📍 Traccia GPS" in basso a sinistra registra dove cammini in tempo reale, con il contatore dei km percorsi. Funziona anche offline. Se chiudi l'app a metà escursione, la traccia si salva da sola.</p>
+
+<h3>📂 Traccia personale</h3>
+<p>Tocca "📂 Traccia personale" per caricare un tuo file .gpx o un link (Wikiloc, Komoot...), indipendentemente dal catalogo sentieri. Poi tocca "🎒 Prepara questa escursione" per scaricare la mappa di dettaglio e salvare un promemoria del meteo — tutto resta solo sul tuo telefono.</p>
+
+<h3>🆘 Condividere la posizione</h3>
+<p>Nella sezione SOS trovi i numeri di emergenza e il bottone "📍 Condividi la mia posizione", che apre WhatsApp con le tue coordinate pronte da inviare a chi vuoi tu. Ti chiede sempre conferma prima di procedere.</p>
+<div class="note">⚠️ Non sostituisce una chiamata di emergenza reale. In caso di pericolo, chiama sempre il 112.</div>
+
+<a href="#it" class="top-link">↑ Torna su</a>
+
+<div class="divider">• • •</div>
+
+<a id="en"></a>
+<h2>🇬🇧 English guide</h2>
+
+<p>Etna Trails is a free app for anyone hiking on Mount Etna: trails, mountain refuges, real-time altitude weather, and tools designed to work <strong>even without a connection</strong>, once you've downloaded the data while you still had signal.</p>
+
+<h3>📲 Installing it on your phone</h3>
+<p><strong>Android (Chrome):</strong></p>
+<ol>
+  <li>Open <a href="index.html" style="color:var(--gold)">apps.fotolapissable.it/etna-trails</a></li>
+  <li>Tap the three dots top-right → "Add to Home screen"</li>
+</ol>
+<p><strong>iPhone/iPad (Safari):</strong></p>
+<ol>
+  <li>Open the site in Safari (not Chrome)</li>
+  <li>Tap the Share icon ↑ at the bottom</li>
+  <li>Select "Add to Home Screen"</li>
+</ol>
+
+<h3>🧭 Main sections</h3>
+<table>
+  <tr><th>Section</th><th>What you'll find</th></tr>
+  <tr><td>🥾 Trails</td><td>Routes with difficulty, distance, elevation gain and GPX track</td></tr>
+  <tr><td>🏠 Refuges</td><td>Altitude, services, contacts, booking</td></tr>
+  <tr><td>🌤 Weather</td><td>Conditions at 3 altitudes, freezing level, sunrise/sunset</td></tr>
+  <tr><td>🧭 Discover</td><td>Information about the area</td></tr>
+  <tr><td>🆘 SOS</td><td>Emergency numbers and location sharing</td></tr>
+</table>
+
+<h3>🌤 Altitude weather</h3>
+<p>The Weather section shows 3 altitude levels (1000m, 2000m, summit), the <strong>freezing level</strong> in real time, sunrise/sunset, and automatic alerts for strong wind, storms, or altitudes above the freezing level.</p>
+
+<h3>💾 Using the offline map</h3>
+<ol>
+  <li>Open the map (Trails or Refuges tab)</li>
+  <li>Top-left, tap "💾 Download offline maps"</li>
+  <li>Wait for the download, then you'll see "✅ Offline map OK"</li>
+</ol>
+<div class="note">Do this before you leave, with Wi-Fi or mobile data still on: signal almost always disappears at altitude.</div>
+
+<h3>📍 Live GPS tracking</h3>
+<p>The "📍 GPS track" button, bottom-left, records where you walk live, with a running total of km covered. Works offline too. If you close the app mid-hike, the track saves itself.</p>
+
+<h3>📂 Personal track</h3>
+<p>Tap "📂 Personal track" to load your own .gpx file or a link (Wikiloc, Komoot...), independently of the trail catalogue. Then tap "🎒 Prepare this hike" to download a detailed map and save a weather snapshot — everything stays only on your phone.</p>
+
+<h3>🆘 Sharing your location</h3>
+<p>The SOS section has emergency numbers and a "📍 Share my location" button, which opens WhatsApp with your coordinates ready to send to whoever you choose. It always asks for confirmation first.</p>
+<div class="note">⚠️ This does not replace a real emergency call. In case of actual danger, always call 112.</div>
+
+<a href="#en" class="top-link">↑ Back to top</a>
+
+<footer>
+  📸 <a href="https://fotolapissable.it" target="_blank" rel="noopener">FOTOLAPISSABLE.IT</a> · Fine Art &amp; Nature Photography · Riposto, Sicilia
+</footer>
+
+</body>
+</html>
