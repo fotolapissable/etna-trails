@@ -175,6 +175,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 /* Strip numerica corrente */
 #meteo-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;
   padding:0 10px 8px;border-bottom:1px solid var(--border);flex-shrink:0}
+#meteo-extra{display:flex;justify-content:space-around;gap:6px;flex-wrap:wrap;
+  padding:6px 10px;border-bottom:1px solid var(--border);flex-shrink:0;
+  font-family:var(--font-m);font-size:9px;color:var(--ash-light);letter-spacing:.3px}
+#meteo-extra span{white-space:nowrap}
 .mstat{background:var(--lava2);border:1px solid var(--border);
   border-radius:3px;padding:7px 5px;text-align:center;position:relative;overflow:hidden}
 .mstat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
@@ -261,6 +265,20 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 #legend{position:absolute;bottom:24px;right:10px;z-index:500;
   background:rgba(10,4,0,0.9);border:1px solid var(--border);
   border-radius:3px;padding:9px 12px;backdrop-filter:blur(4px)}
+#gps-panel{position:absolute;bottom:10px;left:10px;z-index:700;
+  display:flex;align-items:center;gap:6px}
+#gps-toggle-btn{background:rgba(10,4,0,0.9);border:1px solid rgba(232,96,10,.5);color:var(--ember);
+  font-family:var(--font-m);font-size:9.5px;letter-spacing:1px;padding:7px 12px;border-radius:3px;
+  cursor:pointer;backdrop-filter:blur(4px);box-shadow:0 2px 10px rgba(0,0,0,.3);transition:all .2s}
+#gps-toggle-btn.active{background:rgba(232,96,10,0.28);border-color:var(--ember);color:#fff}
+#gps-stats{background:rgba(10,4,0,0.9);border:1px solid var(--border);color:var(--gold);
+  font-family:var(--font-m);font-size:9.5px;padding:7px 10px;border-radius:3px;backdrop-filter:blur(4px);
+  box-shadow:0 2px 10px rgba(0,0,0,.3)}
+#gps-clear-btn{background:rgba(10,4,0,0.9);border:1px solid var(--border);color:var(--ash);
+  font-size:12px;padding:6px 9px;border-radius:3px;cursor:pointer;backdrop-filter:blur(4px);
+  box-shadow:0 2px 10px rgba(0,0,0,.3)}
+.gps-dot{width:14px;height:14px;border-radius:50%;background:#4a9eff;border:2px solid #fff;
+  box-shadow:0 0 0 4px rgba(74,158,255,.3)}
 .leg-item{display:flex;align-items:center;gap:6px;font-family:var(--font-m);
   font-size:7.5px;color:var(--ash-light);margin-bottom:4px}
 .leg-item:last-child{margin-bottom:0}
@@ -1103,6 +1121,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
         </div>
       </div>
 
+      <!-- Alba/tramonto + zero termico -->
+      <div id="meteo-extra"></div>
+
       <!-- Windy iframe -->
       <div id="meteo-iframe-wrap">
         <div id="meteo-iframe-label">🌬 WIND · CLOUD · ECMWF</div>
@@ -1442,6 +1463,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <div class="leg-item"><div class="leg-sq" style="background:var(--gold)"></div><span data-it="Rifugio/Bivacco" data-en="Refuge/Bivouac">Rifugio/Bivacco</span></div>
     </div>
 
+    <div id="gps-panel">
+      <button id="gps-toggle-btn" onclick="toggleGpsTrack(this)">📍 <span data-it="Traccia GPS" data-en="GPS track">Traccia GPS</span></button>
+      <div id="gps-stats" style="display:none">0.00 km</div>
+      <button id="gps-clear-btn" onclick="clearGpsTrack()" style="display:none" title="Cancella traccia">🗑</button>
+    </div>
+
     <div id="detail-panel">
       <div id="detail-inner">
         <button id="detail-close" onclick="closeDetail()">✕ <span data-it="chiudi" data-en="close">chiudi</span></button>
@@ -1621,6 +1648,110 @@ function setTile(n) {
   tileLayer = L.tileLayer(TILES[n], { maxZoom:18, attribution:'© OpenStreetMap' }).addTo(map);
   document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+n));
 }
+
+// ── GPS LIVE TRACKING ────────────────────────────────────
+// Traccia in tempo reale la posizione durante l'escursione, funziona anche
+// offline (il GPS del telefono non richiede rete) una volta che i tile della
+// mappa sono stati scaricati con "Scarica mappe offline".
+let gpsWatchId = null;
+let gpsPoints = [];
+let gpsPolyline = null;
+let gpsMarker = null;
+let gpsFirstFix = true;
+
+function haversineM(a, b){
+  const R = 6371000;
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(b[0]-a[0]), dLng = toRad(b[1]-a[1]);
+  const s = Math.sin(dLat/2)**2 + Math.cos(toRad(a[0]))*Math.cos(toRad(b[0]))*Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(s), Math.sqrt(1-s));
+}
+
+function gpsTotalDistanceKm(){
+  let d = 0;
+  for(let i=1;i<gpsPoints.length;i++) d += haversineM(gpsPoints[i-1], gpsPoints[i]);
+  return d/1000;
+}
+
+function updateGpsStats(){
+  const el = document.getElementById('gps-stats');
+  if(el) el.textContent = gpsTotalDistanceKm().toFixed(2) + ' km';
+}
+
+function saveGpsTrack(){
+  try{ localStorage.setItem('etna_gps_track_v1', JSON.stringify({points:gpsPoints, date:new Date().toISOString()})); }catch(e){}
+}
+
+function toggleGpsTrack(btn){
+  if(gpsWatchId) stopGpsTrack(btn);
+  else startGpsTrack(btn);
+}
+
+function startGpsTrack(btn){
+  if(!navigator.geolocation){
+    showToast(lang==='it' ? 'Geolocalizzazione non disponibile su questo dispositivo.' : 'Geolocation not available on this device.');
+    return;
+  }
+  gpsFirstFix = true;
+  if(!gpsPolyline){
+    gpsPolyline = L.polyline([], { color:'#4a9eff', weight:4, opacity:.9 }).addTo(map);
+  } else {
+    gpsPolyline.setLatLngs(gpsPoints.map(p=>[p[0],p[1]]));
+  }
+  btn.classList.add('active');
+  btn.innerHTML = `⏹ <span data-it="Interrompi" data-en="Stop">${lang==='it'?'Interrompi':'Stop'}</span>`;
+  document.getElementById('gps-stats').style.display = 'block';
+  document.getElementById('gps-clear-btn').style.display = 'block';
+
+  gpsWatchId = navigator.geolocation.watchPosition(pos => {
+    const p = [pos.coords.latitude, pos.coords.longitude];
+    gpsPoints.push(p);
+    gpsPolyline.setLatLngs(gpsPoints);
+    if(!gpsMarker){
+      gpsMarker = L.marker(p, { icon: L.divIcon({ className:'', html:'<div class="gps-dot"></div>', iconSize:[16,16], iconAnchor:[8,8] }) }).addTo(map);
+    } else {
+      gpsMarker.setLatLng(p);
+    }
+    if(gpsFirstFix){ map.setView(p, Math.max(map.getZoom(),14)); gpsFirstFix = false; }
+    updateGpsStats();
+    saveGpsTrack();
+  }, err => {
+    console.warn('[GPS]', err);
+    showToast(lang==='it' ? 'Impossibile ottenere la posizione GPS. Controlla i permessi.' : 'Could not get GPS position. Check permissions.');
+  }, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
+}
+
+function stopGpsTrack(btn){
+  if(gpsWatchId){ navigator.geolocation.clearWatch(gpsWatchId); gpsWatchId = null; }
+  btn.classList.remove('active');
+  btn.innerHTML = `📍 <span data-it="Traccia GPS" data-en="GPS track">${lang==='it'?'Traccia GPS':'GPS track'}</span>`;
+}
+
+function clearGpsTrack(){
+  const btn = document.getElementById('gps-toggle-btn');
+  if(gpsWatchId) stopGpsTrack(btn);
+  gpsPoints = [];
+  if(gpsPolyline){ map.removeLayer(gpsPolyline); gpsPolyline = null; }
+  if(gpsMarker){ map.removeLayer(gpsMarker); gpsMarker = null; }
+  document.getElementById('gps-stats').style.display = 'none';
+  document.getElementById('gps-clear-btn').style.display = 'none';
+  try{ localStorage.removeItem('etna_gps_track_v1'); }catch(e){}
+}
+
+// Ripristina una traccia lasciata a metà (es. app chiusa durante l'escursione)
+function restoreGpsTrack(){
+  let saved = null;
+  try{ saved = JSON.parse(localStorage.getItem('etna_gps_track_v1') || 'null'); }catch(e){}
+  if(!saved || !saved.points || saved.points.length < 2) return;
+  gpsPoints = saved.points;
+  gpsPolyline = L.polyline(gpsPoints, { color:'#4a9eff', weight:4, opacity:.9 }).addTo(map);
+  const last = gpsPoints[gpsPoints.length-1];
+  gpsMarker = L.marker(last, { icon: L.divIcon({ className:'', html:'<div class="gps-dot"></div>', iconSize:[16,16], iconAnchor:[8,8] }) }).addTo(map);
+  document.getElementById('gps-stats').style.display = 'block';
+  document.getElementById('gps-clear-btn').style.display = 'block';
+  updateGpsStats();
+}
+setTimeout(restoreGpsTrack, 1500);
 setTile('topo');
 
 L.marker([37.7510, 14.9934], {
@@ -2134,7 +2265,8 @@ async function loadMeteo(quota) {
     const url = `https://api.open-meteo.com/v1/forecast`
       + `?latitude=${c.lat}&longitude=${c.lng}`
       + `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,weather_code,cloud_cover,precipitation`
-      + `&hourly=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation_probability,weather_code,cloud_cover`
+      + `&hourly=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation_probability,weather_code,cloud_cover,freezing_level_height`
+      + `&daily=sunrise,sunset`
       + `&wind_speed_unit=kmh&forecast_days=3&timezone=Europe%2FRome`;
 
     const r = await fetch(url, { signal: AbortSignal.timeout(8000) });
@@ -2142,9 +2274,16 @@ async function loadMeteo(quota) {
     const d = await r.json();
     meteoData = d;
 
+    // Zero termico: prende il valore orario piu vicino all'ora corrente
+    const nowIdx = nearestHourlyIndex(d.hourly.time);
+    const freezingLevel = d.hourly.freezing_level_height ? d.hourly.freezing_level_height[nowIdx] : null;
+    lastFreezingLevel = freezingLevel;
+    lastDaily = d.daily;
+
     renderMeteoStrip(d.current, quota);
+    renderMeteoExtra(d.daily, freezingLevel);
     renderForecast(d.hourly, quota);
-    checkMeteoAlert(d.current, quota);
+    checkMeteoAlert(d.current, quota, freezingLevel);
     document.getElementById('meteo-updated').innerHTML =
       `${lang==='it'?'Aggiornato':'Updated'}: ${new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})} &nbsp;·&nbsp; <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>`;
 
@@ -2156,6 +2295,31 @@ async function loadMeteo(quota) {
     </div>`;
     forecast.innerHTML = '';
   }
+}
+
+// Trova l'indice orario piu recente non successivo ad ora (per leggere il dato "corrente" da un array hourly)
+function nearestHourlyIndex(hourlyTimes){
+  const now = new Date();
+  let idx = 0;
+  for(let i=0;i<hourlyTimes.length;i++){
+    if(new Date(hourlyTimes[i]) <= now) idx = i; else break;
+  }
+  return idx;
+}
+
+let lastFreezingLevel = null;
+let lastDaily = null;
+
+function renderMeteoExtra(daily, freezingLevel){
+  const el = document.getElementById('meteo-extra');
+  if(!el) return;
+  const sr = daily && daily.sunrise && daily.sunrise[0] ? new Date(daily.sunrise[0]) : null;
+  const ss = daily && daily.sunset && daily.sunset[0] ? new Date(daily.sunset[0]) : null;
+  const fmt = t => t ? t.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}) : '—';
+  el.innerHTML = `
+    <span>🌅 ${fmt(sr)}</span>
+    <span>🌇 ${fmt(ss)}</span>
+    <span>❄️ ${lang==='it'?'Zero termico':'Freezing level'}: ${freezingLevel!=null?Math.round(freezingLevel)+'m':'—'}</span>`;
 }
 
 function renderMeteoStrip(cur, quota) {
@@ -2240,7 +2404,7 @@ function renderForecast(hourly, quota) {
 }
 
 // Alert automatico per condizioni pericolose
-function checkMeteoAlert(cur, quota) {
+function checkMeteoAlert(cur, quota, freezingLevel) {
   const alerts = [];
   const alert = document.getElementById('meteo-alert');
 
@@ -2250,7 +2414,9 @@ function checkMeteoAlert(cur, quota) {
     alerts.push(lang==='it' ? `⚠️ Raffiche: ${Math.round(cur.wind_gusts_10m)} km/h` : `⚠️ Gusts: ${Math.round(cur.wind_gusts_10m)} km/h`);
   if([95,96,99].includes(cur.weather_code))
     alerts.push(lang==='it' ? '⛈ Temporale in corso — evitare escursioni' : '⛈ Thunderstorm — avoid hiking');
-  if(quota >= 2000 && cur.temperature_2m < 0)
+  if(freezingLevel != null && quota >= freezingLevel)
+    alerts.push(lang==='it' ? `🧊 Sopra lo zero termico (zero a ${Math.round(freezingLevel)}m)` : `🧊 Above freezing level (freezing at ${Math.round(freezingLevel)}m)`);
+  else if(freezingLevel == null && quota >= 2000 && cur.temperature_2m < 0)
     alerts.push(lang==='it' ? `🧊 Temperatura sotto zero: ${Math.round(cur.temperature_2m)}°C` : `🧊 Below zero: ${Math.round(cur.temperature_2m)}°C`);
 
   if(alerts.length) {
@@ -2265,8 +2431,9 @@ function checkMeteoAlert(cur, quota) {
 function refreshMeteoLabels() {
   if(meteoData) {
     renderMeteoStrip(meteoData.current, activeMeteoQuota);
+    renderMeteoExtra(lastDaily, lastFreezingLevel);
     renderForecast(meteoData.hourly, activeMeteoQuota);
-    checkMeteoAlert(meteoData.current, activeMeteoQuota);
+    checkMeteoAlert(meteoData.current, activeMeteoQuota, lastFreezingLevel);
   }
 }
 
@@ -2774,6 +2941,10 @@ window.setLang = function(l) {
   updateMapBtnLabels();
   const offBtn = document.getElementById('offline-map-btn');
   if(offBtn && !offBtn.disabled) updateOfflineBtnLabel(offBtn);
+  const gpsBtn = document.getElementById('gps-toggle-btn');
+  if(gpsBtn) gpsBtn.innerHTML = gpsWatchId
+    ? `⏹ <span>${lang==='it'?'Interrompi':'Stop'}</span>`
+    : `📍 <span>${lang==='it'?'Traccia GPS':'GPS track'}</span>`;
 };
 </script>
 </body>
