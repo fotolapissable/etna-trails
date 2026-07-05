@@ -1,5 +1,6 @@
-const APP_VERSION = 'v38';
+const APP_VERSION = 'v39';
 const CACHE_NAME  = `etna-trails-${APP_VERSION}`;
+const TOPO_TILE_CACHE = 'etna-topo-tiles-v1';
 const STATIC = ['./index.html','./data.json','./manifest.json'];
 
 self.addEventListener('install', event => {
@@ -16,6 +17,9 @@ self.addEventListener('activate', event => {
     caches.keys().then(keys =>
       Promise.all(
         keys
+          // Pulisce solo le vecchie cache della shell app, MAI la cache dei tile
+          // offline (etna-topo-tiles-v1): l'utente non deve doverla riscaricare
+          // ogni volta che l'app si aggiorna.
           .filter(k => k.startsWith('etna-trails-') && k !== CACHE_NAME)
           .map(k => caches.delete(k))
       )
@@ -28,9 +32,29 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if(!url.protocol.startsWith('http')) return;
 
-  // ── Bypass totale: risorse esterne — nessuna cache ────────
+  // ── Tile OpenTopoMap (mappa di default): chiave di cache canonica che
+  // ignora il sottodominio (a/b/c), cosi funziona sia il pre-download
+  // manuale ("Scarica mappe offline") sia il caching opportunistico durante
+  // la navigazione online, e la mappa resta leggibile senza segnale.
+  const topoMatch = url.hostname.endsWith('tile.opentopomap.org') &&
+    url.pathname.match(/\/(\d+)\/(\d+)\/(\d+)\.png$/);
+  if(topoMatch){
+    const tileKey = `https://tile-cache.etna/topo/${topoMatch[1]}/${topoMatch[2]}/${topoMatch[3]}.png`;
+    event.respondWith(
+      fetch(event.request).then(response => {
+        if(response && response.status === 200){
+          const clone = response.clone();
+          caches.open(TOPO_TILE_CACHE).then(c => c.put(tileKey, clone));
+        }
+        return response;
+      }).catch(() => caches.match(tileKey))
+    );
+    return;
+  }
+
+  // ── Bypass totale: altre risorse esterne — nessuna cache ────────
   const bypassHosts = [
-    'tile.', 'tile-', 'arcgis.com', 'carto.com', 'opentopomap.org',  // mappe
+    'tile.', 'tile-', 'arcgis.com', 'carto.com',  // altre mappe (satellite/dark)
     'api.open-meteo.com',       // meteo
     'windy.com',                // windy embed
     'allorigins.win',           // proxy gpx
@@ -65,7 +89,7 @@ self.addEventListener('fetch', event => {
           caches.open(CACHE_NAME).then(c => c.put(event.request, clone));
           return response;
         })
-        .catch(() => caches.match(event.request))
+        .catch(() => caches.match(event.request).then(cached => cached || caches.match('./index.html')))
     );
     return;
   }
