@@ -2340,12 +2340,15 @@ function openElev(pts,name){
     // Il disegno avverrà in showMap() dopo l'animazione
     return;
   }
-  requestAnimationFrame(()=>drawElev(pts));
+  setTimeout(()=>drawElev(pts), 370);
 }
 function closeElev(){document.getElementById('elev-bar').classList.remove('open');}
 function drawElev(pts){
   const cv=document.getElementById('elev-canvas'),ctx=cv.getContext('2d');
-  const W=cv.offsetWidth,H=cv.offsetHeight; cv.width=W; cv.height=H;
+  const W=cv.offsetWidth,H=cv.offsetHeight;
+  if(W<10||H<10){ setTimeout(()=>drawElev(pts),150); return; }
+  cv.width=W; cv.height=H;
+  ctx.globalAlpha=1;
   const p={t:6,r:10,b:18,l:38},cW=W-p.l-p.r,cH=H-p.t-p.b;
   const eles=pts.map(p=>p.ele),dists=pts.map(p=>p.dist);
   const eMin=Math.min(...eles)-30,eMax=Math.max(...eles)+30,dMax=dists[dists.length-1];
