@@ -2315,6 +2315,15 @@ if('serviceWorker' in navigator){
       const sw=reg.installing;
       sw.addEventListener('statechange',()=>{if(sw.state==='installed'&&navigator.serviceWorker.controller)sw.postMessage({action:'skipWaiting'});});
     });
+    // Storage persistente: protegge la cache (shell + tile mappa offline) dalla
+    // eviction automatica del browser quando il dispositivo è sotto pressione di
+    // spazio o l'app non viene aperta per molti giorni — importante per un'app
+    // usata occasionalmente prima di un'escursione.
+    if(navigator.storage && navigator.storage.persist){
+      navigator.storage.persisted().then(already=>{
+        if(!already) navigator.storage.persist().then(granted=>console.log('[PWA] Storage persistente:', granted?'concesso':'negato'));
+      });
+    }
   }).catch(e=>console.warn('[PWA]',e));
   let refreshing=false;
   navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!refreshing){refreshing=true;location.reload();}});
@@ -2669,55 +2678,77 @@ window.addEventListener('load', ()=>{
   }
 });
 
-// ── OFFLINE TILE CACHE (Leaflet.offline stub) ─────────────
+// ── OFFLINE TILE CACHE (mappa OpenTopoMap, quella di default) ─────
 // Pulsante "Scarica mappe offline" nella tab Meteo/Mappa
+const TOPO_TILE_CACHE = 'etna-topo-tiles-v1';
+const OFFLINE_BBOX_ETNA = { minLat:37.55, maxLat:38.15, minLng:14.70, maxLng:15.45 };
+const OFFLINE_ZOOMS_ETNA = [10,11,12,13,14];
+
 function addOfflineMapButton(){
   const mapDiv = document.getElementById('map');
   if(!mapDiv || document.getElementById('offline-map-btn')) return;
-  const isIT = (lang||'it')==='it';
   const btn = document.createElement('button');
   btn.id = 'offline-map-btn';
-  btn.innerHTML = `💾 ${isIT?'Scarica mappe offline':'Download offline maps'}`;
   btn.onclick = () => cacheEtnaTiles(btn);
   mapDiv.parentElement.insertBefore(btn, mapDiv);
+  updateOfflineBtnLabel(btn);
 }
+
+function updateOfflineBtnLabel(btn){
+  const isIT = (lang||'it')==='it';
+  let info=null;
+  try{ info = JSON.parse(localStorage.getItem('etna_offline_map_v1')||'null'); }catch(e){}
+  if(info && info.tiles){
+    const d = new Date(info.date);
+    btn.innerHTML = `✅ ${isIT?'Mappa offline OK':'Offline map OK'} (${d.toLocaleDateString(isIT?'it-IT':'en-GB')})`;
+  } else {
+    btn.innerHTML = `💾 ${isIT?'Scarica mappe offline':'Download offline maps'}`;
+  }
+}
+
+function lon2tile(lon,z){ return Math.floor((lon+180)/360 * Math.pow(2,z)); }
+function lat2tile(lat,z){ return Math.floor((1-Math.log(Math.tan(lat*Math.PI/180)+1/Math.cos(lat*Math.PI/180))/Math.PI)/2 * Math.pow(2,z)); }
+// URL reale (sempre sottodominio 'a' per semplicita); la chiave di cache è invece
+// canonica (senza sottodominio) cosi il Service Worker la trova indipendentemente
+// da quale sottodominio a/b/c Leaflet usi nella richiesta live.
+function topoTileFetchUrl(z,x,y){ return `https://a.tile.opentopomap.org/${z}/${x}/${y}.png`; }
+function topoTileCacheKey(z,x,y){ return `https://tile-cache.etna/topo/${z}/${x}/${y}.png`; }
 
 async function cacheEtnaTiles(btn){
   if(!('caches' in window)){ showToast('Cache API non disponibile'); return; }
   const isIT = (lang||'it')==='it';
   btn.disabled = true;
-  btn.innerHTML = `⏳ ${isIT?'Download in corso…':'Downloading…'}`;
 
-  // Bounding box Etna + Nebrodi: lat 37.55–38.15, lng 14.70–15.45
-  // Zoom 10–14
-  const urls = [];
-  const tileUrl = (z,x,y) => `https://a.tile.openstreetmap.org/${z}/${x}/${y}.png`;
-
-  function lon2tile(lon,z){ return Math.floor((lon+180)/360 * Math.pow(2,z)); }
-  function lat2tile(lat,z){ return Math.floor((1-Math.log(Math.tan(lat*Math.PI/180)+1/Math.cos(lat*Math.PI/180))/Math.PI)/2 * Math.pow(2,z)); }
-
-  const bounds = { minLat:37.55, maxLat:38.15, minLng:14.70, maxLng:15.45 };
-
-  for(let z=10; z<=14; z++){
-    const x0=lon2tile(bounds.minLng,z), x1=lon2tile(bounds.maxLng,z);
-    const y0=lat2tile(bounds.maxLat,z), y1=lat2tile(bounds.minLat,z);
-    for(let x=x0;x<=x1;x++) for(let y=y0;y<=y1;y++) urls.push(tileUrl(z,x,y));
-  }
+  const tiles = [];
+  OFFLINE_ZOOMS_ETNA.forEach(z=>{
+    const x0=lon2tile(OFFLINE_BBOX_ETNA.minLng,z), x1=lon2tile(OFFLINE_BBOX_ETNA.maxLng,z);
+    const y0=lat2tile(OFFLINE_BBOX_ETNA.maxLat,z), y1=lat2tile(OFFLINE_BBOX_ETNA.minLat,z);
+    for(let x=x0;x<=x1;x++) for(let y=y0;y<=y1;y++) tiles.push({z,x,y});
+  });
+  const total = tiles.length;
+  let done=0, errors=0;
+  btn.innerHTML = `⏳ 0/${total} tile`;
 
   try {
-    const cache = await caches.open('etna-tiles-v1');
-    let done=0;
-    const total=urls.length;
-    // scarica a batch di 10 per non saturare
-    for(let i=0;i<total;i+=10){
-      const batch=urls.slice(i,i+10);
-      await Promise.allSettled(batch.map(u=>cache.add(u).catch(()=>{})));
-      done=Math.min(i+10,total);
-      btn.innerHTML = `⏳ ${done}/${total} tile`;
+    const cache = await caches.open(TOPO_TILE_CACHE);
+    for(let i=0;i<total;i+=8){
+      const batch = tiles.slice(i,i+8);
+      await Promise.allSettled(batch.map(async t=>{
+        try{
+          const resp = await fetch(topoTileFetchUrl(t.z,t.x,t.y));
+          if(resp && resp.status===200){ await cache.put(topoTileCacheKey(t.z,t.x,t.y), resp.clone()); done++; }
+          else errors++;
+        }catch(e){ errors++; }
+      }));
+      btn.innerHTML = `⏳ ${Math.min(i+8,total)}/${total} tile`;
     }
-    btn.innerHTML = `✅ ${isIT?'Mappe offline pronte':'Offline maps ready'}`;
-    showToast(isIT?'✅ Mappe offline scaricate! Funzionano senza segnale.':'✅ Offline maps downloaded!', 4000);
-    setTimeout(()=>{ btn.innerHTML=`💾 ${isIT?'Scarica mappe offline':'Download offline maps'}`; btn.disabled=false; },5000);
+    if(errors===0){
+      try{ localStorage.setItem('etna_offline_map_v1', JSON.stringify({date:new Date().toISOString(), tiles:done})); }catch(e){}
+      showToast(isIT?'✅ Mappa topografica scaricata! Funziona senza segnale in zona Etna.':'✅ Topo map downloaded! Works offline around Etna.', 4000);
+    } else {
+      showToast(isIT?`Scaricati ${done} tile, ${errors} falliti. Riprova con connessione migliore.`:`Downloaded ${done} tiles, ${errors} failed.`, 4000);
+    }
+    setTimeout(()=>{ updateOfflineBtnLabel(btn); btn.disabled=false; },3000);
   } catch(err) {
     btn.innerHTML = `❌ ${isIT?'Errore download':'Download error'}`;
     btn.disabled=false;
@@ -2727,8 +2758,6 @@ async function cacheEtnaTiles(btn){
 
 // Aggiunge il pulsante quando la mappa è visibile
 document.addEventListener('DOMContentLoaded', ()=>{
-  // Observer per quando il tab mappa diventa visibile
-  const mapPanel = document.getElementById('tab-meteo') || document.querySelector('[data-tab="meteo"]');
   setTimeout(addOfflineMapButton, 2000);
 });
 
@@ -2742,6 +2771,8 @@ const _setLangOrig = window.setLang;
 window.setLang = function(l) {
   _setLangOrig ? _setLangOrig(l) : setLang(l);
   updateMapBtnLabels();
+  const offBtn = document.getElementById('offline-map-btn');
+  if(offBtn && !offBtn.disabled) updateOfflineBtnLabel(offBtn);
 };
 </script>
 </body>
