@@ -287,6 +287,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   box-shadow:0 2px 10px rgba(0,0,0,.3)}
 .gps-dot{width:14px;height:14px;border-radius:50%;background:#4a9eff;border:2px solid #fff;
   box-shadow:0 0 0 4px rgba(74,158,255,.3)}
+#mytrack-open-btn{position:absolute;bottom:52px;left:10px;z-index:700;
+  background:rgba(10,4,0,0.9);border:1px solid var(--border-bright);color:var(--gold);
+  font-family:var(--font-m);font-size:9.5px;letter-spacing:1px;padding:7px 12px;border-radius:3px;
+  cursor:pointer;backdrop-filter:blur(4px);box-shadow:0 2px 10px rgba(0,0,0,.3)}
+#mytrack-open-btn:hover{border-color:var(--ember);color:var(--ember)}
 .leg-item{display:flex;align-items:center;gap:6px;font-family:var(--font-m);
   font-size:7.5px;color:var(--ash-light);margin-bottom:4px}
 .leg-item:last-child{margin-bottom:0}
@@ -493,6 +498,40 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   font-family:var(--font-m);font-size:9.5px;letter-spacing:2px;padding:11px;
   border-radius:2px;cursor:pointer;text-transform:uppercase}
 #btn-submit:hover{background:#ff7a20}
+#mytrack-overlay{display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,.8);backdrop-filter:blur(4px);align-items:center;justify-content:center}
+#mytrack-overlay.open{display:flex}
+#mytrack-modal{background:var(--lava2);border:1px solid var(--border-bright);border-radius:4px;
+  width:min(420px,95vw);max-height:90vh;overflow-y:auto;
+  box-shadow:0 8px 40px rgba(0,0,0,.6)}
+#mytrack-hdr{padding:16px 18px 12px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center}
+#mytrack-title{font-family:var(--font-t);font-size:13px;font-weight:900;color:var(--gold);letter-spacing:2px}
+#mytrack-x{background:none;border:1px solid var(--border);color:var(--ash);
+  font-family:var(--font-m);font-size:10px;padding:4px 8px;cursor:pointer;border-radius:2px}
+#mytrack-x:hover{border-color:var(--ember);color:var(--ember)}
+#mytrack-body{padding:16px 18px}
+#mytrack-info{background:var(--ember-dim);border:1px solid rgba(232,96,10,.3);
+  border-radius:3px;padding:9px 11px;margin-bottom:14px;font-size:11px;
+  color:var(--ash-light);line-height:1.5}
+#mytrack-info strong{color:var(--ember)}
+#mytrack-status{font-size:10.5px;color:var(--green-trail);margin-bottom:12px;display:none}
+.mytrack-btn-row{display:flex;gap:6px;margin-bottom:10px}
+.mytrack-ab{flex:1;background:none;border:1px solid var(--border-bright);color:var(--ash-light);
+  font-family:var(--font-m);font-size:9px;letter-spacing:1px;padding:8px;border-radius:2px;
+  cursor:pointer;transition:all .2s;text-align:center}
+.mytrack-ab:hover{border-color:var(--gold);color:var(--gold)}
+.mytrack-ab.danger{border-color:rgba(191,58,58,.4);color:var(--red-trail)}
+.mytrack-ab.danger:hover{border-color:var(--red-trail);background:rgba(191,58,58,.1)}
+.mytrack-url-row{display:flex;gap:5px;margin-bottom:14px}
+.mytrack-url-row input{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);
+  border-radius:2px;color:var(--snow);font-family:var(--font-b);font-size:12px;
+  padding:7px 9px;outline:none}
+.mytrack-url-row input:focus{border-color:var(--gold)}
+.mytrack-url-row button{background:none;border:1px solid var(--border);color:var(--ash-light);
+  font-family:var(--font-m);font-size:9px;padding:0 12px;cursor:pointer;border-radius:2px}
+.mytrack-url-row button:hover{border-color:var(--gold);color:var(--gold)}
+#mytrack-prep-note{font-size:9px;color:var(--ash);font-style:italic;line-height:1.3;margin-top:8px}
 #btn-submit:disabled{opacity:.5;cursor:not-allowed}
 #submit-ok{display:none;text-align:center;padding:22px}
 #submit-ok .check{font-size:36px;display:block;margin-bottom:10px}
@@ -1484,6 +1523,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <button id="gps-clear-btn" onclick="clearGpsTrack()" style="display:none" title="Cancella traccia">🗑</button>
     </div>
 
+    <button id="mytrack-open-btn" onclick="openMyTrackModal()">📂 <span data-it="Traccia personale" data-en="Personal track">Traccia personale</span></button>
     <div id="detail-panel">
       <div id="detail-inner">
         <button id="detail-close" onclick="closeDetail()">✕ <span data-it="chiudi" data-en="close">chiudi</span></button>
@@ -1503,20 +1543,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
         <div id="detail-poi"></div>
         <div id="detail-stagioni"></div>
         <div id="detail-extra"></div>
-        <div id="gpx-ctrl">
-          <h4 data-it="TRACCIA GPX" data-en="GPX TRACK">TRACCIA GPX</h4>
-          <div class="gpx-btn-row">
-            <button class="gpx-ab" onclick="document.getElementById('gpx-file-input').click()">📂 <span data-it="Carica .gpx" data-en="Load .gpx">Carica .gpx</span></button>
-            <button class="gpx-ab danger" id="gpx-clear" onclick="clearGpx()" style="display:none">🗑 <span data-it="Rimuovi" data-en="Remove">Rimuovi</span></button>
-            <input type="file" id="gpx-file-input" accept=".gpx" onchange="loadGpxFile(event)">
-          </div>
-          <div class="gpx-url-row">
-            <input type="text" id="gpx-url" placeholder="URL Wikiloc / Komoot / .gpx">
-            <button id="gpx-url-load" onclick="loadGpxUrl()">↓ <span data-it="Carica" data-en="Load">Carica</span></button>
-          </div>
-          <button id="prep-gpx-btn" class="action-btn prep" style="margin-top:8px;width:100%;justify-content:center" disabled onclick="prepareCurrentGpx()">🎒 Carica prima una traccia</button>
-          <div id="prep-gpx-note" data-it="Scarica la mappa di dettaglio e un promemoria del meteo per QUESTA traccia — salvati solo sul tuo telefono, nessun dato inviato a noi." data-en="Downloads detailed map and a weather snapshot for THIS track — saved only on your phone, no data sent to us.">Scarica la mappa di dettaglio e un promemoria del meteo per QUESTA traccia — salvati solo sul tuo telefono, nessun dato inviato a noi.</div>
-        </div>
       </div>
     </div>
 
@@ -1565,6 +1591,34 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
         <div class="fg"><label class="fl" data-it="TUO NOME" data-en="YOUR NAME">TUO NOME</label><input type="text" class="fi" id="f-autore"></div>
         <button id="btn-submit" onclick="submitTrail()"><span data-it="🌋 INVIA PROPOSTA" data-en="🌋 SEND PROPOSAL">🌋 INVIA PROPOSTA</span></button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Traccia Personale — indipendente dal catalogo sentieri -->
+<div id="mytrack-overlay">
+  <div id="mytrack-modal">
+    <div id="mytrack-hdr">
+      <div id="mytrack-title" data-it="📂 TRACCIA PERSONALE" data-en="📂 PERSONAL TRACK">📂 TRACCIA PERSONALE</div>
+      <button id="mytrack-x" onclick="closeMyTrackModal()">✕</button>
+    </div>
+    <div id="mytrack-body">
+      <div id="mytrack-info">
+        <strong data-it="Come funziona:" data-en="How it works:">Come funziona:</strong>
+        <span data-it=" carica un tuo file .gpx o un link (Wikiloc, Komoot...). La traccia appare sulla mappa e resta solo su questo dispositivo — non è collegata al catalogo sentieri." data-en=" load your own .gpx file or a link (Wikiloc, Komoot...). The track appears on the map and stays only on this device — it's not linked to the trail catalogue.">carica un tuo file .gpx o un link (Wikiloc, Komoot...). La traccia appare sulla mappa e resta solo su questo dispositivo — non è collegata al catalogo sentieri.</span>
+      </div>
+      <div id="mytrack-status"></div>
+      <div class="mytrack-btn-row">
+        <button class="mytrack-ab" onclick="document.getElementById('gpx-file-input').click()">📂 <span data-it="Carica .gpx" data-en="Load .gpx">Carica .gpx</span></button>
+        <button class="mytrack-ab danger" id="gpx-clear" onclick="clearGpx()" style="display:none">🗑 <span data-it="Rimuovi" data-en="Remove">Rimuovi</span></button>
+        <input type="file" id="gpx-file-input" accept=".gpx" onchange="loadGpxFile(event)" style="display:none">
+      </div>
+      <div class="mytrack-url-row">
+        <input type="text" id="gpx-url" placeholder="URL Wikiloc / Komoot / .gpx">
+        <button id="gpx-url-load" onclick="loadGpxUrl()">↓ <span data-it="Carica" data-en="Load">Carica</span></button>
+      </div>
+      <button id="prep-gpx-btn" class="action-btn prep" style="width:100%;justify-content:center" disabled onclick="prepareCurrentGpx()">🎒 Carica prima una traccia</button>
+      <div id="mytrack-prep-note" data-it="Scarica la mappa di dettaglio e un promemoria del meteo per QUESTA traccia — salvati solo sul tuo telefono, nessun dato inviato a noi." data-en="Downloads detailed map and a weather snapshot for THIS track — saved only on your phone, no data sent to us.">Scarica la mappa di dettaglio e un promemoria del meteo per QUESTA traccia — salvati solo sul tuo telefono, nessun dato inviato a noi.</div>
     </div>
   </div>
 </div>
@@ -2020,7 +2074,6 @@ function showDetail(type, id) {
   document.getElementById('detail-poi').innerHTML = poi;
   document.getElementById('detail-stagioni').innerHTML = stagioni;
   document.getElementById('detail-extra').innerHTML = extra;
-  document.getElementById('gpx-ctrl').style.display = showGpx ? 'block' : 'none';
   updatePrepGpxBtn();
   const disc = document.getElementById('detail-disclaimer');
   disc.textContent = disc.dataset[lang==='it'?'it':'en'];
@@ -2141,6 +2194,7 @@ function processGpx(xml, name){
   map.fitBounds(gpxLayer.getBounds(),{padding:[30,30]});
   document.getElementById('gpx-clear').style.display='flex';
   updatePrepGpxBtn();
+  updateMyTrackStatus();
   renderGenericSnapshot();
   const withEle=pts.filter(p=>p.ele!==null);
   if(withEle.length>1) openElev(withEle,name);
@@ -2152,6 +2206,7 @@ function clearGpx(){
   lastGpxName = null;
   document.getElementById('gpx-clear').style.display='none';
   updatePrepGpxBtn();
+  updateMyTrackStatus();
   closeElev();
 }
 function downloadGpx(url,name){
@@ -2612,6 +2667,30 @@ setInterval(() => {
 function openModal(){document.getElementById('modal-overlay').classList.add('open');document.getElementById('submit-form').style.display='block';document.getElementById('submit-ok').style.display='none';}
 function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
 document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))closeModal();});
+
+// ── MODAL TRACCIA PERSONALE (indipendente dal catalogo sentieri) ──
+function openMyTrackModal(){
+  document.getElementById('mytrack-overlay').classList.add('open');
+  updatePrepGpxBtn();
+  updateMyTrackStatus();
+}
+function closeMyTrackModal(){
+  document.getElementById('mytrack-overlay').classList.remove('open');
+}
+document.getElementById('mytrack-overlay').addEventListener('click', e=>{
+  if(e.target===document.getElementById('mytrack-overlay')) closeMyTrackModal();
+});
+function updateMyTrackStatus(){
+  const el = document.getElementById('mytrack-status');
+  if(!el) return;
+  const isIT = lang==='it';
+  if(gpxPts && gpxPts.length){
+    el.style.display = 'block';
+    el.textContent = `✅ ${isIT?'Traccia caricata':'Track loaded'}${lastGpxName?' — '+lastGpxName:''} (${gpxPts.length} ${isIT?'punti':'points'})`;
+  } else {
+    el.style.display = 'none';
+  }
+}
 
 async function submitTrail(){
   const nome=document.getElementById('f-nome').value.trim();
