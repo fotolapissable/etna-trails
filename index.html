@@ -146,6 +146,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   cursor:pointer;margin-bottom:6px;transition:all .2s;text-align:center}
 #sos-location-btn:hover:not(:disabled){background:rgba(37,211,102,.26)}
 #sos-location-btn:disabled{opacity:.6;cursor:default}
+#sos-location-note{font-size:9px;color:var(--ash);font-style:italic;line-height:1.3;
+  padding:0 2px 10px;text-align:center}
 .emerg-card{background:var(--lava2);border:1px solid var(--border);
   border-radius:3px;padding:10px 12px;margin-bottom:8px}
 .emerg-card.h24{border-left:3px solid var(--green-trail)}
@@ -418,7 +420,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   padding:6px 9px;margin-bottom:10px;display:none}
 .action-btn.prep{background:rgba(74,158,92,.15);border-color:rgba(74,158,92,.4);color:var(--green-trail)}
 .action-btn.prep:hover{background:rgba(74,158,92,.28)}
-.action-btn.prep:disabled{opacity:.6;cursor:default}
+.action-btn.prep:disabled{opacity:.45;cursor:default}
+#prep-gpx-note{font-size:9px;color:var(--ash);font-style:italic;line-height:1.3;margin-top:5px}
 .gpx-btn-row{display:flex;gap:6px;flex-wrap:wrap}
 .gpx-ab{background:var(--ember-dim);border:1px solid rgba(232,96,10,.4);
   color:var(--ember);font-family:var(--font-m);font-size:8px;letter-spacing:1px;
@@ -1511,6 +1514,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
             <input type="text" id="gpx-url" placeholder="URL Wikiloc / Komoot / .gpx">
             <button id="gpx-url-load" onclick="loadGpxUrl()">↓ <span data-it="Carica" data-en="Load">Carica</span></button>
           </div>
+          <button id="prep-gpx-btn" class="action-btn prep" style="margin-top:8px;width:100%;justify-content:center" disabled onclick="prepareCurrentGpx()">🎒 Carica prima una traccia</button>
+          <div id="prep-gpx-note" data-it="Scarica la mappa di dettaglio e un promemoria del meteo per QUESTA traccia — salvati solo sul tuo telefono, nessun dato inviato a noi." data-en="Downloads detailed map and a weather snapshot for THIS track — saved only on your phone, no data sent to us.">Scarica la mappa di dettaglio e un promemoria del meteo per QUESTA traccia — salvati solo sul tuo telefono, nessun dato inviato a noi.</div>
         </div>
       </div>
     </div>
@@ -1871,7 +1876,8 @@ function renderSos() {
   const list = DB.emergenze || [];
   const c = document.getElementById('sos-list');
   c.innerHTML = `
-    <button id="sos-location-btn" onclick="sendSosLocation()">📍 <span data-it="Invia la mia posizione su WhatsApp" data-en="Send my location via WhatsApp">${lang==='it'?'Invia la mia posizione su WhatsApp':'Send my location via WhatsApp'}</span></button>
+    <button id="sos-location-btn" onclick="sendSosLocation()">📍 <span data-it="Condividi la mia posizione" data-en="Share my location">${lang==='it'?'Condividi la mia posizione':'Share my location'}</span></button>
+    <div id="sos-location-note" data-it="Apre WhatsApp con le tue coordinate — decidi tu a chi inviarle e quando. Non invia nulla automaticamente." data-en="Opens WhatsApp with your coordinates — you choose who to send them to and when. Nothing is sent automatically.">Apre WhatsApp con le tue coordinate — decidi tu a chi inviarle e quando. Non invia nulla automaticamente.</div>
     <div style="font-family:var(--font-m);font-size:8px;letter-spacing:2px;color:var(--ash);text-transform:uppercase;padding:10px 12px 6px">${lang==='it'?'CONTATTI DI EMERGENZA':'EMERGENCY CONTACTS'}</div>`;
   list.forEach(e => {
     const el = document.createElement('div');
@@ -1888,11 +1894,18 @@ function renderSos() {
   });
 }
 
-// Ottiene la posizione GPS attuale e apre WhatsApp con un messaggio pronto
-// (link a Google Maps incluso) da inviare a qualsiasi contatto scelto al momento.
+// Ottiene la posizione GPS attuale e apre WhatsApp con le coordinate pronte da inviare.
+// Richiede una conferma esplicita prima di procedere (per evitare tocchi accidentali),
+// e il messaggio NON dichiara un'emergenza: e' l'utente stesso a scrivere/decidere cosa
+// comunicare una volta aperta la chat di WhatsApp, e a scegliere se e quando premere invia.
 function sendSosLocation(){
   const btn = document.getElementById('sos-location-btn');
   const isIT = lang==='it';
+  if(!confirm(isIT
+    ? 'Vuoi aprire WhatsApp con la tua posizione attuale? Dovrai poi scegliere tu il destinatario e premere invia.'
+    : 'Open WhatsApp with your current location? You will still choose the recipient and tap send yourself.')){
+    return;
+  }
   if(!navigator.geolocation){
     showToast(isIT?'Geolocalizzazione non disponibile su questo dispositivo.':'Geolocation not available on this device.');
     return;
@@ -1905,17 +1918,17 @@ function sendSosLocation(){
     const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`;
     const now = new Date().toLocaleTimeString(isIT?'it-IT':'en-GB',{hour:'2-digit',minute:'2-digit'});
     const msg = isIT
-      ? `🆘 Ho bisogno di aiuto. La mia posizione: ${mapsUrl} (precisione ~${acc}m). Inviato da Etna Trails alle ${now}.`
-      : `🆘 I need help. My location: ${mapsUrl} (accuracy ~${acc}m). Sent from Etna Trails at ${now}.`;
+      ? `📍 La mia posizione attuale: ${mapsUrl} (precisione ~${acc}m). Da Etna Trails, ${now}.`
+      : `📍 My current location: ${mapsUrl} (accuracy ~${acc}m). From Etna Trails, ${now}.`;
     window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
-    gaEvent('sos_location_sent');
+    gaEvent('location_shared');
     btn.disabled = false;
-    btn.innerHTML = `📍 ${isIT?'Invia la mia posizione su WhatsApp':'Send my location via WhatsApp'}`;
+    btn.innerHTML = `📍 ${isIT?'Condividi la mia posizione':'Share my location'}`;
   }, err => {
-    console.warn('[SOS GPS]', err);
+    console.warn('[Location share]', err);
     showToast(isIT?'Impossibile ottenere la posizione. Controlla i permessi GPS.':'Could not get location. Check GPS permissions.');
     btn.disabled = false;
-    btn.innerHTML = `📍 ${isIT?'Invia la mia posizione su WhatsApp':'Send my location via WhatsApp'}`;
+    btn.innerHTML = `📍 ${isIT?'Condividi la mia posizione':'Share my location'}`;
   }, { enableHighAccuracy:true, timeout:15000, maximumAge:0 });
 }
 
@@ -2002,12 +2015,13 @@ function showDetail(type, id) {
   document.getElementById('detail-name').textContent = title;
   document.getElementById('detail-zone').textContent = zone;
   document.getElementById('detail-stats').innerHTML = stats;
-  renderTrailSnapshot(type==='s' ? id : null);
+  renderGenericSnapshot();
   document.getElementById('detail-desc').textContent = desc;
   document.getElementById('detail-poi').innerHTML = poi;
   document.getElementById('detail-stagioni').innerHTML = stagioni;
   document.getElementById('detail-extra').innerHTML = extra;
   document.getElementById('gpx-ctrl').style.display = showGpx ? 'block' : 'none';
+  updatePrepGpxBtn();
   const disc = document.getElementById('detail-disclaimer');
   disc.textContent = disc.dataset[lang==='it'?'it':'en'];
 
@@ -2045,14 +2059,6 @@ function showDetail(type, id) {
     a.href = 'tel:' + phone.replace(/\s/g,'');
     a.innerHTML = `📞 ${phone}`;
     act.appendChild(a);
-  }
-  if(type==='s') {
-    const b = document.createElement('button');
-    b.className = 'action-btn prep';
-    b.id = 'prep-btn-' + id;
-    updatePrepBtnLabel(b, id);
-    b.onclick = () => { gaEvent('prepara_escursione',{item_id:id,item_name:title}); prepareTrail(id, b); };
-    act.appendChild(b);
   }
 
   document.getElementById('detail-panel').classList.add('open');
@@ -2121,9 +2127,11 @@ async function loadGpxUrl(){
   }catch{alert(lang==='it'?'Impossibile caricare il GPX.':'Cannot load GPX.');}
   btn.textContent=lang==='it'?'↓ Carica':'↓ Load'; btn.disabled=false;
 }
+let lastGpxName = null;
 function processGpx(xml, name){
   const pts=parseGpx(xml); if(!pts.length) return;
   gpxPts=pts;
+  lastGpxName = name || null;
   if(gpxLayer){map.removeLayer(gpxLayer);gpxLayer=null;}
   if(gpxMark){map.removeLayer(gpxMark);gpxMark=null;}
   const t=activeItem&&activeItem.type==='s'?(DB.sentieri||[]).find(x=>x.id===activeItem.id):null;
@@ -2132,6 +2140,8 @@ function processGpx(xml, name){
   gpxMark=L.marker([pts[0].lat,pts[0].lng],{icon:L.divIcon({className:'',html:'<div style="width:10px;height:10px;border-radius:50%;background:#e8600a;border:2px solid #fff;box-shadow:0 0 6px rgba(232,96,10,.8)"></div>',iconSize:[10,10],iconAnchor:[5,5]})}).addTo(map);
   map.fitBounds(gpxLayer.getBounds(),{padding:[30,30]});
   document.getElementById('gpx-clear').style.display='flex';
+  updatePrepGpxBtn();
+  renderGenericSnapshot();
   const withEle=pts.filter(p=>p.ele!==null);
   if(withEle.length>1) openElev(withEle,name);
 }
@@ -2139,7 +2149,9 @@ function clearGpx(){
   if(gpxLayer){map.removeLayer(gpxLayer);gpxLayer=null;}
   if(gpxMark){map.removeLayer(gpxMark);gpxMark=null;}
   gpxPts=[];
+  lastGpxName = null;
   document.getElementById('gpx-clear').style.display='none';
+  updatePrepGpxBtn();
   closeElev();
 }
 function downloadGpx(url,name){
@@ -2156,26 +2168,34 @@ function downloadGpx(url,name){
 // esatto (in aggiunta alla mappa generale 10-14 gia scaricabile), e salva uno
 // snapshot del meteo attuale in quel punto — cosi tutto e pronto prima di
 // perdere il segnale.
-function prepTrailSnapshotKey(id){ return 'etna_trail_snapshot_' + id; }
+function prepGenericSnapshotKey(){ return 'etna_custom_track_snapshot_v1'; }
 
-function updatePrepBtnLabel(btn, id){
+// Aggiorna il bottone in base a: nessuna traccia caricata / traccia caricata ma non preparata / gia pronta
+function updatePrepGpxBtn(){
+  const btn = document.getElementById('prep-gpx-btn');
+  if(!btn) return;
   const isIT = lang==='it';
+  if(!gpxPts || !gpxPts.length){
+    btn.disabled = true;
+    btn.innerHTML = `🎒 ${isIT?'Carica prima una traccia':'Load a track first'}`;
+    return;
+  }
+  btn.disabled = false;
   let snap = null;
-  try{ snap = JSON.parse(localStorage.getItem(prepTrailSnapshotKey(id)) || 'null'); }catch(e){}
-  if(snap){
+  try{ snap = JSON.parse(localStorage.getItem(prepGenericSnapshotKey()) || 'null'); }catch(e){}
+  if(snap && snap.name === lastGpxName){
     const d = new Date(snap.date);
     btn.innerHTML = `✅ ${isIT?'Pronto offline':'Ready offline'} (${d.toLocaleDateString(isIT?'it-IT':'en-GB')})`;
   } else {
-    btn.innerHTML = `🎒 ${isIT?'Prepara escursione':'Prepare hike'}`;
+    btn.innerHTML = `🎒 ${isIT?'Prepara questa escursione':'Prepare this hike'}`;
   }
 }
 
-function renderTrailSnapshot(id){
+function renderGenericSnapshot(){
   const el = document.getElementById('detail-snapshot');
   if(!el) return;
-  if(!id){ el.style.display='none'; return; }
   let snap = null;
-  try{ snap = JSON.parse(localStorage.getItem(prepTrailSnapshotKey(id)) || 'null'); }catch(e){}
+  try{ snap = JSON.parse(localStorage.getItem(prepGenericSnapshotKey()) || 'null'); }catch(e){}
   if(!snap){ el.style.display='none'; return; }
   const isIT = lang==='it';
   const d = new Date(snap.date);
@@ -2186,32 +2206,20 @@ function renderTrailSnapshot(id){
     + `${wmo.i} ${Math.round(c.temperature_2m)}°C · 💨 ${Math.round(c.wind_speed_10m)}km/h`;
 }
 
-async function prepareTrail(id, btn){
-  const t = (DB.sentieri||[]).find(x=>x.id===id);
-  if(!t) return;
+// Prepara SOLO la traccia GPX attualmente caricata (nostra o dell'utente, non importa):
+// scarica tile di dettaglio (z15-16) lungo quel percorso e salva uno snapshot meteo.
+// Tutto resta esclusivamente sul dispositivo di chi la usa (Cache Storage + localStorage
+// del browser): nessun dato viene inviato a fotolapissable.it o a terzi al di fuori delle
+// normali chiamate a OpenTopoMap (tile) e Open-Meteo (meteo).
+async function prepareCurrentGpx(){
+  const btn = document.getElementById('prep-gpx-btn');
+  if(!gpxPts || !gpxPts.length) return;
   const isIT = lang==='it';
   btn.disabled = true;
 
-  // 1. Punti del percorso: usa il GPX gia caricato, altrimenti provalo a scaricare
-  let pts = (gpxPts && gpxPts.length && activeItem && activeItem.id===id) ? gpxPts : null;
-  if(!pts && t.gpx){
-    try{
-      const xml = gpxCache[id] || await (await fetch(t.gpx)).text();
-      gpxCache[id] = xml;
-      pts = parseGpx(xml);
-    }catch(e){ console.warn('[Prepara] GPX non disponibile', e); }
-  }
+  const lats = gpxPts.map(p=>p.lat), lngs = gpxPts.map(p=>p.lng);
+  const bbox = { minLat:Math.min(...lats)-0.01, maxLat:Math.max(...lats)+0.01, minLng:Math.min(...lngs)-0.01, maxLng:Math.max(...lngs)+0.01 };
 
-  // 2. Bounding box: dal percorso se disponibile, altrimenti un raggio attorno al punto
-  let bbox;
-  if(pts && pts.length){
-    const lats = pts.map(p=>p.lat), lngs = pts.map(p=>p.lng);
-    bbox = { minLat:Math.min(...lats)-0.01, maxLat:Math.max(...lats)+0.01, minLng:Math.min(...lngs)-0.01, maxLng:Math.max(...lngs)+0.01 };
-  } else {
-    bbox = { minLat:t.lat-0.03, maxLat:t.lat+0.03, minLng:t.lng-0.03, maxLng:t.lng+0.03 };
-  }
-
-  // 3. Tile a zoom 15-16 su quell'area (stessa cache della mappa offline generale)
   const tiles = [];
   [15,16].forEach(z=>{
     const x0=lon2tile(bbox.minLng,z), x1=lon2tile(bbox.maxLng,z);
@@ -2234,29 +2242,24 @@ async function prepareTrail(id, btn){
     }
   }catch(e){ console.warn('[Prepara] tile', e); }
 
-  // 4. Snapshot meteo nel punto centrale del percorso
   try{
-    const lat = pts && pts.length ? pts[Math.floor(pts.length/2)].lat : t.lat;
-    const lng = pts && pts.length ? pts[Math.floor(pts.length/2)].lng : t.lng;
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}`
+    const mid = gpxPts[Math.floor(gpxPts.length/2)];
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${mid.lat}&longitude=${mid.lng}`
       + `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_gusts_10m,weather_code,cloud_cover,precipitation`
       + `&wind_speed_unit=kmh&timezone=Europe%2FRome`;
     const r = await fetch(url, { signal: AbortSignal.timeout(8000) });
     if(r.ok){
       const d = await r.json();
-      localStorage.setItem(prepTrailSnapshotKey(id), JSON.stringify({ current:d.current, date:new Date().toISOString() }));
+      localStorage.setItem(prepGenericSnapshotKey(), JSON.stringify({ current:d.current, date:new Date().toISOString(), name:lastGpxName||null }));
     }
   }catch(e){ console.warn('[Prepara] meteo', e); }
 
-  // 5. Assicura che la foto del sentiero sia in cache (stessa origine → sw.js la salva)
-  if(t.foto){ try{ await fetch(t.foto); }catch(e){} }
-
   btn.disabled = false;
-  updatePrepBtnLabel(btn, id);
-  renderTrailSnapshot(id);
+  updatePrepGpxBtn();
+  renderGenericSnapshot();
   showToast(errors===0
-    ? (isIT?`✅ "${t.nome[lang]}" pronto per l'escursione offline!`:`✅ "${t.nome[lang]}" ready for offline hiking!`)
-    : (isIT?`Preparato con ${errors} tile non scaricati.`:`Prepared with ${errors} tiles not downloaded.`), 4000);
+    ? (isIT?"✅ Traccia pronta per l'escursione offline (solo sul tuo telefono)!":'✅ Track ready for offline hiking (only on your phone)!')
+    : (isIT?`Preparata con ${errors} tile non scaricati.`:`Prepared with ${errors} tiles not downloaded.`), 4000);
 }
 
 // ── ELEVATION ────────────────────────────────────────────
@@ -3108,13 +3111,11 @@ window.setLang = function(l) {
   if(gpsBtn) gpsBtn.innerHTML = gpsWatchId
     ? `⏹ <span>${lang==='it'?'Interrompi':'Stop'}</span>`
     : `📍 <span>${lang==='it'?'Traccia GPS':'GPS track'}</span>`;
-  if(activeItem && activeItem.type==='s'){
-    const prepBtn = document.getElementById('prep-btn-' + activeItem.id);
-    if(prepBtn && !prepBtn.disabled) updatePrepBtnLabel(prepBtn, activeItem.id);
-    renderTrailSnapshot(activeItem.id);
-  }
+  const prepBtn = document.getElementById('prep-gpx-btn');
+  if(prepBtn && !prepBtn.disabled) updatePrepGpxBtn();
+  renderGenericSnapshot();
   const sosBtn = document.getElementById('sos-location-btn');
-  if(sosBtn && !sosBtn.disabled) sosBtn.innerHTML = `📍 ${lang==='it'?'Invia la mia posizione su WhatsApp':'Send my location via WhatsApp'}`;
+  if(sosBtn && !sosBtn.disabled) sosBtn.innerHTML = `📍 ${lang==='it'?'Condividi la mia posizione':'Share my location'}`;
 };
 </script>
 </body>
