@@ -1,4 +1,4 @@
-const APP_VERSION = 'v39';
+const APP_VERSION = 'v40';
 const CACHE_NAME  = `etna-trails-${APP_VERSION}`;
 const TOPO_TILE_CACHE = 'etna-topo-tiles-v1';
 const STATIC = ['./index.html','./data.json','./manifest.json'];
@@ -82,7 +82,7 @@ self.addEventListener('fetch', event => {
     url.pathname.endsWith('data.json')
   ){
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: 'no-store' })
         .then(response => {
           // Clona PRIMA di usare — evita "body already used"
           const clone = response.clone();
