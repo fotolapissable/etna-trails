@@ -464,7 +464,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 #elev-close{background:none;border:1px solid var(--border);color:var(--ash);
   font-family:var(--font-m);font-size:9px;padding:3px 6px;cursor:pointer;border-radius:2px}
 #elev-close:hover{border-color:var(--ember);color:var(--ember)}
-#elev-canvas{flex:1;width:100%;cursor:crosshair}
+#elev-canvas{flex:1;width:100%;cursor:crosshair;display:block}
 #elev-tip{position:absolute;pointer-events:none;background:rgba(10,4,0,.92);
   border:1px solid var(--border);border-radius:2px;padding:4px 7px;
   font-family:var(--font-m);font-size:8.5px;color:var(--snow);
@@ -1559,7 +1559,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
           </div>
           <button id="elev-close" onclick="closeElev()">✕</button>
         </div>
-        <canvas id="elev-canvas"></canvas>
+        <svg id="elev-canvas" viewBox="0 0 1000 110" preserveAspectRatio="none"></svg>
       </div>
     </div>
     <div id="elev-tip"></div>
@@ -2323,7 +2323,6 @@ async function prepareCurrentGpx(){
 }
 
 // ── ELEVATION ────────────────────────────────────────────
-let elevResizeObs = null;
 function openElev(pts,name){
   document.getElementById('elev-bar').classList.add('open');
   const eles=pts.map(p=>p.ele); let gain=0,loss=0;
@@ -2334,69 +2333,56 @@ function openElev(pts,name){
     <div class="elev-stat">⬇<span>-${Math.round(loss)}m</span></div>
     <div class="elev-stat">▲<span>${Math.round(Math.max(...eles))}m</span></div>`;
   const cv = document.getElementById('elev-canvas');
-  cv._pts = pts; // salva sempre per il ridisegno
-  // ResizeObserver: ridisegna nel momento esatto in cui il canvas ottiene dimensioni
-  // reali, indipendentemente dal motivo del ritardo (animazione CSS, layout mobile,
-  // reflow del browser). Molto piu robusto di un timeout fisso.
-  if(!elevResizeObs){
-    elevResizeObs = new ResizeObserver(entries=>{
-      for(const entry of entries){
-        const w = entry.contentRect.width, h = entry.contentRect.height;
-        if(w>10 && h>10 && cv._pts) drawElev(cv._pts);
-      }
-    });
-    elevResizeObs.observe(cv);
-  }
-  if(isMobileTog && isMobileTog() && !document.getElementById('map-wrap').classList.contains('map-open')) {
-    // Il disegno avverra quando la mappa/il canvas diventano visibili (ResizeObserver)
-    return;
-  }
-  setTimeout(()=>drawElev(pts), 370);
+  cv._pts = pts; // salva sempre per il ridisegno/hover
+  // L'SVG usa un viewBox logico fisso: si disegna correttamente da subito,
+  // senza dover aspettare che l'animazione o il layout diano dimensioni reali.
+  drawElev(pts);
 }
 function closeElev(){document.getElementById('elev-bar').classList.remove('open');}
 function drawElev(pts){
-  const cv=document.getElementById('elev-canvas'),ctx=cv.getContext('2d');
-  const W=cv.offsetWidth,H=cv.offsetHeight;
-  if(W<10||H<10){ setTimeout(()=>drawElev(pts),150); return; }
-  cv.width=W; cv.height=H;
-  ctx.globalAlpha=1;
-  const p={t:6,r:10,b:18,l:38},cW=W-p.l-p.r,cH=H-p.t-p.b;
-  const eles=pts.map(p=>p.ele),dists=pts.map(p=>p.dist);
-  const eMin=Math.min(...eles)-30,eMax=Math.max(...eles)+30,dMax=dists[dists.length-1];
+  const svg=document.getElementById('elev-canvas');
+  const W=1000,H=110,p={t:6,r:10,b:20,l:42},cW=W-p.l-p.r,cH=H-p.t-p.b;
+  const eles=pts.map(pt=>pt.ele),dists=pts.map(pt=>pt.dist);
+  const eMin=Math.min(...eles)-30,eMax=Math.max(...eles)+30,dMax=dists[dists.length-1]||1;
   const xS=d=>p.l+(d/dMax)*cW, yS=e=>p.t+cH-((e-eMin)/(eMax-eMin))*cH;
-  const g=ctx.createLinearGradient(0,p.t,0,p.t+cH);
-  g.addColorStop(0,'rgba(232,96,10,.35)');g.addColorStop(1,'rgba(232,96,10,.03)');
-  ctx.beginPath();ctx.moveTo(xS(dists[0]),yS(eles[0]));
-  pts.forEach(pt=>ctx.lineTo(xS(pt.dist),yS(pt.ele)));
-  ctx.lineTo(xS(dists[dists.length-1]),p.t+cH);ctx.lineTo(xS(dists[0]),p.t+cH);
-  ctx.closePath();ctx.fillStyle=g;ctx.fill();
-  ctx.beginPath();ctx.moveTo(xS(dists[0]),yS(eles[0]));
-  pts.forEach(pt=>ctx.lineTo(xS(pt.dist),yS(pt.ele)));
-  ctx.strokeStyle='#e8600a';ctx.lineWidth=1.8;ctx.lineJoin='round';ctx.stroke();
-  ctx.strokeStyle='rgba(201,168,76,.12)';ctx.lineWidth=1;
+  const lineStr = pts.map(pt=>`${xS(pt.dist).toFixed(1)},${yS(pt.ele).toFixed(1)}`).join(' ');
+  const areaStr = `${xS(dists[0]).toFixed(1)},${(p.t+cH).toFixed(1)} ${lineStr} ${xS(dists[dists.length-1]).toFixed(1)},${(p.t+cH).toFixed(1)}`;
+
+  let gridH = '', gridV = '';
   for(let i=0;i<=4;i++){
-    const e=eMin+(eMax-eMin)*(i/4),y=yS(e);
-    ctx.beginPath();ctx.moveTo(p.l,y);ctx.lineTo(p.l+cW,y);ctx.stroke();
-    ctx.fillStyle='rgba(191,168,76,.7)';ctx.font="9px 'Share Tech Mono'";
-    ctx.textAlign='right';ctx.fillText(Math.round(e)+'m',p.l-3,y+3);
+    const e=eMin+(eMax-eMin)*(i/4), y=yS(e);
+    gridH += `<line x1="${p.l}" y1="${y.toFixed(1)}" x2="${p.l+cW}" y2="${y.toFixed(1)}" stroke="rgba(201,168,76,.12)" stroke-width="0.5"/>
+      <text x="${p.l-3}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="9" font-family="'Share Tech Mono',monospace" fill="rgba(191,168,76,.7)">${Math.round(e)}m</text>`;
   }
-  const kmStep=dMax>20?5:dMax>10?2:1;
+  const kmStep = dMax>20?5:dMax>10?2:1;
   for(let km=0;km<=dMax;km+=kmStep){
     const x=xS(km);
-    ctx.strokeStyle='rgba(201,168,76,.12)';ctx.beginPath();ctx.moveTo(x,p.t);ctx.lineTo(x,p.t+cH);ctx.stroke();
-    ctx.fillStyle='rgba(191,168,76,.6)';ctx.font="8px 'Share Tech Mono'";
-    ctx.textAlign='center';ctx.fillText(km+'km',x,p.t+cH+12);
+    gridV += `<line x1="${x.toFixed(1)}" y1="${p.t}" x2="${x.toFixed(1)}" y2="${p.t+cH}" stroke="rgba(201,168,76,.12)" stroke-width="0.5"/>
+      <text x="${x.toFixed(1)}" y="${(p.t+cH+12).toFixed(1)}" text-anchor="middle" font-size="8" font-family="'Share Tech Mono',monospace" fill="rgba(191,168,76,.6)">${km}km</text>`;
   }
-  cv._pts=pts;cv._p=p;cv._cW=cW;cv._cH=cH;cv._eMin=eMin;cv._eMax=eMax;cv._dMax=dMax;
-  cv.onmousemove=e=>hoverElev(e,cv);
-  cv.onmouseleave=()=>{document.getElementById('elev-tip').style.display='none';};
+
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="elevGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="rgba(232,96,10,.35)"/>
+        <stop offset="100%" stop-color="rgba(232,96,10,.03)"/>
+      </linearGradient>
+    </defs>
+    ${gridH}${gridV}
+    <polygon points="${areaStr}" fill="url(#elevGrad)"/>
+    <polyline points="${lineStr}" fill="none" stroke="#e8600a" stroke-width="1.8" stroke-linejoin="round"/>
+  `;
+  svg._pts=pts; svg._p=p; svg._cW=cW; svg._cH=cH; svg._dMax=dMax;
+  svg.onmousemove=e=>hoverElev(e,svg);
+  svg.onmouseleave=()=>{document.getElementById('elev-tip').style.display='none';};
 }
-function hoverElev(e,cv){
-  const r=cv.getBoundingClientRect(),mx=e.clientX-r.left;
-  const p=cv._p; if(mx<p.l||mx>p.l+cv._cW) return;
-  const dist=(mx-p.l)/cv._cW*cv._dMax;
-  let near=cv._pts[0],minD=Infinity;
-  cv._pts.forEach(pt=>{const d=Math.abs(pt.dist-dist);if(d<minD){minD=d;near=pt;}});
+function hoverElev(e,svg){
+  const r=svg.getBoundingClientRect(); // dimensione reale letta ORA, sempre accurata
+  const mx=(e.clientX-r.left)/r.width*1000; // converte in coordinate logiche del viewBox
+  const p=svg._p; if(mx<p.l||mx>p.l+svg._cW) return;
+  const dist=(mx-p.l)/svg._cW*svg._dMax;
+  let near=svg._pts[0],minD=Infinity;
+  svg._pts.forEach(pt=>{const d=Math.abs(pt.dist-dist);if(d<minD){minD=d;near=pt;}});
   if(gpxMark) gpxMark.setLatLng([near.lat,near.lng]);
   const tt=document.getElementById('elev-tip');
   tt.style.display='block';tt.style.left=(e.clientX+10)+'px';tt.style.top=(e.clientY-28)+'px';
