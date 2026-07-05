@@ -140,6 +140,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 
 /* EMERGENZE */
 #sos-list{flex:1;overflow-y:auto;padding:10px}
+#sos-location-btn{display:block;width:100%;background:rgba(37,211,102,.15);
+  border:1px solid rgba(37,211,102,.5);color:#25d366;font-family:var(--font-m);
+  font-size:10.5px;letter-spacing:.5px;padding:11px;border-radius:3px;
+  cursor:pointer;margin-bottom:6px;transition:all .2s;text-align:center}
+#sos-location-btn:hover:not(:disabled){background:rgba(37,211,102,.26)}
+#sos-location-btn:disabled{opacity:.6;cursor:default}
 .emerg-card{background:var(--lava2);border:1px solid var(--border);
   border-radius:3px;padding:10px 12px;margin-bottom:8px}
 .emerg-card.h24{border-left:3px solid var(--green-trail)}
@@ -407,6 +413,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 
 /* GPX controls */
 #gpx-ctrl{margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,168,76,.1)}
+#detail-snapshot{font-family:var(--font-m);font-size:9px;color:var(--ash-light);
+  background:var(--lava2);border:1px solid var(--border);border-radius:3px;
+  padding:6px 9px;margin-bottom:10px;display:none}
+.action-btn.prep{background:rgba(74,158,92,.15);border-color:rgba(74,158,92,.4);color:var(--green-trail)}
+.action-btn.prep:hover{background:rgba(74,158,92,.28)}
+.action-btn.prep:disabled{opacity:.6;cursor:default}
 .gpx-btn-row{display:flex;gap:6px;flex-wrap:wrap}
 .gpx-ab{background:var(--ember-dim);border:1px solid rgba(232,96,10,.4);
   color:var(--ember);font-family:var(--font-m);font-size:8px;letter-spacing:1px;
@@ -1481,6 +1493,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
         <div id="detail-name"></div>
         <div id="detail-zone"></div>
         <div id="detail-stats"></div>
+        <div id="detail-snapshot"></div>
         <div id="detail-disclaimer" data-it="⚠ Informazioni a titolo indicativo. Condizioni e servizi possono variare senza preavviso. L'autore non è responsabile per errori o modifiche." data-en="⚠ For reference only. Conditions may change without notice. The author accepts no liability for errors or changes.">⚠ Informazioni a titolo indicativo. Condizioni e servizi possono variare senza preavviso. L'autore non è responsabile per errori o modifiche.</div>
         <div id="detail-actions"></div>
         <div id="detail-desc"></div>
@@ -1857,7 +1870,9 @@ function filterRifugi() {
 function renderSos() {
   const list = DB.emergenze || [];
   const c = document.getElementById('sos-list');
-  c.innerHTML = `<div style="font-family:var(--font-m);font-size:8px;letter-spacing:2px;color:var(--ash);text-transform:uppercase;padding:10px 12px 6px">${lang==='it'?'CONTATTI DI EMERGENZA':'EMERGENCY CONTACTS'}</div>`;
+  c.innerHTML = `
+    <button id="sos-location-btn" onclick="sendSosLocation()">📍 <span data-it="Invia la mia posizione su WhatsApp" data-en="Send my location via WhatsApp">${lang==='it'?'Invia la mia posizione su WhatsApp':'Send my location via WhatsApp'}</span></button>
+    <div style="font-family:var(--font-m);font-size:8px;letter-spacing:2px;color:var(--ash);text-transform:uppercase;padding:10px 12px 6px">${lang==='it'?'CONTATTI DI EMERGENZA':'EMERGENCY CONTACTS'}</div>`;
   list.forEach(e => {
     const el = document.createElement('div');
     el.className = 'emerg-card ' + (e.h24 ? 'h24' : 'noh24');
@@ -1871,6 +1886,37 @@ function renderSos() {
       <div class="emerg-note">${e.note||''}</div>`;
     c.appendChild(el);
   });
+}
+
+// Ottiene la posizione GPS attuale e apre WhatsApp con un messaggio pronto
+// (link a Google Maps incluso) da inviare a qualsiasi contatto scelto al momento.
+function sendSosLocation(){
+  const btn = document.getElementById('sos-location-btn');
+  const isIT = lang==='it';
+  if(!navigator.geolocation){
+    showToast(isIT?'Geolocalizzazione non disponibile su questo dispositivo.':'Geolocation not available on this device.');
+    return;
+  }
+  btn.disabled = true;
+  btn.innerHTML = `⏳ ${isIT?'Localizzazione...':'Locating...'}`;
+  navigator.geolocation.getCurrentPosition(pos => {
+    const lat = pos.coords.latitude.toFixed(6), lng = pos.coords.longitude.toFixed(6);
+    const acc = Math.round(pos.coords.accuracy);
+    const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`;
+    const now = new Date().toLocaleTimeString(isIT?'it-IT':'en-GB',{hour:'2-digit',minute:'2-digit'});
+    const msg = isIT
+      ? `🆘 Ho bisogno di aiuto. La mia posizione: ${mapsUrl} (precisione ~${acc}m). Inviato da Etna Trails alle ${now}.`
+      : `🆘 I need help. My location: ${mapsUrl} (accuracy ~${acc}m). Sent from Etna Trails at ${now}.`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+    gaEvent('sos_location_sent');
+    btn.disabled = false;
+    btn.innerHTML = `📍 ${isIT?'Invia la mia posizione su WhatsApp':'Send my location via WhatsApp'}`;
+  }, err => {
+    console.warn('[SOS GPS]', err);
+    showToast(isIT?'Impossibile ottenere la posizione. Controlla i permessi GPS.':'Could not get location. Check GPS permissions.');
+    btn.disabled = false;
+    btn.innerHTML = `📍 ${isIT?'Invia la mia posizione su WhatsApp':'Send my location via WhatsApp'}`;
+  }, { enableHighAccuracy:true, timeout:15000, maximumAge:0 });
 }
 
 // ── MARKERS ──────────────────────────────────────────────
@@ -1956,6 +2002,7 @@ function showDetail(type, id) {
   document.getElementById('detail-name').textContent = title;
   document.getElementById('detail-zone').textContent = zone;
   document.getElementById('detail-stats').innerHTML = stats;
+  renderTrailSnapshot(type==='s' ? id : null);
   document.getElementById('detail-desc').textContent = desc;
   document.getElementById('detail-poi').innerHTML = poi;
   document.getElementById('detail-stagioni').innerHTML = stagioni;
@@ -1998,6 +2045,14 @@ function showDetail(type, id) {
     a.href = 'tel:' + phone.replace(/\s/g,'');
     a.innerHTML = `📞 ${phone}`;
     act.appendChild(a);
+  }
+  if(type==='s') {
+    const b = document.createElement('button');
+    b.className = 'action-btn prep';
+    b.id = 'prep-btn-' + id;
+    updatePrepBtnLabel(b, id);
+    b.onclick = () => { gaEvent('prepara_escursione',{item_id:id,item_name:title}); prepareTrail(id, b); };
+    act.appendChild(b);
   }
 
   document.getElementById('detail-panel').classList.add('open');
@@ -2094,6 +2149,114 @@ function downloadGpx(url,name){
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/gpx+xml'}));
     a.download=(name||'traccia').replace(/[^a-zA-Z0-9]/g,'-')+'.gpx';a.click();
   } else { window.open(url,'_blank'); }
+}
+
+// ── PREPARA ESCURSIONE ──────────────────────────────────
+// Per un sentiero specifico: scarica tile a zoom alto (15-16) lungo il percorso
+// esatto (in aggiunta alla mappa generale 10-14 gia scaricabile), e salva uno
+// snapshot del meteo attuale in quel punto — cosi tutto e pronto prima di
+// perdere il segnale.
+function prepTrailSnapshotKey(id){ return 'etna_trail_snapshot_' + id; }
+
+function updatePrepBtnLabel(btn, id){
+  const isIT = lang==='it';
+  let snap = null;
+  try{ snap = JSON.parse(localStorage.getItem(prepTrailSnapshotKey(id)) || 'null'); }catch(e){}
+  if(snap){
+    const d = new Date(snap.date);
+    btn.innerHTML = `✅ ${isIT?'Pronto offline':'Ready offline'} (${d.toLocaleDateString(isIT?'it-IT':'en-GB')})`;
+  } else {
+    btn.innerHTML = `🎒 ${isIT?'Prepara escursione':'Prepare hike'}`;
+  }
+}
+
+function renderTrailSnapshot(id){
+  const el = document.getElementById('detail-snapshot');
+  if(!el) return;
+  if(!id){ el.style.display='none'; return; }
+  let snap = null;
+  try{ snap = JSON.parse(localStorage.getItem(prepTrailSnapshotKey(id)) || 'null'); }catch(e){}
+  if(!snap){ el.style.display='none'; return; }
+  const isIT = lang==='it';
+  const d = new Date(snap.date);
+  const c = snap.current;
+  const wmo = WMO[c.weather_code] || { i:'🌡' };
+  el.style.display = 'block';
+  el.innerHTML = `📸 ${isIT?'Meteo salvato':'Saved weather'} (${d.toLocaleDateString(isIT?'it-IT':'en-GB')} ${d.toLocaleTimeString(isIT?'it-IT':'en-GB',{hour:'2-digit',minute:'2-digit'})}): `
+    + `${wmo.i} ${Math.round(c.temperature_2m)}°C · 💨 ${Math.round(c.wind_speed_10m)}km/h`;
+}
+
+async function prepareTrail(id, btn){
+  const t = (DB.sentieri||[]).find(x=>x.id===id);
+  if(!t) return;
+  const isIT = lang==='it';
+  btn.disabled = true;
+
+  // 1. Punti del percorso: usa il GPX gia caricato, altrimenti provalo a scaricare
+  let pts = (gpxPts && gpxPts.length && activeItem && activeItem.id===id) ? gpxPts : null;
+  if(!pts && t.gpx){
+    try{
+      const xml = gpxCache[id] || await (await fetch(t.gpx)).text();
+      gpxCache[id] = xml;
+      pts = parseGpx(xml);
+    }catch(e){ console.warn('[Prepara] GPX non disponibile', e); }
+  }
+
+  // 2. Bounding box: dal percorso se disponibile, altrimenti un raggio attorno al punto
+  let bbox;
+  if(pts && pts.length){
+    const lats = pts.map(p=>p.lat), lngs = pts.map(p=>p.lng);
+    bbox = { minLat:Math.min(...lats)-0.01, maxLat:Math.max(...lats)+0.01, minLng:Math.min(...lngs)-0.01, maxLng:Math.max(...lngs)+0.01 };
+  } else {
+    bbox = { minLat:t.lat-0.03, maxLat:t.lat+0.03, minLng:t.lng-0.03, maxLng:t.lng+0.03 };
+  }
+
+  // 3. Tile a zoom 15-16 su quell'area (stessa cache della mappa offline generale)
+  const tiles = [];
+  [15,16].forEach(z=>{
+    const x0=lon2tile(bbox.minLng,z), x1=lon2tile(bbox.maxLng,z);
+    const y0=lat2tile(bbox.maxLat,z), y1=lat2tile(bbox.minLat,z);
+    for(let x=x0;x<=x1;x++) for(let y=y0;y<=y1;y++) tiles.push({z,x,y});
+  });
+  let done=0, errors=0;
+  try{
+    const cache = await caches.open(TOPO_TILE_CACHE);
+    for(let i=0;i<tiles.length;i+=8){
+      const batch = tiles.slice(i,i+8);
+      await Promise.allSettled(batch.map(async tt=>{
+        try{
+          const resp = await fetch(topoTileFetchUrl(tt.z,tt.x,tt.y));
+          if(resp && resp.status===200){ await cache.put(topoTileCacheKey(tt.z,tt.x,tt.y), resp.clone()); done++; }
+          else errors++;
+        }catch(e){ errors++; }
+      }));
+      btn.innerHTML = `⏳ ${isIT?'Mappa':'Map'} ${Math.min(i+8,tiles.length)}/${tiles.length}`;
+    }
+  }catch(e){ console.warn('[Prepara] tile', e); }
+
+  // 4. Snapshot meteo nel punto centrale del percorso
+  try{
+    const lat = pts && pts.length ? pts[Math.floor(pts.length/2)].lat : t.lat;
+    const lng = pts && pts.length ? pts[Math.floor(pts.length/2)].lng : t.lng;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}`
+      + `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_gusts_10m,weather_code,cloud_cover,precipitation`
+      + `&wind_speed_unit=kmh&timezone=Europe%2FRome`;
+    const r = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    if(r.ok){
+      const d = await r.json();
+      localStorage.setItem(prepTrailSnapshotKey(id), JSON.stringify({ current:d.current, date:new Date().toISOString() }));
+    }
+  }catch(e){ console.warn('[Prepara] meteo', e); }
+
+  // 5. Assicura che la foto del sentiero sia in cache (stessa origine → sw.js la salva)
+  if(t.foto){ try{ await fetch(t.foto); }catch(e){} }
+
+  btn.disabled = false;
+  updatePrepBtnLabel(btn, id);
+  renderTrailSnapshot(id);
+  showToast(errors===0
+    ? (isIT?`✅ "${t.nome[lang]}" pronto per l'escursione offline!`:`✅ "${t.nome[lang]}" ready for offline hiking!`)
+    : (isIT?`Preparato con ${errors} tile non scaricati.`:`Prepared with ${errors} tiles not downloaded.`), 4000);
 }
 
 // ── ELEVATION ────────────────────────────────────────────
@@ -2945,6 +3108,13 @@ window.setLang = function(l) {
   if(gpsBtn) gpsBtn.innerHTML = gpsWatchId
     ? `⏹ <span>${lang==='it'?'Interrompi':'Stop'}</span>`
     : `📍 <span>${lang==='it'?'Traccia GPS':'GPS track'}</span>`;
+  if(activeItem && activeItem.type==='s'){
+    const prepBtn = document.getElementById('prep-btn-' + activeItem.id);
+    if(prepBtn && !prepBtn.disabled) updatePrepBtnLabel(prepBtn, activeItem.id);
+    renderTrailSnapshot(activeItem.id);
+  }
+  const sosBtn = document.getElementById('sos-location-btn');
+  if(sosBtn && !sosBtn.disabled) sosBtn.innerHTML = `📍 ${lang==='it'?'Invia la mia posizione su WhatsApp':'Send my location via WhatsApp'}`;
 };
 </script>
 </body>
