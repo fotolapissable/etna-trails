@@ -2323,6 +2323,7 @@ async function prepareCurrentGpx(){
 }
 
 // ── ELEVATION ────────────────────────────────────────────
+let elevResizeObs = null;
 function openElev(pts,name){
   document.getElementById('elev-bar').classList.add('open');
   const eles=pts.map(p=>p.ele); let gain=0,loss=0;
@@ -2332,12 +2333,22 @@ function openElev(pts,name){
     <div class="elev-stat">⬆<span>+${Math.round(gain)}m</span></div>
     <div class="elev-stat">⬇<span>-${Math.round(loss)}m</span></div>
     <div class="elev-stat">▲<span>${Math.round(Math.max(...eles))}m</span></div>`;
-  // Su mobile: se la mappa non è ancora visibile, il canvas ha offsetWidth=0
-  // Salva i punti sul canvas e aspetta che showMap() chiami drawElev dopo l'animazione
   const cv = document.getElementById('elev-canvas');
   cv._pts = pts; // salva sempre per il ridisegno
+  // ResizeObserver: ridisegna nel momento esatto in cui il canvas ottiene dimensioni
+  // reali, indipendentemente dal motivo del ritardo (animazione CSS, layout mobile,
+  // reflow del browser). Molto piu robusto di un timeout fisso.
+  if(!elevResizeObs){
+    elevResizeObs = new ResizeObserver(entries=>{
+      for(const entry of entries){
+        const w = entry.contentRect.width, h = entry.contentRect.height;
+        if(w>10 && h>10 && cv._pts) drawElev(cv._pts);
+      }
+    });
+    elevResizeObs.observe(cv);
+  }
   if(isMobileTog && isMobileTog() && !document.getElementById('map-wrap').classList.contains('map-open')) {
-    // Il disegno avverrà in showMap() dopo l'animazione
+    // Il disegno avverra quando la mappa/il canvas diventano visibili (ResizeObserver)
     return;
   }
   setTimeout(()=>drawElev(pts), 370);
