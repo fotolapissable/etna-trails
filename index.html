@@ -1713,16 +1713,17 @@ function setTab(tab) {
 
 // ── MAP ──────────────────────────────────────────────────
 const map = L.map('map', { center:[37.73, 15.00], zoom:10, zoomControl:true, attributionControl:true });
+document.head.insertAdjacentHTML('beforeend','<style>.tiles-dark{filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.9)}</style>');
 
 const TILES = {
   topo: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
   sat:  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+  dark: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 };
 
 function setTile(n) {
   if(tileLayer) map.removeLayer(tileLayer);
-  tileLayer = L.tileLayer(TILES[n], { maxZoom:18, attribution:'© OpenStreetMap' }).addTo(map);
+  tileLayer = L.tileLayer(TILES[n], { maxZoom:18, attribution:'© OpenStreetMap', className: n==='dark' ? 'tiles-dark' : '' }).addTo(map);
   document.querySelectorAll('.mctrl-btn').forEach(b => b.classList.toggle('active', b.id==='btn-'+n));
 }
 
@@ -3099,8 +3100,50 @@ window.addEventListener('load', ()=>{
 // ── OFFLINE TILE CACHE (mappa OpenTopoMap, quella di default) ─────
 // Pulsante "Scarica mappe offline" nella tab Meteo/Mappa
 const TOPO_TILE_CACHE = 'etna-topo-tiles-v1';
-const OFFLINE_BBOX_ETNA = { minLat:37.55, maxLat:38.15, minLng:14.70, maxLng:15.45 };
-const OFFLINE_ZOOMS_ETNA = [10,11,12,13,14];
+const OFFLINE_RADIUS_KM = 3;
+const OFFLINE_ZOOMS_ETNA = [12,13,14,15];
+
+function getPosOnce(){
+  return new Promise((res,rej)=>{
+    if(!navigator.geolocation) return rej(new Error('nogeo'));
+    navigator.geolocation.getCurrentPosition(
+      p => res([p.coords.latitude, p.coords.longitude]), rej,
+      { enableHighAccuracy:true, timeout:15000, maximumAge:60000 });
+  });
+}
+function boxAround(lat,lng,km){
+  const dLat = km/111, dLng = km/(111*Math.cos(lat*Math.PI/180));
+  return { minLat:lat-dLat, maxLat:lat+dLat, minLng:lng-dLng, maxLng:lng+dLng };
+}
+function boxOfPoints(pts,margin){
+  const lats = pts.map(p=>p[0]), lngs = pts.map(p=>p[1]);
+  return { minLat:Math.min(...lats)-margin, maxLat:Math.max(...lats)+margin,
+           minLng:Math.min(...lngs)-margin, maxLng:Math.max(...lngs)+margin };
+}
+// punti del sentiero selezionato (partenza + punti di interesse)
+function selectedTrailPoints(){
+  const pts = [];
+  if(activeItem && activeItem.type==='s'){
+    const t = (DB.sentieri||[]).find(x=>x.id===activeItem.id);
+    if(t){
+      if(t.lat && t.lng) pts.push([+t.lat, +t.lng]);
+      (t.punti_interesse||[]).forEach(p=>{ if(p.lat && p.lng) pts.push([+p.lat, +p.lng]); });
+    }
+  }
+  return pts;
+}
+function tilesForBoxes(boxes){
+  const seen = new Set(), tiles = [];
+  boxes.forEach(b=>OFFLINE_ZOOMS_ETNA.forEach(z=>{
+    const x0=lon2tile(b.minLng,z), x1=lon2tile(b.maxLng,z);
+    const y0=lat2tile(b.maxLat,z), y1=lat2tile(b.minLat,z);
+    for(let x=x0;x<=x1;x++) for(let y=y0;y<=y1;y++){
+      const k = z+'/'+x+'/'+y;
+      if(!seen.has(k)){ seen.add(k); tiles.push({z,x,y}); }
+    }
+  }));
+  return tiles;
+}
 
 function addOfflineMapButton(){
   const mapDiv = document.getElementById('map');
@@ -3120,7 +3163,7 @@ function updateOfflineBtnLabel(btn){
     const d = new Date(info.date);
     btn.innerHTML = `✅ ${isIT?'Mappa offline OK':'Offline map OK'} (${d.toLocaleDateString(isIT?'it-IT':'en-GB')})`;
   } else {
-    btn.innerHTML = `💾 ${isIT?'Scarica mappe offline':'Download offline maps'}`;
+    btn.innerHTML = `💾 ${isIT?'Scarica zona intorno a me':'Download area around me'}`;
   }
 }
 
@@ -3135,14 +3178,29 @@ function topoTileCacheKey(z,x,y){ return `https://tile-cache.etna/topo/${z}/${x}
 async function cacheEtnaTiles(btn){
   if(!('caches' in window)){ showToast('Cache API non disponibile'); return; }
   const isIT = (lang||'it')==='it';
+  if(navigator.onLine === false){
+    showToast(isIT?'Serve la connessione per scaricare la zona. Collegati al Wi-Fi o ai dati e riprova.':'A connection is needed to download the area. Connect to Wi-Fi or mobile data and retry.', 5000);
+    return;
+  }
+  const askMsg = isIT
+    ? 'Scarica ora con la rete attiva: la zona di 3 km (e il sentiero aperto, se c\'è) sarà salvata per l\'uso senza segnale. Continuare?'
+    : 'Download now while you have a connection: the 3 km area (and the open trail, if any) will be saved for use without signal. Continue?';
+  if(!window.confirm(askMsg)) return;
   btn.disabled = true;
 
-  const tiles = [];
-  OFFLINE_ZOOMS_ETNA.forEach(z=>{
-    const x0=lon2tile(OFFLINE_BBOX_ETNA.minLng,z), x1=lon2tile(OFFLINE_BBOX_ETNA.maxLng,z);
-    const y0=lat2tile(OFFLINE_BBOX_ETNA.maxLat,z), y1=lat2tile(OFFLINE_BBOX_ETNA.minLat,z);
-    for(let x=x0;x<=x1;x++) for(let y=y0;y<=y1;y++) tiles.push({z,x,y});
-  });
+  btn.innerHTML = `📍 ${isIT?'Posizione...':'Locating...'}`;
+  let pos;
+  try { pos = await getPosOnce(); }
+  catch(e){
+    btn.disabled = false; updateOfflineBtnLabel(btn);
+    showToast(isIT?'Serve la posizione GPS per scaricare la zona. Attivala e riprova.':'GPS position needed to download the area. Enable it and retry.', 4000);
+    return;
+  }
+  const boxes = [ boxAround(pos[0], pos[1], OFFLINE_RADIUS_KM) ];
+  const trailPts = selectedTrailPoints();
+  if(trailPts.length) boxes.push(boxOfPoints(trailPts, 0.01));
+  if(gpxLayer){ const b = gpxLayer.getBounds(); boxes.push({minLat:b.getSouth()-0.01, maxLat:b.getNorth()+0.01, minLng:b.getWest()-0.01, maxLng:b.getEast()+0.01}); }
+  const tiles = tilesForBoxes(boxes);
   const total = tiles.length;
   let done=0, errors=0;
   btn.innerHTML = `⏳ 0/${total} tile`;
