@@ -277,6 +277,17 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 #legend{position:absolute;bottom:24px;right:10px;z-index:500;
   background:rgba(10,4,0,0.9);border:1px solid var(--border);
   border-radius:3px;padding:9px 12px;backdrop-filter:blur(4px)}
+#rain-grid-legend{position:absolute;bottom:24px;left:10px;z-index:500;
+  background:rgba(10,4,0,0.92);border:1px solid var(--border);
+  border-radius:3px;padding:7px 10px 8px;backdrop-filter:blur(4px);max-width:220px}
+#rain-grid-legend.hidden{display:none}
+#rain-grid-legend .rgl-title{font-size:8px;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--ash-light);margin-bottom:4px}
+#rain-grid-legend .rgl-row{display:flex;flex-wrap:wrap;gap:5px}
+#rain-grid-legend .rgl-item{display:flex;align-items:center;gap:3px}
+#rain-grid-legend .rgl-sw{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+#rain-grid-legend .rgl-item span{font-size:7.5px;color:var(--ash)}
+#rain-grid-legend .rgl-note{margin-top:5px;font-size:7px;color:var(--ash);opacity:.8;line-height:1.35}
 #gps-panel{position:absolute;top:130px;left:10px;z-index:700;
   display:flex;align-items:center;gap:6px}
 #gps-toggle-btn{background:rgba(10,4,0,0.9);border:1px solid rgba(232,96,10,.5);color:var(--ember);
@@ -1344,6 +1355,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
 
       <div id="funghi-updated" class="funghi-updated"></div>
 
+      <div class="funghi-disclaimer" style="cursor:pointer" onclick="setTab('sentieri');if(!lyrVis.p)toggleRainGrid()">
+        <span data-it="🗺️ Vedi la mappa accumuli pioggia sull'Etna (tab Sentieri) — più utile di queste card: mostra il dato grezzo per zona, da interpretare con la tua esperienza del territorio." data-en="🗺️ See the rain accumulation map on Etna (Trails tab) — more useful than these cards: shows the raw data per area, to interpret with your own knowledge of the terrain.">🗺️ Vedi la mappa accumuli pioggia sull'Etna (tab Sentieri) — più utile di queste card: mostra il dato grezzo per zona, da interpretare con la tua esperienza del territorio.</span>
+      </div>
+
       <div id="funghi-list">
         <div class="meteo-loading" style="grid-column:1/-1">
           <div class="spinner"></div>
@@ -1600,6 +1615,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
     <div id="layer-ctrl">
       <button class="layer-btn active" id="lyr-s" onclick="toggleLyr('s')">🥾 <span data-it="Sentieri" data-en="Trails">Sentieri</span></button>
       <button class="layer-btn active" id="lyr-r" onclick="toggleLyr('r')">🏠 <span data-it="Rifugi" data-en="Refuges">Rifugi</span></button>
+      <button class="layer-btn" id="lyr-p" onclick="toggleRainGrid()">🍄 <span data-it="Accumuli pioggia" data-en="Rain accumulation">Accumuli pioggia</span></button>
     </div>
 
     <div id="legend">
@@ -1607,6 +1623,18 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
       <div class="leg-item"><div class="leg-dot" style="background:var(--blue-trail)"></div><span>E – Escursionistico</span></div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--red-trail)"></div><span>EE – Esperto</span></div>
       <div class="leg-item"><div class="leg-sq" style="background:var(--gold)"></div><span data-it="Rifugio/Bivacco" data-en="Refuge/Bivouac">Rifugio/Bivacco</span></div>
+    </div>
+
+    <div id="rain-grid-legend" class="hidden">
+      <div class="rgl-title" data-it="Accumulo pioggia 14gg" data-en="14-day rain accumulation">Accumulo pioggia 14gg</div>
+      <div class="rgl-row">
+        <div class="rgl-item"><div class="rgl-sw" style="background:#555a66"></div><span>&lt;10mm</span></div>
+        <div class="rgl-item"><div class="rgl-sw" style="background:#c9a84c"></div><span>10-20mm</span></div>
+        <div class="rgl-item"><div class="rgl-sw" style="background:#7fae4a"></div><span>20-35mm</span></div>
+        <div class="rgl-item"><div class="rgl-sw" style="background:#3f9142"></div><span>35-60mm</span></div>
+        <div class="rgl-item"><div class="rgl-sw" style="background:#1f6f6b"></div><span>&gt;60mm</span></div>
+      </div>
+      <div class="rgl-note" data-it="Dato grezzo (best_match + ARPAE ICON-2I), non una previsione di crescita funghi. Tocca una cella per i dettagli · stima indicativa, non garanzia." data-en="Raw data (best_match + ARPAE ICON-2I), not a mushroom-growth forecast. Tap a cell for details · indicative estimate, not a guarantee.">Dato grezzo (best_match + ARPAE ICON-2I), non una previsione di crescita funghi. Tocca una cella per i dettagli · stima indicativa, non garanzia.</div>
     </div>
 
     <div id="gps-panel">
@@ -1935,6 +1963,120 @@ function toggleLyr(t) {
   document.getElementById('lyr-'+t).classList.toggle('active', lyrVis[t]);
   Object.values(mkrs[t]).forEach(m => lyrVis[t] ? m.addTo(map) : map.removeLayer(m));
 }
+
+// ── FUNGHI: GRIGLIA ACCUMULI PIOGGIA SULLA MAPPA ──────────
+// Suggerimento di un agronomo appassionato di funghi: più utile del
+// giudizio per specie è mostrare il dato grezzo di pioggia sulla mappa
+// e lasciare che chi conosce il territorio interpreti da solo, in base
+// alla stagione. Griglia di punti sull'Etna, una sola richiesta batch
+// per modello (Open-Meteo supporta liste di coordinate separate da
+// virgola in un'unica chiamata).
+const RAIN_GRID_BOUNDS = { latMin:37.60, latMax:37.90, lngMin:14.85, lngMax:15.15, steps:9 };
+// Fascia di quota in cui mostrare la cella: stessa fascia (±150m) usata
+// per le specie in FUNGHI_SPECIE — sotto/sopra non c'è bosco.
+const RAIN_GRID_ELEV_MIN = 250, RAIN_GRID_ELEV_MAX = 2250;
+
+let rainGridLayer = null, rainGridCache = null, rainGridLoading = false;
+
+function buildRainGridPoints(){
+  const { latMin, latMax, lngMin, lngMax, steps } = RAIN_GRID_BOUNDS;
+  const latStep = (latMax-latMin)/(steps-1), lngStep = (lngMax-lngMin)/(steps-1);
+  const pts = [];
+  for(let i=0;i<steps;i++){
+    for(let j=0;j<steps;j++){
+      pts.push({ lat:+(latMin+i*latStep).toFixed(4), lng:+(lngMin+j*lngStep).toFixed(4) });
+    }
+  }
+  return pts;
+}
+
+async function fetchRainGridModel(pts, model){
+  const url = `https://api.open-meteo.com/v1/forecast`
+    + `?latitude=${pts.map(p=>p.lat).join(',')}&longitude=${pts.map(p=>p.lng).join(',')}`
+    + `&daily=precipitation_sum&past_days=14&forecast_days=1&timezone=Europe%2FRome&models=${model}`;
+  const r = await fetch(url, { signal: AbortSignal.timeout(15000) });
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return await r.json(); // array nello stesso ordine di pts
+}
+
+function rainGridColor(mm){
+  if(mm < 10) return '#555a66';
+  if(mm < 20) return '#c9a84c';
+  if(mm < 35) return '#7fae4a';
+  if(mm < 60) return '#3f9142';
+  return '#1f6f6b';
+}
+
+async function loadRainGrid(){
+  if(rainGridLoading) return;
+  rainGridLoading = true;
+  try{
+    const pts = buildRainGridPoints();
+    const [best, icon2i] = await Promise.all([
+      fetchRainGridModel(pts, 'best_match'),
+      fetchRainGridModel(pts, 'italia_meteo_arpae_icon_2i')
+    ]);
+    const cells = pts.map((p, i) => {
+      const b = best[i], ic = icon2i[i];
+      const elevation = (b && b.elevation) ?? (ic && ic.elevation) ?? 0;
+      const times = (b && b.daily && b.daily.time) || [];
+      const pB = (b && b.daily && b.daily.precipitation_sum) || [];
+      const pI = (ic && ic.daily && ic.daily.precipitation_sum) || [];
+      let accum14 = 0, giorniUltimaSignif = null;
+      const oggiIdx = times.length - 2;
+      for(let d=0; d<=oggiIdx; d++){
+        const val = Math.max(pB[d]||0, pI[d]||0);
+        accum14 += val;
+        if(val >= 10) giorniUltimaSignif = oggiIdx - d;
+      }
+      return { lat:p.lat, lng:p.lng, elevation, accum14, giorniUltimaSignif };
+    });
+    rainGridCache = cells;
+    renderRainGrid(cells);
+  }catch(e){
+    console.warn('[RainGrid]', e);
+    if(typeof showToast === 'function'){
+      showToast(lang==='it' ? 'Dati accumuli pioggia non disponibili.' : 'Rain accumulation data unavailable.');
+    }
+  }finally{
+    rainGridLoading = false;
+  }
+}
+
+function renderRainGrid(cells){
+  if(rainGridLayer) map.removeLayer(rainGridLayer);
+  rainGridLayer = L.layerGroup();
+  const halfLat = (RAIN_GRID_BOUNDS.latMax-RAIN_GRID_BOUNDS.latMin)/(RAIN_GRID_BOUNDS.steps-1)/2;
+  const halfLng = (RAIN_GRID_BOUNDS.lngMax-RAIN_GRID_BOUNDS.lngMin)/(RAIN_GRID_BOUNDS.steps-1)/2;
+  cells.forEach(c => {
+    if(c.elevation < RAIN_GRID_ELEV_MIN || c.elevation > RAIN_GRID_ELEV_MAX) return;
+    const bounds = [[c.lat-halfLat, c.lng-halfLng],[c.lat+halfLat, c.lng+halfLng]];
+    const rect = L.rectangle(bounds, { color:'transparent', weight:0, fillColor:rainGridColor(c.accum14), fillOpacity:0.55 });
+    const giorniTxt = c.giorniUltimaSignif!==null
+      ? (lang==='it' ? `${c.giorniUltimaSignif}g fa` : `${c.giorniUltimaSignif}d ago`)
+      : 'n/d';
+    const label = lang==='it'
+      ? `<b>${c.accum14.toFixed(0)}mm</b> ultimi 14gg · ${Math.round(c.elevation)}m<br>ultima pioggia ≥10mm: ${giorniTxt}`
+      : `<b>${c.accum14.toFixed(0)}mm</b> last 14d · ${Math.round(c.elevation)}m<br>last rain ≥10mm: ${giorniTxt}`;
+    rect.bindPopup(label);
+    rainGridLayer.addLayer(rect);
+  });
+  if(lyrVis.p) rainGridLayer.addTo(map);
+}
+
+lyrVis.p = false;
+function toggleRainGrid(){
+  lyrVis.p = !lyrVis.p;
+  document.getElementById('lyr-p').classList.toggle('active', lyrVis.p);
+  document.getElementById('rain-grid-legend').classList.toggle('hidden', !lyrVis.p);
+  if(lyrVis.p){
+    if(rainGridCache){ renderRainGrid(rainGridCache); }
+    else loadRainGrid();
+  } else if(rainGridLayer){
+    map.removeLayer(rainGridLayer);
+  }
+}
+setInterval(() => { if(lyrVis.p) loadRainGrid(); }, 30*60*1000);
 
 // ── LOAD DATA ────────────────────────────────────────────
 async function loadData() {
