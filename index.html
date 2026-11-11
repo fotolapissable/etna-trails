@@ -481,6 +481,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--lava);color:va
   font-family:var(--font-m);font-size:8.5px;color:var(--snow);
   white-space:nowrap;display:none;z-index:960}
 
+/* Quando il profilo altimetrico è aperto: le legende in basso ci finiscono
+   sotto (z-index 950 vs 500) e il fondo del pannello dettagli resta coperto.
+   Le nascondiamo e lasciamo spazio al contenuto scrollabile del pannello. */
+#map-wrap.elev-open #legend,
+#map-wrap.elev-open #rain-grid-legend{opacity:0;pointer-events:none;transition:opacity .2s}
+#map-wrap.elev-open #detail-inner{padding-bottom:160px}
+
 /* Modal */
 #modal-overlay{display:none;position:fixed;inset:0;z-index:2000;
   background:rgba(0,0,0,.8);backdrop-filter:blur(4px);align-items:center;justify-content:center}
@@ -2562,6 +2569,7 @@ async function prepareCurrentGpx(){
 // ── ELEVATION ────────────────────────────────────────────
 function openElev(pts,name){
   document.getElementById('elev-bar').classList.add('open');
+  document.getElementById('map-wrap').classList.add('elev-open');
   const eles=pts.map(p=>p.ele); let gain=0,loss=0;
   for(let i=1;i<eles.length;i++){const d=eles[i]-eles[i-1];if(d>0)gain+=d;else loss+=Math.abs(d);}
   document.getElementById('elev-stats').innerHTML=`
@@ -2575,7 +2583,10 @@ function openElev(pts,name){
   // senza dover aspettare che l'animazione o il layout diano dimensioni reali.
   drawElev(pts);
 }
-function closeElev(){document.getElementById('elev-bar').classList.remove('open');}
+function closeElev(){
+  document.getElementById('elev-bar').classList.remove('open');
+  document.getElementById('map-wrap').classList.remove('elev-open');
+}
 function drawElev(pts){
   const svg=document.getElementById('elev-canvas');
   const W=1000,H=110,p={t:6,r:10,b:20,l:42},cW=W-p.l-p.r,cH=H-p.t-p.b;
