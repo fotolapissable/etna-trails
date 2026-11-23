@@ -35,6 +35,7 @@ Da quel momento l'icona si comporta come un'app normale, anche offline.
 | 🥾 **Sentieri** | Catalogo di percorsi sull'Etna e Nebrodi, con difficoltà (T/E/EE), distanza, dislivello, punti di interesse e traccia GPX |
 | 🏠 **Rifugi** | Rifugi e bivacchi: quota, servizi, contatti, se serve prenotazione |
 | 🌤 **Meteo** | Condizioni attuali e previsioni a 3 altitudini (1000m, 2000m, vetta), zero termico, alba/tramonto |
+| 🍄 **Funghi** | Stima delle condizioni di raccolta in base agli accumuli di pioggia degli ultimi 14 giorni |
 | 🧭 **Scopri** | Informazioni generali sull'Etna e sul territorio |
 | 🆘 **SOS** | Numeri di emergenza e condivisione della tua posizione |
 
@@ -45,6 +46,12 @@ Il meteo in montagna non è quello della città. Per questo la sezione Meteo mos
 - **Zero termico**: l'altitudine esatta sopra la quale la temperatura scende sotto zero, aggiornata in tempo reale
 - **Alba e tramonto** del giorno
 - **Avvisi automatici** se il vento è forte, ci sono raffiche pericolose, temporali in corso, o la quota scelta è sopra lo zero termico
+
+### 🍄 Le condizioni per i funghi
+
+La sezione Funghi dà una stima — non una garanzia — delle condizioni di raccolta, calcolata sugli accumuli di pioggia degli ultimi 14 giorni nella zona: più ha piovuto di recente, più le condizioni indicate sono favorevoli.
+
+⚠️ *Non sostituisce il buonsenso né l'esperienza: verifica sempre le regole locali (permessi, giorni e quantità consentite) prima di uscire a cercare.*
 
 ### 💾 Usare la mappa offline
 
@@ -122,6 +129,7 @@ From then on the icon behaves like a normal app, offline included.
 | 🥾 **Trails** | Catalogue of routes on Etna and the Nebrodi, with difficulty (T/E/EE), distance, elevation gain, points of interest and GPX track |
 | 🏠 **Refuges** | Mountain refuges and bivouacs: altitude, services, contacts, booking requirements |
 | 🌤 **Weather** | Current conditions and forecast at 3 altitudes (1000m, 2000m, summit), freezing level, sunrise/sunset |
+| 🍄 **Mushrooms** | Rough estimate of foraging conditions based on rainfall over the last 14 days |
 | 🧭 **Discover** | General information about Etna and the area |
 | 🆘 **SOS** | Emergency numbers and location sharing |
 
@@ -132,6 +140,12 @@ Mountain weather isn't the same as weather in town. That's why the Weather secti
 - **Freezing level**: the exact altitude above which temperature drops below zero, updated live
 - **Sunrise and sunset** for the day
 - **Automatic alerts** for strong wind, dangerous gusts, ongoing storms, or if the selected altitude is above the freezing level
+
+### 🍄 Mushroom foraging conditions
+
+The Mushrooms section gives a rough estimate — not a guarantee — of foraging conditions, based on rainfall accumulated over the last 14 days in the area: the more it has rained recently, the more favourable the conditions shown.
+
+⚠️ *This doesn't replace common sense or experience: always check local rules (permits, allowed days and quantities) before heading out to forage.*
 
 ### 💾 Using the offline map
 
